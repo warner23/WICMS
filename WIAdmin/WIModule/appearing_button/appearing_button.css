@@ -1,0 +1,32 @@
+#box1
+{
+	border:#999 2px solid;
+    width: 50%;
+    height: 50px;
+}
+
+#box1 > img
+{
+	position:absolute;
+	z-index:2000;
+	width:200px;
+	max-height:200px;
+}
+
+#box1 > a
+{
+    display: none;
+    position: absolute;
+    margin: 6px 0px 0px 128px;
+    z-index: 3000;
+    border: #81A332 1px solid;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+#box1:hover a
+{
+	display:block;
+}

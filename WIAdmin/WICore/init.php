@@ -1,0 +1,34 @@
+<?php
+
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
+
+require 'WIClass/WI.php';
+require 'WILib.php';
+
+$token = $register->socialToken();
+WISession::set('WI_social_token', $token);
+$register->botProtection();
+
+
+spl_autoload_register(function($class)
+{
+	require_once 'WIClass/' . $class . '.php';
+});
+
+$admin         = new WIAdmin(WISession::get("user_id"));
+$adminInfo     = $admin->getInfo();
+$adminDetails  = $admin->getDetails();
+$mod          = new WIModules();
+$page         = new WIPage();
+$plug          = new WIPlugin();
+$site         = new WISite();
+$img          = new WIImage();
+$topic        = new WITopic();
+$dashboard   = new WIDashboard();
+$adminChat   = new WIAdminChat();
+$Info       = new WIUserInfo();
+
+
+?>
