@@ -9,7 +9,7 @@ define('DB_TYPE', "mysql");
 
 define('DB_USER', "warner_Master"); 
 
-define('DB_PASS', "taylor22"); 
+define('DB_PASS', "testing"); 
 
 define('DB_NAME', "wicms_v3"); 
 
