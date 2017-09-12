@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+.container
+{
+	width:400px;
+}
+
+.bar
+{
+	width:100px;
+	background:#eee;
+	padding:3px;
+	border-radius:3px;
+	box-shadow:inset 0px 1px 3px rgba(0,0,0,.2);
+}
+
+.bar_fill
+{
+	height:20px;
+	display:block;
+	background:cornflowerblue;
+	width:60%;
+	border-radius:3px;
+	
+	transition:width 0.8s ease;
+	
+}
+

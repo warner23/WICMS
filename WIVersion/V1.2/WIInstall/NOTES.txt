@@ -1,0 +1,48 @@
+Web Intersect Social Network Website Template System and CMS v1.34
+Copyright (c) 2011 Adam Khoury
+February 9, 2010
+
+You are free to use this program under the GNU GPL Open Source Software License
+
+You must preserve and redistribute the license file and folder. Preserve and redistribute
+the existing copyrights exactly as they are in the source code of each file if you use, modify,
+or redistribute this software in any way. That is all we ask and you can do 
+whatever you want with it.
+
+You can get help at the developPHP.com forums, or wait until the forums are
+built into webintersect.com and ready. Which won't be too long off now.
+______________________________________________________________________________
+
+The system must be placed and operate in the root directory of a website online. Otherwise if
+you are testing the system in a subdirectory you will see links that are off.
+______________________________________________________________________________
+
+We added an index.php file to every folder that redirects to the homepage of your
+site so that way nobody can snoop around in a dark directory of files.
+______________________________________________________________________________
+
+Make sure that all folders that people can upload things to, have a proper chmod
+and file permissions settings (0755 or 0777) on your server if you have upload issues.
+For file uloading over 2MB you need to change your php.ini file on server to allow that.
+______________________________________________________________________________
+
+For a full understanding of the code and to avoid having to ask
+questions, please watch all the videos and pay close attention
+to sections relevent to your immediate question.
+______________________________________________________________________________
+
+Not built or tested using WAMP, LAMP, or XAMPP. Build it live.
+Build it and test on the live server that the site will run on.
+You can use those environments but if things go wrong, you will
+not get much in the way of help.
+______________________________________________________________________________
+
+This source code and the entire tutorial series are intended to be used as a 
+starting template for your social network. Use at your own risk. New apps that
+are to be added to the system will make it more powerful over time.
+______________________________________________________________________________
+
+If you have any questions you can try our forums at webintersect.com/forum/
+______________________________________________________________________________
+
+Happy Coding!

@@ -1,6 +1,6 @@
 <?php
 
-include "WICore/WIClass/WI.php";
+include "ASEngine/AS.php";
 
 if (! isset($_GET['k'])) {
     redirect('login.php');

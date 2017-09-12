@@ -7,9 +7,9 @@ define('HOST', "localhost");
 
 define('TYPE', "mysql"); 
 
-define('USER', "admin"); 
+define('USER', "wicms"); 
 
-define('PASS', "password??"); 
+define('PASS', "password?"); 
 
 define('NAME', "warner_wicms"); 
 

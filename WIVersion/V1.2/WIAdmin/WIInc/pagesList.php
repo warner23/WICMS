@@ -1,0 +1,10 @@
+<option value="index">Home (index page)</option>
+<option value="about">About Us</option>
+<option value="become_A_Supporter">Become a supporter</option>
+<option value="cafe">cafe</option>
+<option value="collections">collections</option>
+<option value="confirm">confirm</option>
+<option value="contact">contact</option>
+<option value="helplines">helplines</option>
+<option value="our_community_shop_and_cafe">our community shop and cafe</option>
+<option value="services">Services</option>

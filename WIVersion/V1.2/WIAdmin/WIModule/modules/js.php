@@ -1,0 +1,10 @@
+<script src="js/maine.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/checkusername.js"></script>
+<script src="js/emptyElement.js"></script>
+<script src="js/openTerms.js"></script>
+<script src="js/restrict.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/login.js"></script>
+<script src="js/respond.min.js"></script>
+<script src="js/main.js"></script>

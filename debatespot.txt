@@ -1,8 +1,0 @@
-https://mocha7003.mochahost.com:2083/logout/?locale=en
-
-username :
-debatespot
-
-password fulbright1
- domain :
-debatespot.net
