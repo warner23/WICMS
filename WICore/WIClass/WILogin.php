@@ -12,6 +12,7 @@ class WILogin
 
 	    function __construct() {
        $this->WIdb = WIdb::getInstance();
+       $this->maint = new WIMaintenace();
     }
 
 
@@ -92,13 +93,17 @@ class WILogin
         if(count($result) == 1) 
         {
             // check if user is confirmed
-            if($result[0]['confirmed'] == "N") {
+            if( MAIL_CONFIRMATION_REQUIRED === "true" ){
+                if($result[0]['confirmed'] == "N") {
                 echo json_encode(array(
                     'status' => 'error',
                     'message' => WILang::get('user_not_confirmed')
                 ));
                 return false;
+            }else{
+
             }
+        }
 
             // check if user is banned
             if($result[0]['banned'] == "Y") {
@@ -125,7 +130,7 @@ class WILogin
             $st1  = $username ;
             $st2  = "Successfully logged in User:  . ' $username . '" ;
             //$maintain = new WIMaintenace();
-            WIMaintenace::LogFunction($st1, $st2);
+            $this->maint->LogFunction($st1, $st2);
         }
         else {
             //wrong username/password combination

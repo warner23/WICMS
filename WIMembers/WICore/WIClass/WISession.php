@@ -27,8 +27,10 @@ class WISession
 
         session_start();
 
-        if ( SESSION_REGENERATE_ID )
+        if ( SESSION_REGENERATE_ID === "true"){
+            
             session_regenerate_id(SESSION_REGENERATE_ID);   
+        }   
     }
 
     public static function destroySession() {

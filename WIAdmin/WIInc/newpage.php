@@ -28,5 +28,4 @@
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
-        
         <script type="text/javascript" src="WICore/WIJ/WIPages.js"></script>

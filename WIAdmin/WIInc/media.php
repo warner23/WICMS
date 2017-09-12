@@ -6,12 +6,8 @@
 <script src="<?php echo $WI['theme_dir'] ?><?php echo $WI['js_admin'] ?>jquery-ui.js"></script>-->
 
 <style>
-  .drop{
 
-  }
-  .dropZone{
-    background-image: url(WIMedia/Img/media/dropzone.png);
-  }
+
 </style>
 <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -54,3 +50,9 @@
 <script>
 $( "#tabs" ).tabs();
 </script>
+
+<script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
+
+<script type="text/javascript" src="WICore/WIJ/WIMedia.js"></script>
+
+<script type="text/javascript" src="WICore/WIJ/WIMediaCenter.js"></script>

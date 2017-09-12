@@ -60,7 +60,6 @@ switch ($action) {
                 $_POST['db']['username'],
                 $_POST['db']['password']
             );
-            
 
             $stubsPath = dirname(__FILE__) . "/stubs";
             $asEnginePath = dirname(__FILE__) . "/../ASEngine";

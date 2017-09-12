@@ -146,21 +146,13 @@ Bring your time, expertise or willingness to learn, and we can match you with a 
 
 	"change_role" => "Change Role",
 
-	"add_user"	  => "Add User",
 
-	"pick_user_role" => "Pick User Role",
-
-    "never_logged_in" => "Never logged in",
 
     // users table
 
-    "records_per_page" => "records per page",
 
-    "nothing_found"    => "Nothing found - sorry",
 
-    "no_data_in_table" => "No users in database",
 
-    "showing" => "Showing",
 
 
 

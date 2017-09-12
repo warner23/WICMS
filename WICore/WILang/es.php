@@ -4,7 +4,6 @@ return array(
 
 	//login, register and password reset
 
-	"email" => "Е-маил",
 
 	"login" => "Пријава",
 
@@ -42,7 +41,7 @@ return array(
 
 	"dob" => "ДОБ",
 
-	"country" => "земља",   /// upto here
+	"country" => "земља",
 
 
 	//Months
@@ -92,7 +91,7 @@ return array(
     "member_panel" => "Панел Члана",
 
 
-    "HELLO"  => "Здраво",  //upto here
+    "HELLO"  => "Здраво",
 
 
 
@@ -129,7 +128,7 @@ Foro",
 	"about_us"   => "Sobre nosotros",
 
 	"info"    => "
-información",  // upto here
+información",
 
 
 

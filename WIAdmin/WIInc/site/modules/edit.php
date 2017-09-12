@@ -1,12 +1,12 @@
-<style type="text/css">
-  .hide{
-    display: none;
-  }
+      <style type="text/css">
+        .off{
+          display: none;
+        }
 
-  .show{
-    display: block;
-  }
-</style>          
+        .on{
+          display: block;
+        }
+      </style>
             <div class="row">
               <div class="col-md-12 col-sm-12 col-lg-12">
               <h1> Edit Modules </h1>
@@ -42,19 +42,17 @@
       </div></div>
                                 </div><!-- /.box-body -->
                             </div><!-- /. box -->
-
-                                    
-
                         </div><!-- /.col -->
-                        <div class="col-md-9">
-                        Module Name<input type="text" name="name" placeholder="Mod Name">
-                        <button id="create_mod" class="col-md-9" onclick="WIMod.createMod()">Save Mod</button>
+
+                          <div class="col-md-9">
+                          <div class="results" id="results"></div>
+                        <button id="create_mod" class="col-md-9" onclick="WIMod.EditMod()">Save Mod</button>
                         </div>
 
+                        
                         </div>
 
                        
-
 
                       <script>
   $( function() {
@@ -65,8 +63,9 @@
       drop: function( event, ui ) {
         $( this )
             var mod_name = ui.draggable.attr('id')
-            WIMod.editdrop(mod_name);
+            WIMod.editdrop(mod_name, mod_name);
       }
     });
   } );
   </script>
+

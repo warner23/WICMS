@@ -70,7 +70,10 @@ WIPages.Delete = function(id){
         },
         success: function(result)
         {
-
+            var res = JSON.parse(result);
+            if (res.status === "complete"){
+                $("#div").remove();
+            }
             
         }
     });
@@ -83,7 +86,7 @@ WIPages.Open = function(id, name){
 
     var Element = $("#details-body");
 
-    var Div = '<div><span>Are you sure you want to delete '+name+' page </span> <button class="btn btn-danger" onclick="WIPage.Delete('+id+');">Delete</button> <button class="btn" onclick="WIPages.Close();">Cancel</button></div>';
+    var Div = '<div id="div"><span>Are you sure you want to delete '+name+' page </span> <button class="btn btn-danger" onclick="WIPages.Delete('+id+');">Delete</button> <button class="btn" onclick="WIPages.Close();">Cancel</button></div>';
 
     Element.append(Div);
 
@@ -95,5 +98,7 @@ WIPages.Close = function(){
 
     $("#modal-delete").removeClass("on");
     $("#modal-delete").addClass("off");
+    $("#div").remove();
 
 }
+

@@ -19,10 +19,10 @@
       <?php
 ///////////End take away///////////////////////
 // SQL to gather their entire PM list
-      $from_id = $profile->PMList($userId, 'from_id');
+      $from_id = $profile->PMList($userId, 'sender_id');
       
       $date = strftime("%b %d, %Y",strtotime($profile->PMSentList($from_id, 'time_sent')));
-      $to_id = $profile->PMSentList($from_id, 'to_id');
+      $to_id = $profile->PMSentList($from_id, 'rec_id');
 
 
 
@@ -38,7 +38,7 @@
 <div class="inner_user"><a href="profile.php?id=<?php echo $Rid; ?>"><?php echo $Rname; ?></a></div><!-- end inner user-->
 <div class="text_col">
 <span class="toggle" style="padding:3px;">
-<a class="<?php echo $textWeight; ?>" id="subj_line_<?php echo $profile->PMSentList($from_id, 'id'); ?>" style="cursor:pointer;" onclick="markAsRead(<?php echo $profile->PMSentList($from_id, 'id'); ?>)"><?php echo stripslashes($profile->PMSentList($from_id,'subject')); ?></a>
+<a class="<?php echo $textWeight; ?>" id="subj_line_<?php echo $profile->PMSentList($from_id, 'id'); ?>" style="cursor:pointer;" onclick="IProfile.markAsRead(<?php echo $profile->PMSentList($from_id, 'id'); ?>)"><?php echo stripslashes($profile->PMSentList($from_id,'subject')); ?></a>
 </span></div><!-- end text-col-->
 <div class="hiddenDiv"> <br />
 <?php echo stripslashes(wordwrap(nl2br($profile->PMSentList($from_id, 'message'), 54, "\n", true))); ?>

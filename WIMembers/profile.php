@@ -1,31 +1,64 @@
 <?php
+
 include_once 'WIInc/WI_StartUp.php';
 
-if($login->isLoggedIn()){
-include_once 'WIInc/panel.php';
-include_once 'WIInc/top_head.php';
-$web->MainMenu();
-?>
- 
+$ip = getenv('REMOTE_ADDR');
+$ip2 = $maint->get_ip();
+//echo "ip". $ip;
+//echo "ip2". $ip2;
+$country = $maint->ip_info($ip, "country");
+//echo "country"  .$country;
+
+$page = "profile";
+$maint->visitors_log($page, $ip, $country);
+
+$panelPower = $web->pageModPower($page, "panel");
+
+$Panel = $web->PageMod($page, "panel");
+//echo $Panel;
+if ($panelPower === 0) {
+	
+}else{
+
+	$mod->getMod($Panel);
+//include_once 'WIInc/panel.php';
+}
+
+$topPower = $web->pageModPower($page, "top_head");
+$top_head = $web->PageMod($page, "top_head");
+//echo $Panel;
+if ($topPower === 0) {
+	
+}else{
+
+	$mod->getMod($top_head);
+}
+
+$headerPower = $web->pageModPower($page, "header");
+//echo $headPower;
+//echo $Panel;
+if ($headerPower === 0) {
+	
+}else{
+
+	//$web->MainHeader();
+}
 
 
-<?php
-include_once 'WIInc/profile.php';
+$web->MainMenu();	
+
+
+$contents = $web->pageModPower($page, "contents");
+//echo $contents;
+$mod->getModMain($contents, $page);
+
+  	
+//include_once 'WIInc/welcome_box.php';
+
 $web->footer();
 ?>
-  <!--End Wrapper-->
-  <!-- Start Style Switcher -->
-  <div class="switcher"></div>
-  <!-- End Style Switcher -->
-  <script type="text/javascript" src="WICore/WIJ/styleswitch.js"></script>  
-  <script type="text/javascript" src="WICore/WIJ/jquery.cookie.js"></script>  
 
-  
+
 
 </body>
 </html>
-<?php
-}else{
-header("location:../index.php");
-            }
-?>

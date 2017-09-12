@@ -1,5 +1,6 @@
 <?php
 include_once 'WI.php';
+include_once 'WIA.php';
 
 //csrf protection
 if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
@@ -9,7 +10,8 @@ $url = parse_url( isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '
 if( !isset( $url['host']) || ($url['host'] != $_SERVER['SERVER_NAME']))
     die("Sorry bro!");
 
-$action = $_POST['action'];
+//$action = $_POST['action'];
+$action = isset($_POST['action']) ? $_POST['action'] : null;
 
 switch ($action) {
 	case 'checkLogin':
@@ -20,6 +22,7 @@ switch ($action) {
                 'page'   => get_redirect_page()
             ));
 		break;
+
     case "registerUser":
         $register->register($_POST['User']);
         break;
@@ -120,36 +123,130 @@ switch ($action) {
         echo json_encode($user->getAll());
         break;
 
-                case "getCalendar":
-        $calendar = new WICalendar();
-        $calendar->getCalendar($_POST['year'], $_POST['month']) ;
+         case "selected_vote":
+        $topic = new WITopic();
+        $topic->selected_Vote($_POST['vote'], $_POST['voting_id']);
         break;
 
-        case "addEvent":
-        $calendar = new WICalendar();
-        $calendar->addEvent($_POST['date']) ;
+    case "selected_voting":
+        $topic = new WITopic();
+        $topic->selected_Voting($_POST['vote'], $_POST['option'], $_POST['voting_id']);
         break;
 
-         case "getEvents":
-        $calendar = new WICalendar();
-        $calendar->getEvents($_POST['date']) ;
+        case "checkrequest":
+        $debate = new WIDebate();
+        $debate->checkRequest($_POST['userId']);
         break;
+
+        case "debate":
+        $debate = new WIDebate();
+        $debate->StartChat($_POST['userId'], $_POST['userVoteId'], $_POST['topic_id'],$_POST['dateTime']);
+        break;
+
+        case "changeStatus":
+        $debate = new WIDebate();
+        $debate->Accept();
+        break;
+
+        case "sendmessage":
+        $debate = new WIDebate();
+        $debate->SendMessage($_POST['Message'], $_POST['chat_id'], $_POST['user_id']);
+        break;
+
+        case "closeDialog":
+        $debate = new WIDebate();
+        $debate->closeDialog($_POST['user_id'], $_POST['chat_id']);
+        break;
+
+         case "topic":
+        $debate = new WIDebate();
+        $debate->TopicName($_POST['user_id'], $_POST['chat_id']);
+        break;
+
+        case "show_view_profile":
+        $debate = new WIDebate();
+        $debate->ShowViewProfile($_POST['user_id'], $_POST['chat_id']);
+        break;
+
+         case "profile":
+        $debate = new WIDebate();
+        $debate->Profile($_POST['Fid']);
+        break;
+
+     case "List":
+        $lists = new WIListings();
+        $lists->listings(WISession::get('user_id'), WISession::get('id_vote') , $_POST['col'] );
+        break;
+
+        case "Lists":
+        $lists = new WIListings();
+        $lists->listings(WISession::get('user_id'), WISession::get('id_vote'), $_POST['page'],  $_POST['col']);
+        break;
+
+    case "spectate":
+        $debate = new WIDebate();
+        $debate->spectate($_POST['vote']);
+        break;
+
+            case "endChat":
+        $debate = new WIDebate();
+        $debate->spectate($_POST['vote']);
+        break;
+
+        case "winnVote":
+        $debate = new WIDebate();
+        $debate->WinnersVote($_POST['chat_id'], $_POST['win']);
+        break;
+
+        case "contact":
+        $contact = new WIContact();
+        $contact->sendMessage($_POST['name'], $_POST['email'],  $_POST['subject'], $_POST['message']);
+        break;
+        
 
             default:
         
         break;
-}
+};
 
-//switch($_GET['action']){
+
+//$action = $_GET['action'];
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+switch($action){
+    
         
-        //case "getEvents":
-        //$calendar = new WICalendar();
-        //$calendar->getEvents($_GET['date']) ;
-        //break;
+        case 'CheckChat':
+        $debate->getChatMessages($_GET['chat_id'], $_GET['last_chat_time'], $_GET['userId']);
+        break;
         
-       // default:
-      //  break;
-   // }
+        
+        case 'getChats':
+            $response = Chat::getChats($_GET['lastID']);
+        break;
+        
+
+        case 'Pending':
+        $debate = new WIDebate();
+        $debate->checkPending();
+        break;
+
+         case "status":
+        $debate = new WIDebate();
+        $debate->status($_GET['chat_id']);
+        break;
+
+        case "endTime":
+        $debate = new WIDebate();
+        $debate->getTime($_GET['chat_id']);
+        break;
+
+        case "winner":
+        $debate = new WIDebate();
+        $debate-> winStatus($_GET['chat_id']);
+        break;
+        
+        default:
+    }
 
 function onlyAdmin() {
     $login = new WILogin();

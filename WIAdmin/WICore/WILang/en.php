@@ -438,12 +438,6 @@ return array(
 
 	"logs" => "Logs",
 
-	"add_todo" => "Add To do Item",
-
-	"ToDoItem" => "To Do Item",
-
-	"Delete_page" => "Delete Page"
-
 
 
 

@@ -53,7 +53,27 @@ class WILang
 
 		$WIdb = WIdb::getInstance();
 
-		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key AND `lang`=:lang";
+		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key AND lang=:lang";
+		$query = $WIdb->prepare($sql);
+		$query->bindParam(':key', $key, PDO::PARAM_STR);
+		$query->bindParam(':lang', $language, PDO::PARAM_STR);
+		$query->execute();
+
+		$res = $query->fetch(PDO::FETCH_ASSOC);
+		if($res > 0)
+			return $res['translation'];
+		else
+			return '';
+	}
+
+	    public static function getTranslation($key ) //, $bindings = array()
+    {
+		// determine language
+		$language = self::getLanguage();
+
+		$WIdb = WIdb::getInstance();
+
+		$sql = "SELECT * FROM `wi_translations` WHERE `keyword`=:key AND lang=:lang";
 		$query = $WIdb->prepare($sql);
 		$query->bindParam(':key', $key, PDO::PARAM_STR);
 		$query->bindParam(':lang', $language, PDO::PARAM_STR);

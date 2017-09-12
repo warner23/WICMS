@@ -63,3 +63,10 @@ WICore.urlParam = function(name)
 {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 };
+
+WICore.other = function()
+{
+    parentElement = $(".other");
+    var div = ("<div class='topicVote' id='topicVote'><textarea id='textarea' vote='other' class='voting' rows='4' cols='25'></textarea><button id='othervote'>Save</button></div>");
+    parentElement.append(div);
+}

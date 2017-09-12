@@ -1,8 +1,8 @@
-<link rel="stylesheet" type="text/css" href="http://wicms.co.uk/WITheme/River/site/css/menu.css">
+<link rel="stylesheet" type="text/css" href="http://wliterature.com/DebateSpot/WITheme/Debate/site/css/frameworks/menus.css">
 
   <script>
   $( function() {
-    $( "#tabs3" ).tabs();
+    $( "#tabs1" ).tabs();
   } );
   </script>
  <aside class="right-side">
@@ -29,24 +29,23 @@
 
             <div class="well">
 
-                     <div id="tabs3">
+
+                     <div id="tabs1">
   <ul>
-    <li><a href="#tabs-1">Menu</a></li>
+    <li><a href="#tabs-1">Site</a></li>
     <li><a href="#tabs-2">Admin</a></li>
     <li><a href="#tabs-3">Sidebar</a></li>
   </ul>
   <div id="tabs-1">
- <?php include_once 'WIInc/site/menu/menu.php'; ?>  
+ <?php include_once 'WIInc/site/menu/menu.php'; ?> 
   </div>
   <div id="tabs-2">
-<?php include_once 'WIInc/site/menu/admin_menu.php'; ?> 
+<?php include_once 'WIInc/site/menu/Admin_menu.php'; ?> 
   </div>
   <div id="tabs-3">
-<?php include_once 'WIInc/site/menu/sidebar_menu.php'; ?>
+ <?php include_once 'WIInc/site/menu/sidebar_menu.php'; ?> 
   </div>
 </div>
-
-
 
                      </div>
                      </div>

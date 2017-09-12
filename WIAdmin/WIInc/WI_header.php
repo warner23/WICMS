@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="WIInc/css/font-awesome.css">
+<link rel="stylesheet" href="../WITheme/Debate/site/css/style.css">
 <style type="text/css">
   .navbar {
     position: relative;
@@ -7,13 +8,23 @@
     border: 1px solid transparent;
 }
 
+.navbar-nav>li>.dropdown-menu {
+
+    width: 335%;
+}
+
 .operation{
       float: left;
     font-size: 14px;
+        margin-left: 15px;
 }
 
   .visit{
     float: left;
+  }
+
+  .note{
+
   }
 
   li{
@@ -24,9 +35,10 @@
   li#notif{
   }
 
-  ul#nots{
-
-  }
+ul#nots {
+    width: 100%;
+    margin-left: -47px;
+}
 
   .navbar>.container .navbar-visit, .navbar>.container-fluid .navbar-visit {
         margin-left: -9px ! important;
@@ -51,7 +63,8 @@
 
   @media (min-width: 768px){
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-margin-left: -27% ! important;
+    margin-left: -88% ! important;
+    margin-top: -13px;
 }
 
   .navbar>.container .navbar-visit, .navbar>.container-fluid .navbar-visit {
@@ -90,12 +103,13 @@ margin-left: -2% ! important;
 <div class="container">
 <div class="row">
 <div class="navbar navbar-header">
-<a href="dashboard.php" class="navbar-brand"><?php echo WEBSITE_NAME; ?> Admin Panel</a>
+<a href="dashboard.php" class="navbar-brand" title="<?php echo WEBSITE_NAME; ?> Admin Panel"><img src="WIMedia/Img/cp.png" width="50px" height="50px"></a>
 <a href="../index.php" class="navbar-visit"><span class="glyphicon glyphicon-home" title="Visit Site"></span></a>
 </div>
 
 
 <?php $web->AdminMenu();?>
+
 
 <ul class="nav navbar-nav navbar-right">
 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="WIDashboard.Notifications();"><span class="fa fa-bell-o" title="Notifications"></span>
@@ -131,71 +145,21 @@ You have <?php echo $site->notifications_badge()?>  notifications
 
  <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="WIDashboard.tasks();">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <span class="label label-danger" id="task_badge"></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header">You have <?php echo $site->TaskBagde()?>  tasks</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
+    <div class="panel-heading">Tasks</div>
+    <div class="panel-body" id="tasks">
+
+  
+
+    </div>
                 </ul>
               </li>
               <li class="footer">
@@ -205,7 +169,7 @@ You have <?php echo $site->notifications_badge()?>  notifications
           </li>
 
 
-           <!-- User Account: style can be found in dropdown.less -->
+  <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <?php echo $user_pic = $Info->admin_pic(WISession::get('user_id'))?>
@@ -238,7 +202,7 @@ You have <?php echo $site->notifications_badge()?>  notifications
                 </div>
                 <!-- /.row -->
               </li>
-   <!-- Menu Footer-->
+              <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
                   <a href="../WIMembers/profile.php" class="btn btn-default btn-flat">Profile</a>
@@ -256,13 +220,10 @@ You have <?php echo $site->notifications_badge()?>  notifications
 
 
 
+
 </ul>
 </div>
 </div>
 </div>
-
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
 
 <script type="text/javascript" src="WICore/WIJ/WIDashboard.js"></script>

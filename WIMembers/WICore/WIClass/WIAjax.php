@@ -167,6 +167,11 @@ switch ($action) {
         $profile->friendProfile($_POST['friend']);
         break;
 
+           case "friendProfile0":
+        $profile = new WIProfile();
+        $profile->friendProfile0();
+        break;
+
        case "privateMessage":
         $profile = new WIProfile();
         $profile->privateMessage($_POST['pmSub'], $_POST['pmText'], $_POST['senderid'],$_POST['sendername'],$_POST['rec_id'],$_POST['recName']);

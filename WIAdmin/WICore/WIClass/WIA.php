@@ -7,6 +7,7 @@ include_once 'WIDashboard.php';
 include_once 'WIAdminChat.php';
 include_once 'WIPage.php';
 include_once 'WIContact.php';
+include_once 'WIImage.php';
 /*
 spl_autoload_register(function($class)
 {
@@ -22,5 +23,6 @@ $dashboard   = new WIDashboard();
 $chat        = new WIAdminChat();
 $page        = new WIPage();
 $site        = new WISite();
-$contact        = new WIContact();
+$contact    = new WIContact();
+$img        = new WIImage();
 ?>

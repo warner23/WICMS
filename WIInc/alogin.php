@@ -1,5 +1,5 @@
 <style type="text/css">
-  
+	
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
 /****** LOGIN MODAL ******/
@@ -119,20 +119,20 @@
 <div class="col-md-6 login-panel"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></div>
 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-        <div class="loginmodal-container"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h1>Login to Your Account</h1><br>
-          <form class="form-horizontal">
-          <input type="text" id="username" name="user" placeholder="Username">
-          <input type="password" id="password" name="pass" placeholder="Password">
-          <input type="submit" id="admin_login" name="login" class="login loginmodal-submit" value="Login">
-          </form>
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1>Login to Your Account</h1><br>
+				  <form class="form-horizontal">
+					<input type="text" id="username" name="user" placeholder="Username">
+					<input type="password" id="password" name="pass" placeholder="Password">
+					<input type="submit" id="admin_login" name="login" class="login loginmodal-submit" value="Login">
+				  </form>
 
-          
-        
-        </div>
-      </div>
-      </div>
+					
+				
+				</div>
+			</div>
+		  </div>
       <script type="text/javascript" src="WIAdmin/WICore/WIJ/WICore.js"></script>
       <script type="text/javascript" src="WIAdmin/WICore/WIJ/WILogin.js"></script>
       <script type="text/javascript" src="WIAdmin/WICore/WIJ/sha512.js"></script>

@@ -1,0 +1,1477 @@
+.proheader
+{
+      width: 90%;
+    height: 210px;
+    margin-left: 47px;
+}
+
+.profile_picture {
+    width: 9%;
+    /* height: 90px; */
+    margin-left: 10px;
+    margin-top: -104px;
+    border-radius: 100%;
+}
+
+.profile
+{
+    width: 100%;
+    /* height: 82px; */
+    border-radius: 46px;
+}
+
+
+.inner_profile
+{
+  width: 100%;
+  height: 1237px;
+}
+
+aside
+{
+	  width: 25%;
+  height: auto !important;
+  float: left;
+}
+
+.bio_user_info
+{
+  width: 100%;
+  height: 434px;
+}
+
+.col-sm-12
+{
+  width: 75% !important;
+  float: left !important;
+}
+
+.User-Info
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  color: rgb(8, 8, 8);
+  margin-left: 0px;
+  background-color: white;
+  margin-top: 4px;
+}
+
+.name
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.username
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.dragon_name
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.bio
+{
+  width: 96%;
+  height: auto;
+  float: left;
+  color: white;
+  margin-left: 6px;
+}
+
+.title
+{
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  background-color: black;
+}
+
+.titleP
+{
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  background-color: black;  
+}
+
+
+.bio_body
+{
+	  color: white;
+  font-family: initial;
+  font-size: medium;
+}
+
+.social_profile
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  color: black;
+  margin-left: 0px;
+  background-color: white;
+}
+
+.web
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.yout
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.fb
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.twit
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.friends_bar
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-left: 0px;
+}
+
+.friends
+{
+  width: 102%;
+  height: 292px;
+  float: left;
+  margin-left: -4px;
+}
+
+.WIFriends
+{
+  background-color: #D0D0D0;
+  height: 96px;
+  overflow: auto;
+}
+
+.friends_box
+{
+  display: inline;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 51px;
+}
+
+.friending
+{
+  padding: 5px;
+  background-color: #A9A9A9;
+  border-bottom: #FD0202 1px solid;
+  width: 97%;
+  margin-left: 4px;
+}
+
+.button
+{
+  width: 100%;
+  height: 36px;
+  float: left;
+  margin-left: 0px;
+}
+
+.prof_main
+{
+      width: 74%;
+    float: left;
+}
+
+.tab-content
+{
+	border: 1px #f0f0f0 solid;
+  padding: 18px;
+  margin: 0 0 0 0;
+  z-index: 1;
+  position: relative;
+  width: 75% !important;
+  margin-left: 232px !important;
+}
+.interactionLinksDiv
+{
+width: 60%;
+}
+
+.interactionLinksDiv a {
+   border:#B9B9B9 1px solid; padding:5px; color:#060; font-size:11px; background-image:url('../img/headerBtnsBG.jpg'); text-decoration:none;
+}
+.interactionLinksDiv a:hover {
+	border:#090 1px solid; padding:5px; color:#060; font-size:11px; background-image:url('../img/headerBtnsBGover.jpg');
+}
+/* ------- Interaction Containers Class -------- */
+.interactContainers {
+	padding:8px;
+	background-color:#BDF;
+	border:#999 1px solid;
+  width: 100%;
+  height: auto;
+	 /* display: none; */
+}
+
+.interactContainers1 {
+	padding:8px;
+	background-color:#BDF;
+	border:#999 1px solid;
+	 /* display: none; */
+}
+
+.interactContainers2 {
+	padding: 8px;
+  background-color: #BDF;
+  border: #999 1px solid;
+  /* display: none; */
+  margin-top: 72px;
+}
+
+.interactContainers3 {
+  height: auto;
+  overflow: auto;
+  display: block;
+  background-color: rgb(194, 191, 191);
+  width: 33%;
+  margin-top: -40px;
+  margin-left: 232px;
+}
+
+.cancel
+{
+  width: 15%;
+  float: right;
+  margin-right: 56px;
+}
+
+.loading_image
+{
+  max-width: 25%;
+  height: 2%;
+  margin-left: 10%;
+}
+
+#add_friend_loader {
+	display:none;
+}
+#remove_friend_loader {
+	display:none;
+}
+#interactionResults {
+	display:none;
+	font-size:16px;
+	padding:8px;
+}
+
+.talkAway
+{
+  background-color: #BDF;
+  border: #999 1px solid;
+  padding: 5px;
+  width: 65%;
+  height: 211px;
+  margin-left: 106px;
+  margin-top: 67px;
+}
+#friendTable td{
+	font-size:9px;
+}
+#friendTable td a{
+	color:#03C;
+	text-decoration:none;
+}
+#view_all_friends {
+  background-image: url('../img/opaqueDark.png');
+  width: 97%;
+  padding: 3px;
+  z-index: 100;
+  margin-left: 4px;
+  height: 275px;
+}
+
+.google_box
+{
+padding: 0px;
+  background-color: #CDCDCD;
+  width: 100%;
+}
+
+.close
+{
+padding: 0px;
+  background-color: #C7C7C7;
+  width: 99%;	
+}
+#google_map {
+
+  background-image: url('../img/opaqueDark.png');
+  padding: 6px;
+  z-index: 100;
+  width: 100%;
+  float: left;
+
+}
+
+.google_map
+{
+	width: 100%;
+  height: 373px;
+}
+
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+
+
+.inner_profile
+{
+  width: 100%;
+  height: 1237px;
+}
+
+aside
+{
+    width: 25%;
+  height: auto !important;
+  float: left;
+}
+
+.bio_user_info
+{
+  width: 100%;
+  height: 434px;
+}
+
+.col-sm-12
+{
+  width: 75% !important;
+  float: left !important;
+}
+
+.User-Info
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  color: rgb(8, 8, 8);
+  margin-left: 0px;
+  background-color: white;
+  margin-top: 4px;
+}
+
+.name
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.username
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.dragon_name
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.bio
+{
+  width: 96%;
+  height: auto;
+  float: left;
+  color: white;
+  margin-left: 6px;
+}
+
+.title
+{
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  background-color: black;
+}
+
+.bio_body
+{
+    color: white;
+  font-family: initial;
+  font-size: medium;
+}
+
+.social_profile
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  color: black;
+  margin-left: 0px;
+  background-color: white;
+}
+
+.web
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.yout
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.fb
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.twit
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.friends_bar
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-left: 0px;
+}
+
+.friends
+{
+  width: 102%;
+  height: 292px;
+  float: left;
+  margin-left: -4px;
+}
+
+.WIFriends
+{
+  background-color: #D0D0D0;
+  height: 96px;
+  overflow: auto;
+}
+
+.friends_box
+{
+  display: inline;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 51px;
+}
+
+.friending
+{
+  padding: 5px;
+  background-color: #A9A9A9;
+  border-bottom: #FD0202 1px solid;
+  width: 97%;
+  margin-left: 4px;
+}
+
+.button
+{
+  width: 100%;
+  height: 36px;
+  float: left;
+  margin-left: 0px;
+}
+
+.tab-content
+{
+  border: 1px #f0f0f0 solid;
+  padding: 18px;
+  margin: 0 0 0 0;
+  z-index: 1;
+  position: relative;
+  width: 75% !important;
+  margin-left: 232px !important;
+}
+.interactionLinksDiv
+{
+width: 60%;
+}
+
+.interactionLinksDiv a {
+   border:#B9B9B9 1px solid; padding:5px; color:#060; font-size:11px; background-image:url('../img/headerBtnsBG.jpg'); text-decoration:none;
+}
+.interactionLinksDiv a:hover {
+  border:#090 1px solid; padding:5px; color:#060; font-size:11px; background-image:url('../img/headerBtnsBGover.jpg');
+}
+/* ------- Interaction Containers Class -------- */
+.interactContainers {
+  padding:8px;
+  background-color:#BDF;
+  border:#999 1px solid;
+  width: 100%;
+  height: auto;
+   /* display: none; */
+}
+
+.interactContainers1 {
+  padding:8px;
+  background-color:#BDF;
+  border:#999 1px solid;
+   /* display: none; */
+}
+
+.interactContainers2 {
+  padding: 8px;
+  background-color: #BDF;
+  border: #999 1px solid;
+  /* display: none; */
+  margin-top: 72px;
+}
+
+.interactContainers3 {
+  height: auto;
+  overflow: auto;
+  display: block;
+  background-color: rgb(194, 191, 191);
+  width: 33%;
+  margin-top: -40px;
+  margin-left: 232px;
+}
+
+.cancel
+{
+  width: 15%;
+  float: right;
+  margin-right: 56px;
+}
+
+.loading_image
+{
+  max-width: 20%;
+}
+
+#add_friend_loader {
+  display:none;
+}
+#remove_friend_loader {
+  display:none;
+}
+#interactionResults {
+  display:none;
+  font-size:16px;
+  padding:8px;
+}
+
+.talkAway
+{
+  background-color: #BDF;
+  border: #999 1px solid;
+  padding: 5px;
+  width: 65%;
+  height: 211px;
+  margin-left: 106px;
+  margin-top: 67px;
+}
+#friendTable td{
+  font-size:9px;
+}
+#friendTable td a{
+  color:#03C;
+  text-decoration:none;
+}
+#view_all_friends {
+  background-image: url('../img/opaqueDark.png');
+  width: 97%;
+  padding: 3px;
+  z-index: 100;
+  margin-left: 4px;
+  height: 275px;
+}
+
+.google_box
+{
+padding: 0px;
+  background-color: #CDCDCD;
+  width: 100%;
+}
+
+.close
+{
+padding: 0px;
+  background-color: #C7C7C7;
+  width: 99%; 
+}
+#google_map {
+
+  background-image: url('../img/opaqueDark.png');
+  padding: 6px;
+  z-index: 100;
+  width: 100%;
+  float: left;
+
+}
+
+.google_map
+{
+  width: 100%;
+  height: 373px;
+}
+
+.infoHeader {
+  background-color: #BDF;
+  font-size:11px;
+  font-weight:bold;
+  padding:8px;
+  border: #999 1px solid;
+  border-bottom:none;
+  width:100%;
+}
+.infoBody{
+  background-color: #FFF;
+  font-size:11px;
+  padding:8px;
+  border: #999 1px solid;
+  border-bottom:none;
+  width:100%;
+  color: black;
+}
+/* ------- Interaction Links Class -------- */
+.interactionLinksDiv a {
+   border:#B9B9B9 1px solid; padding:5px; color:#060; font-size:11px; background-image:url(../img/headerBtnsBG.jpg); text-decoration:none;
+}
+.interactionLinksDiv a:hover {
+  border:#090 1px solid; padding:5px; color:#060; font-size:11px; background-image:url(../img/headerBtnsBGover.jpg);
+}
+/* ------- Interaction Containers Class -------- */
+.interactContainers {
+  padding:8px;
+  background-color:#BDF;
+  border:#999 1px solid;
+  display:none;
+}
+#add_friend_loader {
+  display:none;
+}
+#remove_friend_loader {
+  display:none;
+}
+#interactionResults {
+  display:none;
+  font-size:16px;
+  padding:8px;
+}
+#friendTable td{
+  font-size:9px;
+}
+#friendTable td a{
+  color:#03C;
+  text-decoration:none;
+}
+#view_all_friends {
+  background-image:url(../img/opaqueDark.png);
+  width:270px;
+  padding:20px;
+  position:fixed;
+  top:150px;
+  display:none;
+  z-index:100;
+  margin-left:50px;
+}
+#google_map {
+  background-image:url(../img/opaqueDark.png);
+  padding:20px;
+  position:fixed;
+  top:150px;
+  display:none;
+  z-index:100;
+  margin-left:50px;
+}
+
+.user-web
+{
+    max-width: 10%;
+}
+
+.web-url
+{
+    width: 100%;
+  font-size: smaller;
+}
+
+.stats {
+  width: 100%;
+  height: 269px;
+  margin-top: 358px;
+}
+
+.requests
+{
+
+}
+
+.clearfix {
+  height: 108% !important;
+}
+
+.jumbotron {
+
+  min-height: 1346px;
+}
+
+.priv_mes
+{
+  width: 10%;
+  height: 10%;
+}
+
+.hiddenDiv{display:none}
+#pmFormProcessGif{display:none}
+.msgDefault {font-weight:bold;}
+.msgRead {font-weight:100;color:#666;}
+
+.state
+{
+width: 100%;
+  font-size: 16px;
+    background-color: white;
+  color: black;
+}
+
+.country
+{
+width: 100%;
+  font-size: 16px;
+    background-color: white;
+  color: black;
+}
+
+.google_link
+{
+width: 100%;
+  font-size: 16px;
+    background-color: white;
+  color: black;
+}
+
+.google_inner_map
+{
+width: 100%;
+}
+
+.where_i_live
+{
+width: 100%;
+}
+
+.inbox
+{
+  width:100%;
+  height: auto;
+}
+.arrow_img
+{
+width: 3%;
+  float: left;
+  height: 10%;
+}
+
+.sub_delete
+{
+  width: 9%;
+  float: left;
+}
+
+.inbox_body
+{
+  background-image:url(../img/headerStrip.jpg); background-repeat:repeat-x; 
+  border: #999 1px solid;
+  width:100%;
+  height:150px;
+}
+
+.inbox_footing
+{
+width: 100%;
+  height: 40px;
+  float: right;
+  border: 1px solid black;
+}
+
+.from
+{
+    width: 30%;
+  float:left;
+}
+
+.sub
+{
+    width: 30%;
+  float:left;
+}
+.date
+{
+    width: 30%;
+  float:left;
+}
+
+.inner_usern
+{
+  width: 100%;
+  height: 50%;
+}
+
+.inner_id
+{
+  width: 6%;
+  height: 30px;
+  float: left;
+}
+
+.text_col
+{
+  width: 30%;
+  height: auto;
+  float: left;
+}
+
+.inner_user
+{
+  width: 27%;
+  height: 15px;
+  float: left;
+  height: auto;
+}
+
+.mdate
+{
+  width: 17%;
+  height: auto;
+  float: left;
+  padding: 10px;
+}
+
+.tick
+{
+width: 2%;
+  float: left;
+  margin: 15px 8px 0 !important;
+}
+
+.tick1
+{
+  width: 34%;
+  float: left;
+  margin: 15px 8px 0 !important;
+}
+
+.upload
+{
+  
+}
+
+}
+
+
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+
+
+.inner_profile
+{
+  width: 100%;
+  height: 1237px;
+}
+
+aside
+{
+    width: 25%;
+  height: auto !important;
+  float: left;
+}
+
+.bio_user_info
+{
+  width: 100%;
+  height: 434px;
+}
+
+.col-sm-12
+{
+  width: 75% !important;
+  float: left !important;
+}
+
+.User-Info
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  color: rgb(8, 8, 8);
+  margin-left: 0px;
+  background-color: white;
+  margin-top: 4px;
+}
+
+.name
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.username
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.dragon_name
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.bio
+{
+  width: 96%;
+  height: auto;
+  float: left;
+  color: white;
+  margin-left: 6px;
+}
+
+.title
+{
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  background-color: black;
+}
+
+.bio_body
+{
+    color: white;
+  font-family: initial;
+  font-size: medium;
+}
+
+.social_profile
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  color: black;
+  margin-left: 0px;
+  background-color: white;
+}
+
+.web
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.yout
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.fb
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.twit
+{
+  width: 100%;
+  font-size: medium;
+  font-family: -webkit-pictograph;
+}
+
+.friends_bar
+{
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-left: 0px;
+}
+
+.friends
+{
+  width: 102%;
+  height: 292px;
+  float: left;
+  margin-left: -4px;
+}
+
+.WIFriends
+{
+  background-color: #D0D0D0;
+  height: 96px;
+  overflow: auto;
+}
+
+.friends_box
+{
+  display: inline;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 51px;
+}
+
+.friending
+{
+  padding: 5px;
+  background-color: #A9A9A9;
+  border-bottom: #FD0202 1px solid;
+  width: 97%;
+  margin-left: 4px;
+}
+
+.button
+{
+  width: 100%;
+  height: 36px;
+  float: left;
+  margin-left: 0px;
+}
+
+.tab-content
+{
+  border: 1px #f0f0f0 solid;
+  padding: 18px;
+  margin: 0 0 0 0;
+  z-index: 1;
+  position: relative;
+  width: 75% !important;
+  margin-left: 232px !important;
+}
+.interactionLinksDiv
+{
+width: 60%;
+}
+
+.interactionLinksDiv a {
+   border:#B9B9B9 1px solid; padding:5px; color:#060; font-size:11px; background-image:url('../img/headerBtnsBG.jpg'); text-decoration:none;
+}
+.interactionLinksDiv a:hover {
+  border:#090 1px solid; padding:5px; color:#060; font-size:11px; background-image:url('../img/headerBtnsBGover.jpg');
+}
+/* ------- Interaction Containers Class -------- */
+.interactContainers {
+  padding:8px;
+  background-color:#BDF;
+  border:#999 1px solid;
+  width: 100%;
+  height: auto;
+   /* display: none; */
+}
+
+.interactContainers1 {
+  padding:8px;
+  background-color:#BDF;
+  border:#999 1px solid;
+   /* display: none; */
+}
+
+.interactContainers2 {
+  padding: 8px;
+  background-color: #BDF;
+  border: #999 1px solid;
+  /* display: none; */
+  margin-top: 72px;
+}
+
+.interactContainers3 {
+  height: auto;
+  overflow: auto;
+  display: block;
+  background-color: rgb(194, 191, 191);
+  width: 33%;
+  margin-top: -40px;
+  margin-left: 232px;
+}
+
+.cancel
+{
+  width: 15%;
+  float: right;
+  margin-right: 56px;
+}
+
+.loading_image
+{
+  max-width: 20%;
+}
+
+#add_friend_loader {
+  display:none;
+}
+#remove_friend_loader {
+  display:none;
+}
+#interactionResults {
+  display:none;
+  font-size:16px;
+  padding:8px;
+}
+
+.talkAway
+{
+  background-color: #BDF;
+  border: #999 1px solid;
+  padding: 5px;
+  width: 65%;
+  height: 211px;
+  margin-left: 106px;
+  margin-top: 67px;
+}
+#friendTable td{
+  font-size:9px;
+}
+#friendTable td a{
+  color:#03C;
+  text-decoration:none;
+}
+#view_all_friends {
+  background-image: url('../img/opaqueDark.png');
+  width: 97%;
+  padding: 3px;
+  z-index: 100;
+  margin-left: 4px;
+  height: 275px;
+}
+
+.google_box
+{
+padding: 0px;
+  background-color: #CDCDCD;
+  width: 100%;
+}
+
+.close
+{
+padding: 0px;
+  background-color: #C7C7C7;
+  width: 99%; 
+}
+#google_map {
+
+  background-image: url('../img/opaqueDark.png');
+  padding: 6px;
+  z-index: 100;
+  width: 31%;
+  float: left;
+  height: 32%;
+  margin-left: 223px;
+  margin-top: 143px;
+
+}
+
+.google_map
+{
+  width: 100%;
+  height: 373px;
+}
+
+.infoHeader {
+  background-color: #BDF;
+  font-size:11px;
+  font-weight:bold;
+  padding:8px;
+  border: #999 1px solid;
+  border-bottom:none;
+  width:100%;
+}
+.infoBody{
+  background-color: #FFF;
+  font-size:11px;
+  padding:8px;
+  border: #999 1px solid;
+  border-bottom:none;
+  width:100%;
+  color: black;
+}
+/* ------- Interaction Links Class -------- */
+.interactionLinksDiv a {
+   border:#B9B9B9 1px solid; padding:5px; color:#060; font-size:11px; background-image:url(../img/headerBtnsBG.jpg); text-decoration:none;
+}
+.interactionLinksDiv a:hover {
+  border:#090 1px solid; padding:5px; color:#060; font-size:11px; background-image:url(../img/headerBtnsBGover.jpg);
+}
+/* ------- Interaction Containers Class -------- */
+.interactContainers {
+  padding:8px;
+  background-color:#BDF;
+  border:#999 1px solid;
+  display:none;
+}
+#add_friend_loader {
+  display:none;
+}
+#remove_friend_loader {
+  display:none;
+}
+#interactionResults {
+  display:none;
+  font-size:16px;
+  padding:8px;
+}
+#friendTable td{
+  font-size:9px;
+}
+#friendTable td a{
+  color:#03C;
+  text-decoration:none;
+}
+#view_all_friends {
+  background-image:url(../img/opaqueDark.png);
+  width:270px;
+  padding:20px;
+  position:fixed;
+  top:150px;
+  display:none;
+  z-index:100;
+  margin-left:50px;
+}
+#google_map {
+  background-image:url(../img/opaqueDark.png);
+    padding: 4px;
+    position: fixed;
+    top: 0px;
+    display: none;
+    z-index: 100;
+    margin-left: 228px;
+}
+
+.user-web
+{
+    max-width: 10%;
+}
+
+.web-url
+{
+    width: 100%;
+  font-size: smaller;
+}
+
+.stats {
+  width: 100%;
+  height: 269px;
+  margin-top: 358px;
+}
+
+.requests
+{
+
+}
+
+.clearfix {
+  height: 108% !important;
+}
+
+.jumbotron {
+
+  min-height: 1346px;
+}
+
+.priv_mes
+{
+  width: 10%;
+  height: 10%;
+}
+
+.hiddenDiv{display:none}
+#pmFormProcessGif{display:none}
+.msgDefault {font-weight:bold;}
+.msgRead {font-weight:100;color:#666;}
+
+.state
+{
+width: 100%;
+  font-size: 16px;
+    background-color: white;
+  color: black;
+}
+
+.country
+{
+width: 100%;
+  font-size: 16px;
+    background-color: white;
+  color: black;
+}
+
+.google_link
+{
+width: 100%;
+  font-size: 16px;
+    background-color: white;
+  color: black;
+}
+
+.google_inner_map
+{
+width: 100%;
+}
+
+.where_i_live
+{
+width: 100%;
+}
+
+.inbox
+{
+  width:100%;
+  height: auto;
+}
+.arrow_img
+{
+width: 3%;
+  float: left;
+  height: 10%;
+}
+
+.sub_delete
+{
+  width: 9%;
+  float: left;
+}
+
+.inbox_body
+{
+  background-image:url(../img/headerStrip.jpg); background-repeat:repeat-x; 
+  border: #999 1px solid;
+  width:100%;
+  height:150px;
+}
+
+.inbox_footing
+{
+width: 100%;
+  height: 40px;
+  float: right;
+  border: 1px solid black;
+}
+
+.from
+{
+    width: 30%;
+  float:left;
+}
+
+.sub
+{
+    width: 30%;
+  float:left;
+}
+.date
+{
+    width: 30%;
+  float:left;
+}
+
+.inner_usern
+{
+  width: 100%;
+  height: 50%;
+}
+
+.inner_id
+{
+  width: 6%;
+  height: 30px;
+  float: left;
+}
+
+.text_col
+{
+  width: 30%;
+  height: auto;
+  float: left;
+}
+
+.inner_user
+{
+  width: 27%;
+  height: 15px;
+  float: left;
+  height: auto;
+}
+
+.mdate
+{
+  width: 17%;
+  height: auto;
+  float: left;
+  padding: 10px;
+}
+
+.tick
+{
+width: 2%;
+  float: left;
+  margin: 15px 8px 0 !important;
+}
+
+.tick1
+{
+  width: 34%;
+  float: left;
+  margin: 15px 8px 0 !important;
+}
+
+.upload
+{
+  
+}
+
+.user-profile-header
+{
+  width: 100%;
+}
+
+  }
+
+

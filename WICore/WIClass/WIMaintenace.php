@@ -59,6 +59,7 @@ class WIMaintenace
                 $ip = $_SERVER['HTTP_CLIENT_IP'];
         }
     }
+   
     $purpose    = str_replace(array("name", "\n", "\t", " ", "-", "_"), NULL, strtolower(trim($purpose)));
     $support    = array("country", "countrycode", "state", "region", "city", "location", "address");
     $continents = array(
@@ -72,7 +73,15 @@ class WIMaintenace
     );
     if (filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support)) {
         $ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+        //print_r($ipdat);
+        //echo "http://www.geoplugin.net/json.gp?ip=" . $ip;
+         //var_dump($data);
+         //print_r($ipdat);
+        //$id = trim($ipdat->geoplugin_countryCode);
+        //echo $id;
         if (@strlen(trim($ipdat->geoplugin_countryCode)) == 2) {
+           // echo "hey";
+
             switch ($purpose) {
                 case "location":
                     $output = array(
@@ -110,19 +119,44 @@ class WIMaintenace
             }
         }
         }
+        //echo "out" . $output;
         return $output;
     }
 
 
-    public function visitors_log($page, $ip, $country)
+    public function visitors_log($page, $ip, $country, $ref, $agent, $tracking_page)
     {
-        $this->WIdb->insert('wi_visitors_log', array(
+
+    if(strlen($ref) > 2 and !(stristr($ref,"http://debatespot.net"))){  // exclude referrer from your own site. 
+        $s = "SELECT * FROM `wi_track` WHERE ip=:ip";
+        $query = $this->WIdb->prepare($s);
+        $query->bindParam(':ip', $ip, PDO::PARAM_STR );
+        $query->execute();
+        $res = $query->fetch(PDO::FETCH_ASSOC);
+
+        if($res > 0){
+             $this->WIdb->insert('wi_visitors_log', array(
             "page"     => $page,
             "ip"  => $ip,
             "country"  => $country
         )); 
+            }else{
+             $this->WIdb->insert('wi_track', array(
+            "ref"     => $ref,
+            "agent"     => $agent,
+            "ip"  => $ip,
+            "tracking_page_code"  => $tracking_page,
+            "tracking_page_name"     => $page,
+            "country"  => $country
+        )); 
+
+        }
+    
 
     }
+    
+  }
+        
 
 
 

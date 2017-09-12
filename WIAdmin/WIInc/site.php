@@ -1,10 +1,11 @@
+
   <script>
   $( function() {
-    $( "#tabs2" ).tabs();
+    $( "#tabs" ).tabs();
   } );
   </script>
 
-<aside class="right-side">
+ <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
@@ -28,48 +29,64 @@
 
             <div class="well">
 
-                    <div id="tabs2">
+
+                     <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Website</a></li>
     <li><a href="#tabs-2">Database</a></li>
     <li><a href="#tabs-3">Email</a></li>
-    <li><a href="#tabs-4">Session</a></li>
+    <li><a href="#tabs-4">Sessions</a></li>
     <li><a href="#tabs-5">Login</a></li>
     <li><a href="#tabs-6">Password Security</a></li>
     <li><a href="#tabs-7">Social Set Up</a></li>
-    <li><a href="#tabs-8">Mulitlangual Settings</a></li>
+    <li><a href="#tabs-8">Multilangual Settings</a></li>
+         <li><a href="#tabs-9">Password Salt</a></li>
+    <li><a href="#tabs-10">Email Verification</a></li>
+        <li><a href="#tabs-11">Version Control</a></li>
+
   </ul>
   <div id="tabs-1">
-<?php include_once 'WIInc/site/site/website.php'; ?>  
+<?php include_once 'WIInc/site/Site/website.php'; ?>  
   </div>
   <div id="tabs-2">
- <?php include_once 'WIInc/site/site/database.php'; ?> 
+<?php include_once 'WIInc/site/Site/database.php'; ?> 
   </div>
   <div id="tabs-3">
-<?php include_once 'WIInc/site/site/email.php'; ?> 
+ <?php include_once 'WIInc/site/Site/email.php'; ?> 
   </div>
 
     <div id="tabs-4">
-<?php include_once 'WIInc/site/site/session.php'; ?> 
+ <?php include_once 'WIInc/site/Site/session.php'; ?> 
   </div>
 
     <div id="tabs-5">
-<?php include_once 'WIInc/site/site/login.php'; ?> 
+ <?php include_once 'WIInc/site/Site/login.php'; ?> 
   </div>
 
     <div id="tabs-6">
-<?php include_once 'WIInc/site/site/security.php'; ?> 
+<?php include_once 'WIInc/site/Site/security.php'; ?> 
   </div>
 
     <div id="tabs-7">
- <?php include_once 'WIInc/site/site/social.php'; ?> 
+<?php include_once 'WIInc/site/Site/social.php'; ?> 
   </div>
 
     <div id="tabs-8">
- <?php include_once 'WIInc/site/site/lang.php'; ?> 
+<?php include_once 'WIInc/site/Site/lang.php'; ?> 
+  </div>
+
+        <div id="tabs-9">
+ <?php include_once 'WIInc/site/Site/salt.php'; ?> 
+  </div>
+
+  <div id="tabs-10">
+ <?php include_once 'WIInc/site/Site/verification.php'; ?> 
+  </div>
+
+    <div id="tabs-11">
+ <?php include_once 'WIInc/site/Site/version.php'; ?> 
   </div>
 </div>
-
 
 
                      </div>

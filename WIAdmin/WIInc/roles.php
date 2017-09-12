@@ -12,7 +12,7 @@
                       <?php echo WILang::get('add'); ?>
                     </button>
               </div>
-        <?php $roles = $WIdb->select("SELECT * FROM `WI_user_roles` WHERE `role_id` NOT IN (2,3)"); ?>
+        <?php $roles = $WIdb->select("SELECT * FROM `wi_user_roles` WHERE `role_id` NOT IN (2,3)"); ?>
               <table class="table table-striped roles-table">
                   <thead>
                       <th><?php echo WILang::get('role_name'); ?></th>
@@ -20,7 +20,7 @@
                       <th><?php echo WILang::get('action'); ?></th>
                   </thead>
               <?php foreach ($roles as $role): ?>
-                  <?php $result = $WIdb->select("SELECT COUNT(*) AS num FROM `WI_Members` WHERE `user_role` = :r", array( "r" => $role['role_id'])); ?>
+                  <?php $result = $WIdb->select("SELECT COUNT(*) AS num FROM `wi_members` WHERE `user_role` = :r", array( "r" => $role['role_id'])); ?>
                   <?php $usersWithThisRole = $result[0]['num']; ?>
                   <tr class="role-row">
                     <td><?php echo e($role['role']); ?></td>

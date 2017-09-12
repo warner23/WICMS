@@ -8,9 +8,9 @@
    }
  </style>
 
-   <script>
+ <script>
   $( function() {
-    $( "#tabs6" ).tabs();
+    $( "#tabs4" ).tabs();
   } );
   </script>
  <aside class="right-side">
@@ -37,23 +37,19 @@
 
             <div class="well">
 
-                     <div id="tabs6">
+
+                     <div id="tabs4">
   <ul>
     <li><a href="#tabs-1">Set Up</a></li>
     <li><a href="#tabs-2">Add</a></li>
-    <li><a href="#tabs-3">Delete</a></li>
   </ul>
   <div id="tabs-1">
-<?php include_once 'WIInc/site/lang/set_up.php'; ?> 
+<?php include_once 'WIInc/site/lang/set_up.php'; ?>  
   </div>
   <div id="tabs-2">
 <?php include_once 'WIInc/site/lang/add.php'; ?> 
   </div>
-  <div id="tabs-3">
- <?php include_once 'WIInc/site/lang/del.php'; ?> 
-  </div>
 </div>
-
                      </div>
                      </div>
                      </div>

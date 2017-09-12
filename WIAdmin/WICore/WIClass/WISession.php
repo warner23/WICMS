@@ -13,18 +13,23 @@ class WISession
      */
     public static function startSession() 
     {
-        ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
-        
-        $cookieParams = session_get_cookie_params();
-        session_set_cookie_params(
-            $cookieParams["lifetime"], 
-            $cookieParams["path"], 
-            $cookieParams["domain"], 
-            SESSION_SECURE, 
-            SESSION_HTTP_ONLY
-         );
+        //         ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
+//         // ini_set('session.entropy_file', '/dev/urandom'); // better session id's
+// // ini_set('session.entropy_length', '512'); // and going overkill with entropy length for maximum security
 
-        session_start(); 
+//         $cookieParams = session_get_cookie_params();
+//         session_set_cookie_params(
+//             $cookieParams["lifetime"], 
+//             $cookieParams["path"], 
+//             $cookieParams["domain"], 
+//             SESSION_SECURE, 
+//             SESSION_HTTP_ONLY
+//          );
+//         session_name('Debate');
+
+        session_start();
+        //print_r($cookieParams);
+
     }
 
     public static function destroySession() {

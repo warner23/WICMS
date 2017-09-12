@@ -58,7 +58,7 @@
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     text-align: -webkit-center;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 #chat{
@@ -82,7 +82,6 @@
     <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>Dashboard<small>Control panel</small></h1>
-       
         </section>
 <!-- Main content -->
   <!-- Main content -->
@@ -93,11 +92,12 @@
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>
+                                    <h3 id="activeChats">
                                         150
+
                                     </h3>
                                     <p>
-                                        New Chats
+                                       Active Debates
                                     </p>
                                 </div>
                                 <div class="icon">
@@ -330,6 +330,7 @@
                             </div>
 
                         </section><!-- /.Left col -->
+                        
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-6 connectedSortable">
                             <!-- Map box -->
@@ -357,42 +358,8 @@
                                                 <th>Online</th>
                                                 <th>Page Views</th>
                                             </tr>
-                                            <tr>
-                                                <td><a href="#">USA</a></td>
-                                                <td><div id="sparkline-1"></div></td>
-                                                <td>209</td>
-                                                <td>239</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">India</a></td>
-                                                <td><div id="sparkline-2"></div></td>
-                                                <td>131</td>
-                                                <td>958</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">Britain</a></td>
-                                                <td><div id="sparkline-3"></div></td>
-                                                <td>19</td>
-                                                <td>417</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">Brazil</a></td>
-                                                <td><div id="sparkline-4"></div></td>
-                                                <td>109</td>
-                                                <td>476</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">China</a></td>
-                                                <td><div id="sparkline-5"></div></td>
-                                                <td>192</td>
-                                                <td>437</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">Australia</a></td>
-                                                <td><div id="sparkline-6"></div></td>
-                                                <td>1709</td>
-                                                <td>947</td>
-                                            </tr>
+                                            <?php $dashboard->Visitors() ?>
+                                            
                                         </table><!-- /.table -->
                                     </div>
                                 </div><!-- /.box-body-->

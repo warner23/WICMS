@@ -185,10 +185,19 @@ class WIUser
         if ( $this->userId == null )
             return false;
 
-        $role = $this->getRole();
-        if($role == "Administrator" or "Developer" or "Head Administrator" or "Co-Owner" or "Owner")
-           return true;
-        return false;
+         $role = $this->getRole();
+        //echo $role;
+        if($role === "Administrator"){
+            return true;
+        }elseif($role ===  "Developer"){
+            return true; 
+        }elseif($role ===  "Head Administrator"){
+            return true;
+        }elseif ($role === "Owner") {
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

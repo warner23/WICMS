@@ -159,11 +159,9 @@ users.roleChanger = function (element, userId) {
 
 users.showAddUserModal = function () {
     jQuery.noConflict();
-    $("#modal-add-edit-user").modal({
-        keyboard: false,
-        backdrop: "static",
-        show: true
-    });
+    $("#modal-add-edit-user").removeClass('hide');
+        $("#modal-add-edit-user").addClass('show');
+
 
     $("#modal-username").text($_lang.add_user);
     WICore.removeErrorMessages();
@@ -202,22 +200,14 @@ users.addUser = function (editMode) {
             userId : userId,
             userData: {
                 email      : data.email.val(),
-                phone      : data.phone.val(),
-                address    : data.address.val(),
                 username   : data.username.val(),
                 password   : CryptoJS.SHA512(data.password.val()).toString(),
-                last_name  : data.lastName.val(),
-                first_name : data.firstName.val(),
                 confirm_password: CryptoJS.SHA512(data.conf_password.val()).toString()
             },
             fieldId: {
                 email      : "adduser-email",
                 username   : "adduser-username",
                 password   : "adduser-password",
-                address    : "adduser-address",
-                phone      : "adduser-phone",
-                last_name  : "adduser-last_name",
-                first_name : "adduser-first_name",
                 confirm_password: "adduser-confirm_password",
             }
         };

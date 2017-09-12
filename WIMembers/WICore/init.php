@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 
 require 'WIClass/WI.php';
-require 'WILib.php';
 
 $token = $register->socialToken();
 WISession::set('WI_social_token', $token);
@@ -23,6 +22,7 @@ $userDetails  = $user->getDetails();
 $Info   = new WIUserInfo();
 $web   = new WIWebsite();
 $profile  = new WIProfile();
+$mod    = new WIModules();
 
 
 

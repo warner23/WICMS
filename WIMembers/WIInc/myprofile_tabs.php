@@ -37,7 +37,7 @@ Message:
 <textarea name="pmTextArea" id="pmTextArea" rows="4" style="width:98%;"></textarea>
   <input name="pm_sender_id" id="pm_sender_id" type="hidden" value="<?php echo $userId; ?>" />
   <input name="pm_sender_name" id="pm_sender_name" type="hidden" value="<?php echo WISession::get('username'); ?>" />
-  <input name="pm_rec_id" id="pm_rec_id" type="hidden" value="<?php echo $profile_page_id; ?>" />
+  <input name="pm_rec_id" id="pm_rec_id" type="hidden" value="" />
   <input name="pm_rec_name" id="pm_rec_name" type="hidden" value="<?php echo WISession::get('username'); ?>" />
   <input name="pmWipit" id="pmWipit" type="hidden" value="<?php echo $thisRandNum; ?>" />
   <span id="PMStatus" style="color:#F00;"></span>
@@ -46,7 +46,7 @@ Message:
           </div>
           <!-- END DIV that contains the Private Message form -->
           <div class="interactContainers" id="friend_requests" style="background-color:#FFF; height:240px; overflow:auto;">
-            <div align="right"><a href="#" onclick="profile.toggleInteractContainers('friend_requests');">close window</a> &nbsp; &nbsp; </div>
+            <div align="right"><a href="#" onclick="WIProfile.toggleInteractContainers('friend_requests');">close window</a> &nbsp; &nbsp; </div>
             <h3>The following people are requesting you as a friend</h3>
             <?php echo $profile->friendRequests($userId) ?>
             </div>
@@ -61,7 +61,6 @@ Message:
   <div id="tabs-2">
     
     Messages
-     <!-- start of messages tab -->
 <?php include_once 'WIInc/messages_tabbed.php'; ?>
 
   </div>

@@ -10,7 +10,6 @@ if( !isset( $url['host']) || ($url['host'] != $_SERVER['SERVER_NAME']))
     die("Sorry bro!");
 
 $action = isset($_POST['action']) ? $_POST['action'] : null;
-
 switch ($action) {
 
         case 'checkLogin':
@@ -43,34 +42,34 @@ switch ($action) {
         
     case "updatePassword":
 
-        $user = new WIUser(WISession::get("user_id"));
+        $user = new WIAdmin(WISession::get("user_id"));
         $user->updatePassword($_POST['oldpass'], $_POST['newpass']);
         break;
         
     case "updateDetails":
 
-        $user = new WIUser(WISession::get("user_id"));
+        $user = new WIAdmin(WISession::get("user_id"));
         $user->updateDetails($_POST['details']);
         break;
         
     case "changeRole":
         onlyAdmin();
 
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         echo ucfirst($user->changeRole());
         break;
         
     case "deleteUser":
         onlyAdmin();
 
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         $user->deleteUser();
         break;
     
     case "getUserDetails":
         onlyAdmin();
 
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         echo json_encode( $user->getAll() );
         break;
 
@@ -91,45 +90,44 @@ switch ($action) {
 
     case "addUser":
         onlyAdmin();
-
-        $user = new WIUser(null);
+        $user = new WIAdmin(null);
         echo json_encode( $user->add($_POST) );
         break;
 
     case "updateUser":
         onlyAdmin();
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         $user->updateUser($_POST);
         break;
 
     case "banUser":
         onlyAdmin();
 
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         $user->updateInfo(array( 'banned' => 'Y' ));
         break;
 
     case "unbanUser":
         onlyAdmin();
 
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         $user->updateInfo(array( 'banned' => 'N' ));
         break;
 
     case "getUser":
         onlyAdmin();
 
-        $user = new WIUser($_POST['userId']);
+        $user = new WIAdmin($_POST['userId']);
         echo json_encode($user->getAll());
         break;
 
-    case 'site_settings':
+         case 'site_settings':
         onlyAdmin();
         $site = new WISite();
         $site->Site_Settings($_POST['settings']);
         break;    
 
-    case 'database_settings':
+ case 'database_settings':
          onlyAdmin();
         $site = new WISite();
         $site->DataBase_settings($_POST['settings']);
@@ -153,6 +151,19 @@ switch ($action) {
         $site->Session_Settings($_POST['settings']);
         break;
 
+    case "verification_settings":
+     onlyAdmin();
+        $site = new WISite();
+        $site->verification_Settings($_POST['settings']);
+        break;
+
+        case "encryption":
+    onlyAdmin();
+        $site = new WISite();
+        $site->Security_Settings($_POST['encryption'],$_POST['cost']);
+        break;
+
+
     case "login_settings":
     onlyAdmin();
         $site = new WISite();
@@ -165,9 +176,10 @@ switch ($action) {
         $site->social_settings($_POST['settings']);
         break;
 
-      case "header_settings":
-        $site = new WISite();
-        $site->header_Settings($_POST['settings']);
+    case "header_settings":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->headerSettings($_POST['settings']);
         break;
 
     case "lang_settings":
@@ -176,10 +188,28 @@ switch ($action) {
         $site->lang_Settings($_POST['settings']);
         break;
 
-    case "multilanguage":
+         case "multilanguage":
     onlyAdmin();
         $site = new WISite();
         $site->AddMultiLang($_POST['lang'], $_POST['keyword'],$_POST['trans']);
+        break;
+
+        case "multiLang":
+    onlyAdmin();
+        $web = new WIWebsite(); 
+        $web->CheckMultiLang();
+        break;
+
+        case "EditModLang":
+    onlyAdmin();
+        $web = new WIWebsite(); 
+        $web->EditModLang($_POST['code'], $_POST['keyword'],$_POST['trans'], $_POST['mod_name']);
+        break;
+
+         case "EditModLangpara":
+    onlyAdmin();
+        $web = new WIWebsite(); 
+        $web->EditModLangPara($_POST['code'], $_POST['keyword'],$_POST['trans'], $_POST['mod_name']);
         break;
 
     case "AddLang":
@@ -218,16 +248,22 @@ switch ($action) {
         $mod->deactive_available_mod($_POST['mod_name'], $_POST['disable']);
         break;
 
-    case "drop_call":
+         case "drop_call":
     onlyAdmin();
         $mod = new WIModules();
         $mod->dropElement($_POST['mod_name']);
         break;
 
-     case "edit_drop_mod":
+            case "col_call":
     onlyAdmin();
         $mod = new WIModules();
-        $mod->editDropElement($_POST['mod_name']);
+        $mod->dropColElement($_POST['mod_name']);
+        break;
+
+          case "edit_drop_mod":
+    onlyAdmin();
+        $mod = new WIModules();
+        $mod->editDropElement($_POST['mod_name'], $_POST['page_id']);
         break;
 
     case "Translations":
@@ -242,7 +278,8 @@ switch ($action) {
         $web->viewTrans($_POST['page']);
         break;
 
-    case "getInfo":
+
+          case "getInfo":
     onlyAdmin();
         $page = new WIPage();
         $page->PageInfo($_POST['page']);
@@ -253,7 +290,6 @@ switch ($action) {
         $mod = new WIModules();
         $mod->getModules();
         break;
-
      case "NextPage":
     onlyAdmin();
         $mod = new WIModules();
@@ -298,17 +334,17 @@ switch ($action) {
         $page->LoadPage($_POST['page']);
         break;
 
-     case "loadOptions":
+         case "loadOptions":
         $page = new WIPage();
         $page->loadPageOptions($_POST['page']);
         break;
 
-    case "changePage":
+         case "changePage":
         $page = new WIPage();
         $page->LoadPage($_POST['page']);
         break;
 
-    case "lsc_change":
+         case "lsc_change":
         $page = new WIPage();
         $page->LoadPage($_POST['page'], $_POST['col']);
         break;
@@ -329,15 +365,66 @@ switch ($action) {
         $page->changeLSC($_POST['page'], $_POST['col']);
         break;
 
-     case "new_page":
+            case "rsc_changed":
+        $page = new WIPage();
+        $page->changeRSC($_POST['page'], $_POST['col']);
+        break;
+
+        case "new_page":
         $page = new WIPage();
         $page->newPage($_POST['page']);
         break;
 
-    case "page_delete":
+            case "page_delete":
         $page = new WIPage();
         $page->deletePage($_POST['page_id']);
         break;
+
+            case "changePic":
+        $site = new WISite();
+        $site->headerPic($_POST['img']);
+        break;
+
+        case "changefaviconPic":
+        $site = new WISite();
+        $site->faviconPic($_POST['img']);
+        break;
+
+    case "saveLang":
+        $web = new WIWebsite();
+        $web->saveLang($_POST['name'], $_POST['code'], $_POST['flag']);
+        break;
+
+         case "AddeditLang":
+        $web = new WIWebsite();
+        $web->saveeditLang($_POST['name'], $_POST['code'], $_POST['flag'], $_POST['id']);
+        break;
+
+     case "resfresh":
+        $web = new WIWebsite();
+        $web->viewLang();
+        break;
+
+        case "folder":
+        $img = new WIImage();
+        $img->Folder($_POST['folder']);
+        break;
+
+    case "back":
+        $img = new WIImage();
+        $img->AllPics();
+        break;
+
+         case "createMod":
+        $mod = new WIModules();
+        $mod->createMod($_POST['contents'], $_POST['mod_name']);
+        break;
+
+        case "EditMod":
+        $mod = new WIModules();
+        $mod->editContents($_POST['title'], $_POST['para'], $_POST['mod_name']);
+        break;
+
 
         default:
 
@@ -361,6 +448,7 @@ switch($action){
         $chat->getChatMessages( $_GET['last_chat_time'], $_GET['userId']);
         break;
         
+        
         case 'getChats':
             $response = Chat::getChats($_GET['lastID']);
         break;
@@ -380,10 +468,35 @@ switch($action){
         $site->notifications_badge();
         break;
 
+        case "MessagesCount":
+        $site = new WISite();
+        $site->MessageBagde();
+        break;
+
+         case "activeChatCount":
+        $site = new WISite();
+        $site->ActiveChatCount();
+        break;
+
+
+        case "TasksCount":
+        $site = new WISite();
+        $site->TaskBagde();
+        break;
 
         case "getMessages":
         $contact = new WIContact();
         $contact->Messages();
+        break;
+
+        case "tasks":
+        $site = new WISite();
+        $site->tasks();
+        break;
+
+        case "load_mod":
+        $mod = new WIModules();
+        $mod->tasks();
         break;
         
         default:

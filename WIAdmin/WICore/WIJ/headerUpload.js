@@ -50,7 +50,15 @@
                   type: "file",
                   name: $(this).attr("name"),
                   id: $(this).attr("id")
+
                 });
+
+            $("#uploadImg").attr("src", "WIMedia/Img/header/"+filename);
+                  $("#headerPic").attr("src", "WIMedia/Img/header/"+filename);
+      $(".cp").attr("id", filename);
+          $("#modal-header-upload").removeClass("on");
+    $("#modal-header-upload").addClass("off");
+
 
             if (typeof(response.error) === "string") {
               $span.replaceWith($fileInput);
@@ -76,4 +84,5 @@
       }
 
       applyAjaxFileUpload("#wiupload");
+
     });

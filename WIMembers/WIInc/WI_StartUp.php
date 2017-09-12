@@ -7,9 +7,10 @@ $web->Styling();
 ?>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-      <link href="../WITheme/WICMS/user/css/profile.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="../WITheme/WICMS/user/css/switcher.css" media="screen" />
+      <link href="../WITheme/Debate/user/css/profile.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="../WITheme/Debate/user/css/switcher.css" media="screen" />
 
+          <link rel="icon" type="image/png" href="http://debatespot.net/favicon.png" />
       <?php
 $web->Scripts();
 ?>
@@ -18,7 +19,10 @@ $web->Scripts();
 <script type="text/javascript" src="WICore/WIJ/profileUpload.js"></script>
  <script type="text/javascript" src="WICore/WIJ/jquery.ajaxfileupload.js"></script>
  <script src="WICore/WIJ/WIProfile.js" type="text/javascript"></script>
+ <script type="text/javascript">
 
+
+</script>
 
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  
@@ -64,4 +68,4 @@ $web->Scripts();
     }
   </style>
 </head>
-<body >
+<body class="debate">

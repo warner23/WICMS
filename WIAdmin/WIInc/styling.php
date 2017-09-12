@@ -9,9 +9,9 @@
  </style>
 
 
-   <script>
+  <script>
   $( function() {
-    $( "#tabs5" ).tabs();
+    $( "#tabs3" ).tabs();
   } );
   </script>
  <aside class="right-side">
@@ -38,23 +38,23 @@
 
             <div class="well">
 
-                     <div id="tabs5">
+
+                     <div id="tabs3">
   <ul>
     <li><a href="#tabs-1">Meta</a></li>
     <li><a href="#tabs-2">CSS</a></li>
-    <li><a href="#tabs-3">Js</a></li>
+    <li><a href="#tabs-3">JS</a></li>
   </ul>
   <div id="tabs-1">
-<?php include_once 'WIInc/site/styling/meta.php'; ?>  
+ <?php include_once 'WIInc/site/styling/meta.php'; ?> 
   </div>
   <div id="tabs-2">
- <?php include_once 'WIInc/site/styling/css.php'; ?> 
+<?php include_once 'WIInc/site/styling/css.php'; ?> 
   </div>
   <div id="tabs-3">
-   <?php include_once 'WIInc/site/styling/js.php'; ?> 
+<?php include_once 'WIInc/site/styling/js.php'; ?> 
   </div>
 </div>
-
 
                      </div>
                      </div>

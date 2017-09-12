@@ -10,11 +10,8 @@ class WILogin
 {
 	private $WIdb = null;
 
-	    function __construct() 
-        {
+	    function __construct() {
        $this->WIdb = WIdb::getInstance();
-
-       $this->maint = new WIMaintenace();
     }
 
 
@@ -62,8 +59,7 @@ class WILogin
 
     public function userLogin($username, $password) {
         //validation
-       // echo "user" . $username;
-        //echo "pass" . $password;
+
         $errors = $this->_validateLoginFields($username, $password);
         if(count($errors) != 0) {
             $result = implode("<br />", $errors);
@@ -75,10 +71,6 @@ class WILogin
         
         //protect from brute force attack
         if($this->_isBruteForce()) {
-             $st1  = $username ;
-            $st2  = "Brute Force Alert";
-            $this->maint->LogFunction($st1, $st2);
-           $this->maint->Notifications($st1, $st2);
             echo json_encode(array(
                 'status' => 'error',
                 'message' => WILang::get('brute_force')
@@ -97,7 +89,7 @@ class WILogin
                        "p" => $password
                      )
                   );
-        // var_dump($result);
+       // var_dump($result);
         
         if(count($result) == 1) 
         {
@@ -139,7 +131,7 @@ class WILogin
             session_regenerate_id(true);
             if(LOGIN_FINGERPRINT == true)
                 WISession::set("login_fingerprint", $this->_generateLoginString ());
-            
+            //echo "tru";
             return true;
 
             $st1  = $username ;

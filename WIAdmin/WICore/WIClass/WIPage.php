@@ -20,12 +20,25 @@ class WIPage
     	//var_dump($filelist);
     	echo '<ul>';
     	foreach ($filelist as $file => $value) {
-            if ($file === '.' or $file === '..' ) continue;
     		echo '<a class="hover_link" href="WIEditpage.php"><li id="' . $file . '">' .  basename($value) . '</a></li>';
     	}
     	echo '</ul>';
     }
     
+
+
+        public function PageListings2()
+    {
+        $sql = "SELECT * FROM `wi_page`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+         echo '<ul>';
+        while ($res = $query->fetch()) {
+            echo '<li id="' . $res['id'] . '"><a class="page" id="' . $res['id'] . '""  href="WIEditpage.php">' .  $res['name'] . '</a></li>';
+        }
+        echo '</ul>';
+
+    }
 
         public function PageListings()
     {
@@ -33,16 +46,27 @@ class WIPage
         $sql = "SELECT * FROM `wi_page`";
         $query = $this->WIdb->prepare($sql);
         $query->execute();
-         echo '<ul class="pgs">';
+         echo '<ul>';
         while ($res = $query->fetch()) {
-            echo '<li class="col-lg-4 col-dm-3 col-xs-3 col-sm-3 page">' .  $res['name'] . '</li>
-                <li><a class="col-lg-4 col-dm-3 col-xs-3 col-sm-3 page"  href="WIEditpage.php" id="' . $res['name'] . '">' .  $res['name'] . '</a></li>
-                <li><a class="col-lg-2 col-dm-3 col-xs-3 col-sm-3 page"><button type="button" class="close" onclick="WIPages.Open(' . $res['id'] . ', `' . $res['name'] . '`)" data-dismiss="modal" aria-hidden="false">&times;</button></a></li>
+
+            echo '<li class="col-lg-12 col-dm-12 col-xs-12 col-sm-12"><div class="col-lg-2 col-dm-3 col-xs-3 col-sm-3 page">
+                              ' .  $res['name'] . '
+                            </div>
+<div class="col-lg-2 col-dm-3 col-xs-3 col-sm-3 page">
+                              <a class="col-lg-4 col-dm-3 col-xs-3 col-sm-3 page"  href="WIEditpage.php" id="' . $res['name'] . '">' .  $res['name'] . '</a>
+                            </div>
+                            <div class="col-lg-2 col-dm-3 col-xs-3 col-sm-3 page">
+                              <a class="col-lg-2 col-dm-3 col-xs-3 col-sm-3 page"><button type="button" class="close" onclick="WIPages.Open(' . $res['id'] . ', `' . $res['name'] . '`)" data-dismiss="modal" aria-hidden="false">&times;</button></a>
+                            </div>
+                            
+                            </li>
+              
             ';
         }
         echo '</ul>';
 
     }
+
 
 
     public function PageInfo($page_id)
@@ -61,10 +85,23 @@ class WIPage
 
     public function LoadPage($page_id)
     {
+      //echo "page " . $page_id;
+           $sql = "SELECT * FROM `wi_page` WHERE `name` =:page";
+     $query = $this->WIdb->prepare($sql);
+     $query->bindParam(':page', $page_id, PDO::PARAM_STR);
+     $query->execute();
 
-$directory = dirname(dirname(dirname(__FILE__)));
-include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
+     $res = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $res['contents'];
+              //echo  $name;
 
+       $directory = dirname(dirname(dirname(__FILE__)));
+//include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
+     // echo  '/WIModule/' .$name.'/'.$name.'.php';
+      require_once  $directory . '/WIModule/' .$name.'/'.$name.'.php';
+        $name = new $name;
+
+        $name->editPageContent($page_id);   
     }
 
 
@@ -160,7 +197,7 @@ include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
     }
 
 
-    public function selectPage()
+        public function selectPage()
     {
       $sql = "SELECT * FROM `wi_page`";
       $query = $this->WIdb->prepare($sql);
@@ -173,8 +210,10 @@ include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
       }
     }
 
-    public function GetColums($page_id, $column)
+
+     public function GetColums($page_id, $column)
     {
+      //echo $page_id;
       $sql = "SELECT * FROM `wi_page` WHERE `name` =:name";
       $query = $this->WIdb->prepare($sql);
       $query->bindParam(':name', $page_id, PDO::PARAM_STR);
@@ -273,6 +312,11 @@ include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
       $query->bindParam(':id', $id, PDO::PARAM_INT);
       $query->execute();
 
+       $result = array(
+            "status" => "complete",
+            );
+          echo json_encode($result);
+
     }
 
     public function changeLSC($page, $col)
@@ -311,6 +355,45 @@ include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
 
 
     }
+
+
+public function changeRSC($page, $col)
+    {
+      $rsc = WIPage::GetColums($page, "right_sidebar");
+     // echo $lsc;
+      if($rsc === "0"){
+        $right = "1";
+        $sql = "UPDATE `wi_page` SET `right_sidebar`=:right WHERE `name` =:page";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':right', $right, PDO::PARAM_STR);
+        $query->bindParam(':page', $page, PDO::PARAM_STR);
+        $query->execute();
+
+                  $result = array(
+            "status" => "complete",
+            "rsc"   => 1
+            );
+          echo json_encode($result);
+
+      }else if($rsc === "1"){
+         $right = "0";
+        $sql = "UPDATE `wi_page` SET `right_sidebar`=:right WHERE `name` =:page";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':right', $right, PDO::PARAM_STR);
+        $query->bindParam(':page', $page, PDO::PARAM_STR);
+        $query->execute();
+
+                  $result = array(
+            "status" => "complete",
+            "rsc"   => 0
+            );
+          echo json_encode($result);
+      }
+
+
+
+    }
+
 
     public function toogleLsc($page, $col)
     {

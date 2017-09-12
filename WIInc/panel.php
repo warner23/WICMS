@@ -8,18 +8,17 @@
 }
 </style>
 
-
 <div id="toppanel">
-  <div id="panel">
+  <div id="panel" class="login_panel">
     <div class="content clearfix">
       <div class="left">
         <h1> <?php echo WILang::get('Welcome');?></h1>
         <h2><?php echo WILang::get('TO');?> <strong><?php echo WILang::get('site_name');?> </strong></h2>
         <p class="grey"></p>
         <h2><?php echo WILang::get('Thank_you');?></h2>
-        <p class="grey"><?php echo WILang::get('warner');?><a href="http://wicms.co.uk" title="Web Master"><?php echo WILang::get('web_master');?></a><?php echo WILang::get('Amazing_website');?>.</p>
+        <p class="grey"><?php echo WILang::get('warner');?><a href="http://warner-infinity.com/" title="Web Master"><?php echo WILang::get('web_master');?></a><?php echo WILang::get('Amazing_website');?>.</p>
       </div>
-            
+  
       <div class="left1">
         <!-- Login Form -->
        <?php if(!$login->isLoggedIn())
@@ -178,11 +177,11 @@
             
             <h1><?php echo WILang::get('panel_mini_admin'); ?></h1>
            
-            <a href="WIMembers/profile.php"><?php echo WILang::get('view_profile_page'); ?></a>
+            <a href="<?php $WI['site_url'];?>WIMembers/profile.php"><?php echo WILang::get('view_profile_page'); ?></a>
             <p>- or -</p>
-            <a href="logout.php"><?php echo WILang::get('log_off'); ?></a>
+            <a href="<?php $WI['site_url'];?>logout.php"><?php echo WILang::get('log_off'); ?></a>
             <p>- or -</p>
-            <a href="alogin.php"><?php echo WILang::get('admin_panel'); ?>  </a>
+            <a href="<?php $WI['site_url'];?>alogin.php"><?php echo WILang::get('admin_panel'); ?>  </a>
             
             
             </div>
@@ -195,9 +194,9 @@
             
             <h1><?php echo WILang::get('member_panel'); ?> </h1>
             
-            <a href="WIMembers/profile.php"><?php echo WILang::get('view_profile_page'); ?>  </a>
+            <a href="<?php $WI['site_url'];?>WIMembers/profile.php"><?php echo WILang::get('view_profile_page'); ?>  </a>
             <p>- or -</p>
-            <a href="logout.php"><?php echo WILang::get('log_off'); ?></a>
+            <a href="<?php $WI['site_url'];?>logout.php"><?php echo WILang::get('log_off'); ?></a>
             
             
             </div>

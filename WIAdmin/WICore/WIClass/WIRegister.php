@@ -23,8 +23,6 @@ class WIRegister
          $this->WIdb = WIdb::getInstance();
         //create new object of WIEmail class
         $this->mailer = new WIEmail();
-
-        $this->maint = new WIMaintenace();
     }
     
 
@@ -54,12 +52,12 @@ class WIRegister
             "ip_addr" => getenv('REMOTE_ADDR')
         )); 
 
-
             $userId = $this->WIdb->lastInsertId();
 
             $st1  = $user['username'] ;
             $st2  = "Added new user";
-            $this->maint->LogFunction($st1, $st2);
+            //$maintain = new WIMaintenace();
+            WIMaintenace::LogFunction($st1, $st2);
 
             $this->WIdb->insert('wi_user_details', array( 'user_id' => $userId ));
             
@@ -279,6 +277,7 @@ class WIRegister
      */
     public function validateUser($data, $botProtection = true)
     {
+        
         $id     = $data['FieldId'];
         $user   = $data['UserData'];
         $errors = array();
@@ -319,6 +318,7 @@ class WIRegister
                 "id"    => $id['email'],
                 "msg"   => WILang::get('email_wrong_format')
             );
+        
         
         //check if email is available
         if( $validator->emailExist($user['email']) )

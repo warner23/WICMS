@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 
 require 'WIClass/WI.php';
-require 'WILib.php';
 
 $token = $register->socialToken();
 WISession::set('WI_social_token', $token);
@@ -25,10 +24,11 @@ $page         = new WIPage();
 $plug          = new WIPlugin();
 $site         = new WISite();
 $img          = new WIImage();
+$vid          = new WIVideos();
 $topic        = new WITopic();
 $dashboard   = new WIDashboard();
 $adminChat   = new WIAdminChat();
 $Info       = new WIUserInfo();
-
+$debate  = new WIDebate();
 
 ?>

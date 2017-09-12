@@ -165,6 +165,58 @@ class WISite
 		
 	}
 
+		public function Security_Settings($encryption, $cost) 
+	{
+		echo $encryption;
+		echo $cost;
+			$user_id = 1;
+			if($encryption === "bcrypt"){
+								$query = $this->WIdb->prepare('UPDATE `wi_site` SET  `password_encryption` =:password_encryption , `encryption_cost` =:cost WHERE `id` = :user_id');
+				$query->bindParam(':password_encryption', $encryption, PDO::PARAM_STR);
+				$query->bindParam(':cost', $cost, PDO::PARAM_STR);
+				$query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+				$query->execute();
+
+				 $msg = WILang::get('successfully_updated_site_settings');
+
+				 					  $st1  = WISession::get('user_id') ;
+            $st2  = "UPDATED security Settings";
+           $this->maint->Notifications($st1, $st2);
+         $result = array(
+                "status" => "successful",
+                "msg" => $msg
+            );
+            
+            //output result
+            echo json_encode ($result);   
+			}else{
+				$query = $this->WIdb->prepare('UPDATE `wi_site` SET  `password_encryption` =:password_encryption , `sha512_iterations` =:sha512_iterations WHERE `id` = :user_id');
+				$query->bindParam(':password_encryption', $encryption, PDO::PARAM_STR);
+				$query->bindParam(':sha512_iterations', $cost, PDO::PARAM_STR);
+				$query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+				$query->execute();
+
+				 $msg = WILang::get('successfully_updated_site_settings');
+
+				 					  $st1  = WISession::get('user_id') ;
+            $st2  = "UPDATED security Settings";
+           $this->maint->Notifications($st1, $st2);
+         $result = array(
+                "status" => "successful",
+                "msg" => $msg
+            );
+            
+            //output result
+            echo json_encode ($result); 
+				}
+				
+
+    
+
+			
+		
+	}
+
 
 	public function Login_Settings($settings) 
 	{
@@ -225,6 +277,61 @@ class WISite
 			
 		
 	}
+
+	public function headerDisplay()
+	{
+		$sql = "SELECT * FROM `wi_header`";
+
+		$query = $this->WIdb->prepare($sql);
+		$query->execute();
+
+		$res = $query->fetch();
+
+		$header = $res['logo'];
+
+		echo '<form method="post" action="" enctype="multipart/form-data">
+     <img alt="" id="uploadImg" class="logo" src="WIMedia/Img/header/' . $header .'">
+     <input type="file" name="file" id="wiupload" />
+    </form> ';
+	}
+
+		public function PictureDisplay($mod_name)
+	{
+		$sql = "SELECT * FROM `wi_modules` WHERE `name`=:mod";
+
+		$query = $this->WIdb->prepare($sql);
+		$query->bindParam(':mod', $mod_name, PDO::PARAM_STR);
+		$query->execute();
+
+		$res = $query->fetch();
+
+		$pic = $res['img'];
+
+		echo '<form enctype="multipart/form-data" id="ModImgUpload">
+     <img alt="" id="' . $mod_name .'" class="logo" src="WIMedia/Img/' . $pic . '">
+     <input class="file" type="file" name="file" id="wimodUpload" />
+     <button class="modImg" id="modUpload">Upload</button>
+    </form> ';
+	}
+
+
+
+		public function faviconDisplay()
+	{
+		$sql = "SELECT * FROM `wi_site`";
+
+		$query = $this->WIdb->prepare($sql);
+		$query->execute();
+
+		$res = $query->fetch();
+
+		$favicon = $res['favicon'];
+
+		echo '<form method="post" action="" enctype="multipart/form-data">
+     <img alt="" id="uploadFavImg" class="logo" src="WIMedia/Img/favicon/' . $favicon .'">
+     <input type="file" name="file" id="wifaviconupload" />
+    </form> ';
+	}
 	
 
 		public function header_Settings($settings) 
@@ -245,6 +352,57 @@ class WISite
 				 $msg = WILang::get('successfully_updated_site_settings');
 					  $st1  = WISession::get('user_id') ;
             $st2  = "UPDATED Header Settings";
+           $this->maint->Notifications($st1, $st2);
+         $result = array(
+                "status" => "successful",
+                "msg" => $msg
+            );
+            
+            //output result
+            echo json_encode ($result);     
+
+			
+		
+	}
+
+			public function headerPic($img) 
+	{
+
+				$header_id = "1";
+				$query = $this->WIdb->prepare('UPDATE `wi_header` SET  `logo` =:logo  WHERE `header_id` = :header_id');
+				$query->bindParam(':logo', $img, PDO::PARAM_STR);
+				$query->bindParam(':header_id', $header_id, PDO::PARAM_INT);
+				$query->execute();
+
+				 $msg = WILang::get('successfully_updated_site_settings');
+					  $st1  = WISession::get('user_id') ;
+            $st2  = "UPDATED Header Settings";
+           $this->maint->Notifications($st1, $st2);
+         $result = array(
+                "status" => "successful",
+                "msg" => $msg
+            );
+            
+            //output result
+            echo json_encode ($result);     
+
+			
+		
+	}
+
+
+			public function faviconPic($img) 
+	{
+
+				$favicon_id = "1";
+				$query = $this->WIdb->prepare('UPDATE `wi_site` SET  `favicon` =:logo  WHERE `id` = :favicon_id');
+				$query->bindParam(':logo', $img, PDO::PARAM_STR);
+				$query->bindParam(':favicon_id', $favicon_id, PDO::PARAM_INT);
+				$query->execute();
+
+				 $msg = WILang::get('successfully_updated_site_settings');
+					  $st1  = WISession::get('user_id') ;
+            $st2  = "UPDATED favicon Settings";
            $this->maint->Notifications($st1, $st2);
          $result = array(
                 "status" => "successful",
@@ -436,6 +594,57 @@ class WISite
                     "SELECT * FROM `wi_notifications`");
 		//print_r($result);
 		echo count($result);
+
+	}
+
+	public function MessageBagde()
+	{
+				$result = $this->WIdb->select(
+                "SELECT * FROM `wi_contact_message`");
+		//print_r($result);
+		echo count($result);
+	}
+
+	public function TaskBagde()
+	{
+				$result = $this->WIdb->select(
+                "SELECT * FROM `wi_tasks`");
+		//print_r($result);
+		echo count($result);
+	}
+
+
+	public function tasks()
+	{
+		$sql = "SELECT * FROM `wi_tasks`";
+		$query = $this->WIdb->prepare($sql);
+		$query->execute();
+while($res = $query->fetchAll() )
+		{
+
+			foreach ($res as $key => $value) {
+				//print_r($value);
+					 echo ' <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        ' . $value['item'] . '
+                        <small class="pull-right">' . $value['percent'] . '%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-aqua" style="width: ' . $value['percent'] . '%" role="progressbar" aria-valuenow="' . $value['percent'] . '" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">' . $value['percent'] . '% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->';
+
+
+                               
+			}
+			
+
+		}
 
 	}
 

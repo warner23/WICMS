@@ -34,7 +34,7 @@ class WIUser
     public function getAll() {
         $query = "SELECT `wi_members`.`email`, `wi_members`.`username`,`wi_members`.`last_login`, `wi_user_details`.*
                     FROM `wi_members`, `wi_user_details`
-                    WHERE `wi_members`.`user_id` = :id
+                    WHERE `wi_mmbers`.`user_id` = :id
                     AND `wi_members`.`user_id` = `wi_user_details`.`user_id`";
 
         $result = $this->WIdb->select($query, array( 'id' => $this->userId ));
@@ -186,12 +186,20 @@ class WIUser
             return false;
 
         $role = $this->getRole();
-        if($role == "Administrator"  or "Developer" or "Head Administrator" or "Owner")
+        //echo $role;
+        if($role === "Administrator"){
             return true;
-        return false;
+        }elseif($role ===  "Developer"){
+            return true; 
+        }elseif($role ===  "Head Administrator"){
+            return true;
+        }elseif ($role === "Owner") {
+            return true;
+        }else{
+            return false;
+        }
 
     }
-    
 
     /**
      * Updates user's password.
@@ -221,7 +229,7 @@ class WIUser
     public function changeRole() {
         $role = $_POST['role'];
 
-        $result = $this->WIdb->select("SELECT * FROM `Wwi_user_roles` WHERE `role_id` = :r", array( "r" => $role ));
+        $result = $this->WIdb->select("SELECT * FROM `wi_user_roles` WHERE `role_id` = :r", array( "r" => $role ));
 
         if(count($result) == 0)
             return;
@@ -315,7 +323,7 @@ class WIUser
         }
         else
             $this->WIdb->update (
-                "wi_user_details",
+                "WI_user_details",
                 $details,
                 "`user_id` = :id",
                 array( "id" => $this->userId )

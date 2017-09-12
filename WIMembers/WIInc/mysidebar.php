@@ -12,7 +12,7 @@
 
 
   <div class="bio">
-  <div class="titleP"><?php  echo WILang::get('bio');?>:<a href="javascript:void(0);" class="btn" onclick="profile.bio()">Edit</a></div>
+  <div class="titleP"><?php  echo WILang::get('bio');?>:<a href="javascript:void(0);" class="btn" onclick="WIProfile.bio()">Edit</a></div>
   <div id="bio">
     <?php echo $bio_body = $profile->userDetails($userId, 'bio_body');?>
    </div>
@@ -24,7 +24,7 @@
                       
                        <div class="control-group form-group">
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="bio_update" onclick="profile.UpdateBio(<?php echo WISession::get('user_id') ?> )" class="btn btn-success"><?php  echo WILang::get('save');?></button>
+                           <button id="bio_update" onclick="WIProfile.UpdateBio(<?php echo WISession::get('user_id') ?> )" class="btn btn-success"><?php  echo WILang::get('save');?></button>
                         </div>
 
                         </div>
@@ -37,13 +37,13 @@
 <div class="titleP">
 <?php echo $username  = $profile->getInfo($userId, 'username');
 
- ;?> <?php  echo WILang::get('info');?>: <a href="javascript:void(0);" class="btn" onclick="profile.details(<?php echo $userId?>)">Edit</a> </div>
+ ;?> <?php  echo WILang::get('info');?>: <a href="javascript:void(0);" class="btn" onclick="WIProfile.details(<?php echo $userId?>)">Edit</a> </div>
  <div id="details"></div>
 <?php  echo $userinfo = $profile->Display_name($userId); ?>
     </div><!-- end of userinfo-->
 
     <div class="user_location">
-       <div class="titleP">  <?php  echo WILang::get('user_location');?>:  <a href="javascript:void(0);" class="btn" onclick="profile.location(<?php echo $userId?>)">Edit</a></div>
+       <div class="titleP">  <?php  echo WILang::get('user_location');?>:  <a href="javascript:void(0);" class="btn" onclick="WIProfile.location(<?php echo $userId?>)">Edit</a></div>
        <div id="location">
        <?php echo $locationInfo = $profile->LocationInfo($userId); ?>
          <div class="control-group closed" id="updateLocation" >
@@ -70,25 +70,17 @@
  
                       <div class="control-group form-group">
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="site_settings" onclick="profile.updateLocation(<?php echo $userId ?>)" class="btn btn-success"><?php  echo WILang::get('save');?></button>
+                           <button id="site_settings" onclick="WIProfile.updateLocation(<?php echo $userId ?>)" class="btn btn-success"><?php  echo WILang::get('save');?></button>
+
                         </div>
                       </div>
                       </div><div class="results" id="results"></div>
        </div>
-         
-          
-          
-         
-          <div class="google_map" id="google_map">
-          <div  class="google_inner_map"><a href="#" onclick="return false" onmousedown="javascript:toggleViewMap('google_map');">close map</a></div>
-<iframe class="where_i_live" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<?php echo "$city,+$state,+$country";?>&amp;ie=UTF8&amp;hq=&amp;hnear=<?php echo "$city,+$state,+$country";?>&amp;z=12&amp;output=embed"></iframe>
-<div align="left" style="padding:4px; background-color:#D2F0D3;"><a href="#" onclick="return false" onmousedown="javascript:toggleViewMap('google_map');">close map</a></div>
-          </div>
 
     </div>
 
     <div class="social_profile">
-    <div class="titleP"><?php  echo WILang::get('social_info');?>: <a href="javascript:void(0);" class="btn" onclick="profile.social(<?php echo $userId?>)">Edit</a></div>
+    <div class="titleP"><?php  echo WILang::get('social_info');?>: <a href="javascript:void(0);" class="btn" onclick="WIProfile.social(<?php echo $userId?>)">Edit</a></div>
     <div id="social">
     <?php  echo $Social_profile = $profile->Social_Profile($userId); ?>
     <div class="control-group closed" id="updateSocial">
@@ -122,7 +114,7 @@
  
                       <div class="control-group form-group">
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="site_settings" onclick="profile.updatesocial(<?php echo $userId ?>)" class="btn btn-success">Save</button>
+                           <button id="site_settings" onclick="WIProfile.updatesocial(<?php echo $userId ?>)" class="btn btn-success">Save</button>
                         </div>
                       </div>
                       </div><div class="results" id="results"></div>
@@ -140,7 +132,7 @@
     <div id="view_all_friends"><?php  echo WILang::get('friend');?>
               <div class="friending">
                        <div class="friends_box">All Friends</div> 
-                       <a href="#" onclick="profile.toggleViewAllFriends('view_all_friends');">close </a>
+                       <a href="#" onclick="WIProfile.toggleViewAllFriends('view_all_friends');">close </a>
               </div>
               <div class="WIFriends">
               </div>

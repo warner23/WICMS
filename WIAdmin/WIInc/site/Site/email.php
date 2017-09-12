@@ -35,7 +35,7 @@
                          <div class="control-group form-group">
                            
                             <div class="controls col-lg-offset-4 col-lg-8">
-                              <button id="email-settings" class="btn btn-success">Save Settings</button>
+                              <button id="email-settings" class="btn btn-success" onclick="WIEmail.EmailMethod()">Save Settings</button>
                             </div>
                           </div>
 

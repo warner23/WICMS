@@ -116,21 +116,21 @@ input:checked + .slider:before {
 
                           <div class="col-lg-8 col-md-8 col-sm-8">  
                           <div id="page_selector">
-                          <select>
+                          <select id="page_selection">
                           <?php $page->selectPage();   ?>
                           </select>
                            
                           </div>
                       </div>
 
-                            <div class="col-lg-8 col-md-8 col-sm-8">  
+                        <div class="col-lg-8 col-md-8 col-sm-8">  
                           <div id="page_options">
 
                            <form>
                            <div class="controlgroup">
                               <label>Left Hand Column</label>
                              <label class="switch">
-                              <input type="checkbox" id="lsc" checked>
+                              <input type="checkbox" id="lsc">
                               <div class="slider round" onclick="WIEditpage.changeLHC()"></div>
                             </label>
                             </div>
@@ -139,8 +139,8 @@ input:checked + .slider:before {
                                      <div class="controlgroup">
                               <label>Right Hand Column</label>
                              <label class="switch">
-                              <input type="checkbox" id="rsc" unchecked>
-                              <div class="slider round"></div>
+                              <input type="checkbox" id="rsc">
+                              <div class="slider round" onclick="WIEditpage.changeRHC()"></div>
                             </label>
                             </div>
                            </form>
@@ -148,11 +148,13 @@ input:checked + .slider:before {
                           </div>
                       </div>
 
+
                        <div class="col-lg-8 col-md-8 col-sm-8">  
                           <div class="page" id="pages">
 
                            
                           </div>
+                          <button onclick="WIEditpage.edit()">SAVE</button>
                       </div>
                         
 
@@ -164,7 +166,7 @@ input:checked + .slider:before {
 
                      <script type="text/javascript" src="WICore/WIJ/WIEditpage.js"></script>
 
-                      <script>
+                                         <script>
   $( function() {
     $( "#draggable0 li" ).draggable({
   helper: 'clone'
@@ -190,5 +192,6 @@ input:checked + .slider:before {
                           })
                        });
                      </script>
+
 
 

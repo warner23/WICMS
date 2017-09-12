@@ -12,12 +12,8 @@ class WIContact
 
     private $mailer;
 
-    //private $WIdb = null;
+    private $WIdb = null;
 
-
-    /**
-     * Class constructor
-     */
     function __construct() 
     {
          $this->WIdb = WIdb::getInstance();

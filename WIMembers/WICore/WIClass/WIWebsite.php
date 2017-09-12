@@ -192,8 +192,15 @@ class WIWebsite
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
+                <div class="col-md-4 col-md-ol col-sm-4 col-lg-4"><a href="Alogin.php"><button class="btn">' .WILang::get('admin') . '</button></a></div>
+
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="col-md-3 col-md-or">
+                            <a href="#">
+                            <button class="btn" onclick="WIInfo.ShowInfo();">' . WILang::get('info'). '</button></a></div>
                     </div>
                 </div>
             </div>
@@ -204,8 +211,6 @@ class WIWebsite
         ';
         }
     }
-
-
 
     public function top_head()
     {
@@ -266,6 +271,107 @@ class WIWebsite
                 </div>
             </div>
         </div>';
+    }
+
+     public function PageMod($page, $column)
+    {
+        //echo "col" . $column;
+
+                $result = $this->WIdb->selectColumn(
+                    "SELECT * FROM `wi_page` WHERE `name`=:page",
+                     array(
+                       "page" => $page
+                     ), $column
+                  );
+               // print_r($result[$column]);
+         if(count($result < 1)){
+            return $column;
+         }else{
+            return $column;
+         }
+
+
+    }
+
+       public function pageModPower($page, $column)
+        {
+        //echo "col" . $column;
+
+                $result[$column] = $this->WIdb->selectColumn(
+                    "SELECT * FROM `wi_page` WHERE `name`=:page",
+                     array(
+                       "page" => $page
+                     ), $column
+                  );
+               // print_r($result[$column]);
+         if(count($result < 1)){
+            return $result[$column];
+         }else{
+            return $result[$column];
+         }
+
+
+    }
+
+     public function viewLang()
+    {
+         //echo WILang::getLanguage();
+              if ( WILang::getLanguage() === 'en') {
+      $class = "hi";
+    }else{
+      $class = "bye";
+    }
+    if (WILang::getLanguage() === 'rs') {
+      $class = "fade";
+    }else{
+      $class = "rs";
+    }
+    if (WILang::getLanguage() != 'ru') {
+      $class = "fade";
+    }else{
+      $class = "ru";
+    }
+    if (WILang::getLanguage() != 'es') {
+      $class = "fade";
+    }else{
+      $class = "es";
+    }
+    if (WILang::getLanguage() != 'fr') {
+      $class = "fade";
+    }else{
+      $class = "fr";
+    }
+    if (WILang::getLanguage() != 'cn') {
+      $class = "fade";
+    }else{
+      $class = "cn";
+    }
+    if (WILang::getLanguage() != 'dk') {
+      $class = "fade";
+    }else{
+      $class = "dk";
+    }
+         
+        $sql = "SELECT * FROM `wi_lang`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+         echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                         <div class="flags-wrapper">';
+        while($res = $query->fetchAll(PDO::FETCH_ASSOC) ){
+
+          
+        foreach ($res as $lang ) {
+
+
+        
+            echo '<a href="' . $lang['href'] . '">
+                 <img src="../WIAdmin/WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
+                      class="'. $class .'" /></a>';
+            }
+        }
+
+         echo '</div>
+                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
     }
 
 }

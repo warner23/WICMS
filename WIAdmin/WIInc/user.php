@@ -232,41 +232,10 @@
                         </div>
                       </div>
                       <hr>
-                      <div class="control-group form-group">
-                        <label class="control-label col-lg-3" for="adduser-first_name">
-                          <?php echo WILang::get('first_name'); ?>
-                        </label>
-                        <div class="controls col-lg-9">
-                          <input id="adduser-first_name" name="adduser-first_name" type="text" class="input-xlarge form-control" >
-                        </div>
-                      </div>
-                      <div class="control-group form-group">
-                        <label class="control-label col-lg-3" for="adduser-last_name">
-                          <?php echo WILang::get('last_name'); ?>
-                        </label>
-                        <div class="controls col-lg-9">
-                          <input id="adduser-last_name" name="adduser-last_name" type="text" class="input-xlarge form-control" >
-                        </div>
-                      </div>
-                      <div class="control-group form-group">
-                        <label class="control-label col-lg-3" for="adduser-address">
-                          <?php echo WILang::get('address'); ?>
-                        </label>
-                        <div class="controls col-lg-9">
-                          <input id="adduser-address" name="adduser-address" type="text" class="input-xlarge form-control" >
-                        </div>
-                      </div>
-                      <div class="control-group form-group">
-                        <label class="control-label col-lg-3" for="adduser-phone">
-                          <?php echo WILang::get('phone'); ?>
-                        </label>
-                        <div class="controls col-lg-9">
-                          <input id="adduser-phone" name="adduser-phone" type="text" class="input-xlarge form-control" >
-                        </div>
-                      </div>
+                     
                   </form>
                 </div>
-                <div align="center" class="ajax-loading"><img src="<?php echo $WI['theme_dir'] ?><?php echo $WI['img_admin'] ?>ajax_loader.gif" /></div>
+                <div align="center" class="ajax-loading"><img class="hide" src="WIMedia/Img/ajax_loader.gif" /></div>
                 <div class="modal-footer">
                     <a href="javascript:void(0);" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
                       <?php echo WILang::get('cancel'); ?>

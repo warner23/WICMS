@@ -31,7 +31,7 @@ if (isset($_FILES)) {
 }
 
 echo json_encode(array(
-	'name'  => $name,
+	'name'  => $location/$name,
 	'error' => $error,
 ));
 die();

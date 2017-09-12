@@ -34,8 +34,7 @@ $(document).ready(function(event)
     });
 
          });
-    WIEditpage.togglelsc(page_id);
-   // WIEditpage.rsc(page_id);
+
     WIEditpage.loadPage(page_id);
     WIEditpage.loadOptions(page_id);
 
@@ -49,8 +48,10 @@ var WIEditpage = {}
 WIEditpage.getInfo = function(page_id){
  $("#page-title").attr("placeholder", page_id)
  $("#page-title").attr("value", page_id)
+$("#page_selection").val(page_id).prop("selected", "selected");
 
 }
+
 
 
 WIEditpage.NextMod = function(){
@@ -103,17 +104,21 @@ WIEditpage.loadOptions = function(page_id){
         },
         success: function(result)
         {
-            if (result.status === "completed") {
-                if (result.lsc == 0) {
-                    $("#lsc").attr("unchecked");
+            var res = JSON.parse(result);
+
+            if (res.status === "completed") {
+               // alert(res.lsc);
+                if (res.lsc > 0) {
+                    $("#lsc").prop("checked", true);
                 }else{
-                    $("#lsc").attr("checked");
+                    $("#lsc").attr("unchecked")
                 }
 
-                 if (result.rsc == 0) {
-                    $("#rsc").attr("unchecked");
+            //alert(res.rsc);
+                 if (res.rsc > 0) {
+                     $("#rsc").prop("checked", true);                   
                 }else{
-                    $("#rsc").attr("checked");
+                    $("#rsc").prop("unchecked");
                 }
                 
             }
@@ -237,25 +242,32 @@ var page_id = $("#page-title").val();
         success: function(result)
         {
             console.log(result);
-            if (result.status == "complete") {
-                alert("hiy");
-                if (result.lsc == 0) {
-                    alert("hey");
+
+            var res = JSON.parse(result);
+
+            if (res.status == "complete") {
+                //alert("hiy");
+                if (res.lsc == 0) {
+                   // alert("hey");
                     $("#lsc").attr("unchecked");
                     $("#sidenavL").remove();
-                    $("#Mid").removeClass("col-lg-10 col-md-8 col-sm-8");
-                    $("#Mid").addClass("col-lg-12 col-md-12 col-sm-12");
-
+                    //$("#Mid").removeClass("col-lg-12 col-md-8 col-sm-8");
+                    //$("#Mid").addClass("col-lg-12 col-md-12 col-sm-12");
+                     $("#block").removeClass("col-lg-10 col-md-8 col-sm-8");
+                    $("#block").addClass("col-lg-12 col-md-12 col-sm-12");
                 }else{
-                    alert("hoy");
+                    //alert("hoy");
                     $("#lsc").attr("checked");
 
                     var element = $("#col");
-                    $("#Mid").removeClass("col-lg-12 col-md-12 col-sm-12");
-                    $("#Mid").addClass("col-lg-10 col-md-8 col-sm-8");
-                    var Div = '<div class="col-sm-1 sidenav" id="sidenavL"><?php include_once "left_sidebar.php"; ?>'+ 
-                    '</div><div class="col-lg-10 col-md-8 col-sm-8" id="Mid">';
-                    element.append(Div);
+                    var Mid = $("#Mid");
+                    $("#block").removeClass("col-lg-12 col-md-12 col-sm-12");
+                    $("#block").addClass("col-lg-10 col-md-8 col-sm-8");
+                    var Div = '<div class="col-sm-1 col-lg-2 cool-md-2 col-xl-2 col-xs-2 sidenav" id="sidenavL">'+ 
+                    '</div>';
+                    $("#block").before(Div);
+                    $("#sidenavL").load("WIInc/edit/WIInc/left_sidebar.php");
+
 
 
 
@@ -265,4 +277,58 @@ var page_id = $("#page-title").val();
         
     }
 } );
+}
+
+
+WIEditpage.changeRHC = function(){
+
+var page_id = $("#page-title").val();
+         $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "rsc_changed",
+            page   : page_id,
+            col    : "right"
+        },
+        success: function(result)
+        {
+            console.log(result);
+
+            var res = JSON.parse(result);
+
+            if (res.status == "complete") {
+                //alert("hiy");
+                if (res.rsc == 0) {
+                   // alert("hey");
+                    $("#rsc").attr("unchecked");
+                    $("#sidenavR").remove();
+                    $("#block").removeClass("col-lg-10 col-md-8 col-sm-8");
+                    $("#block").addClass("col-lg-12 col-md-12 col-sm-12");
+                }else{
+                    //alert("hoy");
+                    $("#rsc").attr("checked");
+
+                    var element = $("#col");
+                    var Mid = $("#Mid");
+                    $("#block").removeClass("col-lg-12 col-md-12 col-sm-12");
+                    $("#block").addClass("col-lg-10 col-md-8 col-sm-8");
+                    var Div = '<div class="col-sm-1 col-lg-2 cool-md-2 col-xl-2 col-xs-2 sidenavR" id="sidenavR">'+ 
+                    '</div>';
+                    $("#col").append(Div);
+                    $("#sidenavR").load("WIInc/edit/WIInc/right_sidebar.php");
+
+
+
+
+                }
+        }
+       
+        
+    }
+} );
+}
+
+WIEditpage.edit = function(){
+    
 }

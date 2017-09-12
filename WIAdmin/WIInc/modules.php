@@ -1,6 +1,6 @@
   <script>
   $( function() {
-    $( "#tabs1" ).tabs();
+    $( "#tabs5" ).tabs();
   } );
   </script>
  <aside class="right-side">
@@ -12,7 +12,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Site</li>
+                        <li class="active">Modules</li>
                     </ol>
                 </section>
 
@@ -129,22 +129,24 @@ position: absolute;
     }
 </style>
 
-<div id="tabs1">
+<div class="well">
+
+   <div id="tabs5">
   <ul>
-    <li><a href="#tabs-1">Install Module</a></li>
+    <li><a href="#tabs-1">Install Modules</a></li>
     <li><a href="#tabs-2">Available Modules</a></li>
     <li><a href="#tabs-3">Settings</a></li>
     <li><a href="#tabs-4">Edit Modules</a></li>
-    <li><a href="#tabs-5">Module Store</a></li>
+    <li><a href="#tabs-5">Modules Shop</a></li>
   </ul>
   <div id="tabs-1">
-<?php  include_once 'WIInc/site/modules/install.php';?>
+<?php include_once 'WIInc/site/modules/install.php';?>
   </div>
   <div id="tabs-2">
-<?php  include_once 'WIInc/site/modules/available_modules.php';?>
+<?php include_once 'WIInc/site/modules/available_modules.php';?>
   </div>
   <div id="tabs-3">
-<?php  include_once 'WIInc/site/modules/modules_settings.php';?>
+ <?php include_once 'WIInc/site/modules/modules_settings.php';?>
   </div>
 
     <div id="tabs-4">
@@ -153,10 +155,10 @@ position: absolute;
 
     <div id="tabs-5">
  <?php include_once 'WIInc/site/modules/modules_store.php';?>
-
   </div>
-</div>
+</div> 
 
+</div>
 
 <script type="text/template" id="updatenotice">
     Update Available.<br/>
@@ -181,5 +183,9 @@ position: absolute;
 
 </div><!-- end content-->
  </section>
-
+             <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
              <script type="text/javascript" src="WICore/WIJ/WIMod.js"></script>
+
+                          <script type="text/javascript" src="WICore/WIJ/WIMedia.js"></script>
+                                      <script type="text/javascript" src="WICore/WIJ/WIImage.js"></script>
+

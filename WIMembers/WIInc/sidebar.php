@@ -35,15 +35,6 @@
        <div id="location">
        <?php echo $locationInfo = $profile->LocationInfo($friendId); ?>
        </div>
-         
-          
-          
-         
-          <div class="google_map" id="google_map">
-          <div  class="google_inner_map"><a href="#" onclick="return false" onmousedown="profile.toggleViewMap('google_map');">close map</a></div>
-<iframe class="where_i_live" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<?php echo "$city,+$state,+$country";?>&amp;ie=UTF8&amp;hq=&amp;hnear=<?php echo "$city,+$state,+$country";?>&amp;z=12&amp;output=embed"></iframe>
-<div align="left" style="padding:4px; background-color:#D2F0D3;"><a href="#" onclick="return false" onmousedown="profile.toggleViewMap('google_map');">close map</a></div>
-          </div>
 
     </div>
 

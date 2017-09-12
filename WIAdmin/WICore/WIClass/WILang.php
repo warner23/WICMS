@@ -53,7 +53,7 @@ class WILang
 
 		$WIdb = WIdb::getInstance();
 
-		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key AND `lang`=:lang";
+		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key AND lang=:lang";
 		$query = $WIdb->prepare($sql);
 		$query->bindParam(':key', $key, PDO::PARAM_STR);
 		$query->bindParam(':lang', $language, PDO::PARAM_STR);

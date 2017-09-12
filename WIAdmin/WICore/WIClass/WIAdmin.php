@@ -1,7 +1,7 @@
 <?php
 
 /**
-* user Class
+* Admin Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
@@ -32,8 +32,8 @@ class WIAdmin
      * @return User details or null if user with given id doesn't exist.
      */
     public function getAll() {
-        $query = "SELECT `wi_members`.`email`, `wi_members`.`username`,`wi_members`.`last_login`, `wi_user_details`.*
-                    FROM `wi_members`, `wi_user_details`
+        $query = "SELECT `wi_members`.`email`, `wi_members`.`username`,`wi_members`.`last_login`, `WI_user_details`.*
+                    FROM `wi_members`, `WI_user_details`
                     WHERE `wi_members`.`user_id` = :id
                     AND `wi_members`.`user_id` = `wi_user_details`.`user_id`";
 
@@ -65,6 +65,7 @@ class WIAdmin
     public function add( $postData ) {
 
         // prepare required objects and arrays
+        echo $postData;
         $result = array();
         $reg = new WIRegister();
         $errors = $reg->validateUser($postData, false);
@@ -181,14 +182,25 @@ class WIAdmin
      * Check if user is admin.
      * @return boolean TRUE if user is admin, FALSE otherwise.
      */
+
     public function isAdmin() {
         if ( $this->userId == null )
+            //echo "nill";
             return false;
 
-        $role = $this->getRole();
- if($role == "Administrator" or "Developer" or "Head Administrator" or "Owner")
-           return true;
-        return false;
+       $role = $this->getRole();
+       // echo $role;
+        if($role === "Administrator"){
+            return true;
+        }elseif($role ===  "Developer"){
+            return true; 
+        }elseif($role ===  "Head Administrator"){
+            return true;
+        }elseif ($role === "Owner") {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

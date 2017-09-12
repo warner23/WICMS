@@ -5,6 +5,7 @@ $(document).ready(function(event)
     WIDashboard.Notificationscount();
     WIDashboard.MessagesCount();
     WIDashboard.registeredUsercount();
+    WIDashboard.TasksCount();
 
 
      //executes code below when user click on pagination links
@@ -184,6 +185,36 @@ WIDashboard.MessagesCount = function(){
         success: function(result)
         {
              $("#mess_badge").html(result)
+        }
+    });
+}
+
+WIDashboard.tasks = function(){
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "GET",
+        data: {
+            action : "tasks"
+                    },
+        success: function(result)
+        {
+             $("#tasks").html(result)
+        }
+    });
+}
+
+WIDashboard.TasksCount = function(){
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "GET",
+        data: {
+            action : "TasksCount"
+                    },
+        success: function(result)
+        {
+             $("#task_badge").html(result)
         }
     });
 }

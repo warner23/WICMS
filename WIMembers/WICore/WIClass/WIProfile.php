@@ -64,10 +64,10 @@ class WIProfile
 			 echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/' . $result[0]["avatar"] . '" width="218px" /><a href="#" onclick="profile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
 			
 		} else {
-		  echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/image01.jpg" width="218px" /><a href="#"" onclick="profile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
+		  echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/image01.jpg" width="218px" /><a href="#"" onclick="WIProfile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
 		}
 
-	    	
+	    
 	   }
 	}
 
@@ -520,9 +520,9 @@ $device = "$user_device : $CurrOS";
 		if (in_array($friendId, $iFriend_array)) 
 		{ 
 
-		$friendLink = '<a href="#" onclick="profile.toggleInteractContainers(`remove_friend`);">Remove Friend</a>';
+		$friendLink = '<a href="#" onclick="WIProfile.toggleInteractContainers(`remove_friend`);">Remove Friend</a>';
 	} else {
-	    	$friendLink = '<a href="#" onclick="profile.toggleInteractContainers(`add_friend`);">Add as Friend</a>';
+	    	$friendLink = '<a href="#" onclick="WIProfile.toggleInteractContainers(`add_friend`);">Add as Friend</a>';
 	}
 
 	 	echo $interactionBox = '<div class="interactionLinksDiv">
@@ -575,7 +575,7 @@ $device = "$user_device : $CurrOS";
 	   while($res = $query->fetch(PDO::FETCH_ASSOC)){
 
 		echo $interactionBox = '<div class="interactionLinksDiv">
-           <a href="#" onclick="profile.toggleInteractContainers(`friend_requests`);">Friend Requests</a>
+           <a href="#" onclick="WIProfile.toggleInteractContainers(`friend_requests`);">Friend Requests</a>
           </div>';
       $the_blab_form = '
           <div style="background-color:#BDF; border:#999 1px solid; padding:8px;">
@@ -720,7 +720,7 @@ $device = "$user_device : $CurrOS";
 
 	 	$del = 0;
 
-	 	$query = $this->WIdb->prepare('SELECT * FROM `wi_private_messages` WHERE `from_id` =:userId AND `senderDelete` =:del ORDER BY id DESC LIMIT 100');
+	 	$query = $this->WIdb->prepare('SELECT * FROM `wi_private_messages` WHERE `sender_id` =:userId AND `senderDelete` =:del ORDER BY id DESC LIMIT 100');
 	 	$query->bindParam(':userId', $from_id, PDO::PARAM_INT);
 	 	$query->bindParam(':del', $del, PDO::PARAM_INT);
 	 	$query->execute();
@@ -796,6 +796,11 @@ $device = "$user_device : $CurrOS";
 	 public function friendProfile($friend)
 	 {
 	 	WISession::set("friendId", $friend);
+	 }
+
+	 	 public function friendProfile0()
+	 {
+	 	WISession::set("friendId", 0);
 	 }
 
 	 public function addFriend($userId, $friendId)

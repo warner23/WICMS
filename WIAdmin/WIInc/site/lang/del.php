@@ -1,4 +1,4 @@
- <form  class="form-horizontal database-form" id="meta">
+ <form  class="form-horizontal database-form" id="del">
                       <fieldset>
                         <div id="legend">
                           <legend class="">Script Settings</legend>

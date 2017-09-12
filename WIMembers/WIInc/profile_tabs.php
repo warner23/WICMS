@@ -21,9 +21,9 @@
           <div class="interactive" id="friends_requests">
  
           <div class="interactContainers" id="add_friend">
-                <div  class="cancel" align="right"><a href="#" onclick="profile.toggleInteractContainers('add_friend');">cancel</a> </div>
+                <div  class="cancel" align="right"><a href="#" onclick="WIProfile.toggleInteractContainers('add_friend');">cancel</a> </div>
                 Add <?php echo $profile->getInfo($friendId, "username" ) ?>  as a friend? &nbsp;
-                <a href="#" onclick="profile.addAsFriend(<?php echo $userId; ?>, <?php echo $friendId; ?>)" >Yes</a>
+                <a href="#" onclick="WIProfile.addAsFriend(<?php echo $userId; ?>, <?php echo $friendId; ?>)" >Yes</a>
                 <span id="add_friend_loader"><img class="friend" src="../WIAdmin/WIMedia/Img/loading.gif" width="28" height="10" alt="Loading" /></span>
           </div>
           
@@ -49,12 +49,12 @@ Message:
   <input name="pm_rec_name" id="pm_rec_name" type="hidden" value="<?php echo $profile->getInfo($userId, "username") ?>" />
   <input name="pmWipit" id="pmWipit" type="hidden" value="<?php echo $thisRandNum; ?>" />
   <span id="PMStatus" style="color:#F00;"></span>
-  <br /><input name="pmSubmit" type="submit" value="Submit" onclick="profile.privateMessage(event);" /> or <a href="#" onclick="profile.toggleInteractContainers('private_message');">Close</a>
+  <br /><input name="pmSubmit" type="submit" value="Submit" onclick="WIProfile.privateMessage(event);" /> or <a href="#" onclick="WIProfile.toggleInteractContainers('private_message');">Close</a>
 <span id="pmFormProcessGif" style="display:none;"><img class="priv_mes" src="../WIAdmin/WIMedia/Img/loading.gif" width="28" height="10" alt="Loading" /></span></form>
           </div>
           <!-- END DIV that contains the Private Message form -->
           <div class="interactContainers" id="friend_requests" style="background-color:#FFF; height:240px; overflow:auto;">
-            <div align="right"><a href="#" onclick="return false" onmousedown="profile.toggleInteractContainers('friend_requests');">close window</a> &nbsp; &nbsp; </div>
+            <div align="right"><a href="#" onclick="return false" onmousedown="WIProfile.toggleInteractContainers('friend_requests');">close window</a> &nbsp; &nbsp; </div>
             <h3>The following people are requesting you as a friend</h3>
             </div>
 

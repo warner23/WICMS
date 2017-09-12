@@ -15,7 +15,10 @@ include_once 'WIRegister.php';
 include_once 'WIFunction.php';
 include_once 'WIMaintenace.php';
 include_once 'WIWebsite.php';
-include_once 'WIPage.php';
+include_once 'WIDebate.php';
+include_once 'WIUserInfo.php';
+//include_once 'WITopic.php';
+
 
 
 
@@ -30,7 +33,7 @@ $mailer       = new WIEmail();
 $validator    = new WIValidator();
 $maint        = new WIMaintenace();
 $web          = new WIWebsite();  
-$page        = new WIPage();
+//$mod          = new WIModules();
      
 
 

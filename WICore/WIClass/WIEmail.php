@@ -27,7 +27,6 @@ class WIEmail {
 
         // load email HTML template
         $body = file_get_contents(dirname(dirname(__FILE__)) . '/WITemp/confirmation-mail.php');
-
         // replace appropriate placeholders
         $body = str_replace('{{website_name}}',WEBSITE_NAME, $body);
         $body = str_replace('{{link}}',$link, $body);

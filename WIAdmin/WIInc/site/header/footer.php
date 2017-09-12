@@ -27,6 +27,6 @@
                   </form>
 
 
-                      <?php $web->footer();?>
+                      <?php $web->edit_footer();?>
 
                       

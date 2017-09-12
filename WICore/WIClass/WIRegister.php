@@ -23,6 +23,8 @@ class WIRegister
          $this->WIdb = WIdb::getInstance();
         //create new object of WIEmail class
         $this->mailer = new WIEmail();
+
+        $this->maint = new WIMaintenace();
     }
     
 
@@ -57,12 +59,13 @@ class WIRegister
             $st1  = $user['username'] ;
             $st2  = "Added new user";
             //$maintain = new WIMaintenace();
-            WIMaintenace::LogFunction($st1, $st2);
+            $this->maint->LogFunction($st1, $st2);
+
 
             $this->WIdb->insert('wi_user_details', array( 'user_id' => $userId ));
-            
+            //echo "mail" . MAIL_CONFIRMATION_REQUIRED;
             //send confirmation email if needed
-            if ( MAIL_CONFIRMATION_REQUIRED ) {
+            if ( MAIL_CONFIRMATION_REQUIRED === "true" ) {
                 $this->mailer->confirmationEmail($user['email'], $key);
                 $msg = WILang::get('success_registration_with_confirm');
 
@@ -336,7 +339,18 @@ class WIRegister
         if ( $botProtection )
         {
             //bot protection
-            $sum = WISession::get("bot_first_number") + WISession::get("bot_second_number");
+
+             $bot_one = WISession::get('bot_first_number');
+            $bot_two = WISession::get('bot_second_number');
+
+            $sum = $bot_one + $bot_two;
+            //$sum = WISession::get("bot_first_number") + WISession::get("bot_second_number");
+//            $name = WISession::get('name');
+// echo "name" . $name;
+ //echo "bot1" . $bot_one;
+// echo " bot2" . $bot_two;
+//         echo " total" . $sum;
+//            echo " my total" . $user['bot_sum'];
             if($sum != intval($user['bot_sum']))
                 $errors[] = array( 
                     "id"    => $id['bot_sum'],

@@ -1,6 +1,15 @@
-<link rel="stylesheet" type="text/css" href="http://wicms.co.uk/WITheme/River/admin/css/header.css">
-<link rel="stylesheet" type="text/css" href="http://wicms.co.uk/WITheme/River/admin/css/footer.css">
-44  <script>
+<link rel="stylesheet" type="text/css" href="../WITheme/Debate/site/css/frameworks/header.css">
+<link rel="stylesheet" type="text/css" href="../WITheme/Debate/site/css/frameworks/footer.css">
+
+<style type="text/css">
+  .mediaPic{
+        margin-left: 187px;
+    margin-top: -289px;
+  }
+</style>
+
+
+ <script>
   $( function() {
     $( "#tabs4" ).tabs();
   } );
@@ -29,6 +38,7 @@
                             <!-- input box's box -->
                             <div class="modal-body">
 
+
             <div class="well">
 
 
@@ -36,13 +46,21 @@
   <ul>
     <li><a href="#tabs-1">Header</a></li>
     <li><a href="#tabs-2">Footer</a></li>
+    <li><a href="#tabs-3">Favicon</a></li>
   </ul>
   <div id="tabs-1">
 <?php include_once 'WIInc/site/header/header.php'; ?>  
   </div>
+
   <div id="tabs-2">
  <?php include_once 'WIInc/site/header/footer.php'; ?> 
   </div>
+  
+    <div id="tabs-3">
+ <?php include_once 'WIInc/site/header/favicon.php'; ?> 
+  </div>
+  
+
 
 </div>
 
@@ -55,6 +73,9 @@
 <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
 
 <script type="text/javascript" src="WICore/WIJ/headerUpload.js"></script>
+<script type="text/javascript" src="WICore/WIJ/faviconUpload.js"></script>
 <script type="text/javascript" src="WICore/WIJ/WIHeader.js"></script>
 <script type="text/javascript" src="WICore/WIJ/WIFooter.js"></script>
+  <script type="text/javascript" src="WICore/WIJ/jquery.ajaxfileupload.js"></script>
+  <script type="text/javascript" src="WICore/WIJ/WIMedia.js"></script>
 

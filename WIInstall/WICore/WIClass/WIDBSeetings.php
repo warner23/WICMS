@@ -9,10 +9,10 @@ class WIDBSeetings
 	{
 		$MYSQL = "mysql";
 		WISession::set("type", $MYSQL);
-		WISession::set("HOST", $HOST);
-		WISession::set("DB", $DB);
-		WISession::set("USER", $USER);
-		WISession::set("PASS", $PASS);
+		WISession::set("host", $HOST);
+		WISession::set("db", $DB);
+		WISession::set("user", $USER);
+		WISession::set("pass", $PASS);
 		try{
 		    $dbh = new WIdb($MYSQL, $HOST, $DB, $USER, $PASS);
 		    die(json_encode(array('outcome' => true)));

@@ -1,10 +1,15 @@
+          <style type="text/css">
+           .ui-accordion-content{
+            height: auto !important;
+           }
+          </style>
                  <form  class="form-horizontal settings">
                     <fieldset>
                       <div id="legend">
                         <legend class="">Menu</legend>
                       </div>   
 
-                      <?php   $web->MainMenu(); ?> 
+                      <?php   $web->AdminMenu(); ?> 
                      
                       <div class="control-group form-group">
                         <!-- Button -->

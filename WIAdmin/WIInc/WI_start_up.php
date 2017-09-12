@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php  echo $WI['site_name']; ?></title>
+	<title><?php  echo WEBSITE_NAME; ?></title>
 	<link rel="stylesheet" type="text/css" href="WIInc/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="WIInc/css/dashboard.css">
 	<link rel="stylesheet" type="text/css" href="WIInc/css/mod.css">
@@ -15,7 +15,7 @@
 
 
 <script src="WIInc/js/jquery-1.10.2.js"></script>
-  <script src="WIInc/js/jquery-1.12.4.js"></script>
+  <script src="WIInc/js/jquery_new.js"></script>
   <script src="WIInc/js/jquery-ui.js"></script>
 
   

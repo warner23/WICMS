@@ -1,6 +1,11 @@
 <?php
-include_once '../../WICore/init.php';
+include_once '../../WICore/lib.php';
+$web->Styling();
+
+$web->Scripts();
+
 ?>
+
           <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -35,5 +40,3 @@ include_once '../../WICore/init.php';
       .row.content {height:auto;} 
     }
   </style>
-</head>
-<body>

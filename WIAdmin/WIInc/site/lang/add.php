@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="col-lg-12">
-                                                      <div class="control-group form-group">
+                        <div class="control-group form-group">
                         <!-- Button -->
                         <div class="col-lg-3 col-sm-3 col-md-3">
                            <button id="add_trans_btn" onclick="WILang.AddTransModal()" class="btn btn-success" >Add</button> 
@@ -185,7 +185,7 @@
                      
                   </form>
                 </div>
-                <div align="center" class="ajax-loading"><img src="WIMedia/Img/ajax_loader.gif" />
+                <div align="center" class="ajax-loading off"><img src="WIMedia/Img/ajax_loader.gif" />
 <div class="center" id="results-lang"></div>
                 </div>
                 <div class="modal-footer">

@@ -1,6 +1,6 @@
 <?php
 /**
-* Maintenace Class
+* WIDashboard Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
@@ -15,7 +15,6 @@ class WIDashboard
 
 	public function toDoList()
 	{
-
 		  if(isset($_POST["page"])){
         $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH); //filter number
         if(!is_numeric($page_number)){die('Invalid page number!');} //incase of invalid page number
@@ -214,12 +213,78 @@ class WIDashboard
                       <i class="fa fa-users text-aqua"></i> ' . $value['opperation'] . '
                     </a>
                   </li>';
+
+
             }
             
         }
 
         echo '</ul>';
     }
+
+    public function VisitorCount($country)
+    {
+
+     $sql = "SELECT * FROM `wi_visitors_log` WHERE `country`=:country";
+     $query = $this->WIdb->prepare($sql);
+     $query->bindParam(':country', $country, PDO::PARAM_STR);
+     $query->execute();
+
+     $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        //print_r($result);
+        echo count($result);
+    }
+
+    public function Visitors_ip()
+    {
+         $sql = "SELECT * FROM `wi_visitors_log` ORDER BY ip";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+        
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+
+          foreach ($res as $key) {
+            //print_r($key);
+
+            $Ip = $key['ip'];
+            echo count($Ip);
+              return $Ip ;   
+        }  
+        
+    }
+
+    public function Visitors()
+    {
+        //$ip = $this->Visitors_ip();
+        $sql = "SELECT * FROM `wi_track` group by country";
+        
+        $query = $this->WIdb->prepare($sql);
+        //$query->bindParam(':ip', $ip, PDO::PARAM_STR);
+        $query->execute();
+
+
+        while($res = $query->fetchAll(PDO::FETCH_ASSOC)){
+            //print_r($res);
+           // $country = $res['country'];
+            foreach ($res as $key) {
+            //print_r($key);
+            //$Ip = $key['ip'];
+                echo ' <tr>
+            <td>' . $key['country'] . '</td>
+        <td><div id="sparkline-1">';$this->VisitorCount($key['country']); echo '</div></td>
+            <td>0</td>
+            <td></td>
+            </tr>';        
+        }  
+        }
+        //print_r($res);
+
+        
+        
+
+    }
+
 
 
 

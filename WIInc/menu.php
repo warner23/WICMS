@@ -1,23 +1,14 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+	<div class="col-lg-9 col-md-9 col-sm-12">
+							<div id="nav">
+		                        <ul id="mainMenu" class="mainMenu default">
+		                            <li class="active"><a href="index.php">Home</a>
+		                            </li>
+		                            <li><a href="about_us.php">About Us</a></li>
+		                            <li><a href="services.php">Services</a> </li>
+		                            <li><a href="support.php">Support Us</a> </li>
+		                            <li><a href="WIShop/index.php">Shop</a></li>
+		                            <li><a href="cafe.php">Cafe</a></li>
+		                            <li><a href="WIForum/index.php">Forum</a></li>
+		                            <li><a href="contact_us.php">Contact Us</a></li>
+		                        </ul>
+		                    </div><!-- nav -->   

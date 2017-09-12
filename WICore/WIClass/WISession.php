@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Database Class
+* Session Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
@@ -13,22 +13,28 @@ class WISession
      */
     public static function startSession() 
     {
-        ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
-        
+//         ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
+//         // ini_set('session.entropy_file', '/dev/urandom'); // better session id's
+// // ini_set('session.entropy_length', '512'); // and going overkill with entropy length for maximum security
 
-        $cookieParams = session_get_cookie_params();
-        session_set_cookie_params(
-            $cookieParams["lifetime"], 
-            $cookieParams["path"], 
-            $cookieParams["domain"], 
-            SESSION_SECURE, 
-            SESSION_HTTP_ONLY
-         );
+//         $cookieParams = session_get_cookie_params();
+//         session_set_cookie_params(
+//             $cookieParams["lifetime"], 
+//             $cookieParams["path"], 
+//             $cookieParams["domain"], 
+//             SESSION_SECURE, 
+//             SESSION_HTTP_ONLY
+//          );
+//         session_name('Debate');
 
         session_start();
+        //print_r($cookieParams);
+ 
+   }
 
-        if ( SESSION_REGENERATE_ID )
-            session_regenerate_id(SESSION_REGENERATE_ID);   
+    public static function regenerate($deleteOldSession = true)
+    {
+        return session_regenerate_id($deleteOldSession);
     }
 
     public static function destroySession() {

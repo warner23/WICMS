@@ -1,6 +1,7 @@
 $(document).ready(function(event)
 {
 
+
     WIMod.Next();
  //executes code below when user click on pagination links
     $("#modList").on( "click", ".pagination a", function (e){
@@ -27,9 +28,12 @@ $(document).ready(function(event)
         
     });
 
-         });
+ });
+
+
 
 });
+
 
 
 var WIMod = {}
@@ -79,17 +83,17 @@ WIMod.enable = function(mod_name, enable){
 //alert(enable);
 
  $.ajax({
-    	url: "WICore/WIClass/WIAjax.php",
-    	type: "POST",
-    	data: {
-    		action : "mod_enable",
-    		mod_name : mod_name,
-    		enable : enable
-    	},
-    	success: function(result)
-    	{
-    		
-    	}
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "mod_enable",
+            mod_name : mod_name,
+            enable : enable
+        },
+        success: function(result)
+        {
+            
+        }
     })
 
 }
@@ -98,23 +102,23 @@ WIMod.disable = function(mod_name, disable){
 
 
  $.ajax({
-    	url: "WICore/WIClass/WIAjax.php",
-    	type: "POST",
-    	data: {
-    		action : "mod_disable",
-    		mod_name : mod_name,
-    		disable : disable
-    	},
-    	success: function(result)
-    	{
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "mod_disable",
+            mod_name : mod_name,
+            disable : disable
+        },
+        success: function(result)
+        {
 
-    	}
+        }
     })
 
 }
 
 WIMod.drop = function(mod_name){
-	//alert("droppped");
+    //alert("droppped");
     //alert(mod_name);
 
      $.ajax({
@@ -126,13 +130,94 @@ WIMod.drop = function(mod_name){
         },
         success: function(result)
         {
-            $("#droppable").html(result);
+            // check to see if another element is there first, if it is place after element
+           
+           if( $('.coldrop').is(':empty') ){
+            alert("div empty");
+           // $("#droppable1").html(result);
+           $("#droppable1").html(result);
+           }else{
+alert("div not empty");
+$("#droppable1").append(result);
+           }
+            
+        }
+    })
+}
+
+WIMod.dropping = function(mod_name, id){
+    //alert("droppped");
+    //alert(mod_name);
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "drop_call",
+            mod_name : mod_name
+        },
+        success: function(result)
+        {
+            $("#"+id).html(result);
         }
     })
 }
 
 
-WIMod.editdrop = function(mod_name){
+
+WIMod.column = function(mod_name){
+    //alert("droppped");
+    //alert(mod_name);
+ var i = 0;
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "col_call",
+            mod_name : mod_name
+        },
+        success: function(result)
+        {
+                     if( $('.dropcol').is(':empty') ){
+            alert("div empty");
+           // $("#droppable1").html(result);
+ i++;
+
+        $("#droppable1").html(result);
+
+
+           }else{
+alert("div not empty");
+
+        $("#droppable1").append(result);
+    
+        }
+    }
+    
+    })
+}
+
+
+
+WIMod.columns = function(mod_name, id){
+    //alert("droppped");
+    //alert(mod_name);
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "col_call",
+            mod_name : mod_name
+        },
+        success: function(result)
+        {
+            $("#"+id).html(result);
+        }
+    })
+}
+
+WIMod.editdrop = function(mod_name,  page_id){
     //alert("droppped");
     //alert(mod_name);
 
@@ -141,7 +226,8 @@ WIMod.editdrop = function(mod_name){
         type: "POST",
         data: {
             action : "edit_drop_mod",
-            mod_name : mod_name
+            mod_name : mod_name,
+            page_id : page_id
         },
         success: function(result)
         {
@@ -150,9 +236,6 @@ WIMod.editdrop = function(mod_name){
     })
 }
 
-WIMod.col1 = function(){
-    alert("col1");
-}
 
 
  WIMod.Next = function(){
@@ -174,6 +257,16 @@ WIMod.col1 = function(){
     });
  }
 
+ WIMod.closed = function(){
+    $("#modal-edit-title").removeClass("on")
+    $("#modal-edit-title").addClass("off")
+ }
+
+  WIMod.closed1 = function(){
+    $("#modal-edit-para").removeClass("on")
+    $("#modal-edit-para").addClass("off")
+ }
+
  WIMod.delete = function(e){
          e.preventDefault();
     $( "#dialog-confirm" ).removeClass( "hide" );
@@ -185,13 +278,227 @@ WIMod.col1 = function(){
          $( "#remove" ).remove();
  }
 
+   WIMod.removecol = function(e, id){
+         e.preventDefault();
+         $( "#"+id ).remove();
+ }
+
   WIMod.close = function(e){
          e.preventDefault();
     $( "#dialog-confirm" ).removeClass( "show" );
     $( "#dialog-confirm" ).addClass( "hide" );
  }
 
-   WIMod.createMod = function(e){
-         e.preventDefault();
+  WIMod.createMod = function(){
 
+    var contents = $("#droppable1").html();
+    mod_name = $("#mod_name").val();
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "createMod",
+            contents : contents,
+            mod_name   : mod_name
+        },
+        success: function(result)
+        {
+           WICore.removeLoadingButton(btn);
+           // console.log(result);
+            //window.alert(result);
+            //parse the data to json
+            //var res = JSON.stringify(result);
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "success"){
+            WICore.displaySuccessMessage($("#result"), res.msg);
+                //WICore.displaySuccessMessage($(".msg"), res.msg);
+          }
+
+        }
+    });
  }
+
+ WIMod.EditMod = function(){
+    var title = $("#title").val();
+    var para  = $("#history").val();
+    var mod_name  = $(".mod").attr('id');
+
+    //alert(title);
+    //alert(para);
+    //alert(mod_name);
+
+    $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "EditMod",
+            title : title,
+            para   : para,
+            mod_name   : mod_name
+        },
+        success: function(result)
+        {
+           WICore.removeLoadingButton(btn);
+           // console.log(result);
+            //window.alert(result);
+            //parse the data to json
+            //var res = JSON.stringify(result);
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "success"){
+            WICore.displaySuccessMessage($("#result"), res.msg);
+                //WICore.displaySuccessMessage($(".msg"), res.msg);
+          }
+
+        }
+    });
+ }
+
+WIMod.multiLang = function(){
+
+    $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "multiLang"
+        },
+        success: function(result)
+        {
+            //alert(result);
+            WIMod.modEdit(result);
+        }
+    })
+}
+
+WIMod.multiLangtext = function(){
+
+    $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "multiLang"
+        },
+        success: function(result)
+        {
+            //alert(result);
+            WIMod.modEdittext(result);
+        }
+    })
+}
+
+ WIMod.modEdittext = function(multiLang){
+
+    
+    //alert(multiLang);
+    if(multiLang === "on"){
+         $("#modal-edit-para").removeClass("off")
+    $("#modal-edit-para").addClass("on")
+}else{
+   //alert("multi off");
+}
+   
+}
+
+ WIMod.modEdit = function(multiLang){
+
+    
+    //alert(multiLang);
+    if(multiLang === "on"){
+         $("#modal-edit-title").removeClass("off")
+    $("#modal-edit-title").addClass("on")
+}else{
+   //alert("multi off");
+}
+   
+}
+
+WIMod.editPageTrans = function(){
+        var code = $("#lang_name").val();
+    var keyword  = $("#keyword").val();
+    var trans  = $("#translation").val();
+    var mod_name  = $(".mod").attr('id');
+
+var btn = $("#btn-trans");
+WICore.loadingButton(btn, $_lang.logging_in);
+        $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "EditModLang",
+            code : code,
+            keyword   : keyword,
+            trans   : trans,
+            mod_name   : mod_name
+        },
+        success: function(result)
+        {
+           WICore.removeLoadingButton(btn);
+           // console.log(result);
+            //window.alert(result);
+            //parse the data to json
+            //var res = JSON.stringify(result);
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "success"){
+        $("#modal-edit-title").removeClass("on")
+    $("#modal-edit-title").addClass("of")
+    var input = $( "#title" );
+input.val( input.val() + res.trans );
+            //$("#title").text(res.trans);
+            WICore.displaySuccessMessage($("#result"), res.msg);
+                //WICore.displaySuccessMessage($(".msg"), res.msg);
+          }
+
+        }
+    });
+}
+
+WIMod.editPageTransPara = function(){
+        var code = $("#lang_namep").val();
+    var keyword  = $("#keywordp").val();
+    var trans  = $("#translationp").val();
+    var mod_name  = $(".mod").attr('id');
+
+var btn = $("#btn-trans");
+WICore.loadingButton(btn, $_lang.logging_in);
+        $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "EditModLangpara",
+            code : code,
+            keyword   : keyword,
+            trans   : trans,
+            mod_name   : mod_name
+        },
+        success: function(result)
+        {
+           WICore.removeLoadingButton(btn);
+           // console.log(result);
+            //window.alert(result);
+            //parse the data to json
+            //var res = JSON.stringify(result);
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "success"){
+        $("#modal-edit-para").removeClass("on")
+    $("#modal-edit-para").addClass("of")
+    var input = $( "#history" );
+input.val( input.val() + res.trans );
+            //$("#title").text(res.trans);
+            WICore.displaySuccessMessage($("#result"), res.msg);
+                //WICore.displaySuccessMessage($(".msg"), res.msg);
+          }
+
+        }
+    });
+}
+
+ 
+

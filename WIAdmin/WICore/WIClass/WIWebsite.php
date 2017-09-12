@@ -8,8 +8,18 @@ class WIWebsite
 	    function __construct() 
     {
          $this->WIdb = WIdb::getInstance();
-         $this->maint = new WIMaintenace();
 
+    }
+
+
+            public function webSite_essentials($column)
+    {
+        $sql = "SELECT * FROM `wi_header`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+
+        $res = $query->fetch(PDO::PARAM_STR);
+        return $res[$column];
     }
 
 
@@ -163,6 +173,32 @@ class WIWebsite
     }
 
 
+         public function Pictgetter($mod_name)
+    {
+        $sql = "SELECT * FROM `wi_modules` WHERE `name`=:mod";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':mod', $mod_name, PDO::PARAM_STR);
+        $query->execute();
+
+        while($res = $query->fetch(PDO::PARAM_STR))
+        {
+         echo '<div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-3 col-sm-2">
+                 <img class="img-responsive cp" id="Pic" src="WIMedia/Img/'. $res['img'] . '" style="width:120px; height:120px;">
+                    <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
+                                
+                            </div>
+                        </div>
+
+                      
+                </div>';
+        }
+
+    }
+
+
      public function MainHeader()
     {
         $sql = "SELECT * FROM `wi_header`";
@@ -176,55 +212,78 @@ class WIWebsite
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-2">
                             <div class="navbar_brand">
-<form method="post" action="" enctype="multipart/form-data">
-     <img alt=""  class="logo" src="WIMedia/Img/header/' . $res['logo'] .'">
-     <input type="file" name="file" id="wiupload" />
-    </form>           
-                        
+                 <img class="img-responsive cp" id="headerPic" src="WIMedia/Img/header/'. $res['logo'] . '" style="width:120px; height:120px;">
+                    <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
                                 
                             </div>
                         </div>
 
-                        <!-- start of header-->
-                        <div class="col-lg-9 col-md-9 col-sm-8">
-                        <div class="col-ms"> 
-                        <div class="zapfino"><input type="text" id="header_content" maxlength="100" name="header_content" placeholder="Header Content" class="input-xlarge form-control" value="' . $res['header_content'] . '">
-
-                        <span class="slogan"> <input type="text" id="header_slogan" maxlength="100" name="header_slogan" placeholder="Header Slogan" class="input-xlarge form-control" value="' . $res['header_slogan'] . '">
-                        </span>
-                        </div><!-- end col-ms-->
-                        </div>
-                         <!--end opf header-->
-
-                         <!-- start of menu -->
-                    </div>
+                      
                 </div> 
         </header>';
     	}
 
     }
 
-        public function footer()
+    public function Favicon()
     {
-        $id = 1;
-
-        $date = date("Y");
-        $http = str_replace("www.", "", $_SERVER['HTTP_HOST']);
-        $query = $this->WIdb->prepare('SELECT * FROM `wi_footer` WHERE footer_id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $sql = "SELECT * FROM `wi_site`";
+        $icon = "favicon";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':icon', $icon, PDO::PARAM_STR);
         $query->execute();
 
         while($res = $query->fetch(PDO::PARAM_STR))
         {
-            echo '  <footer class="footer">
+         echo '<div class="container">
+                    <div class="row">
+                    <img class="img-responsive cp" id="faviconPic" src="WIMedia/Img/favicon/'. $res['favicon'] . '" style="width:120px; height:120px;">
+                    <button class="btn mediaPic" onclick="WIMedia.changefaviconPic()">Change Picture</button>
+                        </div>
+
+                            <div class="col-lg-9 col-md-9 col-sm-8">
+                       <div id="message"></div>
+                        <div class="controls col-lg-offset-4 col-lg-8">
+                           <button id="favicon_settings" onclick="WIMedia.savefaviconPic()" class="btn btn-success">Save</button> 
+                        </div>
+
+                      <div class="results" id="results"></div>
+                        </div>
+
+                        </div>
+';
+        }
+
+    }
+
+
+        public function footer()
+    {
+
+        $date = date("Y");
+        $http = str_replace("www.", "", $_SERVER['HTTP_HOST']);
+        $query = $this->WIdb->prepare('SELECT * FROM `wi_footer`');
+        $query->execute();
+
+        while($res = $query->fetch(PDO::PARAM_STR))
+        {
+            echo '<footer class="footer">
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' .$date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-md-4 col-md-ol col-sm-4 col-lg-3">
+                <a href="alogin.php"><button class="btn">' .WILang::get('admin') . '</button></a>
+                <a href="contact_us.php"><button class="btn">' . WILang::get('contact_us'). '</button></a>
+                <a href="about_us.php"> <button class="btn">' . WILang::get('about_us'). '</button></a>
 
+                </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4">
+                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4">
+                            <a href="info.php"><button class="btn">' . WILang::get('info'). '</button></a>
+                            <a href="privacy_policy.php"><button class="btn">' . WILang::get('privacy'). '</button></a>
                     </div>
                 </div>
             </div>
@@ -234,7 +293,41 @@ class WIWebsite
         }
     }
 
+           public function edit_footer()
+    {
 
+        $date = date("Y");
+        $http = str_replace("www.", "", $_SERVER['HTTP_HOST']);
+        $query = $this->WIdb->prepare('SELECT * FROM `wi_footer`');
+        $query->execute();
+
+        while($res = $query->fetch(PDO::PARAM_STR))
+        {
+            echo '<footer class="footer">
+            <section class="footer_bottom container-fluid text-center">
+            <div class="container">
+                <div class="row">
+                <div class="col-md-4 col-md-ol col-sm-4 col-lg-3">
+                <input class="btn" value="' .WILang::get('admin') . '">
+                <input class="btn" value="' . WILang::get('contact_us'). '">
+                 <input class="btn" value="' . WILang::get('about_us'). '">
+
+                </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4">
+                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4">
+                            <input class="btn" value="' . WILang::get('info'). '">
+                            <input class="btn" value="' . WILang::get('privacy'). '">
+                    </div>
+                </div>
+            </div>
+        </section>
+        </footer>
+        <!--End Footer-->';
+        }
+    }
 
     public function headerSettings($settings)
     {
@@ -242,17 +335,11 @@ class WIWebsite
         $header_id = 1;
 
 
-        $sql = "UPDATE `wi_header` SET  header_content =:header_content, header_slogan =:header_slogan, logo =:logo  WHERE  `header_id` =:header_id";
+        $sql = "UPDATE `wi_header` SET logo =:logo  WHERE  `header_id` =:header_id";
         $query = $this->WIdb->prepare($sql);
-        $query->bindParam(':header_content', $header['header_content'], PDO::PARAM_STR);
-        $query->bindParam(':header_slogan', $header['header_slogan'], PDO::PARAM_STR);
         $query->bindParam(':logo', $header['upload_pic'], PDO::PARAM_STR);
         $query->bindParam(':header_id', $header_id, PDO::PARAM_INT);
         $query->execute();
-
-         $st1  = WISession::get('user_id') ;
-            $st2  = "UPDATED Header Settings";
-           $this->maint->Notifications($st1, $st2);
 
         $result = "complete";
         echo json_encode($result);
@@ -272,14 +359,30 @@ class WIWebsite
         $query->bindParam(':footer_id', $footer_id, PDO::PARAM_INT);
         $query->execute();
 
-         $st1  = WISession::get('user_id') ;
-            $st2  = "UPDATED Footer Settings";
-           $this->maint->Notifications($st1, $st2);
 
         $result = "complete";
         echo json_encode($result);
     }
-        public function header_upload($settings)
+
+    public function top_head()
+    {
+                $sql = "SELECT * FROM `wi_header`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+
+        while($res = $query->fetch(PDO::PARAM_STR))
+        {
+      echo '  <div class="top_head">
+                <div class="col-lg-4 col-md-6 col-sm-4">
+                <div class="logo">
+                <a href="#"><img alt="WICMS"  class="img-responsive" src="WIMedia/Img/header/' . WIWebsite::webSite_essentials('logo')  . '" style="width:120px; height:120px;"></a>
+                </div>
+                </div>
+                </div>';
+            }
+    }
+
+    public function header_upload($settings)
     {
         $_FILES = $settings['UserData']; 
         $whitelist = array('jpg', 'jpeg', 'png', 'gif');
@@ -380,6 +483,12 @@ class WIWebsite
         }
     }
 
+    public function NewPage($name)
+    {
+
+
+        
+    }
 
     public function viewLang()
     {
@@ -387,46 +496,18 @@ class WIWebsite
         $sql = "SELECT * FROM `wi_lang`";
         $query = $this->WIdb->prepare($sql);
         $query->execute();
-         echo '<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                         <div class="flags-wrapper">';
-        while($res = $query->fetchAll(PDO::FETCH_ASSOC) ){
-        foreach ($res as $lang ) {
-            //print_r($lang['name']);
 
-            echo ' <div class="col-sm-2 col-md-2 col-lg-2">
-            <a href="#">
-                 <img src="WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
-                      class="" /></a>
-             <a href="#" onclick="WILang.editLang(' . $lang['id'].')">Edit</a>
-             </div>';
-            }
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($res as $key => $value) {
+             echo ' <div class="col-sm-12 col-md-12 col-lg-12">
+             <label class="col-sm-1 col-md-1 col-lg-1" for="language">Language:<span class="required">*</span></label>
+                            <div class="controls col-sm-2 col-md-2 col-lg-2">
+                                <div class="col-sm-4 col-md-4 col-lg-4">' . $value['lang'].'</div>
+                            </div>
+                    
+                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WILang.editLang(' . $value['id'].')">Edit</a></div>
+                            </div>';
         }
-
-         echo '</div>
-                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
-    }
-
-    public function getLangInfo($id)
-    {
-
-        $sql = "SELECT * FROM `wi_lang` WHERE `id`=:id";
-        $query = $this->WIdb->prepare($sql);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
-         echo '<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                         <div class="flags-wrapper">';
-        while($res = $query->fetchAll(PDO::FETCH_ASSOC) ){
-
-            echo ' <div class="col-sm-2 col-md-2 col-lg-2">
-            <a href="#">
-                 <img src="WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
-                      class="" /></a>
-             <a href="#" onclick="WILang.editLang(' . $lang['id'].')">Edit</a>
-             </div>';
-        }
-
-         echo '</div>
-                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
     }
 
     public function viewTrans()
@@ -497,66 +578,6 @@ class WIWebsite
        
     }
 
-          public function getViewLang()
-    {
-         //echo WILang::getLanguage();
-              if ( WILang::getLanguage() === 'en') {
-      $class = "hi";
-    }else{
-      $class = "bye";
-    }
-    if (WILang::getLanguage() === 'rs') {
-      $class = "fade";
-    }else{
-      $class = "rs";
-    }
-    if (WILang::getLanguage() != 'ru') {
-      $class = "fade";
-    }else{
-      $class = "ru";
-    }
-    if (WILang::getLanguage() != 'es') {
-      $class = "fade";
-    }else{
-      $class = "es";
-    }
-    if (WILang::getLanguage() != 'fr') {
-      $class = "fade";
-    }else{
-      $class = "fr";
-    }
-    if (WILang::getLanguage() != 'cn') {
-      $class = "fade";
-    }else{
-      $class = "cn";
-    }
-    if (WILang::getLanguage() != 'dk') {
-      $class = "fade";
-    }else{
-      $class = "dk";
-    }
-         
-        $sql = "SELECT * FROM `wi_lang`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-         echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                         <div class="flags-wrapper">';
-        while($res = $query->fetchAll(PDO::FETCH_ASSOC) ){
-
-          
-        foreach ($res as $lang ) {
-
-
-        
-            echo '<a href="' . $lang['href'] . '">
-                 <img src="WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
-                      class="'. $class .'" /></a>';
-            }
-        }
-
-         echo '</div>
-                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
-    }
 
     public function Pagination($item_per_page, $current_page, $total_records, $total_pages)
     {
@@ -606,41 +627,7 @@ class WIWebsite
     }
 
 
-
-     public function top_head()
-    {
-            echo '<div class="top_head">
-            <div class="container">
-                <div class="row">';
-
-                WIWebsite::getViewLang();
-
-                echo    '<!--  search area-->
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div id="sb-search" class="sb-search">
-                            <form>
-                                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
-                                <span class="sb-icon-search"></span>
-                            </form>
-                        </div>
-
-                        <ul class="social_media"> 
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-facebook" title="Facebook">Facebook</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-google-plus" title="Google+">Google+</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-twitter" title="Twitter">Twitter</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-pinterest" title="Pinterest">Pinterest</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-linkedin" title="Linkedin">Linkedin</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-rss" title="Feedburner">RSS</a></li>
-                        </ul><!-- End Social --> 
-                    </div>
-                </div>
-            </div>
-        </div>';
-    }
-
-
-        public function Styling()
+            public function Styling()
     {
 
          $query = $this->WIdb->prepare('SELECT * FROM `wi_css`');
@@ -664,6 +651,268 @@ class WIWebsite
     }
 
 
+     public function getLangInfo($id)
+    {
+
+        $sql = "SELECT * FROM `wi_lang` WHERE `id`=:id";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        while($res = $query->fetch(PDO::FETCH_ASSOC) ){
+
+            echo ' <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="editmlang" id="' . $res['id']. '"></div>
+            <a href="#" onclick="WILang.editPic()">
+                 <img src="WIMedia/Img/lang/' . $res['lang_flag'] . '" class="editFlag" alt="' . $res['name'] .'" title="' . $res['name'] .'"
+                      class="" />Edit</a>
+             </div>
+
+             <label class="control-label col-lg-3" for="lang">
+                    ' . WILang::get('country') . '
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="country_name" name="country_name" type="text" class="input-xlarge form-control" placeholder="' . $res['name'] .'" >
+
+                          <label class="control-label col-lg-3" for="lang">
+                    ' . WILang::get('country_code') . '
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="country_code" name="country_code" type="text" class="input-xlarge form-control" placeholder="' . $res['lang'] .'" >';
+
+        }
+
+         echo '</div>
+                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
+    }
+
+
+        public function langDisplay()
+    {
+        echo '<form method="post" action="" enctype="multipart/form-data">
+     <img alt="" id="uploadImg" class="logo" src="WIMedia/Img/placeholder.jpg">
+     <input type="file" name="file" id="wiupload" />
+    </form> ';
+    }
+
+     public function saveeditLang($name, $code, $flag, $id)
+    {
+
+        $sql ="UPDATE  `wi_lang` SET  `lang` = 'code', `name` =:name WHERE  `wi_lang`.`id`=:id";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':name', $name, PDO::PARAM_STR);
+
+
+         $this->WIdb->insert(' wi_lang', array(
+            "name"     => $name,
+            "lang" => $code,
+            "lang_flag" => $flag,
+            "href"  => "?lang=" . $code
+
+        )); 
+
+         $msg = "Succesfully added new Language";
+             $result = array(
+                "status" => "success",
+                "msg"    => $msg
+            );
+            
+            echo json_encode($result);
+    }
+
+
+    public function saveLang($name, $code, $flag)
+    {
+        echo $name;
+        echo $code;
+        echo $flag;
+
+         $this->WIdb->insert(' wi_lang', array(
+            "name"     => $name,
+            "lang" => $code,
+            "lang_flag" => $flag,
+            "href"  => "?lang=" . $code
+
+        )); 
+
+         $msg = "Succesfully added new Language";
+             $result = array(
+                "status" => "success",
+                "msg"    => $msg
+            );
+            
+            echo json_encode($result);
+    }
+
+    public function CheckMultiLang()
+    {
+        $user_id = "1";
+        $sql = "SELECT * FROM `wi_site` WHERE `id`=:user_id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $query->execute();
+
+        $res = $query->fetch();
+
+        $multi = $res['multi_lang'];
+        echo $multi;
+        return $multi;
+
+
+    }
+
+    public function EditModLang($code, $keyword, $trans, $mod_name)
+    {
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_trans` WHERE `lang` =:lang AND `keyword`=:keyword AND `translation`=:trans", 
+            array(
+            "lang" => $code,
+            "keyword" => $keyword,
+            "trans"  => $trans
+            )
+        );
+
+        if( count($result) > 0){
+
+            $sql1 = "UPDATE  `wi_modules` SET  `trans` =:trans WHERE  `name` =:mod_name";
+                $query1 = $this->WIdb->prepare($sql1);
+
+                $query1->bindParam(':trans', $keyword, PDO::PARAM_STR);
+                $query1->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
+
+                $query1->execute();
+
+                $sql2 = "SELECT * FROM `wi_trans` WHERE `keyword`=:keyword";
+                $query2 = $this->WIdb->prepare($sql2);
+                $query2->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+                $query2->execute();
+
+                $res = $query2->fetch(PDO::FETCH_ASSOC);
+                $translation = $res['translation'];
+
+                $msg = "Updated System, trans already Existed";
+             $result = array(
+                "status" => "success",
+                "msg"    => $msg,
+                "trans" => $translation
+            );
+            
+            echo json_encode($result);
+        }else{
+
+                $sql = "INSERT INTO `wi_trans` (`lang`, `keyword`, `translation`) VALUES ( :lang, :keyword, :trans)";
+
+                $query = $this->WIdb->prepare($sql);
+                $query->bindParam(':lang', $code, PDO::PARAM_STR);
+                $query->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+                $query->bindParam(':trans', $trans, PDO::PARAM_STR);
+
+                $query->execute();
+
+                $sql1 = "UPDATE  `wi_modules` SET  `trans` =:trans WHERE  `name` =:mod_name";
+                $query1 = $this->WIdb->prepare($sql1);
+
+                $query1->bindParam(':trans', $keyword, PDO::PARAM_STR);
+                $query1->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
+
+                $query1->execute();
+
+                $sql2 = "SELECT * FROM `wi_trans` WHERE `keyword`=:keyword";
+                $query2 = $this->WIdb->prepare($sql2);
+                $query2->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+                $query2->execute();
+
+                $res = $query2->fetch(PDO::FETCH_ASSOC);
+                $translation = $res['translation'];
+
+                $msg = "Succesfully added new Language";
+             $result = array(
+                "status" => "success",
+                "msg"    => $msg,
+                "trans" => $translation
+            );
+            
+            echo json_encode($result);
+    }
+}
+
+    public function EditModLangPara($code, $keyword, $trans, $mod_name)
+    {
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_trans` WHERE `lang` =:lang AND `keyword`=:keyword AND `translation`=:trans", 
+            array(
+            "lang" => $code,
+            "keyword" => $keyword,
+            "trans"  => $trans
+            )
+        );
+
+        if( count($result) > 0){
+
+            $sql1 = "UPDATE  `wi_modules` SET  `trans1` =:trans WHERE  `name` =:mod_name";
+                $query1 = $this->WIdb->prepare($sql1);
+
+                $query1->bindParam(':trans', $trans, PDO::PARAM_STR);
+                $query1->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
+
+                $query1->execute();
+
+                $sql2 = "SELECT * FROM `wi_trans` WHERE `keyword`=:keyword";
+                $query2 = $this->WIdb->prepare($sql2);
+                $query2->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+                $query2->execute();
+
+                $res = $query2->fetch(PDO::FETCH_ASSOC);
+                $translation = $res['translation'];
+
+                $msg = "Updated System, trans already Existed";
+             $result = array(
+                "status" => "success",
+                "msg"    => $msg,
+                "trans" => $translation
+            );
+            
+            echo json_encode($result);
+        }else{
+
+                $sql = "INSERT INTO `wi_trans` (`lang`, `keyword`, `translation`) VALUES ( :lang, :keyword, :trans)";
+
+                $query = $this->WIdb->prepare($sql);
+                $query->bindParam(':lang', $code, PDO::PARAM_STR);
+                $query->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+                $query->bindParam(':trans', $trans, PDO::PARAM_STR);
+
+                $query->execute();
+
+                $sql1 = "UPDATE  `wi_modules` SET  `trans1` =:trans WHERE  `name` =:mod_name";
+                $query1 = $this->WIdb->prepare($sql1);
+
+                $query1->bindParam(':trans', $keyword, PDO::PARAM_STR);
+                $query1->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
+
+                $query1->execute();
+
+                $sql2 = "SELECT * FROM `wi_trans` WHERE `keyword`=:keyword";
+                $query2 = $this->WIdb->prepare($sql2);
+                $query2->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+                $query2->execute();
+
+                $res = $query2->fetch(PDO::FETCH_ASSOC);
+                $translation = $res['translation'];
+
+                $msg = "Succesfully added new Language";
+             $result = array(
+                "status" => "success",
+                "msg"    => $msg,
+                "trans" => $translation
+            );
+            
+            echo json_encode($result);
+    }
+}
+    
 
 
 }

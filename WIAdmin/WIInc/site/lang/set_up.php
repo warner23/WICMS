@@ -1,11 +1,13 @@
 
- <form  class="form-horizontal database-form" id="meta">
+ <form  class="form-horizontal database-form" id="setup">
                       <fieldset>
                         <div id="legend">
                           <legend class="">Add Language</legend>
                         </div>
 
                         <div class="col-lg-12">
+                        
+       
                         
                         </div>
                        
@@ -48,7 +50,7 @@
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
 
-            <div class="modal off" id="modal-lang-edit">
+            <div class="modal off" id="modal-lang-add">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -61,7 +63,8 @@
                 <div class="modal-body" id="details-body">
                      <form class="form-horizontal" id="add_lang">
 
-                      <div class="control-group form-group" id="langInfo">
+                    
+                      <div class="control-group form-group">
                         <label class="control-label col-lg-3" for="lang">
                           <?php echo WILang::get('add_lang'); ?>
                         </label>

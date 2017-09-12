@@ -60,7 +60,7 @@ login.loginUser = function (data) {
         success: function (result) {
            WICore.removeLoadingButton(btn);
            if( result.status === 'success' ){
-               //alert(result.page);
+              // alert(result.page);
                window.location = result.page;
                 
            }else {

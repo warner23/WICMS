@@ -23,16 +23,20 @@ function redirect($url)
 
 function get_redirect_page()
 {
+    //echo "re";
     $login = new WILogin();
 
     if ( $login->isLoggedIn() )
     {
+        //echo "string";
         spl_autoload_register(function($class)
         {
             require_once $class . '.php';
         });
         $admin = new WIAdmin(WISession::get("user_id"));
         $role = $admin->getRole();
+
+        //echo $role;
     }
     else
         $role = 'default';

@@ -1,5 +1,5 @@
   $(document).ready(function() {
-    event.preventDefault();
+    //event.preventDefault();
       var interval;
 
       function applyAjaxFileUpload(element) {

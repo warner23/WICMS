@@ -54,7 +54,7 @@ class WIRole {
         if ( ! $this->validator->roleExist($name) )
         {
             // role doesn't exist, create it
-            $this->WIdb1->insert("wi_user_roles", array("role" => strtolower(strip_tags($_POST['role']))));
+            $this->WIdb->insert("wi_user_roles", array("role" => strtolower(strip_tags($_POST['role']))));
             $result = array(
                 "status"   => "success",
                 "roleName" => strip_tags($_POST['role']),
@@ -81,9 +81,9 @@ class WIRole {
         if(in_array($_POST['roleId'], array(1,2,3)) )
             exit();
 
-        $this->WIdb1->delete("wi_user_roles", "role_id = :id", array( "id" => $id ));
+        $this->WIdb->delete("wi_user_roles", "role_id = :id", array( "id" => $id ));
 
-        $this->WIdb1->update("wi_users", array( 'user_role' => "1" ), "user_role = :r", array( "r" => $id ) );
+        $this->WIdb->update("wi_users", array( 'user_role' => "1" ), "user_role = :r", array( "r" => $id ) );
     }
 
 } 
