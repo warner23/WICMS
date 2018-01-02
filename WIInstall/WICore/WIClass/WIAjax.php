@@ -25,8 +25,8 @@ switch ($action) {
         break;
 
 case 'install_settings':
-     $install = new install();
-     $install->Installer($_POST['name'],$_POST['dom']);
+     $install = new Install();
+     $install->Installer($_POST['name'],$_POST['dom'] ,$_POST['script'],$_POST['session_secure'] ,$_POST['http'] ,$_POST['session_regenerate'] ,$_POST['cookieonly'] ,$_POST['login_fingerprint'],$_POST['max_login_attempts'],$_POST['redirect_after_login'] ,$_POST['encryption'] ,$_POST['cost'] ,$_POST['mailer'], $_POST['db_host'] , $_POST['db_name'], $_POST['db_password'] , $_POST['db_username'] ,$_POST['bootstrap_version'], $_POST['salt'], $_POST['admin_password'], $_POST['admin_username'] , $_POST['email_address']);
         break;
         
         default:

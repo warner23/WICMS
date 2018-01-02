@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Database Class
+* WILang Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
@@ -9,64 +9,45 @@
 class WILang
 {
 
-	    function __construct() 
-    {
-         $this->WIdb = WIdb::getInstance();
-
-    }
-
-    public static function all($jsonEncode = true) {
+	  public static function all($jsonEncode = true) {
         // determine lanuage
 		$language = self::getLanguage();
-		//echo $language;
 
-		$WIdb = WIdb::getInstance();
-			//$file = WILang::getFile($language);
-			//echo $file;
-			//echo $language;
-		if ( ! self::isValidLanguage($language) )
-		die('Language file doesn\'t exist!');
-		else {
-
-			$sql = "SELECT * FROM `wi_trans` WHERE `lang` = :file";
-			$query = $WIdb->prepare($sql);
-			$query->bindParam(':file', $language, PDO::PARAM_STR);
-			$query->execute();
-			//$result = array();
-			while ($result = $query->fetchAll(PDO::FETCH_ASSOC)) {
-				echo "{";
-				foreach ($result as $res) {
-				echo '"' .$res['keyword'] .'":"' . $res['translation'] . '",';
-				 //return array($res['keyword'] => $res['translation'] ,);	
-			}
-
-			echo "}";
-			}
-
-			}
+        // get translation for determined language
+		$trans = self::getTrans($language);
+		
+		if ( $jsonEncode )
+			return json_encode($trans);
+		else
+			return $trans;
 	}
 
-    public static function get($key ) //, $bindings = array()
-    {
+
+	 public static function get($key, $bindings = array() ) {
 		// determine language
 		$language = self::getLanguage();
 
-		$WIdb = WIdb::getInstance();
+		// get translation array
+		$trans = self::getTrans($language);
 
-		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key";
-		$query = $WIdb->prepare($sql);
-		$query->bindParam(':key', $key, PDO::PARAM_STR);
-		$query->execute();
-
-		$res = $query->fetch(PDO::FETCH_ASSOC);
-		if($res > 0)
-			return $res['translation'];
-		else
+        // if term (key) doesn't exist, return empty string
+		if ( ! isset ( $trans[$key] ) )
 			return '';
+
+        // term exist, get the value
+		$value = $trans[$key];
+
+        // replace variables with provided bindings
+		if ( ! empty($bindings) ) {
+			foreach ( $bindings as $key => $val )
+				$value = str_replace('{'.$key.'}', $val, $value);
+		}
+
+		return $value;
 	}
 
-     public static function setLanguage($language) 
-     {
+
+	  public static function setLanguage($language) {
 
         // check if language is valid
 		if ( self::isValidLanguage($language) ) {
@@ -79,10 +60,12 @@ class WILang
             //refresh the page
 			header('Location: ' . $_SERVER['PHP_SELF']);
 		}
+		
 	}
 
-		 public static function getLanguage() 
-		 {
+
+
+	 public static function getLanguage() {
         // check if cookie exist and language value in cookie is valid
         if ( isset ( $_COOKIE['wi_lang'] ) && self::isValidLanguage ( $_COOKIE['wi_lang'] ) )
             return $_COOKIE['wi_lang']; // return lang from cookie
@@ -90,71 +73,38 @@ class WILang
             return WISession::get('wi_lang', DEFAULT_LANGUAGE);
     }
 
+    /**
+     *       PRIVATE AREA
+     */
+    private static function getTrans($language) {
+		$file = self::getFile($language);
 
-        private static function getTrans($language) 
-        {
-        	$WIdb = WIdb::getInstance();
-			//$file = WILang::getFile($language);
-			//echo $file;
-			//echo $language;
 		if ( ! self::isValidLanguage($language) )
-		die('Language file doesn\'t exist!');
+			die('Language file doesn\'t exist!');
 		else {
-			//$language = include $file;
-			//return $language;
-
-			$sql = "SELECT * FROM `wi_trans` WHERE `lang` = :file";
-			$query = $WIdb->prepare($sql);
-			$query->bindParam(':file', $language, PDO::PARAM_STR);
-			$query->execute();
-			//$result = array();
-			while ($result = $query->fetchAll(PDO::FETCH_ASSOC)) {
-				echo "{";
-				foreach ($result as $res) {
-				echo '"' .$res['keyword'] .'":"' . $res['translation'] . '",';
-				 //return array($res['keyword'] => $res['translation'] ,);	
-			}
-
-			echo "}";
-			}
-
-			}
-			
+			$language = include $file;
+			return $language;
+		}
 	}
 
 
 
-	 private static  function getFile($language) 
-	 {
-	 	$WIdb = WIdb::getInstance();
-		$sql = "SELECT * FROM `wi_lang` WHERE `lang` = :file";
-		$query = $WIdb->prepare($sql);
-		$query->bindParam(':file', $language, PDO::PARAM_STR);
-		$query->execute();
-
-		$res = $query->fetch(PDO::FETCH_ASSOC);
-		//echo $res['lang'];
-		if ($res > 0)
-			return $res['lang'];
-		else
-			return '';
-
+	 private static function getFile($language) {
+		return dirname(dirname(__FILE__) ) . '/WILang/' . $language . '.php';
 		
 	}
 
-	    private static function isValidLanguage($lang) 
-	    {
-		$file = self::getFile($lang);
-		//echo $file;
 
-		if($file == "")
-		//if ( ! file_exists( $file ) )
+
+
+    private static function isValidLanguage($lang) {
+		$file = self::getFile($lang);
+
+		if ( ! file_exists( $file ) )
 			return false;
 		else
 			return true;
 	}
-
-
 
 
 

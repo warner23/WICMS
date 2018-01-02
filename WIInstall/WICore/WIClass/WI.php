@@ -7,7 +7,7 @@ include_once 'WILang.php';
 include_once 'WIRequirements.php';
 include_once 'WIdb.php';
 include_once 'WIDBSeetings.php';
-include_once 'install.php';
+include_once 'Install.php';
 
 //$installer = session_name('install');
 WISession::startSession();
