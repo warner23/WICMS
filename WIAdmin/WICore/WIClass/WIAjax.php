@@ -315,114 +315,274 @@ switch ($action) {
         break;
 
      case "sendmessage":
+     onlyAdmin();
         $chat = new WIAdminChat();
         $chat->SendMessage($_POST['Message'], $_POST['user_id']);
         break;
 
     case "todoListcomplete":
+    onlyAdmin();
         $dash = new WIDashboard();
         $dash->completetodo($_POST['id']);
         break;
 
-            case "todoListAdd":
+    case "todoListAdd":
+    onlyAdmin();
         $dash = new WIDashboard();
         $dash->addToDoListItem($_POST['todoItem']);
         break;
 
      case "loadPage":
+     onlyAdmin();
         $page = new WIPage();
         $page->LoadPage($_POST['page']);
         break;
 
-         case "loadOptions":
+    case "loadOptions":
+    onlyAdmin();
         $page = new WIPage();
         $page->loadPageOptions($_POST['page']);
         break;
 
-         case "changePage":
+    case "changePage":
+    onlyAdmin();
         $page = new WIPage();
         $page->LoadPage($_POST['page']);
         break;
 
-         case "lsc_change":
+    case "lsc_change":
+    onlyAdmin();
         $page = new WIPage();
         $page->LoadPage($_POST['page'], $_POST['col']);
         break;
 
-        case "togglelsc_change":
+    case "togglelsc_change":
+    onlyAdmin();
         $page = new WIPage();
         $page->toogleLsc($_POST['page'], $_POST['col']);
         break;
 
-     case "rsc_change":
+    case "rsc_change":
+    onlyAdmin();
         $page = new WIPage();
         $page->LoadPage($_POST['page'], $_POST['col']);
         break;
         
         
     case "lsc_changed":
+    onlyAdmin();
         $page = new WIPage();
         $page->changeLSC($_POST['page'], $_POST['col']);
         break;
 
-            case "rsc_changed":
+    case "rsc_changed":
+    onlyAdmin();
         $page = new WIPage();
         $page->changeRSC($_POST['page'], $_POST['col']);
         break;
 
-        case "new_page":
+    case "new_page":
+    onlyAdmin();
         $page = new WIPage();
         $page->newPage($_POST['page']);
         break;
 
-            case "page_delete":
+    case "page_delete":
+    onlyAdmin();
         $page = new WIPage();
         $page->deletePage($_POST['page_id']);
         break;
 
-            case "changePic":
+    case "changePic":
+    onlyAdmin();
         $site = new WISite();
         $site->headerPic($_POST['img']);
         break;
 
-        case "changefaviconPic":
+    case "changefaviconPic":
+    onlyAdmin();
         $site = new WISite();
         $site->faviconPic($_POST['img']);
         break;
 
     case "saveLang":
+    onlyAdmin();
         $web = new WIWebsite();
         $web->saveLang($_POST['name'], $_POST['code'], $_POST['flag']);
         break;
 
-         case "AddeditLang":
+    case "AddeditLang":
+    onlyAdmin();
         $web = new WIWebsite();
         $web->saveeditLang($_POST['name'], $_POST['code'], $_POST['flag'], $_POST['id']);
         break;
 
-     case "resfresh":
+    case "resfresh":
+    onlyAdmin();
         $web = new WIWebsite();
         $web->viewLang();
         break;
 
-        case "folder":
+    case "folder":
+    onlyAdmin();
         $img = new WIImage();
         $img->Folder($_POST['folder']);
         break;
 
     case "back":
+    onlyAdmin();
         $img = new WIImage();
         $img->AllPics();
         break;
 
-         case "createMod":
+    case "createMod":
+    onlyAdmin();
         $mod = new WIModules();
         $mod->createMod($_POST['contents'], $_POST['mod_name']);
         break;
 
-        case "EditMod":
+    case "EditMod":
+    onlyAdmin();
         $mod = new WIModules();
         $mod->editContents($_POST['title'], $_POST['para'], $_POST['mod_name']);
+        break;
+
+    case "changeMetaPage":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->LoadMetaPage($_POST['page']);
+        break;
+
+    case "changeJsPage":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->LoadJsPage($_POST['page']);
+        break;
+
+    case "changeCssPage":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->LoadCssPage($_POST['page']);
+        break;
+
+    case "viewThemes":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->viewThemes();
+        break;
+
+    case "themeActivate":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->activateThemes($_POST['id']);
+        break;
+
+        //  case "themeDeactivate":
+        // $web = new WIWebsite();
+        // $web->deactivateThemes($_POST['id']);
+        // break;
+
+    case "viewMeta":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->ViewMeta($_POST['page']);
+        break;
+
+    case "editMeta":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->ViewEditMeta($_POST['id']);
+        break;
+
+    case "editMetaDetails":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->EditMeta($_POST['id'], $_POST['name'], $_POST['content'], $_POST['auth']);
+        break;
+
+    case "DeleteMeta":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->DeleteMeta($_POST['id']);
+        break;
+
+    case "viewCss":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->ViewCSS($_POST['page']);
+        break;
+
+    case "editCss":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->ViewEditCss($_POST['id']);
+        break;
+
+    case "editCssDetails":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->EditCss($_POST['id'], $_POST['css']);
+        break;
+
+    case "deletecss":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->DeleteCss($_POST['id']);
+        break;
+
+    case "viewjs":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->ViewJS($_POST['page']);
+        break;
+
+
+    case "ViewEditJs":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->ViewEditJs($_POST['id']);
+        break;
+
+    case "editJsDetails":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->EditJs($_POST['id'], $_POST['js']);
+        break;
+
+    case "deleteJs":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->DeleteJs($_POST['id']);
+        break;
+
+    case "addNew":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->addNew();
+        break;
+
+    case "newTopic":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->newTopic($_POST['topic']);
+        break;
+
+    case "Topics":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->topic_Info();
+        break;
+
+    case "editTopics":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->editTopics($_POST['topic'], $_POST['id']);
+        break;
+
+    case "version_control":
+    onlyAdmin();
+        $site = new WISite();
+        $site->VersionControl($_POST['version']);
         break;
 
 
@@ -435,6 +595,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 switch($action){
         
        case "todoList":
+       onlyAdmin();
        $dashboard = new WIDashboard();
        $dashboard->toDoList() ;
        break;
@@ -454,34 +615,45 @@ switch($action){
         break;
 
         case "Notifications":
+        onlyAdmin();
        $dashboard = new WIDashboard();
        $dashboard->Notifications() ;
        break;
 
         case "registeredUsercount":
+        onlyAdmin();
        $site = new WISite();
        $site->RegisteredUsers() ;
        break;
 
         case "NotificationsCount":
+        onlyAdmin();
         $site = new WISite();
         $site->notifications_badge();
         break;
 
         case "MessagesCount":
+        onlyAdmin();
         $site = new WISite();
         $site->MessageBagde();
         break;
 
          case "activeChatCount":
+         onlyAdmin();
         $site = new WISite();
         $site->ActiveChatCount();
         break;
 
 
         case "TasksCount":
+        onlyAdmin();
         $site = new WISite();
         $site->TaskBagde();
+        break;
+
+        case "info_box":
+        $dash = new WIDashboard();
+        $dash->Info_Boxes();
         break;
 
         case "getMessages":
@@ -490,11 +662,13 @@ switch($action){
         break;
 
         case "tasks":
+        onlyAdmin();
         $site = new WISite();
         $site->tasks();
         break;
 
         case "load_mod":
+        onlyAdmin();
         $mod = new WIModules();
         $mod->tasks();
         break;

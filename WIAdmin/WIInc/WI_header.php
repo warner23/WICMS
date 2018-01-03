@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="WIInc/css/font-awesome.css">
-<link rel="stylesheet" href="../WITheme/Debate/site/css/style.css">
+<!-- <link rel="stylesheet" href="../WITheme/Debate/admin/css/style.css"> -->
 <style type="text/css">
   .navbar {
     position: relative;
@@ -103,7 +103,7 @@ margin-left: -2% ! important;
 <div class="container">
 <div class="row">
 <div class="navbar navbar-header">
-<a href="dashboard.php" class="navbar-brand" title="<?php echo WEBSITE_NAME; ?> Admin Panel"><img src="WIMedia/Img/cp.png" width="50px" height="50px"></a>
+<a href="dashboard.php" class="navbar-brand glyphicon glyphicon-cog" title="<?php echo WEBSITE_NAME; ?> Admin Panel"></a>
 <a href="../index.php" class="navbar-visit"><span class="glyphicon glyphicon-home" title="Visit Site"></span></a>
 </div>
 

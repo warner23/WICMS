@@ -104,6 +104,105 @@ class WIPage
         $name->editPageContent($page_id);   
     }
 
+    public function LoadMetaPage($page_id)
+    {
+      //echo "page " . $page_id;
+           $sql = "SELECT * FROM `wi_meta` WHERE `page` =:page";
+     $query = $this->WIdb->prepare($sql);
+     $query->bindParam(':page', $page_id, PDO::PARAM_STR);
+     $query->execute();
+
+      echo '<ul class="meta">';
+    
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+            echo ' <li class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+             
+                            <div class="controls col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['name'].'</div>
+                            </div>
+                    
+
+                            
+                            <div class="controls col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['content'].' </div>
+                                
+                            </div>
+
+                            
+                            <div class="controls col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['author'].'</div>
+                            </div>
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2"><a href="#" onclick="WIMeta.showMetaModal(' . $result['meta_id'].')">Edit</a></div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"><a href="#" onclick="WIMeta.DeleteMetaModal(' . $result['meta_id'].')">Delete</a></div>
+                            
+                            </li>';
+        }
+        echo '<ul>';
+      
+    }
+
+        public function LoadCssPage($page_id)
+    {
+      //echo "page " . $page_id;
+           $sql = "SELECT * FROM `wi_css` WHERE `page` =:page";
+     $query = $this->WIdb->prepare($sql);
+     $query->bindParam(':page', $page_id, PDO::PARAM_STR);
+     $query->execute();
+
+      echo '<ul class="css">';
+    
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+            echo ' <li class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+             
+                            <div class="controls col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['href'].'</div>
+                            </div>
+                    
+
+                            
+                            <div class="controls col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['rel'].' </div>
+                                
+                            </div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2"><a href="#" onclick="WICSS.showCssModal(' . $result['id'].')">Edit</a></div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"><a href="#" onclick="WICSS.DeleteCssModal(' . $result['id'].')">Delete</a></div>
+                            
+                            </li>';
+        }
+        echo '<ul>';
+      
+    }
+
+        public function LoadJsPage($page_id)
+    {
+      //echo "page " . $page_id;
+           $sql = "SELECT * FROM `wi_scripts` WHERE `page` =:page";
+     $query = $this->WIdb->prepare($sql);
+     $query->bindParam(':page', $page_id, PDO::PARAM_STR);
+     $query->execute();
+
+      echo '<ul class="js">';
+    
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+            echo ' <li class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+             
+                            <div class="controls col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-8">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['src'].'</div>
+                            </div>
+                    
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2"><a href="#" onclick="WIMeta.showMetaModal(' . $result['id'].')">Edit</a></div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"><a href="#" onclick="WIMeta.DeleteMetaModal(' . $result['id'].')">Delete</a></div>
+                            
+                            </li>';
+        }
+        echo '<ul>';
+      
+    }
+
 
 
     public function newPage($pageName)

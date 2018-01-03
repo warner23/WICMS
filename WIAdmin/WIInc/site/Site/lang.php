@@ -5,7 +5,7 @@
   //  $( "input" ).checkboxradio();
   } );
   </script>
- <form  class="form-horizontal" id="email-form">
+ <form  class="form-horizontal" id="lang-form">
                         <fieldset>
                           <div id="legend">
                         <label>Multi Language</label>

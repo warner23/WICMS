@@ -5,41 +5,28 @@
   //  $( "input" ).checkboxradio();
   } );
   </script>
- <form  class="form-horizontal" id="email-form">
+ <form  class="form-horizontal" id="version-form">
                         <fieldset>
                           <div id="legend">
                         <label>Version Control</label>
-                    <div class="btn-group" id="mail_confirm_required" data-toggle="buttons-radio">
+                    <div class="btn-group" id="version" data-toggle="buttons-radio">
                         Your Current Version is <?php echo $site->Website_Info('wicms_version')?>
-                        <input type="hidden" name="mail_confirm_required" id="mail_confirm_required" class="btn-group-value" value="<?php echo $site->Website_Info('wicms_version')?>"/>
-                        <button>Check for Updates</button>
+                        <input type="hidden" name="version_control" id="version_control" class="btn-group-value" value="<?php echo $site->Website_Info('wicms_version')?>"/>
+                        <button onclick="WISite.Version(<?php echo $site->Website_Info('wicms_version')?>);">Check for Updates</button>
                       
                     </div>
 
                    
                     
                    
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="verification_btn" class="btn btn-success">Save</button> 
+                           <button id="version_btn" class="btn btn-success">Save</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="version_results"></div>
                         </fieldset>
                       </form>
 
-                       <script type="text/javascript">
-                       var verification = $("#mail_confirm_required").attr('value');
-                       if (verification === "false"){
-                        $("#verification_true").removeClass('btn-success active')
-                        $("#verification_false").addClass('btn-danger active');
-                       }else if (verification === "true"){
-                        $("#verification_false").removeClass('btn-danger active')
-                        $("#verification_true").addClass('btn-success active');
-                       }
-
-                     
-                   
-                      </script>
 

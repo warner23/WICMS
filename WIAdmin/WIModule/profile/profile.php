@@ -258,135 +258,17 @@ if(!$login->isLoggedIn()){
 	//echo "friend" . $friendId;
 	if($friendId > 0){
 	  //include_once 'WIInc/friend_profile.php';
-		echo '  <style type="text/css">
-  .zapfino {
-    font-family: "LinotypeZapfino One", arial;
-    font-size: 65px;
-    text-shadow: 4px 4px 4px #aaa;
-    background-color: #2438BB;
-    border: 2px solid blue;
-    width: 100%;
-    height: 95px;
-    margin-left: 0px;
-    text-align: -webkit-center;
-    color: white;
-}
-
-.slogan {
-    font-size: 20px;
-    float: right;
-    margin-top: 56px;
-    margin-left: -126px;
-    margin-right: 14px;
-}
-
-.proheader {
-    width: 99%;
-    height: 137px;
-    margin-left: 0px;
-}
-
-.profile_picture {
-    width: 9%;
-    height: 79px;
-    margin-left: 15px;
-    margin-top: -97px;
-    border-radius: 78%;
-}
-
-.profile {
-    width: 100%;
-    height: 93px;
-    border-radius: 46px;
-    margin-top: -21px;
-}
-
-.profile_section {
-    width: 100%;
-    height: auto;
-    border-radius: 46px;
-    margin-top: -21px;
-}
-
-.pic{
-      margin-top: -96px;
-}
-
-aside {
-    width: 25%;
-    height: auto !important;
-    float: left;
-    
-}
-
-.loading{
-  display: none;
-}
-
-.stats {
-    width: 98%;
-    height: 104px;
-    margin-top: 42px;
-    margin-left: 4px;
-}
-
-.user_location{
-      width: 100%;
-    height: auto;
-    float: left;
-    color: rgb(8, 8, 8);
-    margin-left: 0px;
-    background-color: white;
-    margin-top: 4px;
-}
-
-.bio{
-  color: black;
-      width: 100%;
-    height: auto;
-    float: left;
-    color: white;
-    margin-left: 0px;
-}
-
-
-.friends {
-    width: 102%;
-    height: 97px;
-    float: left;
-    margin-left: -4px;
-}
-
-.user-profile-header
-{
-    width: 100%;
-    height: 137px;
-    margin-top: 74px;
-}
-
-.User-Info {
-    width: 100%;
-    height: auto;
-    float: left;
-    color: rgb(8, 8, 8);
-    margin-left: 0px;
-    background-color: white;
-    margin-top: 0px;
-}
-
-#bio{
-  background-color: white;
-  color: black;
-}
-</style>
+		echo ' 
 
 <script type="text/javascript">
 
 // Friend adding and accepting stuff
 var thisRandNum = "' . $thisRandNum. '";
 </script>
-<div class="container">
-<div class="row">
+<div class="container-fluid text-center">    
+  <div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 min_height profile_p">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile_page">
 <div class="user-profile-header" id="friend_profile">
 <img class="proheader" src="../WIAdmin/WIMedia/Img/worldmap.jpg">
 <div class="profile_picture">
@@ -395,19 +277,16 @@ var thisRandNum = "' . $thisRandNum. '";
  $user_pic  = $this->profile->Friend_User_pic($friendId);
 
 echo '</div>
-</div><!--user-profile-header-->
-</div><!--row-->
-</div><!--container-->
 </div>
-
-<div class="container">
-<div class="row">
-<aside>';
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main_s">
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sidenav">';
 //include_once 'WIInc/sidebar.php';
  $this->mod->getMod("profile_sidebar");
-echo '</aside>
-
-<div class="prof_main">
+echo '</div>
+</div>
+</div>
+<div div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 <div class="boxing">';
 $this->mod->getMod("profile_tabs");
 
@@ -416,6 +295,8 @@ $this->mod->getMod("profile_tabs");
       echo '</div><!-- end boxing-->
 
 </div><!-- end prof_main0-->
+</div>
+</div>
 </div><!--row-->
 </div><!--container-->
 
@@ -467,132 +348,12 @@ $this->mod->getMod("profile_tabs");
 	}else{
 	//include_once 'WIInc/my_profile.php';
 
-		echo '<style type="text/css">
-  .zapfino {
-    font-family: `LinotypeZapfino One`, arial;
-    font-size: 65px;
-    text-shadow: 4px 4px 4px #aaa;
-    background-color: #2438BB;
-    border: 2px solid blue;
-    width: 100%;
-    height: 95px;
-    margin-left: 0px;
-    text-align: -webkit-center;
-    color: white;
-}
-
-.slogan {
-    font-size: 20px;
-    float: right;
-    margin-top: 56px;
-    margin-left: -126px;
-    margin-right: 14px;
-}
-
-.proheader {
-    width: 99%;
-    height: 137px;
-    margin-left: 0px;
-}
-
-.profile_picture {
-    width: 9%;
-    height: 79px;
-    margin-left: 15px;
-    margin-top: -97px;
-    border-radius: 78%;
-}
-
-.profile {
-    width: 100%;
-    height: 93px;
-    border-radius: 46px;
-    margin-top: -21px;
-}
-
-.profile_section {
-    width: 100%;
-    height: auto;
-    border-radius: 46px;
-    margin-top: -21px;
-}
-
-.pic{
-      margin-top: -96px;
-}
-
-aside {
-    width: 25%;
-    height: auto !important;
-    float: left;
-    
-}
-
-.loading{
-  display: none;
-}
-
-.stats {
-    width: 98%;
-    height: 104px;
-    margin-top: 42px;
-    margin-left: 4px;
-}
-
-.user_location{
-      width: 100%;
-    height: auto;
-    float: left;
-    color: rgb(8, 8, 8);
-    margin-left: 0px;
-    background-color: white;
-    margin-top: 4px;
-}
-
-.bio{
-  color: black;
-      width: 100%;
-    height: auto;
-    float: left;
-    color: white;
-    margin-left: 0px;
-}
-
-
-.friends {
-    width: 102%;
-    height: auto;
-    float: left;
-    margin-left: -4px;
-}
-
-.user-profile-header
-{
-    width: 100%;
-    height: 137px;
-    margin-top: 74px;
-}
-
-.User-Info {
-    width: 100%;
-    height: auto;
-    float: left;
-    color: rgb(8, 8, 8);
-    margin-left: 0px;
-    background-color: white;
-    margin-top: 0px;
-}
-
-#bio{
-  background-color: white;
-  color: black;
-}
-</style>
-
-
+		echo '
 <script src="WICore/WIJ/WIProfile.js" type="text/javascript"></script>
-<div class="container">
-<div class="row">
+<div class="container-fluid text-center">    
+  <div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 min_height profile_p">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile_page">
 <div class="user-profile-header" id="my_profile">
 <img class="proheader" src="../WIAdmin/WIMedia/Img/worldmap.jpg">
 <div class="profile_picture">
@@ -601,21 +362,18 @@ aside {
  $user_pic  = $this->Profile->User_pic($userId);
 echo $user_pic;
 echo '</div>
-</div><!--user-profile-header-->
-</div><!--row-->
-</div><!--container-->
 </div>
-
-<div class="container">
-<div class="row">
-<aside>';
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main_s">
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sidenav">';
 
 //<?php include_once 'WIInc/mysidebar.php';
 $this->mod->getMod("profile_sidebar");
 
-echo '</aside>
-
-<div class="prof_main">
+echo '</div>
+</div>
+</div>
+<div div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 <div class="boxing">';
 $this->mod->getMod("profile_tabs");
 //<?php include_once 'WIInc/myprofile_tabs.php';
@@ -623,6 +381,8 @@ $this->mod->getMod("profile_tabs");
 echo '</div><!-- end boxing-->
 
 </div><!-- end prof_main0-->
+</div>
+</div>
 </div><!--row-->
 </div><!--container-->
 

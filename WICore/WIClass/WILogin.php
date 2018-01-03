@@ -78,7 +78,7 @@ class WILogin
         //hash password and get data from WIdb
         $password = $this->_hashPassword($password);
         //var_dump($username);
-        //var_dump($password);
+        echo "past".$password;
         
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_members`
@@ -241,6 +241,7 @@ class WILogin
 
     private function _hashPassword($password) {
         $register = new WIRegister();
+        echo $register->hashPassword($password);
         return $register->hashPassword($password);
     }
     

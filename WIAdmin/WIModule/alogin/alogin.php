@@ -226,7 +226,7 @@ class alogin
 
     echo '<div class="container-fluid text-center">    
   <div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12 about min_height">';
+  <div class="col-lg-12 col-md-12 col-sm-12 min_height">';
 
     if(isset($page)){
     $left_sidePower = $this->Web->pageModPower($page, "left_sidebar");

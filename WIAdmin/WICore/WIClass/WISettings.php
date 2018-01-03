@@ -23,7 +23,7 @@ class WISettings
         $user_id = 1;
 
         $result = $this->WIC->selectColumn('SELECT * FROM `wi_site` WHERE `id` = :user_id', array('user_id' => $user_id), $column);
-
+        //echo $result;
         return  $result;
     }
 

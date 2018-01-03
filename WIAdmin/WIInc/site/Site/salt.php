@@ -1,4 +1,4 @@
- <form  class="form-horizontal" id="security">
+ <form  class="form-horizontal" id="salt-form">
 
                         <fieldset>
                           <div id="legend">

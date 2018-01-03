@@ -48,6 +48,7 @@ var register ={};
 // register a new user
 register.registerUser = function(data)
 {
+    
 	// get register btn
 	var btn = $("#btn-register");
 

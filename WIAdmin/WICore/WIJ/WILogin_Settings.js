@@ -1,5 +1,5 @@
 /***********
-** WISITE NAMESPACE
+** WILogin NAMESPACE
 **************/
 
 

@@ -12,6 +12,38 @@ class WIDashboard
 		$this->WIdb = WIdb::getInstance();
 	}
 
+    public function Info_Boxes()
+    {
+        $sql = "SELECT * FROM `wi_admin_info_box`";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+
+        $result = $query->fetchAll();
+
+        foreach ($result as $box) {
+            echo ' <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3 id="' .$box['info'] . '">
+                                        
+
+                                    </h3>
+                                    <p>
+                                       ' . $box['name']. '
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">
+                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->';
+        }
+    }
 
 	public function toDoList()
 	{

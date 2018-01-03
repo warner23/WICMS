@@ -30,6 +30,36 @@ a:focus {
   color: #72afd2;
 }
 
+.control-group{
+    margin-top: 38%;
+}
+
+
+.mobileShow {
+  display: none ;
+} 
+
+  /* Smartphone Portrait and Landscape */ 
+  @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px){ 
+      .mobileShow {display: inline !important;}
+  }
+
+
+  .mobileHide{
+display: block ;
+font-size: 15px;
+  }
+
+   /* Smartphone Portrait and Landscape */ 
+  @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px){ 
+      .mobileHide {display: none !important;}
+  }
+
+
 /*
 	Dreamweaver Fluid Grid Properties
 	----------------------------------
@@ -75,6 +105,17 @@ a:focus {
 .wrapper:after {
   clear: both;
 }
+
+.navbar.navbar-header {
+    width: 30%;
+    float: left;
+}
+
+.left-side {
+    position: absolute;
+    width: 91px;
+    top: 0;
+}
 /* Header */
 body > .header {
   position: absolute;
@@ -97,9 +138,9 @@ body > .header {
 }
 /*left side - contains sidebar*/
 .left-side {
-  position: absolute;
-  width: 220px;
-  top: 0;
+    position: absolute;
+    width: 33%;
+    top: 142px;
 }
 
 .users-wrapper
@@ -136,7 +177,8 @@ body > .header {
 /*Give content full width on xs screens*/
 @media screen and (max-width: 992px) {
   .right-side {
-    margin-left: 0;
+        margin-left: 30%;
+
   }
 }
 /*
@@ -566,6 +608,80 @@ body > .header .logo .icon {
     font-weight: bold;
     font-size: 10px;
     color: white;
+}
+
+   .navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: -7px;
+    border: 1px solid transparent;
+} 
+
+.chat-box {
+    border: 5px solid black;
+    width: 99%;
+    background-color: white;
+    min-height: 218px;
+    overflow: auto
+
+}
+
+.textbox{
+ width: 96%;
+    margin-top: 220px;
+
+}
+
+.on{
+    display: block;
+}
+
+.off{
+    display: none;
+}
+
+.chat{
+    width: 50%;
+    margin-left: 126px;
+    border: 2px solid black;
+    background-color: slategrey;
+    overflow: auto
+    
+}
+
+.list{
+    list-style: none;
+}
+
+.mess{
+        width: 78%;
+}
+
+#message{
+        width: 20%;
+    margin-top: -40px;
+    margin-left: 1px;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-align: -webkit-center;
+    font-size: 2em;
+}
+
+#chat{
+    overflow: auto
+}
+
+.say{
+
+}
+
+
+.online{
+    border-radius: 40%;
 }
 
 /*
@@ -6954,7 +7070,7 @@ fieldset[disabled] .btn-vk.active {
 
 .col-xl-12
 {
-    width: 90% !important;
+    width: 100% !important;
 }
 
 
@@ -7054,7 +7170,7 @@ body > .header {
 /*Give content full width on xs screens*/
 @media screen and (max-width: 992px) {
   .right-side {
- margin-left: 0%;
+ margin-left: 30%;
   }
 }
 /*

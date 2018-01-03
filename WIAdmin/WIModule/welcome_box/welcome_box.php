@@ -33,19 +33,60 @@ class welcome_box
 
 echo '<div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 col-lg-2 col-md-2 col-xs-2 sidenav">
 
-    </div>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 front">
+	<div class="col-lg-12 col-md-12 col-sm-12" >
+						<div class="col-lg-12 col-md-12 col-sm-12" >
 
-<a href="topics.php"><button class="btn btn-main"><h3>' . WILang::get('current_topics') . '</h3></button></a>
-
+						 <div class="col-lg-12 col-md-12 col-sm-12 text-left"> 
+							<div class="intro_box">
+<h1>' .WILang::get("welcome_") . '<span>'. $this->site->Website_Info('site_name') . '</span></h1>
+							<p>' . WILang::get("main_title") . '</p>
+							</div>
+						</div>
+					</div>
+				
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-laptop"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("community") . '</h3>
+								<p>' . WILang::get("learn") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("software") . '</h3>
+								<p>' .WILang::get("software") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-cogs"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("it") . '</h3>
+								<p>' . WILang::get("it_title")  . '
+</p>
+							</div>
+						</div>
+					</div>
 					</div>
 					
 
-					    <div class="col-sm-2 col-lg-2 col-md-2 col-xs-2 sidenav">
 
-    </div>
     
 				</div>
 			</div>';
@@ -57,11 +98,7 @@ echo '<div class="container-fluid text-center">
 	public function editPageContent($page_id)
 	{
 		// include_once '../../WIInc/WI_StartUp.php';
-		//echo "pageid " . $page_id;
-
-		$mod_name = $this->mod->ModName($page_id);
-		//echo $mod_name;
-		 echo '<style type="text/css">
+		 echo '		 <style type="text/css">
 	
 		.content {
 		    padding: 32px 0;
@@ -75,8 +112,7 @@ echo '<div class="container-fluid text-center">
 
 		</style>
 
-		<div class="container-fluid text-center" id="col">
-		<div class="row content"> ';  
+		<div class="container-fluid text-center" id="col"> ';  
 
 		  $lsc = $this->page->GetColums($page_id, "left_sidebar");
 		  $rsc = $this->page->GetColums($page_id, "right_sidebar");
@@ -99,11 +135,60 @@ echo '<div class="container-fluid text-center">
 		echo '<div class="col-lg-12 col-md-12 col-sm-12 block" id="block"><div class="col-lg-12 col-md-12 col-sm-12" id="Mid">';
 		}
 
-
 			echo '<div class="col-lg-12 col-md-12 col-sm-12" >
 
-<input class="btn btn-main" placeholder="';$this->mod->module($mod_name, 'text'); echo'"> 
-						 
+						 <div class="col-lg-12 col-md-12 col-sm-12 text-left"> 
+							<div class="intro_box">
+<h1>' .WILang::get("welcome_") . '<span>'. $this->site->Website_Info('site_name') . '</span></h1>
+							<p>' . WILang::get("main_title") . '</p>
+							</div>
+						</div>
+					</div>
+				
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-laptop"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("community") . '</h3>
+								<p>' . WILang::get("learn") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("software") . '</h3>
+								<p>' .WILang::get("software") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-cogs"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("it") . '</h3>
+								<p>' . WILang::get("it_title")  . '
+</p>
+							</div>
+						</div>
+					</div>
+					</div>
+					
+
+
+    
+				</div>
 			</div>';
 							
 
@@ -117,50 +202,96 @@ echo '<div class="container-fluid text-center">
 		}
 
 		echo '</div>
-		</div>
 			</div>';
  
 
 	}
 
-		public function mod_name($module, $page)
+	public function mod_name()
 	{
+		if(isset($page)){
+		$left_sidePower = $this->Web->pageModPower($page, "left_sidebar");
+		$leftSideBar = $this->Web->PageMod($page, "left_sidebar");
+		//echo $Panel;
+		if ($left_sidePower === 0) {
+			
+		}else{
 
-    echo '<div class="container-fluid text-center">    
-  <div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12 min_height">';
+			$this->mod->getMod($leftSideBar);
+		}
+		}
 
-    if(isset($page)){
-    $left_sidePower = $this->Web->pageModPower($page, "left_sidebar");
-    $leftSideBar = $this->Web->PageMod($page, "left_sidebar");
-    //echo $Panel;
-    if ($left_sidePower > 0) {
-      $this->mod->getMod($leftSideBar);
-      echo '<div class="col-lg-8 col-md-8 col-sm-8 alogin">';
-    }else{
-      echo '<div class="col-lg-8 col-md-8 col-sm-8 center">';
-    }
 
-    }
+		echo '<div class="container-fluid text-center">    
+  <div class="row content">
 
-		echo '<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 center front">
-<a href="topics.php"><button class="btn btn-main"><h3>';$this->mod->module($module, 'text'); echo'</h3></button></a>
+	<div class="col-lg-12 col-md-12 col-sm-12" >
+						<div class="col-lg-12 col-md-12 col-sm-12" >
 
-					</div></div>';
+						 <div class="col-lg-12 col-md-12 col-sm-12 text-left"> 
+							<div class="intro_box">
+<h1>' .WILang::get("welcome_") . '<span>'. $this->site->Website_Info('site_name') . '</span></h1>
+							<p>' . WILang::get("main_title") . '</p>
+							</div>
+						</div>
+					</div>
+				
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-laptop"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("community") . '</h3>
+								<p>' . WILang::get("learn") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("software") . '</h3>
+								<p>' .WILang::get("software") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-cogs"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("it") . '</h3>
+								<p>' . WILang::get("it_title")  . '
+</p>
+							</div>
+						</div>
+					</div>
+					</div>';
 
 		if(isset($page)){			
 		$right_sidePower = $this->Web->pageModPower($page, "right_sidebar");
 		$rightSideBar = $this->Web->PageMod($page, "right_sidebar");
 		//echo $Panel;
-		if ($right_sidePower > 0) {
+		if ($right_sidePower === 0) {
+			
+		}else{
 
 			$this->mod->getMod($rightSideBar);
-		}	
-		}		
+		}
+
+		}			
 					
 
 	echo '</div>
-			</div></div>';
+			</div>';
 	}
 
 

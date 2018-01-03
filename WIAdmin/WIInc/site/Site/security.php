@@ -1,4 +1,4 @@
- <form  class="form-horizontal" id="forgot-pass-form">
+ <form  class="form-horizontal" id="security-form">
 
                         <fieldset>
                           <div id="legend">

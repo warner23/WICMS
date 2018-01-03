@@ -65,41 +65,41 @@
                       <div id="legend">
                         <legend class="">Topics</legend>
                        
-                          <div id="addNew"></div>
-                           <div class="control-group form-group">
+                          <div id="addNew">
+                              
+                          </div>
+                           <div class="form-group">
                         <!--add new topic  Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="empty" class="btn btn-success">Add Empty Topic</button> 
+                           <button id="Empty" class="btn btn-success">Add Empty Topic</button> 
                         </div>
                       </div>
  
 
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="site_settings" class="btn btn-success">Save</button> 
+                           <button id="Add_Topic" class="btn btn-success">Save</button> 
                         </div>
                       </div>
 
-                      <div class="results" id="results"></div>
+                      <div class="results" id="result"></div>
                     </fieldset>
                   </form>                
                 </div>
 
                  <div class="tab-pane fade" id="changeTopic">
-                  <form  class="form-horizontal changeTopic">
+                  <form  class="form-horizontal changeTopic" id="editTopic">
                     <fieldset>
                       <div id="legend">
                         <legend class="">Topics</legend>
-                        <?php $topic->topic_Info(); ?>
-                          <div id="addNew"></div>
-                           <div class="control-group form-group">
+                        <div id="top"></div>
+                           <div class="form-group">
                       
-
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
-                           <button id="site_settings" class="btn btn-success">Save</button> 
+                           <button id="change_Topic" class="btn btn-success">Save</button> 
                         </div>
                       </div>
 
@@ -115,12 +115,10 @@
                         <div id="legend">
                           <legend class="">Order</legend>
                         </div>
-
-                       <ul id="sortable">
+                        
                       <?php $topic->topic(); ?>
-                      </ul>
                       <span id="ordering"></span>
-                              <div class="control-group form-group">
+                              <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="order_btn" class="btn btn-success" >Save</button> 
@@ -142,8 +140,8 @@
         axis: 'y',
         stop: function (event, ui) {
 
-           $('.order"').each(function () {
-        var text = $(this).val('');
+           $('.order').each(function () {
+        var text = $(this).attr('id');
         alert(text);
 
            var data = $(this).sortable('serialize');

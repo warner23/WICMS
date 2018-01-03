@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Lang Class
+* WILang Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
@@ -53,10 +53,9 @@ class WILang
 
 		$WIdb = WIdb::getInstance();
 
-		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key AND `lang`=:lang";
+		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key";
 		$query = $WIdb->prepare($sql);
 		$query->bindParam(':key', $key, PDO::PARAM_STR);
-		$query->bindParam(':lang', $language, PDO::PARAM_STR);
 		$query->execute();
 
 		$res = $query->fetch(PDO::FETCH_ASSOC);

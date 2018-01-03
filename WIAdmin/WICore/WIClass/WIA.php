@@ -8,6 +8,9 @@ include_once 'WIAdminChat.php';
 include_once 'WIPage.php';
 include_once 'WIContact.php';
 include_once 'WIImage.php';
+include_once 'WITopic.php';
+
+
 /*
 spl_autoload_register(function($class)
 {
@@ -25,4 +28,5 @@ $page        = new WIPage();
 $site        = new WISite();
 $contact    = new WIContact();
 $img        = new WIImage();
+$topic        = new WITopic();
 ?>

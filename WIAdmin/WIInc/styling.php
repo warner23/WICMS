@@ -41,18 +41,18 @@
 
                      <div id="tabs3">
   <ul>
-    <li><a href="#tabs-1">Meta</a></li>
+    <li><a href="#tabs-1">Theme</a></li>
     <li><a href="#tabs-2">CSS</a></li>
     <li><a href="#tabs-3">JS</a></li>
   </ul>
   <div id="tabs-1">
- <?php include_once 'WIInc/site/styling/meta.php'; ?> 
+ <?php include_once 'WIInc/site/Styling/theme.php'; ?> 
   </div>
   <div id="tabs-2">
-<?php include_once 'WIInc/site/styling/css.php'; ?> 
+<?php include_once 'WIInc/site/Styling/css.php'; ?> 
   </div>
   <div id="tabs-3">
-<?php include_once 'WIInc/site/styling/js.php'; ?> 
+<?php include_once 'WIInc/site/Styling/js.php'; ?> 
   </div>
 </div>
 
@@ -63,8 +63,8 @@
 
                      </section>
 <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
-    <script type="text/javascript" src="WICore/WIJ/WIMeta.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WICSS.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WIJS.js"></script>
+    <script type="text/javascript" src="WICore/WIJ/WITheme.js"></script>
 
    

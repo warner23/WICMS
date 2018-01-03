@@ -1,5 +1,5 @@
  
- <aside class="left-side sidebar-offcanvas">
+ <aside class="left-side">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- Sidebar user panel -->

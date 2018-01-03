@@ -61,6 +61,7 @@ class WILogin
         //validation
 
         $errors = $this->_validateLoginFields($username, $password);
+
         if(count($errors) != 0) {
             $result = implode("<br />", $errors);
             echo json_encode(array(
@@ -81,6 +82,7 @@ class WILogin
         //hash password and get data from WIdb
         $password = $this->_hashPassword($password);
         //var_dump($password);
+        echo "pass" . $password;
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_members`
                      WHERE `username` = :u AND `password` = :p",
@@ -141,6 +143,7 @@ class WILogin
         }
         else {
             //wrong username/password combination
+
             $this->increaseLoginAttempts();
              echo json_encode(array(
                 'status' => 'error',

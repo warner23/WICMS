@@ -5,7 +5,7 @@
   //  $( "input" ).checkboxradio();
   } );
   </script>
- <form  class="form-horizontal" id="email-form">
+ <form  class="form-horizontal" id="verification-form">
                         <fieldset>
                           <div id="legend">
                         <label>Email Verification</label>

@@ -32,7 +32,9 @@ class WIWebsite
     	$query->execute();
     	while ($res = $query->fetch()) {
 
-    		echo '<li><a href="' . $res['link'] . '"><i class="fa fa-angle-double-right"></i>' . $res['lang'] . '</a></li>';
+    		echo '<li><a href="' . $res['link'] . '"><i class="fa fa-angle-double-right"></i>
+            <img class="img-responsive mobileShow" src="WIMedia/Img/icons/admin_sidebar/' . $res['img'] . '.PNG">
+            <span class="mobileHide">' . $res['lang'] . '</span></a></li>';
     	}
 
     }
@@ -44,7 +46,10 @@ class WIWebsite
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
         while ($res = $query->fetch()) {
-            echo '<li><a href="' . $res['link'] . '"><i class="fa fa-angle-double-right"></i>' . $res['lang'] . '</a></li>';
+            echo '<li><input type="text" id="sidebar_href"  maxlength="88" name="sidebar_href" placeholder="Sidebar href" class="input-xlarge form-control" value="' . $res['link'] . '"> <br />
+            <i class="fa fa-angle-double-right"></i>
+            <input type="text" id="sidebar_menu"  maxlength="88" name="sidebar_menu" placeholder="Sidebar menu" class="input-xlarge form-control" value="' . $res['lang'] . '"> <br />
+            </li>';
         }
 
     }
@@ -74,12 +79,11 @@ class WIWebsite
         { 
         if($res['parent'] > 0) 
         {
-                echo '<h3>' . $res['label'] . '</h3><div>';
+                echo '<h3> <input type="text" id="sidebar_label"  maxlength="88" name="sidebar_label" placeholder="Sidebar Label" class="input-xlarge form-control" value="' . $res['label'] . '"> <br />
+                </h3><div>';
                 WIWebsite::EditAddChildren($res['id']);
                 echo '</div>';
                 }
-
-
         }
         echo ' </div>';
     }
@@ -307,17 +311,17 @@ class WIWebsite
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
-                <div class="col-md-4 col-md-ol col-sm-4 col-lg-3">
+                <div class="col-md-2 col-md-2 col-sm-2 col-lg-3 col-xs-1">
                 <input class="btn" value="' .WILang::get('admin') . '">
                 <input class="btn" value="' . WILang::get('contact_us'). '">
                  <input class="btn" value="' . WILang::get('about_us'). '">
 
                 </div>
 
-                    <div class="col-lg-3 col-md-4 col-sm-4">
+                    <div class="col-md-2 col-md-2 col-sm-2 col-lg-3 col-xs-1">
                         <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-4">
+                    <div class="col-md-2 col-md-2 col-sm-2 col-lg-3 col-xs-1">
                             <input class="btn" value="' . WILang::get('info'). '">
                             <input class="btn" value="' . WILang::get('privacy'). '">
                     </div>
@@ -413,75 +417,407 @@ class WIWebsite
         die();
     }
 
-    public function ViewMeta()
+
+        public function ViewThemes()
     {
-        $sql = "SELECT * FROM `wi_meta`";
+        $sql = "SELECT * FROM `wi_theme`";
         $query = $this->WIdb->prepare($sql);
         $query->execute();
+            echo '<ul class="meta">';
+    
         while($result = $query->fetch(PDO::FETCH_ASSOC)){
-            echo ' <div class="col-sm-12 col-md-12 col-lg-12">
-             <label class="col-sm-1 col-md-1 col-lg-1" for="Name">Name:<span class="required">*</span></label>
-                            <div class="controls col-sm-1 col-md-1 col-lg-1">
-                                <div class="col-sm-1 col-md-1 col-lg-1">' . $result['name'].'</div>
+           // print_r($result);
+            echo ' <li class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+             
+                            <div class="controls col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['theme'].'</div>
                             </div>
+
+
+                            <div class="btn-group" id="WITheme_settings-' . $result['id'] . '" data-toggle="buttons-radio">
+                        <input type="hidden" name="theme" id="WITheme-' . $result['id'] . '" class="btn-group-value" value="' . $result['in_use'].'"/>
+                        <button type="button" id="theme_true-' . $result['id'] . '" name="theme" value="true" onclick="WITheme.activate(' . $result['id'] . ')"  class="btn">In Use</button>
+                        <button type="button" id="theme_false-' . $result['id'] . '" name="theme" value="false" class="btn btn-danger activewhens" >Not In Use</button>
+                    </div>
+
                     
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2"><a href="#" onclick="WITheme.showMetaModal(' . $result['id'].')">Edit</a></div>
 
-                            <label class="col-sm-2 col-md-2 col-lg-2" for="Content">Content:<span class="required">*</span></label>
-                            <div class="controls col-sm-2 col-md-2 col-lg-2">
-                                <div class="col-sm-3 col-md-3 col-lg-3">' . $result['content'].' </div>
-                                
-                            </div>
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"><a href="#" class="glyphicon glyphicon-trash" onclick="WITheme.DeleteMetaModal(' . $result['id'].')"></a></div>
+                            
+                            </li><script type="text/javascript">
+  
+                       var secure = $("#WITheme-' . $result['id'] . '").attr("value");
+                       if (secure === "0"){
 
-                            <label class="col-sm-1 col-md-1 col-lg-1" for="Author">Author: <span class="required">*</span></label>
-                            <div class="controls col-sm-2 col-md-2 col-lg-2">
-                                <div class="col-sm-2 col-md-2 col-lg-2">' . $result['author'].'</div>
-                            </div>
-                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WIMeta.showMetaModal(' . $result['meta_id'].')">Edit</a></div>
-                            </div>';
+                       $("#theme_true-' . $result['id'] . '").removeClass("btn-success active");
+                        $("#theme_false-' . $result['id'] . '").addClass("btn-danger active");
+
+                       }else if (secure === "1"){
+
+                        $("#theme_false-' . $result['id'] . '").removeClass("btn-danger active");
+                        $("#theme_true-' . $result['id'] . '").addClass("btn-success active");
+                       }
+                        </script>';
         }
+        echo '</ul>';
+        
     }
 
 
-        public function ViewCSS()
+    public function activateThemes($id)
     {
-        $sql = "SELECT * FROM `wi_css`";
+        $in_use = "1";
+        $sql = "SELECT * FROM `wi_theme` WHERE `in_use`=:in_use";
+
         $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':in_use', $in_use, PDO::PARAM_INT);
         $query->execute();
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $currentActiveTheme = $result['id'];
+
+        $sql1 = "UPDATE `wi_theme` SET  `in_use` = '1' WHERE  `id` =:id"; 
+        $query1 = $this->WIdb->prepare($sql1);
+        $query1->bindParam(':id', $id, PDO::PARAM_INT);
+        $query1->execute();
+
+        $sql2 = "UPDATE `wi_theme` SET  `in_use` =  '0' WHERE  `id` =:current_id";
+        $query2 = $this->WIdb->prepare($sql2);
+        $query2->bindParam(':current_id', $currentActiveTheme, PDO::PARAM_INT);
+        $query2->execute();
+
+        $result = "success";
+        echo json_encode($result);
+    }
+
+
+    public function ViewMeta($page)
+    {
+        $sql = "SELECT * FROM `wi_meta` WHERE `page`=:page";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':page', $page, PDO::PARAM_STR);
+        $query->execute();
+            echo '<ul class="meta">';
+    
         while($result = $query->fetch(PDO::FETCH_ASSOC)){
-            echo ' <div class="col-sm-12 col-md-12 col-lg-12">
-             <label class="col-sm-1 col-md-1 col-lg-1" for="Href">Href:<span class="required">*</span></label>
-                            <div class="controls col-sm-4 col-md-4 col-lg-4">
-                                <div class="col-sm-4 col-md-4 col-lg-4">' . $result['href'].'</div>
+           // print_r($result);
+            echo ' <li class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+             
+                            <div class="controls col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['name'].'</div>
                             </div>
                     
 
-                            <label class="col-sm-2 col-md-2 col-lg-2" for="Rel">Rel:<span class="required">*</span></label>
+                            
+                            <div class="controls col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['content'].' </div>
+                                
+                            </div>
+
+                            
+                            <div class="controls col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['author'].'</div>
+                            </div>
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-2"><a href="#" onclick="WIMeta.showMetaModal(' . $result['meta_id'].')">Edit</a></div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"><a href="#" class="glyphicon glyphicon-trash" onclick="WIMeta.DeleteMetaModal(' . $result['meta_id'].')"></a></div>
+                            
+                            </li>';
+        }
+        echo '<ul>';
+    }
+
+     public function ViewEditMeta($id)
+    {
+        $sql = "SELECT * FROM `wi_meta` WHERE `meta_id`=:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+        echo '<div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" onclick="WIMeta.Close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="modal-meta">
+                    ' .WILang::get('edit_meta') . '
+                  </h4>
+                </div>
+                <div class="meta_id" id="'. $result['meta_id'] .'"></div>
+                <div class="modal-body" id="details-body">
+                    <form class="form-horizontal" id="edit-meta-form">
+
+
+                      <div class="control-group form-group">
+                        <label class="control-label col-lg-3" for="meta_name">
+                          '. WILang::get('meta_name').'
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="meta_name" name="meta_name" type="text" class="input-xlarge form-control" placeholder="'. $result['name'] .'" value="'. $result['name'] .'">
+                        </div>
+                      </div>
+
+                      <div class="control-group form-group">
+                        <label class="control-label col-lg-3" for="meta_content">
+                          '.WILang::get('meta_content').'
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="meta_content" name="meta_content" type="text" class="input-xlarge form-control" placeholder="'. $result['content'] .'" value="'. $result['content'] .'">
+                        </div>
+                      </div>
+
+                      <div class="control-group form-group">
+                        <label class="control-label col-lg-3" for="author">
+                          '. WILang::get('meta_author').'
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="auth" name="author" type="text" class="input-xlarge form-control" placeholder="'. $result['author'] .'" value="'. $result['author'] .'">
+                        </div>
+                      </div>
+
+                     
+                  </form>
+                </div>
+                <div align="center" class="ajax-loading hide"><img src="WIMedia/Img/ajax_loader.gif" /></div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0);" onclick="WIMeta.Close()" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                      '. WILang::get('cancel').'
+                    </a>
+                    <a href="javascript:void(0);"  id="btn-edit-meta" class="btn btn-primary">
+                      '.WILang::get('add').'
+                    </a>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->';
+        }
+
+    }
+
+
+    public function EditMeta($id, $name, $content, $auth)
+    {
+        $sql = "UPDATE `wi_meta` SET `name`=:name, `content`=:content, `author`=:auth WHERE `meta_id` =:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':name',  $name, PDO::PARAM_STR);
+        $query->bindParam(':content',  $content, PDO::PARAM_STR);
+        $query->bindParam(':auth',  $auth, PDO::PARAM_STR);
+        $query->bindParam(':id',  $id, PDO::PARAM_INT);
+        $query->execute();
+
+        echo "Successfully updated meta";
+
+    }
+
+    public function DeleteMeta($id)
+    {
+        $sql = "DELETE FROM `wi_meta` WHERE `meta_id` =:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $result = "complete";
+        echo json_encode($result);
+
+    }
+
+
+        public function ViewCSS($page)
+    {
+        $sql = "SELECT * FROM `wi_css` WHERE `page`=:page";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':page', $page, PDO::PARAM_STR);
+        $query->execute();
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+            echo ' <div class="col-sm-12 col-md-12 col-lg-12">
+             
+                            <div class="controls col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">' . $result['href'].'</div>
+                            </div>
+                    
+
+                        
                             <div class="controls col-sm-2 col-md-2 col-lg-2">
                                 <div class="col-sm-2 col-md-2 col-lg-2">' . $result['rel'].' </div>
                                 
                             </div>
 
                                 <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WICSS.showCssModal(' . $result['id'].')">Edit</a></div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 glyphicon glyphicon-trash"><a href="#" onclick="WICSS.CssDelete(' . $result['id'].')">Delete</a></div>
                             </div>';
         }
     }
 
-        public function ViewJS()
+     public function ViewEditCSS($id)
     {
-        $sql = "SELECT * FROM `wi_scripts`";
+        $sql = "SELECT * FROM `wi_css` WHERE id=:id";
+
         $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
         while($result = $query->fetch(PDO::FETCH_ASSOC)){
-            echo ' <div class="col-sm-12 col-md-12 col-lg-12">
+        echo '<div class="modal-dialog">
+              <div class="modal-content">
+              <div class="meta_id" id="'. $result['id'] .'"></div>
+                <div class="modal-header">
+                  <button type="button" class="close" onclick="WICSS.Close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="modal-meta">
+                    ' .WILang::get('edit_css') . '
+                  </h4>
+                </div>
+
+                <div class="modal-body" id="details-body">
+                    <form class="form-horizontal" id="edit-css-form">
+
+
+                      <div class="form-group">
+                        <label class="control-label col-lg-3" for="href">
+                          '. WILang::get('href').'
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="css_href" name="css_href" type="text" class="input-xlarge form-control" value="'.$result['href'].'">
+                        </div>
+                      </div>
+
+                  </form>
+                </div>
+                <div align="center" class="ajax-loading hide"><img src="WIMedia/Img/ajax_loader.gif" /></div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0);" onclick="WICSS.Close()" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                      '. WILang::get('cancel').'
+                    </a>
+                    <a href="javascript:void(0);"  id="btn-edit-css" onclick="WICSS.edditCssModal('.$result['id'].')" class="btn btn-primary">
+                      '.WILang::get('add').'
+                    </a>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->';
+        }
+    }
+
+        public function EditCss($id, $css)
+    {
+
+        $sql = "UPDATE `wi_css` SET `href`=:css WHERE `id` =:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':css',  $css, PDO::PARAM_STR);
+        $query->bindParam(':id',  $id, PDO::PARAM_INT);
+        $query->execute();
+
+        echo "Successfully updated css";
+
+    }
+
+    public function DeleteCss($id)
+    {
+        $sql = "DELETE FROM `wi_css` WHERE `id` =:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $result = "complete";
+        echo json_encode($result);
+    }
+
+        public function ViewJS($page)
+    {
+        $sql = "SELECT * FROM `wi_scripts` WHERE `page`=:page";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':page', $page, PDO::PARAM_STR);
+        $query->execute();
+        echo '<ul class="viewjs">';
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+            echo '<div class="col-sm-12 col-md-12 col-lg-12">
              <label class="col-sm-1 col-md-1 col-lg-1" for="Src">Src:<span class="required">*</span></label>
-                            <div class="controls col-sm-4 col-md-4 col-lg-4">
-                                <div class="col-sm-4 col-md-4 col-lg-4">' . $result['src'].'</div>
+                            <div class="controls col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' . $result['src'].'</div>
                             </div>
                     
                                 <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WIJS.showJsModal(' . $result['id'].')">Edit</a></div>
+
+                                <div class="col-sm-1 col-md-1 col-lg-1 glyphicon glyphicon-trash"><a href="#" onclick="WIJS.JsDelete(' . $result['id'].')">Delete</a></div>
                             </div>';
         }
     }
+
+        public function ViewEditJs($id)
+    {
+        $sql = "SELECT * FROM `wi_scripts` WHERE `id`=:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        while($result = $query->fetch(PDO::FETCH_ASSOC)){
+        echo '<div class="modal-dialog">
+              <div class="modal-content">
+              <div class="js_id" id="'. $result['id'] .'"></div>
+                <div class="modal-header">
+                  <button type="button" class="close" onclick="WIJS.Close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="modal-js">
+                    ' .WILang::get('edit_js') . '
+                  </h4>
+                </div>
+
+                <div class="modal-body" id="details-body">
+                    <form class="form-horizontal" id="edit-js-form">
+
+
+                      <div class="form-group">
+                        <label class="control-label col-lg-3" for="href">
+                          '. WILang::get('href').'
+                        </label>
+                        <div class="controls col-lg-9">
+                          <input id="js_href" name="js_href" type="text" class="input-xlarge form-control" value="'.$result['src'].'">
+                        </div>
+                      </div>
+
+                  </form>
+                </div>
+                <div align="center" class="ajax-loading hide"><img src="WIMedia/Img/ajax_loader.gif" /></div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0);" onclick="WIJS.Close()" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                      '. WILang::get('cancel').'
+                    </a>
+                    <a href="javascript:void(0);"  id="btn-edit-css" onclick="WIJS.edditJsModal('.$result['id'].')" class="btn btn-primary">
+                      '.WILang::get('add').'
+                    </a>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->';
+        }
+    }
+
+        public function EditJs($id, $js)
+    {
+
+        $sql = "UPDATE `wi_scripts` SET `src`=:js WHERE `id` =:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':js',  $js, PDO::PARAM_STR);
+        $query->bindParam(':id',  $id, PDO::PARAM_INT);
+        $query->execute();
+
+        echo "Successfully updated css";
+
+    }
+
+    public function DeleteJs($id)
+    {
+        $sql = "DELETE FROM `wi_scripts` WHERE `id` =:id";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $result = "complete";
+        echo json_encode($result);
+    }
+
 
     public function NewPage($name)
     {

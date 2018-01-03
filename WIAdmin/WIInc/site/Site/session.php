@@ -5,7 +5,7 @@
   //  $( "input" ).checkboxradio();
   } );
   </script>
- <form  class="form-horizontal" id="email-form">
+ <form  class="form-horizontal" id="session-form">
                         <fieldset>
                           <div id="legend">
                         <label>Session secure</label>

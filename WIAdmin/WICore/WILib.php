@@ -3,15 +3,15 @@ require_once 'WIClass/WILib.php';
 require_once 'WIClass/WISettings.php';
 //DATABASE CONFIGURATION
 
-define('HOST', "localhost"); 
+define('HOST', "198.38.82.200"); 
 
 define('TYPE', "mysql"); 
 
-define('USER', "wicms"); 
+define('USER', "wicms_master"); 
 
-define('PASS', "password?"); 
+define('PASS', "taylor22"); 
 
-define('NAME', "warner_wicms"); 
+define('NAME', "wicms_WI"); 
 
 // define('HOST', "mysql1003.mochahost.com"); 
 

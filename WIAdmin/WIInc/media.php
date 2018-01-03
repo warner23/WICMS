@@ -38,7 +38,7 @@
   <?php include_once'site/media/images.php'; ?>
   </div>
   <div id="fragment-2">
-   <?php include_once'site/media/Videos.php'; ?>
+   <?php include_once'site/media/videos.php'; ?>
   </div>
 
     <div id="fragment-3">

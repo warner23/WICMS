@@ -22,8 +22,8 @@ class WIWebsite
         $query->execute();
 
         $res = $query->fetch(PDO::PARAM_STR);
+        //echo $res[$column];
         return $res[$column];
-        //$res->closeCursor();
     }
 
     public function webSite_icons()
@@ -35,55 +35,94 @@ class WIWebsite
         $res = $query->fetch(PDO::PARAM_STR);
         //echo $res;
         echo '<link rel="icon" type="image/png" href="WIAdmin/WIMedia/Img/favicon/' . $res['favicon'] . '"/>';
-        //$res->closeCursor();
     }
 
     
 
-    public function Meta()
+    public function Meta($page)
     {
-         
-          $query = $this->WIdb->prepare('SELECT * FROM `wi_meta`');
+         $sql = "SELECT * FROM `wi_meta` WHERE `page`=:page";
+          $query = $this->WIdb->prepare($sql);
+          $query->bindParam(':page', $page, PDO::PARAM_STR);
           $query->execute();
+
          while($result = $query->fetch(PDO::FETCH_ASSOC))
         {
+          //print_r($result);
+
             echo '<meta name="' . $result['name'] . '" content="' . $result['content'] . '" author="' . $result['author'] . '" >';
+            
         }
-        //$result->closeCursor();
 
     }
 
-    public function Styling()
+    public function Theme()
     {
-         $query = $this->WIdb->prepare('SELECT * FROM `wi_css`');
+      $in_use = 1;
+      $sql ="SELECT * FROM `wi_theme` WHERE `in_use`=:in_use";
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':in_use', $in_use, PDO::PARAM_INT);
+      $query->execute();
+
+      $result = $query->fetch();
+      $theme = $result['destination'];
+
+      return $theme;
+
+    }
+    
+
+    public function Styling($page)
+    {
+          $sql = "SELECT * FROM `wi_css` WHERE `page`=:page";
+         $query = $this->WIdb->prepare($sql);
+         $query->bindParam(':page', $page, PDO::PARAM_STR);
         $query->execute();
 
         while($res = $query->fetch(PDO::FETCH_ASSOC))
         {
-        echo '<link href="' . $res['href'] . '" rel="' . $res['rel'] . '">';
+        echo '<link href="' . self::theme() . $res['href'] . '" rel="' . $res['rel'] . '">';
         }
-
-       // $res->closeCursor();
     }
 
-    public function Scripts()
+    public function Scripts($page)
     {
-                 $query = $this->WIdb->prepare('SELECT * FROM `wi_scripts`');
+      $sql = "SELECT * FROM `wi_scripts` WHERE `page`=:page";
+                 $query = $this->WIdb->prepare($sql);
+                 $query->bindParam(':page', $page, PDO::PARAM_STR);
         $query->execute();
 
         while($res = $query->fetch(PDO::FETCH_ASSOC))
         {
-        echo ' <script src="' . $res['src'] . '" type="text/javascript"></script>';
+        echo ' <script src="' . self::theme() . $res['src'] . '" type="text/javascript"></script>';
         }
-
-        //$res->closeCursor();
     }
 
     public function StartUp()
     {
         echo '<!DOCTYPE html>
                 <html class="no-js" lang="en">
-                <head>
+                <head>   
+
+<script type="text/javascript">
+
+  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+
+  ga("create", "UA-106001047-1", "auto");
+  ga("send", "pageview");
+
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2667587163057863",
+    enable_page_level_ads: true
+  });
+</script>
                   <title>' . WEBSITE_NAME. ' </title>
                   <meta charset="utf-8">';
     }
@@ -105,7 +144,6 @@ class WIWebsite
                             <li><a href="' . $res['rss'] .'" data-placement="bottom" data-toggle="tooltip" class="fa fa-rss" title="Feedburner">RSS</a></li>
                         </ul><!-- End Social --> ';
         }
-        //$res->closeCursor();
     }
 
     public function MainHeader()
@@ -141,11 +179,11 @@ class WIWebsite
                 </div> 
         </header>';
     }
-    //$res->closeCursor();
 
     }
 
-    public function MainMenu()
+
+        public function MainMenu()
     {
         $sql = "SELECT * FROM `wi_menu`";
         $query = $this->WIdb->prepare($sql);
@@ -157,25 +195,10 @@ class WIWebsite
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
         $query1->execute();
-        /*echo '<div class="col-lg-12 col-md-12 col-sm-12">
+        echo '<div class="menu"><div class="col-lg-12 col-md-12 col-sm-12 menusT">
               <div id="nav">
                <ul id="mainMenu" class="mainMenu default">';
-    */
-            echo '<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"></a>
-      <div class="logo">
-        <img alt="WICMS"  class="img-responsive" src="WIAdmin/WIMedia/Img/header/' . WIWebsite::webSite_essentials('logo') .'"></a>
-        </div>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">';
+
         while($res = $query1->fetch(PDO::FETCH_ASSOC))
         {    
          echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
@@ -184,23 +207,41 @@ class WIWebsite
             echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
          }
         }
-       /* echo '</ul>
+        echo '</ul>
             </div><!-- nav -->   
             <!-- end of menu -->
-            </div>';
-            */
-            echo '</ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class=""></span></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>';
-//$res->closeCursor();
+            </div></div>';
     }
 
+      public function DebateMenu()
+    {
+        $sql = "SELECT * FROM `wi_menu`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+        $result = $query->fetch();
+        $menu_order = $result['sort'];
 
-   
+        $sql1 = "SELECT * FROM `wi_menu` ORDER BY :order";
+        $query1 = $this->WIdb->prepare($sql1);
+        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
+        $query1->execute();
+        echo '<div class="menu"><div class="col-lg-12 col-md-12 col-sm-12 menusT">
+              <div id="nav">
+               <ul id="mainMenu" class="mainMenu default">';
+
+        while($res = $query1->fetch(PDO::FETCH_ASSOC))
+        {    
+         echo '<li><a href="#" onclick="WIChat.close">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+         if($res['parent'] > 0)
+         {
+            echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+         }
+        }
+        echo '</ul>
+            </div><!-- nav -->   
+            <!-- end of menu -->
+            </div></div>';
+    }
 
 
     public function footer()
@@ -215,15 +256,23 @@ class WIWebsite
 
         while($res = $query->fetch(PDO::PARAM_STR))
         {
-            echo '  <footer class="footer">
+            echo '<footer class="footer">
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' .$date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-md-4 col-md-ol col-sm-4 col-lg-4 col-xs-4">
+                <a href="alogin.php"><button class="btn">' .WILang::get('admin') . '</button></a>
+                <a href="contact_us.php"><button class="btn">' . WILang::get('contact_us'). '</button></a>
+                <a href="about_us.php"> <button class="btn">' . WILang::get('about_us'). '</button></a>
 
+                </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <a href="info.php"><button class="btn">' . WILang::get('info'). '</button></a>
+                            <a href="privacy_policy.php"><button class="btn">' . WILang::get('privacy'). '</button></a>
                     </div>
                 </div>
             </div>
@@ -231,52 +280,29 @@ class WIWebsite
         </footer>
         <!--End Footer-->';
         }
-        //$res->closeCursor();
+    }
+
+    public function langClassSelector($lang)
+    {
+      //echo $lang;
+
+      if( WILang::getLanguage() === $lang){
+        return WILang::getLanguage();
+      }else{
+        return "fade";
+      }
+
     }
 
       public function viewLang()
     {
-         //echo WILang::getLanguage();
-              if ( WILang::getLanguage() === 'en') {
-      $class = "hi";
-    }else{
-      $class = "bye";
-    }
-    if (WILang::getLanguage() === 'rs') {
-      $class = "fade";
-    }else{
-      $class = "rs";
-    }
-    if (WILang::getLanguage() != 'ru') {
-      $class = "fade";
-    }else{
-      $class = "ru";
-    }
-    if (WILang::getLanguage() != 'es') {
-      $class = "fade";
-    }else{
-      $class = "es";
-    }
-    if (WILang::getLanguage() != 'fr') {
-      $class = "fade";
-    }else{
-      $class = "fr";
-    }
-    if (WILang::getLanguage() != 'cn') {
-      $class = "fade";
-    }else{
-      $class = "cn";
-    }
-    if (WILang::getLanguage() != 'dk') {
-      $class = "fade";
-    }else{
-      $class = "dk";
-    }
+    
+
          
         $sql = "SELECT * FROM `wi_lang`";
         $query = $this->WIdb->prepare($sql);
         $query->execute();
-         echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+         echo '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
                          <div class="flags-wrapper">';
         while($res = $query->fetchAll(PDO::FETCH_ASSOC) ){
 
@@ -287,78 +313,17 @@ class WIWebsite
         
             echo '<a href="' . $lang['href'] . '">
                  <img src="WIAdmin/WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
-                      class="'. $class .'" /></a>';
+                      class="'. WIWebsite::langClassSelector($lang['lang']) .'" /></a>';
             }
         }
 
          echo '</div>
                     </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
-
-                   // $res->closeCursor();
     }
 
 
 
-    public function top_head()
-    {
-        echo '<div class="top_head">
-            <div class="container">
-                <div class="row">
-                <!-- contact area-->
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <ul class="top_contact">
-                            <li class="t_phone">
-                                <p>0161 371 5522</p>
-                            </li>
-                            <li class="t_mail">
-                                <p>therivermanchester@gmail.com</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- end of contact area-->
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-jw col-lg-sm2">
-                         <div class="flags-wrapper">
-             <a href="?lang=en">
-                 <img src="WIMedia/Img/lang/en.png" alt="English" title="English"
-                      class="' . WILang::getLanguage() != 'en' ? 'fade' : ''.'" />
-             </a>
-             <a href="?lang=rs">
-                 <img src="WIMedia/Img/lang/rs.png" alt="Serbian" title="Serbian"
-                      class="' . WILang::getLanguage() != 'rs' ? 'fade' : '' . '" />
-             </a>
-              <a href="?lang=ru">
-                  <img src="WIMedia/Img/lang/ru.png" alt="Russian" title="Russian"
-                       class="' . WILang::getLanguage() != 'ru' ? 'fade' : ''.  '" />
-              </a>
-               <a href="?lang=es">
-                  <img src="WIMedia/Img/lang/es.png" alt="Spanish" title="Spanish"
-                       class="' . WILang::getLanguage() != 'es' ? 'fade' : ''. '" />
-              </a>
-         </div>
-                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->
-                    <!--  search area-->
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div id="sb-search" class="sb-search">
-                            <form>
-                                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
-                                <span class="sb-icon-search"></span>
-                            </form>
-                        </div>
-
-                        <ul class="social_media"> 
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-facebook" title="Facebook">Facebook</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-google-plus" title="Google+">Google+</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-twitter" title="Twitter">Twitter</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-pinterest" title="Pinterest">Pinterest</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-linkedin" title="Linkedin">Linkedin</a></li>
-                            <li><a href="#" data-placement="bottom" data-toggle="tooltip" class="fa fa-rss" title="Feedburner">RSS</a></li>
-                        </ul><!-- End Social --> 
-                    </div>
-                </div>
-            </div>
-        </div>';
-    }
+   
 
     public function PageMod($page, $column)
     {
@@ -397,6 +362,20 @@ class WIWebsite
             return $result[$column];
          }
 
+
+    }
+
+        public function showFavicon()
+    {
+        $sql = "SELECT * FROM `wi_site`";
+
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+
+        $res = $query->fetch();
+
+        $favicon = $res['favicon'];
+        return $favicon;
 
     }
 }

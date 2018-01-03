@@ -1,9 +1,9 @@
-                 <form  class="form-horizontal settings">
+                 <form  class="form-horizontal website">
                     <fieldset>
                       <div id="legend">
                         <legend class="">Website Settings</legend>
                       </div>    
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Username -->
                         <label class="control-label col-lg-4"  for="website_name">Website Name:</label>
                         <div class="controls col-lg-8">
@@ -12,7 +12,7 @@
                       </div>
 
 
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Password-->
                         <label class="control-label col-lg-4" for="website_domain">Website Domain:</label>
                         <div class="controls col-lg-8">
@@ -20,7 +20,7 @@
                         </div>
                       </div>
 
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Password-->
                         <label class="control-label col-lg-4" for="website_url">Website Url:</label>
                         <div class="controls col-lg-8">

@@ -21,20 +21,7 @@ $thisRandNum = rand(9999999999999,999999999999999999);
 	//echo "friend" . $friendId;
 	if($friendId > 0){
 
-		echo '
-<style type="text/css">
-  
-  .closed{
-    display: none;
-  }
-
-    .open{
-    display: block;
-  }
-</style>
-
-
-  <div class="bio">
+		echo '<div class="bio">
   <div class="titleP">' . WILang::get('bio'). '>:</div>
   <div id="bio">';
 
@@ -43,7 +30,7 @@ $thisRandNum = rand(9999999999999,999999999999999999);
   </div>
   <div class="User-Info ' .WILang::get('info') . '">
 <div class="titleP">';
- $username  = $this->Profile->getInfo($friendId, 'username');
+ $username  = $this->Profile->getInfo($friendId, 'username');echo'<br/>';
 echo WILang::get('info');
 echo ': </div>
  <div id="details"></div>';
@@ -94,25 +81,12 @@ echo ': </div>
 </div>
 </div><!-- end stats-->';
 	}else{
-		echo '
-<style type="text/css">
-  
-  .closed{
-    display: none;
-  }
-
-    .open{
-    display: block;
-  }
-</style>
-
-
-  <div class="bio">
+		echo '<div class="bio">
   <div class="titleP">' . WILang::get('bio') . ':<a href="javascript:void(0);" class="btn" onclick="WIProfile.bio()">Edit</a></div>
   <div id="bio">';
    echo $bio_body = $this->Profile->userDetails($userId, 'bio_body');
    echo '</div>
-   <div id="editBio">
+   <div id="editBio" class="hide">
    <div class="control-group form-group closed" id="updateBio">
                <div class="controls col-lg-12">
               <textarea type="text" id="bio"  maxlength="88" name="bio" placeholder="bio" class="input-xlarge form-control" value="add your bio here"></textarea> <br />
@@ -131,19 +105,19 @@ echo ': </div>
   </div>
   <div class="User-Info">
 <div class="titleP">';
-echo $username  = $this->Profile->getInfo($userId, 'username');
+echo $username  = $this->Profile->getInfo($userId, 'username'); echo '\'s <br/>';
 echo WILang::get('info'); 
  echo ': <a href="javascript:void(0);" class="btn" onclick="WIProfile.details(' .  $userId . ')">Edit</a> </div>
- <div id="details"></div>';
+ <div id="details" class="hide"></div>';
 echo $userinfo = $this->Profile->Display_name($userId);
     echo '</div><!-- end of userinfo-->
 
     <div class="user_location">
        <div class="titleP">' .  WILang::get('user_location'). ':  <a href="javascript:void(0);" class="btn" onclick="WIProfile.location(' .$userId . ')">Edit</a></div>
-       <div id="location">';
+       <div id="location" class="hide">';
       echo $locationInfo = $this->Profile->LocationInfo($userId);
 
-         echo '<div class="control-group closed" id="updateLocation" >
+         echo '<div class="control-group" id="updateLocation" >
       <div class="control-group form-group">
         <label class="control-label col-lg-4"  for="country">Country:</label>
              <div class="controls col-lg-8">
@@ -178,9 +152,9 @@ echo $userinfo = $this->Profile->Display_name($userId);
 
     <div class="social_profile">
     <div class="titleP">' .   WILang::get('social_info') . ': <a href="javascript:void(0);" class="btn" onclick="WIProfile.social(' .  $userId . ')">Edit</a></div>
-    <div id="social">'; 
+    <div id="social" class="hide">'; 
     echo $Social_profile = $this->Profile->Social_Profile($userId) .'
-    <div class="control-group closed" id="updateSocial">
+    <div class="control-group" id="updateSocial">
       <div class="control-group form-group">
             <label class="control-label col-lg-4"  for="youtube">Youtube:</label>
              <div class="controls col-lg-8">
@@ -227,11 +201,11 @@ echo $userinfo = $this->Profile->Display_name($userId);
   <div class="friend1">'; 
   echo $friendList = $this->Profile->FriendsPopUp($userId);
    echo '<div id="view_all_friends">' .   WILang::get('friend') . '
-              <div class="friending">
+              <div class="friending hide">
                        <div class="friends_box">All Friends</div> 
                        <a href="#" onclick="WIProfile.toggleViewAllFriends(`view_all_friends`);">close </a>
               </div>
-              <div class="WIFriends">
+              <div class="WIFriends close">
               </div>
               <div style="padding:6px; background-color:#000; border-top:#666 1px solid; font-size:10px; color: #0F0;">
                        Temporary programming shows 50 maximum. Navigating through the full list is coming soon.

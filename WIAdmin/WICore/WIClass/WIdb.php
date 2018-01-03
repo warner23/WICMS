@@ -41,19 +41,26 @@ class WIdb extends PDO
         $this->WIdb = self::getInstance();
 
         $smt = $this->WIdb->prepare($sql);
+        //print_r($smt);
         foreach ($array as $key => &$value) {
             //echo ":$key", $value;
             $smt->bindParam(":$key", $value, PDO::PARAM_STR);
         }
 
+
         
         $smt->execute();
-
-        $result = $smt->fetchAll($fetchMode);
+        $result = $smt->fetchAll($fetchMode);        
 
         $smt->closeCursor();
 
-        return $result;
+        if($result > 0){
+            return $result;
+        }else{
+            echo "null";
+        }
+
+        
 
     }
 

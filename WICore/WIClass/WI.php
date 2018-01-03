@@ -3,7 +3,8 @@
 
 // redirect user to installation page if script is not installed
 if ( ! file_exists( dirname(__FILE__) . '/WIConfig.php' ) && ! isset($installation) )
-    header("Location: WIInstall/install.php");
+    header("Location: WIInstall/index.php");
+
 
 include_once 'WIConfig.php';
 include_once 'WISession.php';

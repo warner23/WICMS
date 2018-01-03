@@ -22,6 +22,9 @@ $userDetails  = $user->getDetails();
 $Info   = new WIUserInfo();
 $web   = new WIWebsite();
 $profile  = new WIProfile();
+$mod  = new WIModules();
+$maint  = new WIMaintenace();
+
 
 
 

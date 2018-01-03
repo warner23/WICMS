@@ -88,4 +88,22 @@ WISite.sendData = function(site){
     });
 }
 
+WISite.Version = function(currentVersion){
+
+         $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "version_control",
+            version   : currentVersion
+        },
+        success: function(result)
+        {
+            $("#version_results").html(result);
+        }
+
+    });
+
+}
+
 

@@ -11,10 +11,10 @@
                     </div>
                     <div class="tw-fields">
                         <label for="tw_key">Key</label>
-                        <input type="text" class="input-xlarge" id="tw_key" name="tw_key"><?php echo $site->Website_Info('twitter_key')?>
+                        <input type="text" class="input-xlarge" id="tw_key" name="tw_key" placeholder="<?php echo $site->Website_Info('twitter_key')?>">
 
                         <label for="tw_secret">Secret</label>
-                        <input type="text" class="input-xlarge" id="tw_secret" name="tw_secret"><?php echo $site->Website_Info('twitter_secret')?>
+                        <input type="text" class="input-xlarge" id="tw_secret" name="tw_secret" placeholder="<?php echo $site->Website_Info('twitter_secret')?>">
                     </div>
 
                     <label>Facebook Login</label>
@@ -25,10 +25,10 @@
                     </div>
                     <div class="fb-fields">
                         <label for="fb_id">ID</label>
-                        <input type="text" class="input-xlarge" id="fb_id" name="fb_id"><?php echo $site->Website_Info('facebook_id')?>
+                        <input type="text" class="input-xlarge" id="fb_id" name="fb_id" placeholder="<?php echo $site->Website_Info('facebook_id')?>">
 
                         <label for="fb_secret">Secret</label>
-                        <input type="text" class="input-xlarge" id="fb_secret" name="fb_secret"><?php echo $site->Website_Info('facebook_secret')?>
+                        <input type="text" class="input-xlarge" id="fb_secret" name="fb_secret" placeholder="<?php echo $site->Website_Info('facebook_secret')?>">
                     </div>
 
                     <label>Google+ Login</label>
@@ -39,10 +39,10 @@
                     </div>
                     <div class="gp-fields">
                         <label for="gp_id">ID</label>
-                        <input type="text" class="input-xlarge" id="gp_id" name="gp_id"><?php echo $site->Website_Info('google_id')?>
+                        <input type="text" class="input-xlarge" id="gp_id" name="gp_id" placeholder="<?php echo $site->Website_Info('google_id')?>">
 
                         <label for="gp_secret">Secret</label>
-                        <input type="text" class="input-xlarge" id="gp_secret" name="gp_secret"><?php echo $site->Website_Info('google_secret')?>
+                        <input type="text" class="input-xlarge" id="gp_secret" name="gp_secret" placeholder="<?php echo $site->Website_Info('google_secret')?>">
                     </div>
                 </div>
                    <div class="control-group form-group">

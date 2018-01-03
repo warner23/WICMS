@@ -535,6 +535,30 @@ class WISite
 	}
 
 
+		public function editMeta($id) 
+	{
+
+				$rel = "stylesheet";
+				$sql = "UPDATE  `wi_meta` SET  `content` =  'WICMS, System' WHERE  `wi_meta`.`meta_id` =9;";
+
+				$query = $this->WIdb->prepare($sql);
+				$query->bindParam(':href', $CSS, PDO::PARAM_STR);
+				$query->bindParam(':rel', $rel, PDO::PARAM_STR);
+				$query->execute();
+
+				 $msg = WILang::get('successfully_updated_site_settings');
+					  $st1  = WISession::get('user_id') ;
+            $st2  = "ADDED new css";
+           $this->maint->Notifications($st1, $st2);
+         $result = array(
+                "status" => "successful",
+                "msg" => $msg
+            );
+            
+            //output result
+            echo json_encode ($result);     
+	}
+
 
 
 	public function Website_Info($column) 
@@ -645,6 +669,29 @@ while($res = $query->fetchAll() )
 			
 
 		}
+
+	}
+
+
+	public function VersionControl($version)
+	{
+		$currentVersion = $version;
+		$f = "http://wicms.co.uk/WIVersion/" .$currentVersion. "/" . $currentVersion .".php";
+		echo $f;
+
+        $versions = scandir($f);
+        print_r($versions);
+		        $file = fopen ("http://wicms.co.uk/WIVersion/" .$currentVersion. "/" . $currentVersion .".php" , "r");
+		        echo $file;
+					if (!$file) {
+					    echo "<p>Unable to open remote file.\n";
+					    exit;
+					}
+
+					if(!$file > $currentVersion){
+						echo "<p>Your System is upto date.\n";
+					    exit;
+					}
 
 	}
 

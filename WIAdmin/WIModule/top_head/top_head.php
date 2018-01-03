@@ -48,13 +48,7 @@ echo '<div class="top_head">';
 		$this->Web->viewLang();
 
 				
-				echo '<div class="col-lg-4 col-md-6 col-sm-4">
-				<div class="logo">
-				<a href="#"><img alt="Debate"  class="img-responsive" src="/WIAdmin/WIMedia/Img/header/' . $this->Web->webSite_essentials('logo'). '"></a>
-				</div>
-				</div>
-
-				</div>';
+				echo '</div>';
 	}
 
 

@@ -7,7 +7,7 @@
                       <?php   $web->MainMenu(); ?> 
                      
                      
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="site_settings" class="btn btn-success">Save</button> 

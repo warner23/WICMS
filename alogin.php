@@ -1,11 +1,34 @@
 <?php
+$page = "alogin";
 
 include_once 'WIInc/WI_StartUp.php';
-$page = "alogin";
+
+$ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+
+//$ref = $_SERVER['HTTP_REFERER'];
+//echo $ref;
+$agent = $_SERVER['HTTP_USER_AGENT'];
+$ip = $_SERVER['REMOTE_ADDR'];
+
+
+$tracking_page = $_SERVER['SCRIPT_NAME'];
+//$ip = getenv('REMOTE_ADDR');
+//$ip2 = $maint->get_ip();
+//echo "ip". $ip;
+//echo "ip2". $ip2;
+$country = $maint->ip_info($ip, "country");
+//echo "country"  .$country;
+if($country === null){
+	$country = "localhost";
+}
+
+$maint->visitors_log($page, $ip, $country, $ref, $agent, $tracking_page);
+
+$panelPower = $web->pageModPower($page, "panel");
+
 $Panel = $web->PageMod($page, "panel");
-$maint->visitors_log($page, $ip, $country);
 //echo $Panel;
-if ($Panel === null) {
+if ($panelPower === 0) {
 	
 }else{
 
@@ -13,35 +36,38 @@ if ($Panel === null) {
 //include_once 'WIInc/panel.php';
 }
 
+$topPower = $web->pageModPower($page, "top_head");
 $top_head = $web->PageMod($page, "top_head");
 //echo $Panel;
-if ($top_head === null) {
+if ($topPower === 0) {
 	
 }else{
 
 	$mod->getMod($top_head);
 }
-  
 
-//include_once 'WIInc/top_head.php';
-$web->MainMenu();		
+$headerPower = $web->pageModPower($page, "header");
+//echo $headPower;
+//echo $Panel;
+if ($headerPower > 0) {
+	$web->MainHeader();
+}
+
+
+$web->MainMenu();	
+
+
+$contents = $web->pageModPower($page, "contents");
+//echo $contents;
+$mod->getModMain($contents, $page, $contents);
+
+  	
+//include_once 'WIInc/welcome_box.php';
+
+$web->footer();
 ?>
 
-<div class="container-fluid text-center">    
-  <div class="row content">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8 text-left"> 
-  <?php include_once 'WIInc/alogin.php'; ?>
-</div>
 
-<div class="col-sm-2"></div>
 
-</div>
-</div>
- <?php
-$web->footer();?>
-		
-
-	
 </body>
 </html>

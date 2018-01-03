@@ -6,7 +6,7 @@
 
                         <div class="col-lg-12">
                         
-                        <xmp>
+                        <xmp class="col-lg-12">
                         <meta name="" content="" author="" >
                         </xmp>
        

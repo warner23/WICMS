@@ -1,11 +1,12 @@
 $(document).ready(function(event)
 {
-    
+    WIDashboard.info_box();
     WIDashboard.todoList();
     WIDashboard.Notificationscount();
     WIDashboard.MessagesCount();
     WIDashboard.registeredUsercount();
     WIDashboard.TasksCount();
+   
 
 
      //executes code below when user click on pagination links
@@ -215,6 +216,21 @@ WIDashboard.TasksCount = function(){
         success: function(result)
         {
              $("#task_badge").html(result)
+        }
+    });
+}
+
+WIDashboard.info_box = function(){
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "GET",
+        data: {
+            action : "info_box"
+                    },
+        success: function(result)
+        {
+             $("#small-box").html(result)
         }
     });
 }
