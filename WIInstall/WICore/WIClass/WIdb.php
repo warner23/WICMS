@@ -3,10 +3,12 @@
 class WIdb extends PDO
 {
     protected $debug = false;
+    private static $_instance;
+
 
     /**
      * Class constructor
-     * Parameters defined as constants in ASConfig.php file
+     * Parameters defined as constants in WIConfig.php file
      * @param $type string Database type
      * @param $host string Database host
      * @param $databaseName string Database username
@@ -30,5 +32,15 @@ class WIdb extends PDO
     public function debug($debug)
     {
         $this->debug = $debug;
+    }
+
+
+        // this function creates an instance of  WIdb
+    public static function getInstance() {
+        // create instance if doesn't exist
+        if ( self::$_instance === null )
+            self::$_instance = new self(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
+
+        return self::$_instance;
     }
 }

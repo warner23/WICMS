@@ -62,10 +62,10 @@ $web->MainMenu();
 if($login->isLoggedIn()){
 $contents = $web->pageModPower($page, "contents");
 //echo $contents;
-$mod->getModMain($contents, $page);
+$mod->getModMain($contents, $page, $contents);
 
 }else{
-  header("location:../index.php");
+  unauthorized_Redirect('index.php');
 }
 
     

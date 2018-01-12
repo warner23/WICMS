@@ -82,7 +82,7 @@ class WILogin
         //hash password and get data from WIdb
         $password = $this->_hashPassword($password);
         //var_dump($password);
-        echo "pass" . $password;
+        //echo "pass" . $password;
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_members`
                      WHERE `username` = :u AND `password` = :p",
@@ -96,7 +96,9 @@ class WILogin
         if(count($result) == 1) 
         {
             // check if user is confirmed
-            if($result[0]['confirmed'] == "N") {
+
+            if( MAIL_CONFIRMATION_REQUIRED === "true")
+                if($result[0]['confirmed'] == "N") {
                 echo json_encode(array(
                     'status' => 'error',
                     'message' => WILang::get('user_not_confirmed')
@@ -246,8 +248,11 @@ class WILogin
     }
 
     private function _hashPassword($password) {
+        //echo "hash";
         $register = new WIRegister();
-        return $register->hashPassword($password);
+        $NewPAss = $register->hashPassword($password);
+        //echo $NewPAss;
+        return $NewPAss;
     }
     
     

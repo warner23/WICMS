@@ -267,7 +267,7 @@ var thisRandNum = "' . $thisRandNum. '";
 </script>
 <div class="container-fluid text-center">    
   <div class="row">
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 min_height profile_p">
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 profile_p page">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile_page">
 <div class="user-profile-header" id="friend_profile">
 <img class="proheader" src="../WIAdmin/WIMedia/Img/worldmap.jpg">
@@ -349,7 +349,6 @@ $this->mod->getMod("profile_tabs");
 	//include_once 'WIInc/my_profile.php';
 
 		echo '
-<script src="WICore/WIJ/WIProfile.js" type="text/javascript"></script>
 <div class="container-fluid text-center">    
   <div class="row">
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 min_height profile_p">

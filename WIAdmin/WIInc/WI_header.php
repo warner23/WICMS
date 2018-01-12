@@ -44,6 +44,12 @@ ul#nots {
         margin-left: -9px ! important;
   }
 
+  .panel-tasks>.panel-heading {
+    color: #fff;
+    background-color: #de2001;
+    border-color: #337ab7;
+}
+
   .navbar-visit {
     float: left;
     height: 50px;
@@ -63,8 +69,8 @@ ul#nots {
 
   @media (min-width: 768px){
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-    margin-left: -88% ! important;
-    margin-top: -13px;
+    margin-left: -5% ! important;
+    margin-top: -1px;
 }
 
   .navbar>.container .navbar-visit, .navbar>.container-fluid .navbar-visit {
@@ -129,7 +135,6 @@ You have <?php echo $site->notifications_badge()?>  notifications
 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="WIDashboard.messages();"><span class="fa fa-envelope-o" title="Messages"></span>
 <span class="badge" id="mess_badge"></span></a>
 <ul class="dropdown-menu">
-  <div style="width: 300px;">
     <div class="panel panel-primary">
     <div class="panel-heading">Messages</div>
     <div class="panel-body" id="cmessages">
@@ -139,7 +144,6 @@ You have <?php echo $site->notifications_badge()?>  notifications
     </div>
     <div class="panel-footer" id="e_msg"><a href="#">See All Messages</a></div>
     </div>
-  </div>
 </ul>
 </li>
 
@@ -150,21 +154,15 @@ You have <?php echo $site->notifications_badge()?>  notifications
               <span class="label label-danger" id="task_badge"></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have <?php echo $site->TaskBagde()?>  tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-    <div class="panel-heading">Tasks</div>
+              <div class="panel panel-tasks">
+    <div class="panel-heading">Tasks: You have <?php echo $site->TaskBagde()?>  tasks</div>
     <div class="panel-body" id="tasks">
 
   
 
     </div>
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
+    <div class="panel-footer" id="e_tasks"><a href="#">View all tasks</a></div>
+    </div>
             </ul>
           </li>
 

@@ -16,8 +16,7 @@ header("location:../index.php");
 
 <!-- footer -->
 <!-- end footer -->
-
-	<script type="text/javascript" src="<?php echo $WI['theme_dir'] ?><?php echo $WI['js_site'] ?>jquery.cookie.js"></script> <!-- jQuery cookie --> 
+	<script type="text/javascript" src="WICore/WIJ/jquery.cookie.js"></script> <!-- jQuery cookie --> 
 
 
 </body>

@@ -245,12 +245,14 @@ class WIRegister
      {
         //this salt will be used in both algorithms
         
-        
+        //echo "heyM";
         $salt = "$2a$" . PASSWORD_BCRYPT_COST . "$" . PASSWORD_SALT;
+        //echo "enc " . PASSWORD_ENCRYPTION;
         if(PASSWORD_ENCRYPTION == "bcrypt") {
 //for bcrypt it is required to look like this,
+            //echo "hey";
             $newPassword = crypt($password, $salt);
-            echo "newP". $newPassword;
+            //echo "newP". $newPassword;
         }
         else {
             //for sha512 it is not required but it can be used 
@@ -258,7 +260,7 @@ class WIRegister
             for($i=0; $i<PASSWORD_SHA512_ITERATIONS; $i++)
                 $newPassword = hash('sha512',$salt.$newPassword.$salt);
         }
-        echo "newpas" . $newPassword;
+        //echo "newpas" . $newPassword;
         return $newPassword;
      }
     

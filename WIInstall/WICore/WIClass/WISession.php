@@ -13,22 +13,8 @@ class WISession
      */
     public static function startSession() 
     {
-        ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
-        
-        
-        $cookieParams = session_get_cookie_params();
-        session_set_cookie_params(
-            $cookieParams["lifetime"], 
-            $cookieParams["path"], 
-            $cookieParams["domain"], 
-            SESSION_SECURE, 
-            SESSION_HTTP_ONLY        
-            );
-        
         session_start();
-
-        if ( SESSION_REGENERATE_ID )
-            session_regenerate_id(SESSION_REGENERATE_ID);   
+ 
     }
 
     public static function destroySession() {

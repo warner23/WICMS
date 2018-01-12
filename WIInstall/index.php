@@ -246,7 +246,7 @@ include_once 'WICore/init.php';
 <div class="form-group">
                 <label for="login_fingerprint"><?php echo WILang::get('finger') ?></label>
                     <div class="btn-group" data-toggle="buttons-radio">
-                        <input id="login_fingerprint" type="hidden" name="login_fingerprint" class="btn-group-value" value="false"/>
+                        <input id="login_fingerprint" type="hidden" name="login_fingerprint" class="btn-group-value" value="true"/>
                         <button id="fingerPrint_true" type="button" name="login_fingerprint" value="true"  class="btn btn-success active"><?php echo WILang::get('yes') ?></button>
                         <button id="fingerPrint_false" type="button" name="login_fingerprint" value="false" class="btn" ><?php echo WILang::get('no') ?></button>
                     </div>
@@ -679,10 +679,10 @@ include_once 'WICore/init.php';
 
                        <script type="text/javascript">
                           var fingerprint = $("#login_fingerprint").attr('value');
-                       if (fingerprint === "no"){
+                       if (fingerprint === "false"){
                         $("#fingerPrint_true").removeClass('btn-success active')
                         $("#fingerPrint_false").addClass('btn-danger');
-                       }else if (fingerprint === "yes"){
+                       }else if (fingerprint === "true"){
                        $("#fingerPrint_false").removeClass('btn-danger')
                         $("#fingerPrint_true").addClass('btn-success active');
                        }

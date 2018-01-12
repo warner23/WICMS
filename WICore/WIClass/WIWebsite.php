@@ -103,26 +103,6 @@ class WIWebsite
         echo '<!DOCTYPE html>
                 <html class="no-js" lang="en">
                 <head>   
-
-<script type="text/javascript">
-
-  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
-
-  ga("create", "UA-106001047-1", "auto");
-  ga("send", "pageview");
-
-</script>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-2667587163057863",
-    enable_page_level_ads: true
-  });
-</script>
                   <title>' . WEBSITE_NAME. ' </title>
                   <meta charset="utf-8">';
     }
@@ -261,18 +241,13 @@ class WIWebsite
             <div class="container">
                 <div class="row">
                 <div class="col-md-4 col-md-ol col-sm-4 col-lg-4 col-xs-4">
-                <a href="alogin.php"><button class="btn">' .WILang::get('admin') . '</button></a>
-                <a href="contact_us.php"><button class="btn">' . WILang::get('contact_us'). '</button></a>
-                <a href="about_us.php"> <button class="btn">' . WILang::get('about_us'). '</button></a>
-
+               
                 </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <a href="info.php"><button class="btn">' . WILang::get('info'). '</button></a>
-                            <a href="privacy_policy.php"><button class="btn">' . WILang::get('privacy'). '</button></a>
                     </div>
                 </div>
             </div>

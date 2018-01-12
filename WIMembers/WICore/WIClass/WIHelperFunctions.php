@@ -3,16 +3,33 @@
 function redirect($url)
 {
     $url = rtrim(SCRIPT_URL, '/') . '/' . ltrim($url, '/');
-
+    //echo $url;
     if ( ! headers_sent() )
     {    
-        header('Location: '.$url, TRUE, 302);
+        echo header('Location: '.$url); //, TRUE, 302
         exit;
     }
     else
     {
         echo '<script type="text/javascript">';
         echo 'window.location.href="'.$url.'";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>';
+        exit;
+    }
+}
+
+function unauthorized_Redirect($url)
+{
+    //$url = SCRIPT_URL . '/' . $url;
+    if( !headers_sent() ){
+                echo header('Location: '.$url); //, TRUE, 302
+        exit;
+    }else{
+         echo '<script type="text/javascript">';
+        echo 'window.location.href="/'.$url.'";';
         echo '</script>';
         echo '<noscript>';
         echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';

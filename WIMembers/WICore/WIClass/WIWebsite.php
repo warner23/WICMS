@@ -140,7 +140,7 @@ class WIWebsite
                         <div class="col-lg-3 col-md-3 col-sm-2">
                             <div class="navbar_brand">
                                 <a href="index.php">
-                                <img alt=""  class="logo" src="../WIAdmin/WIMedia/Img/header/' . $res['logo'] .'"></a>
+                                <img alt=""  class="logo" src="WIAdmin/WIMedia/Img/header/' . $res['logo'] .'"></a>
                                 
                             </div>
                         </div>
@@ -241,18 +241,13 @@ class WIWebsite
             <div class="container">
                 <div class="row">
                 <div class="col-md-4 col-md-ol col-sm-4 col-lg-4 col-xs-4">
-                <a href="../alogin.php"><button class="btn">' .WILang::get('admin') . '</button></a>
-                <a href="../contact_us.php"><button class="btn">' . WILang::get('contact_us'). '</button></a>
-                <a href="../about_us.php"> <button class="btn">' . WILang::get('about_us'). '</button></a>
-
+               
                 </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <a href="../info.php"><button class="btn">' . WILang::get('info'). '</button></a>
-                            <a href="../privacy_policy.php"><button class="btn">' . WILang::get('privacy'). '</button></a>
                     </div>
                 </div>
             </div>

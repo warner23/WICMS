@@ -242,23 +242,25 @@ class WIRegister
      public function hashPassword($password)
      {
         //this salt will be used in both algorithms
-        //for bcrypt it is required to look like this,
-        //for sha512 it is not required but it can be used 
-        $salt = "$2a$" . PASSWORD_BCRYPT_COST . "$" . PASSWORD_SALT;
         
+       // echo "heyM";
+        $salt = "$2a$" . PASSWORD_BCRYPT_COST . "$" . PASSWORD_SALT;
+       // echo "enc " . PASSWORD_ENCRYPTION;
         if(PASSWORD_ENCRYPTION == "bcrypt") {
+//for bcrypt it is required to look like this,
+            //echo "hey";
             $newPassword = crypt($password, $salt);
+           // echo "newP". $newPassword;
         }
         else {
+            //for sha512 it is not required but it can be used 
             $newPassword = $password;
             for($i=0; $i<PASSWORD_SHA512_ITERATIONS; $i++)
                 $newPassword = hash('sha512',$salt.$newPassword.$salt);
         }
-        
+        //echo "newpas" . $newPassword;
         return $newPassword;
      }
-    
-    
     /**
      * Generate two random numbers and store them into $_SESSION variable.
      * Numbers are used during the registration to prevent bots to register.

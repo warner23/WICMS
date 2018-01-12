@@ -1,0 +1,4 @@
+[03-Jan-2018 19:43:46 America/Chicago] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/wicms/public_html/WIInstall/WICore/WIClass/Install.php on line 1389
+[03-Jan-2018 19:43:46 America/Chicago] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/wicms/public_html/WIInstall/WICore/WIClass/Install.php on line 1464
+[03-Jan-2018 22:23:33 America/Chicago] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/wicms/public_html/WIInstall/WICore/WIClass/Install.php on line 1413
+[03-Jan-2018 22:23:33 America/Chicago] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/wicms/public_html/WIInstall/WICore/WIClass/Install.php on line 1488

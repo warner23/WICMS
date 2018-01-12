@@ -1,32 +1,43 @@
 <?php
 
 /**
-* session Class
+* Session Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
 
 class WISession
 {
-	  /**
+      /**
      * Start session.
      */
     public static function startSession() 
     {
-        // ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
-        
+        if(SESSION_USE_ONLY_COOKIES === "true"){
+        ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
+        }
 
-        // $cookieParams = session_get_cookie_params();
-        // session_set_cookie_params(
-        //     $cookieParams["lifetime"], 
-        //     $cookieParams["path"], 
-        //     $cookieParams["domain"], 
-        //     SESSION_SECURE, 
-        //     SESSION_HTTP_ONLY
-        //  );
+        if(SESSION_HTTP_ONLY === "true"){
+        ini_set( 'session.cookie_httponly', 1 );
+        }
+        
+        
+        if(SESSION_SECURE === "true"){
+        $cookieParams = session_get_cookie_params();
+        session_set_cookie_params(
+            $cookieParams["lifetime"], 
+            $cookieParams["path"], 
+            $cookieParams["domain"], 
+            SESSION_SECURE
+         );
+        }
 
         session_start();
 
+        if ( SESSION_REGENERATE_ID === "true"){
+            
+            session_regenerate_id(SESSION_REGENERATE_ID);   
+        }
     }
 
     public static function destroySession() {

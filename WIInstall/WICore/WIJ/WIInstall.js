@@ -3,14 +3,14 @@ $(document).ready(function(event)
 
     $("#fingerPrint_true").click(function(){
                         //alert('clicked');
-                        $("#login_fingerprint").attr("value", 'yes')
+                        $("#login_fingerprint").attr("value", 'true')
                         $("#fingerPrint_false").removeClass('btn-danger active')
                         $("#fingerPrint_true").addClass('btn-success active');
                     })
 
                     $("#fingerPrint_false").click(function(){
                         //alert('clicked');
-                        $("#login_fingerprint").attr("value", 'no')
+                        $("#login_fingerprint").attr("value", 'false')
                         $("#fingerPrint_true").removeClass('btn-success active')
                         $("#fingerPrint_false").addClass('btn-danger active');
                     })

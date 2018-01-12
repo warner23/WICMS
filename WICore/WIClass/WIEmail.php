@@ -1,7 +1,6 @@
 <?php
 
 
-
 require_once dirname(dirname(__FILE__)) . '/WIVendor/phpmailer/PHPMailerAutoload.php';
 
 /**

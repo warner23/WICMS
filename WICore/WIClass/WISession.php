@@ -13,17 +13,24 @@ class WISession
      */
     public static function startSession() 
     {
+ if(SESSION_USE_ONLY_COOKIES === "true"){
         ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
-        
+        }
 
-        // $cookieParams = session_get_cookie_params();
-        // session_set_cookie_params(
-        //     $cookieParams["lifetime"], 
-        //     $cookieParams["path"], 
-        //     $cookieParams["domain"], 
-        //     SESSION_SECURE, 
-        //     SESSION_HTTP_ONLY
-        //  );
+        if(SESSION_HTTP_ONLY === "true"){
+        ini_set( 'session.cookie_httponly', 1 );
+        }
+        
+        
+        if(SESSION_SECURE === "true"){
+        $cookieParams = session_get_cookie_params();
+        session_set_cookie_params(
+            $cookieParams["lifetime"], 
+            $cookieParams["path"], 
+            $cookieParams["domain"], 
+            SESSION_SECURE
+         );
+        }
 
         session_start();
 

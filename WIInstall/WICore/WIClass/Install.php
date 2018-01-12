@@ -6,8 +6,6 @@ class Install
 
 	private $WIdb;
 
-
-
 	public function Installer($name, $dom, $script, $session_secure, $http, $session_regenerate, $cookieonly, $login_fingerprint, $max_login_attempts, $redirect_after_login, $encryption, $cost, $mailer,  $db_host, $db_name,  $db_pass, $db_username, $bootstrap_version, $salt, $admin_password, $admin_username, $email_address)
 	{
 
@@ -17,29 +15,27 @@ class Install
 
    $default_lang = "en";
 
-   $twitter_enabled = false;
+   $twitter_enabled = "false";
 
-   $facebook_enabled = false;
+   $facebook_enabled = "false";
 
-   $google_enabled = false;
+   $google_enabled = "false";
 
-    $social_callback_url = "socialauth.php";
+    $social_callback_url = "socialauth";
 
-   $reg_pass_reset = "passwordreset.php";
+   $reg_pass_reset = "passwordreset";
 
-    $register_confirm = "confirm.php";
+    $register_confirm = "confirm";
 
-   $mail_confirm_required = "yes";
+   $mail_confirm_required = "false";
 
     $reset_key_life = "24";
 
-   //generate email confirmation key
-   $key = $this->_generateKey();
    $dat = date("Y-m-d");
    $ip = getenv('REMOTE_ADDR');
    $role = "7";
 
-   $admin_pass = $this->hashPassword($admin_password);
+   
 
     try{
       //$pdo = new PDO('mysql:host=' . $db_host . ';dbname=' .$db_name, $db_pass,$db_username );
@@ -52,8 +48,32 @@ class Install
 		$dbname = "`" . str_replace("`", "``", $db_name) . "`";
 		$pdo->query("CREATE DATABASE IF NOT EXISTS $dbname");
 		$pdo->query("use $dbname");
-		$q = "
-CREATE TABLE IF NOT EXISTS `wi_admin_menu` (
+		$q = "CREATE TABLE IF NOT EXISTS `wi_admin_info_box` 
+(
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+
+  `name` varchar(255) NOT NULL,
+ 
+ `info` varchar(255) NOT NULL,
+
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+
+--
+-- Dumping data for table `wi_admin_info_box`
+--
+
+
+INSERT INTO `wi_admin_info_box` (`id`, `name`, `info`) VALUES
+
+(1, 'Bounce Rate', 'bounce'),
+
+(2, 'Unique Visitors', 'visitors'),
+
+(3, 'User Registrations', 'regUser');
+
+    CREATE TABLE IF NOT EXISTS `wi_admin_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(50) NOT NULL DEFAULT '',
   `link` varchar(100) NOT NULL DEFAULT '#',
@@ -146,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `wi_css` (
   `rel` varchar(255) NOT NULL,
   `page` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30;
 
 --
 -- Dumping data for table `wi_css`
@@ -176,7 +196,13 @@ INSERT INTO `wi_css` (`id`, `href`, `rel`, `page`) VALUES
 (21, 'site/css/frameworks/menus.css', 'stylesheet', 'contact_us'),
 (22, 'site/css/style.css', 'stylesheet', 'contact_us'),
 (23, 'site/css/font-awesome.css', 'stylesheet', 'contact_us'),
-(24, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'contact_us');
+(24, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'contact_us'),
+(25, 'site/css/frameworks/bootstrap.css', 'stylesheet', 'profile'),
+(26, 'site/css/login_panel/css/slide.css', 'stylesheet', 'profile'),
+(27, 'site/css/frameworks/menus.css', 'stylesheet', 'profile'),
+(28, 'site/css/style.css', 'stylesheet', 'profile'),
+(29, 'site/css/font-awesome.css', 'stylesheet', 'profile'),
+(30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile');
 
 -- --------------------------------------------------------
 
@@ -349,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `wi_meta` (
   `content` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20;
 
 --
 -- Dumping data for table `wi_meta`
@@ -365,13 +391,17 @@ INSERT INTO `wi_meta` (`meta_id`, `page`, `name`, `content`, `author`) VALUES
 (7, 'alogin', 'keywords', 'WI, WICMS, System', 'Jules Warner'),
 (8, 'alogin', 'author', 'warner-infinity', 'Jules Warner'),
 (9, 'confirm', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
-(10, 'confirm', '0', 'Warner-Infinity Content Management System', 'Jules Warner'),
+(10, 'confirm', 'description', 'Warner-Infinity Content Management System', 'Jules Warner'),
 (11, 'confirm', 'keywords', 'WI, WICMS, System', 'Jules Warner'),
 (12, 'confirm', 'author', 'warner-infinity', 'Jules Warner'),
 (13, 'contact_us', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
 (14, 'contact_us', 'description', 'Warner-Infinity Content Management System', 'Jules Warner'),
 (15, 'contact_us', 'keywords', 'WI, WICMS, System', 'Jules Warner'),
-(16, 'contact_us', 'author', 'warner-infinity', 'Jules Warner');
+(16, 'contact_us', 'author', 'warner-infinity', 'Jules Warner'),
+(17, 'profile', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
+(18, 'profile', 'description', 'Warner-Infinity Content Management System with simplified back end', 'Jules Warner'),
+(19, 'profile', 'keywords', 'WI, WICMS, System, UI', 'Jules Warner'),
+(20, 'profile', 'author', 'warner-infinity', 'Jules Warner');
 
 -- --------------------------------------------------------
 
@@ -512,7 +542,7 @@ INSERT INTO `wi_page` (`id`, `name`, `panel`, `top_head`, `header`, `left_sideba
 (2, 'confirm', '1', '1', '0', '0', '0', 'confirm', '1'),
 (3, 'index', '1', '1', '0', '0', '0', 'welcome_box', '1'),
 (4, 'passwordreset', '1', '1', '0', '0', '0', 'passwordreset', '1'),
-(5, 'contact_us', '1', '1', '0', '0', '0', NULL, '1');
+(5, 'profile', '1', '1', '0', '0', '0', profile, '1');
 
 -- --------------------------------------------------------
 
@@ -576,7 +606,10 @@ INSERT INTO `wi_scripts` (`id`, `src`, `page`) VALUES
 (9, 'site/js/login_panel/js/slide.js', 'confirm'),
 (10, 'site/js/frameworks/JQuery.js', 'contact_us'),
 (11, 'site/js/frameworks/bootstrap.js', 'contact_us'),
-(12, 'site/js/login_panel/js/slide.js', 'contact_us');
+(12, 'site/js/login_panel/js/slide.js', 'contact_us'),
+(13, 'site/js/frameworks/JQuery.js', 'profile'),
+(14, 'site/js/frameworks/bootstrap.js', 'profile'),
+(15, 'site/js/login_panel/js/slide.js', 'profile');
 
 -- --------------------------------------------------------
 
@@ -601,18 +634,18 @@ CREATE TABLE IF NOT EXISTS `wi_sidebar` (
 
 INSERT INTO `wi_sidebar` (`id`, `label`, `link`, `parent`, `sort`, `lang`, `img`) VALUES
 (1, 'Settings', '', 0, 0, 'settings', 'settings'),
-(2, 'Site', 'WISite.php', 3, 0, 'Site', 'site'),
-(3, 'Users', '', 0, 1, 'Users', 'users'),
-(4, 'Manage User', 'WIUser.php', 5, 0, 'Manage_users', 'manage_users'),
+(2, 'Site', 'WISite.php', 1, 0, 'Site', 'site'),
+(3, 'Users', '', 3, 1, 'Users', 'users'),
+(4, 'Manage User', 'WIUser.php', 3, 0, 'Manage_users', 'manage users'),
 (5, 'Roles', 'WIRoles.php', 5, 1, 'roles', 'roles'),
-(6, 'Menu''s', 'WIMenu.php', 3, 1, 'Menu', 'menu'),
-(7, 'Header', 'WIHeader.php', 3, 2, 'Header', 'header'),
+(6, 'Menu''s', 'WIMenu.php', 1, 1, 'Menu', 'menu'),
+(7, 'Header', 'WIHeader.php', 1, 2, 'Header', 'header'),
 (8, 'Modules', '', 0, 2, 'Modules', 'modules'),
-(9, 'Modules', 'WIModules.php', 10, 0, 'Modules', 'modules'),
+(9, 'Modules', 'WIModules.php', 8, 0, 'Modules', 'modules'),
 (10, 'Pages', '', 0, 3, 'Pages', 'pages'),
-(11, 'Pages', 'WIPages.php', 12, 0, 'Pages', 'pages'),
+(11, 'Pages', 'WIPages.php', 10, 0, 'Pages', 'pages'),
 (12, 'Plugins', '', 0, 4, 'Plugins', 'plugin'),
-(13, 'plugin', 'WIPlugin.php', 14, 0, 'Plugin', 'plugin'),
+(13, 'plugin', 'WIPlugin.php', 12, 0, 'Plugin', 'plugin'),
 (14, 'Styling', 'WIStyling.php', 3, 3, 'Styling', 'styling'),
 (15, 'Media', '', 0, 5, 'media', 'media'),
 (16, 'Media', 'WIMedia.php', 17, 0, 'media', 'media'),
@@ -640,7 +673,7 @@ CREATE TABLE IF NOT EXISTS `wi_site` (
   `http_only` enum('false','true') NOT NULL DEFAULT 'true',
   `regenerate_id` enum('false','true') NOT NULL DEFAULT 'true',
   `use_only_cookie` enum('1','0') NOT NULL DEFAULT '1',
-  `login_fingerprint` enum('yes','no') NOT NULL,
+  `login_fingerprint` enum('true','false') NOT NULL,
   `max_login_attempts` int(11) NOT NULL DEFAULT '5',
   `redirect_after_login` varchar(255) NOT NULL,
   `password_encryption` varchar(255) NOT NULL,
@@ -1238,14 +1271,19 @@ $pdo->exec($q);
 
 		$this->createConfig($db_host, $db_name, $db_username, $db_pass);
 
+    $admin_pass = $this->hashingPassword($admin_password);
+    //echo "ad" . $admin_pass;
+    //generate email confirmation key
+            $key = $this->_generateKey();
 
     $admin = "INSERT INTO `wi_members` (`user_id`, `email`, `username`, `password`, `confirmation_key`, `confirmed`, `password_reset_key`, `password_reset_confirmed`,`password_reset_timestamp`,`register_date`,`user_role`,`last_login`,`ip_addr`,`banned`) VALUES
       (1, '$email_address', '$admin_username', '$admin_pass', '$key', 'N','','N','','$dat','$role', '', '$ip','N');
       INSERT INTO `wi_user_details` (`id_user_details`, `user_id`) VALUES
       (1, 1);";
 
-
 $pdo->exec($admin);
+
+
     $pdo = null;
 
     $results = array(
@@ -1385,9 +1423,10 @@ define("DEFAULT_LANGUAGE", $default_lang);
 define("WICMS_VERSION", $version);';
 
       $newPage = fwrite($path_to_file, $txt);
-      fclose($NewPage);
+      fclose($newPage);
   $path_to_Lib = fopen(dirname(dirname(dirname(dirname(__FILE__)))) .'/WIAdmin/WICore/WILib.php', "w");
 
+    
     $lib_txt = '<?php
 require_once "WIClass/WILib.php";
 require_once "WIClass/WISettings.php";
@@ -1446,7 +1485,6 @@ $google                = $config->Website_Info("google_enabled");
 $google_id             = $config->Website_Info("google_id");
 $google_secret         = $config->Website_Info("google_secret");
 $fb                    = $config->Website_Info("facebook_enabled");
-
 $fb_id                 = $config->Website_Info("facebook_id");
 $fb_secret             = $config->Website_Info("facebook_secret");
 $tw_enabled            = $config->Website_Info("twitter_enabled");
@@ -1457,35 +1495,32 @@ $multi_lang            = $config->Website_Info("multi_lang");
 $version               = $config->Website_Info("wicms_version");
 $bootstrap_version     = $config->Website_Info("bootstrap_version");
 $favicon               = $config->Website_Info("favicon");
-?>';
+';
 
 $newLibPage = fwrite($path_to_Lib, $lib_txt);
       fclose($newLibPage);
+
 	}
 
-  private function _generateKey()
+
+    public function hashingPassword($password)
+     {
+        include_once dirname(dirname(dirname(dirname(__FILE__)))) .'/WICore/WIClass/WIConfig.php';
+        include_once dirname(dirname(dirname(dirname(__FILE__)))) .'/WICore/WIClass/WIRegister.php';
+        include_once dirname(dirname(dirname(dirname(__FILE__)))) .'/WICore/WIClass/WIEmail.php';
+        include_once dirname(dirname(dirname(dirname(__FILE__)))) .'/WICore/WIClass/WIMaintenace.php';
+
+        $register = new WIRegister();
+        $NewPass = $register->hashPassword($password);
+        //echo $NewPass;
+        return $NewPass;
+     }
+
+     private function _generateKey()
     {
+      include_once dirname(dirname(dirname(dirname(__FILE__)))) .'/WICore/WIClass/WIConfig.php';
         return md5(time() . PASSWORD_SALT . time());
     }
 
-
-    public function hashPassword($password)
-     {
-        //this salt will be used in both algorithms
-        //for bcrypt it is required to look like this,
-        //for sha512 it is not required but it can be used 
-        $salt = "$2a$" . PASSWORD_BCRYPT_COST . "$" . PASSWORD_SALT;
-        
-        if(PASSWORD_ENCRYPTION == "bcrypt") {
-            $newPassword = crypt($password, $salt);
-        }
-        else {
-            $newPassword = $password;
-            for($i=0; $i<PASSWORD_SHA512_ITERATIONS; $i++)
-                $newPassword = hash('sha512',$salt.$newPassword.$salt);
-        }
-        
-        return $newPassword;
-     }
 
 }
