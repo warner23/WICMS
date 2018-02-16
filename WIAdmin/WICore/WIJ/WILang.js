@@ -5,6 +5,34 @@ $(document).ready(function(event)
 {
      WILang.Trans();
 
+     //executes code below when user click on pagination links
+    $("body").delegate(".pagination li a", "click", function(event){
+        event.preventDefault();
+    //$("#pagination").on( "click", "li a", function (){
+        
+        $(".loading-div").removeClass('closed'); //remove closed element
+        $(".loading-div").addClass('open'); //show loading element
+        var page = $(this).attr("data-page"); //get page number from link
+        alert(page);
+             $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "ChangePageViewLang",
+            page : page
+        },
+        success: function(result)
+        {
+            $("#trans").html(result);
+              $(".loading-div").removeClass('open'); //remove closed element
+        $(".loading-div").addClass('closed'); //show loading element
+        }
+       
+        
+    });
+
+         });
+
        $("img").click(function() {      
     $(this).toggleClass("hover");
     var id = $(".hover").attr("id");

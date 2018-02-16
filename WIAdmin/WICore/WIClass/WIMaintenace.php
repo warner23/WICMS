@@ -46,6 +46,32 @@ class WIMaintenace
 		
 	}
 
+	public function WILogs()
+	{
+		$sql = "SELECT * FROM `wi_logs`";
+		$query = $this->WIdb->prepare($sql);
+		$query->execute();
+
+		echo '<div class="divTable">
+				<div class="divTableBody">
+				<div class="divTableRow">';
+		while ($result = $query->fetchAll() ) {
+			if ($result < 1) {
+				echo 'No Results to show';
+			}
+			foreach ($result as $log) {
+				echo '<div class="divTableCell">' . $log['date'] . '</div>
+				<div class="divTableCell">' . $log['user'] . '</div>
+				<div class="divTableCell">' . $log['opperation'] . '</div>';
+			}
+		}
+echo '</div>
+</div>
+</div>';
+
+
+	}
+
 	
 
 }

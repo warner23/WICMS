@@ -160,21 +160,7 @@ position: absolute;
 
 </div>
 
-<script type="text/template" id="updatenotice">
-    Update Available.<br/>
-    Current Version: [version]<br/><br/>
-    <a href="#" class="btn update-now btn-success" rel="[modulename]">Update Now</a> <a href="#" class="btn close-update-notice">Update Later</a>
-</script>  
 
-<script type="text/template" id="noupdate">
-    No update available. You are using the latest version.<br/><br/>
-    <a href="#" class="btn btn-default btn-sm close-update-notice">Close</a>
-</script>
-
-<script type="text/template" id="update-completed">
-    MiniMax [modulename] Module has been successfully updated.<br/><br/>
-    <a href="#" class="btn close-update-completed-notice">Okay</a>
-</script>
 
 
 

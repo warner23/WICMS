@@ -640,7 +640,41 @@ class WISite
 
 	public function tasks()
 	{
-		$sql = "SELECT * FROM `wi_tasks`";
+		$sql = "SELECT * FROM `wi_tasks` ORDER BY id DESC LIMIT 10";
+		$query = $this->WIdb->prepare($sql);
+		$query->execute();
+while($res = $query->fetchAll() )
+		{
+
+			foreach ($res as $key => $value) {
+				//print_r($value);
+					 echo ' <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        ' . $value['item'] . '
+                        <small class="pull-right">' . $value['percent'] . '%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-aqua" style="width: ' . $value['percent'] . '%" role="progressbar" aria-valuenow="' . $value['percent'] . '" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">' . $value['percent'] . '% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->';
+
+
+                               
+			}
+			
+
+		}
+
+	}
+
+		public function WITasks()
+	{
+		$sql = "SELECT * FROM `wi_tasks` ORDER BY id DESC";
 		$query = $this->WIdb->prepare($sql);
 		$query->execute();
 while($res = $query->fetchAll() )

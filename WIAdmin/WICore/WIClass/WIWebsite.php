@@ -8,6 +8,7 @@ class WIWebsite
 	    function __construct() 
     {
          $this->WIdb = WIdb::getInstance();
+         $this->Page = new WIPagination();
 
     }
 
@@ -860,40 +861,45 @@ class WIWebsite
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_trans`");
         $rows = count($result);
-
+        //echo $rows;
         //break records into pages
         $total_pages = ceil($rows/$item_per_page);
         
         //get starting position to fetch the records
         $page_position = (($page_number-1) * $item_per_page);
-
         $sql1 = "SELECT * FROM `wi_trans` ORDER BY `id` ASC LIMIT :page, :item_per_page";
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':page', $page_position, PDO::PARAM_INT);
         $query1->bindParam(':item_per_page', $item_per_page, PDO::PARAM_INT);
         $query1->execute();
+        echo '<div class="col-sm-12 col-md-12 col-lg-12">
+             <label class="col-sm-2 col-md-2 col-lg-2 col-xs-2" for="language">Language:<span class="required">*</span></label>
+             <label class="col-sm-4 col-md-4 col-lg-4 col-xs-4" for="Keyword">Keyword:<span class="required">*</span></label>
+              <label class="col-sm-4 col-md-4 col-lg-4 col-xs-4" for="Translation">Translation:<span class="required">*</span></label>
+             </div>';
          echo '<ul class="contents">';
-        while($res = $query1->fetch(PDO::FETCH_ASSOC)) //bind variables to prepared statement
+        while($res = $query1->fetch(PDO::FETCH_ASSOC)) //bind variables to prepare statment
        {
         echo '<li>';
-       //echo  '<strong>' .$res['lang'].'</strong><strong>' .$res['keyword'].'</strong> &mdash; '.$res['translation'] ;
-                     echo ' <div class="col-sm-12 col-md-12 col-lg-12">
-             <label class="col-sm-1 col-md-1 col-lg-1" for="language">Language:<span class="required">*</span></label>
-                            <div class="controls col-sm-2 col-md-2 col-lg-2">
-                                <div class="col-sm-1 col-md-1 col-lg-1">' . $res['lang'].'</div>
+
+                     echo '<div class="col-sm-12 col-md-12 col-lg-12">
+                      <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                                <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">' . $res['lang'].'</div>
                             </div>
 
-                                         <label class="col-sm-1 col-md-1 col-lg-1" for="Keyword">Keyword:<span class="required">*</span></label>
-                            <div class="controls col-sm-2 col-md-2 col-lg-2">
-                                <div class="col-sm-2 col-md-2 col-lg-2">' . $res['keyword'].'</div>
+                                         
+                            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                                <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">' . $res['keyword'].'</div>
                             </div>
 
-                                         <label class="col-sm-1 col-md-1 col-lg-1" for="Translation">Translation:<span class="required">*</span></label>
-                            <div class="controls col-sm-2 col-md-2 col-lg-2">
+                                        
+                            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
                                 <div class="col-sm-4 col-md-4 col-lg-4">' . $res['translation'].'</div>
                             </div>
                     
-                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WILang.editLang(' . $res['id'].')">Edit</a></div>
+                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" class="glyphicon glyphicon-edit" name="edit" onclick="WILang.editLang(' . $res['id'].')"></a></div>
+
+                                 <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" class="glyphicon glyphicon-trash" onclick="WILang.JsDelete(' . $res['id'].')"></a></div>
                             </div>';
         echo '</li>';
     }
@@ -902,65 +908,18 @@ class WIWebsite
     // echo " page no" . $page_number;
     // echo " rows" . $rows;
     // echo " total page" . $total_pages;
-    $Pagination = WIWebsite::Pagination($item_per_page, $page_number, $rows, $total_pages);
+    $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages);
     //print_r($Pagination);
 
 
          echo '<div align="center">';
     /* We call the pagination function here to generate Pagination link for us. 
     As you can see I have passed several parameters to the function. */
-    echo $Pagination;
+    echo $Pagin;
     echo '</div>';
        
     }
 
-
-    public function Pagination($item_per_page, $current_page, $total_records, $total_pages)
-    {
-         $pagination = '';
-    if($total_pages > 0 && $total_pages != 1 && $current_page <= $total_pages){ //verify total pages and current page number
-        $pagination .= '<ul class="pagination">';
-        
-        $right_links    = $current_page + 3; 
-        $previous       = $current_page - 3; //previous link 
-        $next           = $current_page + 1; //next link
-        $first_link     = true; //boolean var to decide our first link
-        
-        if($current_page > 1){
-            $previous_link = ($previous==0)? 1: $previous;
-            $pagination .= '<li class="first"><a href="#" data-page="1" title="First">&laquo;</a></li>'; //first link
-            $pagination .= '<li><a href="#" data-page="'.$previous_link.'" title="Previous">&lt;</a></li>'; //previous link
-                for($i = ($current_page-2); $i < $current_page; $i++){ //Create left-hand side links
-                    if($i > 0){
-                        $pagination .= '<li><a href="#" data-page="'.$i.'" title="Page'.$i.'">'.$i.'</a></li>';
-                    }
-                }   
-            $first_link = false; //set first link to false
-        }
-        
-        if($first_link){ //if current active page is first link
-            $pagination .= '<li class="first active">'.$current_page.'</li>';
-        }elseif($current_page == $total_pages){ //if it's the last active link
-            $pagination .= '<li class="last active">'.$current_page.'</li>';
-        }else{ //regular current link
-            $pagination .= '<li class="active">'.$current_page.'</li>';
-        }
-                
-        for($i = $current_page+1; $i < $right_links ; $i++){ //create right-hand side links
-            if($i<=$total_pages){
-                $pagination .= '<li><a href="#" data-page="'.$i.'" title="Page '.$i.'">'.$i.'</a></li>';
-            }
-        }
-        if($current_page < $total_pages){ 
-                $next_link = ($i > $total_pages) ? $total_pages : $i;
-                $pagination .= '<li><a href="#" data-page="'.$next_link.'" title="Next">&gt;</a></li>'; //next link
-                $pagination .= '<li class="last"><a href="#" data-page="'.$total_pages.'" title="Last">&raquo;</a></li>'; //last link
-        }
-        
-        $pagination .= '</ul>'; 
-    }
-    return $pagination; //return pagination links
-    }
 
 
             public function Styling()

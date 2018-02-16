@@ -99,7 +99,7 @@ input:checked + .slider:before {
                     <div class="row">
                         <div class="col-lg-3 col-xs-6 col-xl-12">
                             <!-- input box's box -->
-                           <div class="control-group form-group">
+                           <div class="form-group">
                         <!-- Username -->
                         <label class="control-label col-lg-4"  for="page-title" id="page"> <?php echo WILang::get('title'); ?> </label>
                         <div class="controls col-lg-8">
@@ -127,7 +127,7 @@ input:checked + .slider:before {
                           <div id="page_options">
 
                            <form>
-                           <div class="controlgroup">
+                           <div class="col-lg-4">
                               <label>Left Hand Column</label>
                              <label class="switch">
                               <input type="checkbox" id="lsc">
@@ -136,7 +136,7 @@ input:checked + .slider:before {
                             </div>
 
 
-                                     <div class="controlgroup">
+                                     <div class="col-lg-4">
                               <label>Right Hand Column</label>
                              <label class="switch">
                               <input type="checkbox" id="rsc">

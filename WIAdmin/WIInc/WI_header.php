@@ -127,7 +127,7 @@ You have <?php echo $site->notifications_badge()?>  notifications
 
     </div>
     <div class="panel-body" id="Notifications"></div>
-    <div class="panel-footer"><a href="#">View all</a></div>
+    <div class="panel-footer"><a href="WINotifications.php">View all</a></div>
   </div>
 </div>
 
@@ -142,7 +142,7 @@ You have <?php echo $site->notifications_badge()?>  notifications
   
 
     </div>
-    <div class="panel-footer" id="e_msg"><a href="#">See All Messages</a></div>
+    <div class="panel-footer" id="e_msg"><a href="WIMessages.php">See All Messages</a></div>
     </div>
 </ul>
 </li>
@@ -161,7 +161,7 @@ You have <?php echo $site->notifications_badge()?>  notifications
   
 
     </div>
-    <div class="panel-footer" id="e_tasks"><a href="#">View all tasks</a></div>
+    <div class="panel-footer" id="e_tasks"><a href="WITasks.php">View all tasks</a></div>
     </div>
             </ul>
           </li>

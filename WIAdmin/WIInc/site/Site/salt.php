@@ -5,7 +5,7 @@
                       <h3>Password Salt</h3>
                    
                     
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                          <span class="help-block">
                             Please Note, change this will cause all current passwords NOT to work.<br />

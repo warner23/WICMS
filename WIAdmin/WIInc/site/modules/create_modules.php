@@ -24,11 +24,11 @@
 border:2px solid #0B85A1 !important;
 }
 
-#droppable1:after {
+#col12:after {
     border: 1px solid #DDDDDD;
     border-radius: 4px 0 4px 0;
     color: #9DA0A4;
-    content: "Container";
+    content: "Column 12";
     font-size: 12px;
     font-weight: bold;
     left: -1px;
@@ -98,6 +98,22 @@ min-height: 50px;
     /* height: 6px; */
 }
 
+.col1{
+  height: 60px;
+  background-color: blue; 
+  margin-left: 3px;
+}
+
+.column{
+margin-left: -50px;
+    height: 60px;
+}
+
+#col12{
+  height: 50px;
+      margin-top: 20px;
+}
+
 
 
      </style>
@@ -109,7 +125,7 @@ min-height: 50px;
               <h1> Create Custom Modules </h1>
               </div>
 
-               <div class="col-md-3">
+               <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
 
                             <div class="box box-primary">
                                 <div class="box-header">
@@ -143,20 +159,71 @@ min-height: 50px;
                                     <!-- the events -->
                                     <div id='external-events' class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
                                              <div id = "zxv" class = "ui-widget-content">
- <?php if( $mod->columns() == true){
-                                      echo '<ul id="draggable1" class="ui-widget-header">
-                                  <li id="col1" class="col">col-3, 3,3</li>
-                                  <li id="col2" class="col">col-4, 4, 4</li>
-                                  <li id="col4" class="col">col-9, 3</li>
-                                  <li id="col6" class="col">col-3, 9</li>
-                                  <li id="col8" class="col">col-4, 8</li>
-                                  <li id="col10" class="col">col-6, 6</li>
-                                <li id="col11" class="col">col-8, col-4</li>
-                                <li id="col12" class="col">col-12</li>
+                                              <?php if( $mod->columns() == true){
+                                      echo '
+                                      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ><span class="fa fa-th" title="Columns"></span>
+                                      <span class="badge" id="columns"></span></a>
+                                      <div class="dropdown-menu">
+                                        <div class="panel panel-success">
+                                          <div class="panel-heading"></div>
+
+                                          <div class="panel-body" id="displayColums">
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                            <ul class="column">
+                                                  
+                                                  <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col1"><a href="#" onclick="WIMod.Col12();">Column 12</a></li>
 
 
+                                            </ul>
+                                            <ul class="column">
+                                                  
+                                                  <li class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col1"><a href="#" onclick="WIMod.Col1();">Column 1</a></li>
 
-                                  </ul>
+                                                  <li class="col-xs-1 col-sm-10 col-md-10 col-lg-10 col1"><a href="#" onclick="WIMod.Col11();">Column 11</a></li>
+                                            </ul>
+
+                                            <ul class="column">
+                                                  
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col2();">Column 2</a></li>
+
+                                                  <li class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col1"><a href="#" onclick="WIMod.Col10();">Column 10</a></li>
+                                            </ul>
+
+                                            <ul class="column">
+                                                  
+                                                  <li class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col1"><a href="#" onclick="WIMod.Col6();">Column 6</a></li>
+
+                                                  <li class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col1"><a href="#" onclick="WIMod.Col6();">Column 6</a></li>
+                                            </ul>
+
+                                            <ul class="column">
+                                                  
+                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="#" onclick="WIMod.Col4();">Column 4</a></li>
+
+                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="#" onclick="WIMod.Col4();">Column 4</a></li>
+
+                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="#" onclick="WIMod.Col4();">Column 4</a></li>
+                                            </ul>
+
+                                             <ul class="column">
+                                                  
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+                                            </ul>
+                                          </div>
+                                           <img src="WIMedia/Img/Modules/bs_grid.jpg">
+                                          
+                                          </div>
+                                          <div class="panel-footer"></a></div>
+                                        </div>
+                                      </div>
+
+                                      </li>
                                       ';
                                       }else{
 
@@ -191,7 +258,7 @@ min-height: 50px;
                             </div><!-- /. box -->
                         </div><!-- /.col -->
 
-                         <div class="col-md-9">
+                         <div class="col-md-9 col-lg-9 col-xs-9 cl-sm-9">
                         Module Name<input type="text" name="name" placeholder="Mod Name">
                         <button id="create_mod" class="col-md-9" onclick="WIMod.createMod()">Save Mod</button>
                         <div id="result"></div>
@@ -211,7 +278,8 @@ min-height: 50px;
     $( "#draggable li" ).draggable({
   helper: 'clone',
    cursor: 'move',
-        revert: 'invalid',
+  revert: 'invalid',
+  hoverClass: "ui-state-active",
 });
 
         $( "#draggable1 li" ).draggable({
@@ -225,6 +293,52 @@ min-height: 50px;
 
 
             $( ".drop" ).droppable({
+              greedy: true,
+               accept: "#draggable1 li, #draggable li",
+               hoverClass: "dropping",
+               tolerance: "touch",
+               drop: function( event, ui ) {
+                var container = $(event.target).attr('id')
+      alert(container); 
+
+        $( this )
+            var mod_name = ui.draggable.attr('id');
+          alert(mod_name);
+        //.addClass( "ui-state-highlight" );
+
+
+           if (mod_name == "col1") {
+            WIMod.column(mod_name);
+           }else if (mod_name == "col2") {
+             WIMod.column(mod_name);
+           }else if (mod_name == "col4") {
+WIMod.column(mod_name);
+           }else if (mod_name == "col6") {
+WIMod.column(mod_name);
+           }else if (mod_name == "col8") {
+WIMod.column(mod_name);
+           }else if (mod_name == "col10") {
+WIMod.column(mod_name);
+           }else if (mod_name == "col11") {
+WIMod.column(mod_name);
+           }else if (mod_name == "col12") {
+WIMod.column(mod_name);
+           }
+           else {
+            WIMod.drop(mod_name);
+           }
+               }
+            });
+
+
+          
+         });
+
+
+                  $(function() {
+
+
+            $( ".column_drop" ).droppable({
               greedy: true,
                accept: "#draggable1 li, #draggable li",
                hoverClass: "dropping",

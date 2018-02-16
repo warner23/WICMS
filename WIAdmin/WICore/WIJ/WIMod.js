@@ -164,6 +164,21 @@ WIMod.dropping = function(mod_name, id){
 }
 
 
+WIMod.displayColums = function(){
+    
+}
+
+WIMod.Col12 = function(){
+    var col12 = ('<div class="col-sm-12 col-md-12 col-lg-12 column_drop " id="col12"></div>');
+         $("#droppable1").append(col12);
+
+}
+
+WIMod.Col11 = function(){
+    var col11 = ('<div class="col-sm-11 col-md-11 col-lg-11 column_drop" id="col11"></div>');
+         $("#droppable1").append(col12);
+
+}
 
 WIMod.column = function(mod_name){
     //alert("droppped");

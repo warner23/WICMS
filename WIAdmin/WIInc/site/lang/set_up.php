@@ -13,7 +13,7 @@
                        
                            <?php $web->viewLang(); ?>
 
-                              <div class="control-group form-group">
+                              <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="add_lang_btn" onclick="WILang.AddLangModal()" class="btn btn-success" >Add</button> 

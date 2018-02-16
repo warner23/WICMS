@@ -29,6 +29,6 @@ $topic        = new WITopic();
 $dashboard   = new WIDashboard();
 $adminChat   = new WIAdminChat();
 $Info       = new WIUserInfo();
-$debate  = new WIDebate();
+$pagination   = new WIPagination();
 
 ?>

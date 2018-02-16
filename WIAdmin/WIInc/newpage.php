@@ -12,6 +12,7 @@
                     </ol>
                 </section>
 
+
                 <!-- Main content -->
                 <section class="content">
                 <div class="row">
@@ -19,6 +20,9 @@
                         <div class="col-lg-12">
                             Page Name:<input type="text" name="newpage" id="page_title">
                         </div>
+
+                        <input type="checkbox" name="vehicle" value="menu">want your page in the main menu<br>
+
                          <div class="col-lg-12">
                              <button id="newpage" class="btn btn-success">Save</button> 
                         </div>

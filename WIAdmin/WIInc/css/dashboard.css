@@ -7170,7 +7170,7 @@ body > .header {
 /*Give content full width on xs screens*/
 @media screen and (max-width: 992px) {
   .right-side {
- margin-left: 30%;
+ margin-left: 24%;
   }
 }
 /*

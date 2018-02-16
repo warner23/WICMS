@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Database Class
+* WILang Class
 * Created by Warner Infinity
 * Author Jules Warner
 */

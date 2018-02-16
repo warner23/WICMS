@@ -348,7 +348,7 @@ $this->mod->getMod("profile_tabs");
 	}else{
 	//include_once 'WIInc/my_profile.php';
 
-		echo '
+		echo '<script src="WICore/WIJ/WIProfile.js" type="text/javascript"></script>
 <div class="container-fluid text-center">    
   <div class="row">
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 min_height profile_p">

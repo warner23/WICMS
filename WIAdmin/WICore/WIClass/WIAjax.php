@@ -585,6 +585,24 @@ switch ($action) {
         $site->VersionControl($_POST['version']);
         break;
 
+        case "ChangePageViewLang":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->viewTrans($_POST['page']);
+        break;
+
+        case "install_plugin":
+    onlyAdmin();
+        $plug = new WIPlugin();
+        $plug->Install($_POST['plug'], $_POST['plugin']);
+        break;
+
+        case "enable_plugin":
+    onlyAdmin();
+        $plug = new WIPlugin();
+        $plug->Activate($_POST['plug']);
+        break;
+
 
         default:
 

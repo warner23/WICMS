@@ -1,17 +1,40 @@
 <?php
-
+/**
+* WIModules Class
+* Created by Warner Infinity
+* Author Jules Warner
+*/
 class WIModules
 {
 
     public function __construct() {
         $this->WIdb = WIdb::getInstance();
+        $this->Page = new WIPagination();
     }
 
     public function InstallMods()
     {
+        
+         if(isset($_POST["page"])){
+        $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH); //filter number
+        if(!is_numeric($page_number)){die('Invalid page number!');} //incase of invalid page number
+    }else{
+        $page_number = 1; //if there's no page number, set it to 1
+    }
 
+        $item_per_page = 15;
+
+
+        
+        //get starting position to fetch the records
+        $page_position = (($page_number-1) * $item_per_page);
         $dir = dirname(dirname(dirname(__FILE__))) . '/WIModule/';
         $modules = scandir($dir);
+        $modTotal = count($modules);
+        //echo $modTotal;
+
+        //break records into pages
+        $total_pages = ceil($modTotal/$item_per_page);
 
         foreach ($modules as $module => $value) {
             
@@ -59,6 +82,16 @@ class WIModules
         }
 
         }
+
+          $Pagin = $this->Page->Pagination($item_per_page, $page_number, $modTotal, $total_pages);
+    //print_r($Pagination);
+
+
+         echo '<div align="center">';
+    /* We call the pagination function here to generate Pagination link for us. 
+    As you can see I have passed several parameters to the function. */
+    echo $Pagin;
+    echo '</div>';
     }
 
 
@@ -74,17 +107,21 @@ class WIModules
     }
 
         $item_per_page = 15;
-
+        $mod_type = "custom";
         $result = $this->WIdb->select(
-                    "SELECT * FROM `wi_mod`");
+                    "SELECT * FROM `wi_mod` WHERE mod_type =:mod_type",
+                     array(
+                       "mod_type" => $mod_type
+                ));
         $rows = count($result);
+
 
         //break records into pages
         $total_pages = ceil($rows/$item_per_page);
         
         //get starting position to fetch the records
         $page_position = (($page_number-1) * $item_per_page);
-        $mod_type = "custom";
+        
 
         $sql = "SELECT * FROM `wi_mod` WHERE mod_type =:mod_type ORDER BY `mod_id` ASC LIMIT :page, :item_per_page";
         $query = $this->WIdb->prepare($sql);
@@ -139,14 +176,14 @@ class WIModules
         }
         echo '</ul>';
 
-         $Pagination = WIModules::Pagination($item_per_page, $page_number, $rows, $total_pages);
+         $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages);
     //print_r($Pagination);
 
 
          echo '<div align="center">';
     /* We call the pagination function here to generate Pagination link for us. 
     As you can see I have passed several parameters to the function. */
-    echo $Pagination;
+    echo $Pagin;
     echo '</div>';
     }
 

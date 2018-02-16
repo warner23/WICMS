@@ -1,35 +1,45 @@
 <?php
 
 /**
-* session Class
+* Session Class
 * Created by Warner Infinity
 * Author Jules Warner
 */
 
 class WISession
 {
-	  /**
+      /**
      * Start session.
      */
     public static function startSession() 
     {
-        //         ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
-//         // ini_set('session.entropy_file', '/dev/urandom'); // better session id's
-// // ini_set('session.entropy_length', '512'); // and going overkill with entropy length for maximum security
+         ini_set('post_max_size', '64M');
+        ini_set('upload_max_filesize', '64M');
+ if(SESSION_USE_ONLY_COOKIES === "true"){
+        ini_set('session.use_only_cookies', SESSION_USE_ONLY_COOKIES);
+        }
 
-//         $cookieParams = session_get_cookie_params();
-//         session_set_cookie_params(
-//             $cookieParams["lifetime"], 
-//             $cookieParams["path"], 
-//             $cookieParams["domain"], 
-//             SESSION_SECURE, 
-//             SESSION_HTTP_ONLY
-//          );
-//         session_name('Debate');
+        if(SESSION_HTTP_ONLY === "true"){
+        ini_set( 'session.cookie_httponly', 1 );
+        }
+        
+        
+        if(SESSION_SECURE === "true"){
+        $cookieParams = session_get_cookie_params();
+        session_set_cookie_params(
+            $cookieParams["lifetime"], 
+            $cookieParams["path"], 
+            $cookieParams["domain"], 
+            SESSION_SECURE
+         );
+        }
 
         session_start();
-        //print_r($cookieParams);
 
+        if ( SESSION_REGENERATE_ID === "true"){
+            
+            session_regenerate_id(SESSION_REGENERATE_ID);   
+        }
     }
 
     public static function destroySession() {

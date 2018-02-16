@@ -130,3 +130,4 @@ define('DEFAULT_LANGUAGE', $default_lang);
 
 // VERSION 
 define('WICMS_VERSION', $version);
+

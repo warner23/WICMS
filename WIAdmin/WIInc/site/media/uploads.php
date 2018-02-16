@@ -66,6 +66,7 @@ width:100px;
 margin-left:10px;
 margin-right:5px;
 }
+
 .abort{
     background-color:#A8352F;
     -moz-border-radius:4px;

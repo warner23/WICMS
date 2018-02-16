@@ -6,10 +6,13 @@ class WIPlugin
 
 	public function __construct() {
         $this->WIdb = WIdb::getInstance();
+        $this->System  = new WISystem();
     }
 
     public function Activate($plug)
     {
+      
+
         $activated = "true";
     	//place into db
         $this->WIdb->insert('wi_plugin', array(
@@ -25,24 +28,25 @@ class WIPlugin
 
     }
 
-        public function Install($plug)
+        public function Install($plug, $plugin)
     {
+      require_once dirname(dirname(dirname(__FILE__))) . '/WIPlugin/' . $plug . '/Install/WICore/init.php';
+      $configs = require_once dirname(dirname(dirname(__FILE__))) . '/WIPlugin/' . $plug . '/Install/WICore/WIClass/WIConfig.php';
 
-        spl_autoload_register(function($plug)
-        {
-            require_once  dirname(dirname(__FILE__)) . 'WIPlugin/' . $plug . '.php';
-        });
+      //$plugin = $plug;
+      $plugin = new $plugin();
 
-        $plugin  = new $plug();
-        
+        $plugin->Install($configs, $plug);
+       
+        $msg = "Successfully Installed into database. You will be redirected momentarily";
 
+        $result = array(
+            "status"  => "success",
+            "msg"     => $msg,
+            "link"    => $configs['link2']
+        );
 
-
-
-
-
-
-        //place into menu
+        echo json_encode($result);
 
 
     }
@@ -63,8 +67,8 @@ class WIPlugin
         <div class="panel-heading">' . $value . '</div>
         <div class="panel-body">
         <input type="hidden" name="' . $value . '" class="btn-group-value" id="' . $value . '" value="'. WIPlugin::pluginToggle("activated",$plugin) . '" />
-             <button type="button" name="' . $value . '" value="false" id="' . $value . '-enabled"  class="btn">Enabled</button>
-                        <button type="button" name="' . $value . '" value="true" id="' . $value . '-disabled" class="btn btn-danger active" >Disabled</button>
+             <button type="button" name="' . $value . '" value="false" id="' . $value . '-enabled"  class="btn">Install</button>
+                        <button type="button" name="' . $value . '" value="true" id="' . $value . '-disabled" class="btn btn-danger active" >Uninstall</button>
         </div>
         <div class="panel-footer">
             
@@ -81,7 +85,7 @@ class WIPlugin
                        }
     $("#' . $value . '-enabled").click(function(){
         WIPlugin.Install("' . $value . '");
-        WIPlugin.enable("' . $value . '");
+        // WIPlugin.enable("' . $value . '");
         
     });
 
