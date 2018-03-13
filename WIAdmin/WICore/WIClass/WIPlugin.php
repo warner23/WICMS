@@ -32,11 +32,9 @@ class WIPlugin
     {
       require_once dirname(dirname(dirname(__FILE__))) . '/WIPlugin/' . $plug . '/Install/WICore/init.php';
       $configs = require_once dirname(dirname(dirname(__FILE__))) . '/WIPlugin/' . $plug . '/Install/WICore/WIClass/WIConfig.php';
-
-      //$plugin = $plug;
-      $plugin = new $plugin();
-
-        $plugin->Install($configs, $plug);
+        $pluginName = $plugin;
+        $WIPlug = new $pluginName();
+        $WIPlug->PluginInstall($configs, $plug);
        
         $msg = "Successfully Installed into database. You will be redirected momentarily";
 
@@ -66,7 +64,7 @@ class WIPlugin
         <div class="panel panel-info">
         <div class="panel-heading">' . $value . '</div>
         <div class="panel-body">
-        <input type="hidden" name="' . $value . '" class="btn-group-value" id="' . $value . '" value="'. WIPlugin::pluginToggle("activated",$plugin) . '" />
+        <input type="hidden" name="' . $value . '" class="btn-group-value" id="' . $value . '" value="'. WIPlugin::pluginToggle("Installed",$value) . '" />
              <button type="button" name="' . $value . '" value="false" id="' . $value . '-enabled"  class="btn">Install</button>
                         <button type="button" name="' . $value . '" value="true" id="' . $value . '-disabled" class="btn btn-danger active" >Uninstall</button>
         </div>
@@ -102,18 +100,22 @@ class WIPlugin
     }
 
 
-    public static function pluginToggle($column, $plug_id) 
+    public static function pluginToggle($column, $plugin) 
     {
         $WIdb = WIdb::getInstance();
 
-        $query = $WIdb->prepare('SELECT * FROM `wi_plugin` WHERE `plugin_id` = :mod_id');
-        $query->bindParam(':mod_id', $mod_id, PDO::PARAM_INT);
+        $query = $WIdb->prepare('SELECT * FROM `wi_plugin` WHERE `plugin` = :plugin');
+        $query->bindParam(':plugin', $plugin, PDO::PARAM_INT);
         $query->execute();
 
         $res = $query->fetch(PDO::FETCH_ASSOC);
 
+        if ($res[$column] != "") {
+            return $res[$column];
+        }else{
+            return false;
+        }
         
-        return $res[$column];
     }
 
 }

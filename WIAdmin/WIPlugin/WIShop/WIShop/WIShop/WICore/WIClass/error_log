@@ -1,0 +1,5 @@
+[07-Oct-2015 11:16:31 UTC] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/warner/public_html/TRM/WICore/WIClass/WIRegister.php on line 70
+[14-Oct-2015 23:36:29 UTC] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/warner/public_html/The River/WICore/WIClass/WIRegister.php on line 70
+[01-Mar-2017 01:04:09 UTC] PHP Fatal error:  Class 'WIShop' not found in /home/warner/public_html/multi_system/WIShop/WICore/WIClass/WIAjax.php on line 125
+[01-Mar-2017 01:04:10 UTC] PHP Fatal error:  Class 'WIShop' not found in /home/warner/public_html/multi_system/WIShop/WICore/WIClass/WIAjax.php on line 135
+[01-Mar-2017 01:04:10 UTC] PHP Fatal error:  Class 'WIShop' not found in /home/warner/public_html/multi_system/WIShop/WICore/WIClass/WIAjax.php on line 130

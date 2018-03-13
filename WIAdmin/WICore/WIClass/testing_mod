@@ -1,0 +1,30 @@
+foreach ($modules as $module => $value) {
+    		
+    	if ($value === '.' or $value === '..') continue;
+    	if (is_dir('WIModules/'.$value)) {
+        //code to use if directory
+    		 	echo '<div class="col-md-4">
+		<div class="panel panel-info">
+		<div class="panel-heading">' . $value . '</div>
+		<div class="panel-body">
+		<input type="hidden" name="' . $value . '" class="btn-group-value" id="" value="'. WISite::moduleToggle("WI_module_activation",$module) . '" />
+			 <button type="button" name="' . $value . '" value="false" id="' . $value . '"  class="btn">Enabled</button>
+                        <button type="button" name="' . $value . '" value="true" id="' . $value . '" class="btn btn-danger active" >Disabled</button>
+		</div>
+		<div class="panel-heading">
+			
+		</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	 var module = $("#' . $value . '").attr("value");
+                       if (module === "false"){
+                        $("#' . $value . '-disabled").removeClass("btn-success active")
+                        $("#gp-disabled").addClass("btn-danger active");
+                       }else if (module === "true"){
+                        $("#' . $value . '-disabled").removeClass("btn-danger active")
+                        $("#' . $value . '-enabled").addClass("btn-success active");
+                       }
+</script>';
+    		 }

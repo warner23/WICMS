@@ -11,6 +11,7 @@ class WISystem
     // Function to remove folders and files 
     public function rrmdir($dir) {
         if (is_dir($dir)) {
+
             $files = scandir($dir);
             foreach ($files as $file)
                 if ($file != "." && $file != "..") self::rrmdir("$dir/$file");
@@ -67,15 +68,19 @@ class WISystem
     // function used to copy full directory structure from source to target
 public function full_copy( $source, $target )
 {
+   // echo "sou ". $source;
+    //echo "tar ". $target;
     if ( is_dir( $source ) )
     {
+        //echo "dir";
         if(!file_exists($target)){
-
+            //echo "mk";
             mkdir( $target, 0777 );
         $d = dir( $source );
 
         while ( FALSE !== ( $entry = $d->read() ) )
         {
+            echo "entry";
             if ( $entry == '.' || $entry == '..' )
             {
                 continue;
@@ -93,11 +98,36 @@ public function full_copy( $source, $target )
         $d->close();
 
     } else {
-        
-    }
+        if(file_exists($target)){
+         mkdir( $target, 0777 );
+        $d = dir( $source );
+
+        while ( FALSE !== ( $entry = $d->read() ) )
+        {
+            //echo "entry";
+            if ( $entry == '.' || $entry == '..' )
+            {
+                continue;
+            }
+
+            $Entry = $source . '/' . $entry;           
+            if ( is_dir( $Entry ) )
+            {
+                self::full_copy( $Entry, $target . '/' . $entry );
+                continue;
+            }
+            copy( $Entry, $target . '/' . $entry );
+        }
+        //$fil = glob($target . "/shop*");
+
+             //print_r($fil);
         }
 
+        copy ( $source, $target );
+    }
+
         
+  }
 }
 
 

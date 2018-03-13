@@ -8,7 +8,7 @@ class WIBlog
         $this->Install = new WIInstall();
     }
 
-    public function Install($configs, $plug)
+    public function PluginInstall($configs, $plug)
     {
         $this->Install->AddPlugin($configs,$plug);
     	$this->Install->AddtoSideBar($configs, $plug);

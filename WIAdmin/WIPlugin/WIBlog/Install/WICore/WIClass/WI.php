@@ -6,4 +6,4 @@ include_once 'WIBlog.php';
 include_once 'WIInstall.php';
 
 
-$blog    = new WIBlog();
+//$blog    = new WIBlog();

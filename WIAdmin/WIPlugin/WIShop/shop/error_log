@@ -1,0 +1,42 @@
+[06-Feb-2018 16:41:56 America/Chicago] PHP Warning:  include_once(WICore/init.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 4
+[06-Feb-2018 16:41:56 America/Chicago] PHP Warning:  include_once(): Failed opening 'WICore/init.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 4
+[06-Feb-2018 16:41:56 America/Chicago] PHP Notice:  Undefined variable: admin in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 6
+[06-Feb-2018 16:41:56 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function isAdmin() on null in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php:6
+Stack trace:
+#0 {main}
+  thrown in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 6
+[06-Feb-2018 16:42:50 America/Chicago] PHP Warning:  include_once(WICore/init.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 4
+[06-Feb-2018 16:42:50 America/Chicago] PHP Warning:  include_once(): Failed opening 'WICore/init.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 4
+[06-Feb-2018 16:42:50 America/Chicago] PHP Notice:  Undefined variable: admin in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 6
+[06-Feb-2018 16:42:50 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function isAdmin() on null in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php:6
+Stack trace:
+#0 {main}
+  thrown in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_options.php on line 6
+[06-Feb-2018 16:46:15 America/Chicago] PHP Warning:  include_once(../../WICore/init.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 4
+[06-Feb-2018 16:46:15 America/Chicago] PHP Warning:  include_once(): Failed opening '../../WICore/init.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 4
+[06-Feb-2018 16:46:15 America/Chicago] PHP Notice:  Undefined variable: admin in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 6
+[06-Feb-2018 16:46:15 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function isAdmin() on null in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php:6
+Stack trace:
+#0 {main}
+  thrown in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 6
+[06-Feb-2018 16:47:18 America/Chicago] PHP Warning:  include_once(WICore/init.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/Blog.php on line 4
+[06-Feb-2018 16:47:18 America/Chicago] PHP Warning:  include_once(): Failed opening 'WICore/init.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/Blog.php on line 4
+[06-Feb-2018 16:47:18 America/Chicago] PHP Notice:  Undefined variable: admin in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/Blog.php on line 6
+[06-Feb-2018 16:47:18 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function isAdmin() on null in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/Blog.php:6
+Stack trace:
+#0 {main}
+  thrown in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/Blog.php on line 6
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(WIInc/WI_start_up.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 7
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/WI_start_up.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 7
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(WIInc/WI_header.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 8
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/WI_header.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 8
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(WIInc/sidebar.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 9
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/sidebar.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 9
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(WIInc/WIBlog_Options.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 10
+[06-Feb-2018 22:49:35 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/WIBlog_Options.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 10
+[06-Feb-2018 22:50:11 UTC] PHP Warning:  include_once(WIInc/site/WIBlog/set_up.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIInc/WIBlog_Options.php on line 40
+[06-Feb-2018 22:50:11 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/site/WIBlog/set_up.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIInc/WIBlog_Options.php on line 40
+[06-Feb-2018 22:50:11 UTC] PHP Warning:  include_once(WIInc/site/WIBlog/permissions.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIInc/WIBlog_Options.php on line 43
+[06-Feb-2018 22:50:11 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/site/WIBlog/permissions.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIInc/WIBlog_Options.php on line 43
+[06-Feb-2018 22:50:32 UTC] PHP Warning:  include_once(WIInc/WIBlog_Options.php): failed to open stream: No such file or directory in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 10
+[06-Feb-2018 22:50:32 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/WIBlog_Options.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home8/wicms/public_html/WICMS_showcase/WIAdmin/WIPlugin/WIBlog/blog/WIBlog_Options.php on line 10

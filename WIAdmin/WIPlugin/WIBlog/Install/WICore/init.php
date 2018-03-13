@@ -12,6 +12,6 @@ spl_autoload_register(function($class)
 	require_once 'WIClass/' . $class . '.php';
 });
 
-$blog         = new WIBlog();
+//$blog         = new WIBlog();
 $install      = new WIInstall()
 ?>

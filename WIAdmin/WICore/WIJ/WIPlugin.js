@@ -37,7 +37,7 @@ WIPlugin.Install = function(plugin){
             var res = JSON.parse(result);
 
              if( res.status === 'success' ){
-               window.location = res.link;
+              window.location = res.link;
            }
     	}
     });
