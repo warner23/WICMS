@@ -1,470 +1,173 @@
-<?php 
-// french
-return array(
-
-	//login, register and password reset
-
-	"email" => "Email",
-
-	"login" => "S'identifier",
-
-	"username" => "Nom d'utilisateur",
-
-	"password" => "Mot de passe",
-
-	"male"   => "Mâle",
-
-	"female"   => "Femelle",
-
-	"your_email" => "Votre Email",
-
-	"login_with" => "
-Connectez-vous avec",
-
-	"email_confirmed" => "Email confirmé",
-
-	"create_account" => "Créer un compte",
-
-	"forgot_password" => "
-Mot de passe oublié?",
-
-	"repeat_password" => "
-Répéter le mot de passe",
-
-	"reset_password" => "
-réinitialiser le mot de passe",
-
-	"email_confirmation" => "confirmation de l'émail",
-
-	"you_can_login_now" => "
-Vous pouvez <a href='{link}'> connecter </a> maintenant.",
-
-	"user_with_key_doesnt_exist" => "Un utilisateur avec cette clé n'existe pas dans notre base de données.",
-
-	"gender" => "Le genre
-",
-
-	"dob" => "DOB",
-
-
-	//Months
-	"january"    =>  "janvier",
-
-	"february"   => "février",
-
-	"march"    =>  "Mars",
-
-	"april"    => "avril",
-
-	"may"     => "Mai",
-
-	"june"    => "juin",
-
-	"july"  =>  "juillet",
-
-	"august"  => "août",
-
-	"sept"   => "septembre",
-
-	"oct"   => "octobre",
-
-	"nov"  => "novembre",
-
-	"dec"    => "décembre",
-
-    /// Panel
-    "welcome" => "Bienvenue",
-
-    "TO"     => "à",
-
-    "site_name" => "taylor de",
-
-
-    // panel mini admin
-    "panel_mini_admin"    => "
-Mini panneau d'administration",
-
-    "view_profile_page"   =>  "
-Voir le profil de la page",
-
-    "log_off"       =>  "
-Se déconnecter",
-
-    "admin_panel"   => "
-panneau d'administration",
-
-    // member panel
-
-    "member_panel" => "Panel de membres",
-
-
-    "HELLO"  => "Bonjour",
-
-
-
-
-
-
-	// navigation menu
-
-	"home" => "Accueil",
-
-	"users" => "Utilisateurs",
-
-	"my_profile" => "
-Mon profil",
-
-	"user_roles" => "
-Rôles de l'utilisateur",
-
-	"index"   => "Indice",
-
-	"contact_us" => "
-Contactez nous",
-
-	"services"   => "
-Prestations de service",
-
-	"support_us"   => "
-Soutenez-nous",
-
-	"forum"  => "Forum",
-
-	"shop"  => "Boutique",
-
-	"cafe"  => "Café",
-
-	"submit"  => "Soumettre",
-
-	"about_us"   => "À propos de nous",
-
-	"info"    => "Info",
-
-	
-	// index.php
-
-"welcome_"  => "
-Bienvenue à",
-
-	"main_title" => "
-Ceci est conçu comme un système CMS libre, juste parce que j'aime créer des choses, un backend de l'interface utilisateur simplifiée, construit pour la sécurité haut de gamme, la base de données conduit, tout ce dont vous avez besoin dans un joli paquet pour construire votre propre site. <br />
-Construire pour les codeurs et les non codeurs de même, des tonnes de plugins, thèmes et options.",
-
-	"community"   =>  "Communauté",   
-
-    "learn"    =>  "WI Communauté pour tous ceux qui aime construire des sites Web.",
-
-    "software"   => "Progiciels",
-
-    "package"   => "Thèmes, plugins, applications, packages personnalisés",
-
-    "it_title"  =>  "
-logiciels personnalisés pour le monde commercial.",
-
-     "it"  =>  "IL",
-
-
-    "your_role"  => "
-Tu es un",
-
-    "view_details"  => "
-Voir les détails",
-
-    "footer"   => "
-Fabriqué et développé par WI: Warner-Infinity",
-
-    "copyright"   => "
-droits d'auteur",
-
-    // about us
-    "about_us" => "About Us",
-
-    "our_history" => "Notre histoire",
-
-    "our_mission" =>  "Notre mission",
-
-    "mission" =>  "Pour être en mesure de travailler en tant que codeur",
-
-    "live_chat" =>  "Live Chat",
-
-"learner" =>  "Apprentissage",
-
-"leanring" =>  "Langues Je suis dans le brouillard de l'apprentissage:",
-
-    "history"  =>  "
-Il y a 10 ans, je commencé à coder, très peu de temps, je me sens dans l'amour avec après le codage, je suis totalement autodidacte, j'ai appris à récurer les tutoriels nets et des informations générales, et de regarder des vidéos YouTube et parfois acheter un script, et il part",
-
-    "whatwedo" => "Ce que nous faisons",
-
-    "skills" => "Nos compétences",
-
-    "about_main" => " ",
-
-
-    // cafe and shop
-
-	"TheRiverCommunityShop" => "The River Manchester Community Shop",
-
-	"opening_sent" => "Our busy shop attracts shoppers from the local community and further afield, in search of good quality low-cost items, from furniture to clothes, fridges to DVDs and more. We have new stock in all the time, thanks to the generosity of our supporters all over Manchester. ",
-
-	"shop_info" => "These are carefully checked and priced by our team of volunteer sorters to represent excellent quality, good value for our customers and a realistic charge, before being attractively displayed in our retail area. You can also buy special and designer items from our Online Shop or our eBay page at bargain prices.
-
-If you find a large item to your liking in the shop or online, you can pay for it and take advantage of our low-cost van delivery service to bring it to your door at a time convenient for you.",
-
-	"shop_sentence" => "If you are on the lookout for particular items that you need or want, join our Wish List by emailing therivermanchesterwish@gmail.com or calling into the shop, or phone us on 0161 1371 5522. As new donations come in, we constantly check this list to ensure that we meet your wishes as soon as we can and let you know.
-",
-
-	"cafe_sentence" => "Coffee and cake anyone? Relax from shopping with something from our range of light hot and cold snacks and drinks and daily specials – you do the chilling, while our friendly staff provide the warmth!
-
-The Cafe also contains our IT Zone where you can access your emails, browse the internet or print and photocopy documents at very reasonable cost. We are also now running free IT courses for the local community – please ring or email us for more details.
-",
-
-	// support page 
-
-	"supporter" => "Becoming a Support",
-
-	"thanks" => "A big <strong>thank you</strong> to our café and shop customers for their continuing support. Did you know that The River Manchester also welcomes support in a variety of other ways?",
-
-	"support" => "–	Become a Member
-Help The River Manchester maintain a secure financial footing by making a regular annual or monthly subscription to the charity to help us continue and expand our work in some of the exciting ways we are currently envisaging. We will keep you in touch with events and new developments via a quarterly Newsletter, and also offer you a 'Member's discount' of 10% off cafe or shop purchases.
-",
-
-	"shoping" => "–	Online Shopping. Did you know that you can get your favourite online retailers to donate to the charity at no cost to you? First go to easyfundraising.org.uk and create a free account. After that, each time you buy online, first log in to your easyfundraising account, click on the 'Causes' section and type in The River Manchester and press 'Support', then shop as you usually do. The retailer will automatically register your charity choice and make a donation to us. Simple – and it makes a real difference to people’s lives!",
-
-	"donor" => "–	Become a donor
-If you are unable to make a regular commitment to support The River , you can still make cash donations when it suits you via BACS secure bank transfer, via Paypal, posting a cheque or even bringing cash into our shop, as some of our current supporters do!
-
-OR donate pre-loved furniture, white goods, household and electrical items, clothes, books, toys and games (though no soft toys please!) and DVDs to help us keep our busy shop stocked. The local community values us as a source of low-cost quality items and we keep a 'wish list' of items that customers and clients are on the look-out for – help make someone's wish come true!
-",
-
-	"fund" => "–	Become a fund-raiser
-Use your own creativity, perhaps with some advice from us, to devise and host a money-raising event for The River Manchester or offer us the opportunity to make a presentation to your playgroup, PTA, or Rotary branch.
-",
-
-	"volunteer" => "–	Become a Volunteer
-You could be retired and looking for a fulfilling activity; unemployed and looking to increase your skills and employment prospects; or in work and taking part in your employer's Corporate Social Responsibility activities.
-Bring your time, expertise or willingness to learn, and we can match you with a task from the range of activities in our shop, cafe, office, fund-raising or community outreach services. It could be ongoing work or a one-off project. It could be anything from mentoring volunteers in training; to working in the shop and helping customers; or decorating and gardening for someone in the community needing that support.
-",
-
-
-	// profile.php
-
-	"phone" => "Téléphone",
-
-    "note" => "Remarque",
-
-	"update" => "Mettre à jour",
-
-	"address" => "Adresse",
-
-	"first_name" => "Prénom",
-
-	"last_name" => "Nom de famille",
-
-	"old_password" => "
-ancien mot de passe",
-
-	"new_password" => "
-nouveau mot de passe",
-
-	"your_details" => "Vos détails",
-
-	"change_password" => "Changer le mot de passe",
-
-	"confirm_new_password" => "Confirmer le nouveau mot de passe",
-
-    "to_change_email_username" => "
-Si vous voulez changer votre nom d'utilisateur, email ou vous avez déposée via réseau social et que vous voulez changer votre mot de passe maintenant, s'il vous plaît contacter l'administrateur.",
-
-	// passwordreset.php
-
-	"password_reset" => "Réinitialiser le mot de passe",
-
-	"reset_password" => "réinitialiser le mot de passe",
-
-
-	// user_roles.php
-
-	"add" => "Ajouter",
-
-	"action" => "Action",
-
-	"role_name" => "Nom de rôle",
-
-	"users_with_role" => "# d'utilisateurs avec ce rôle",
-
-
-	// users.php
-
-	"ok" => "D'accord",
-
-	"ban" => "Interdire",
-
-	"yes" => "Oui",
-
-	"no"  => "Non",
-
-    "edit" => "modifier",
-
-    "next" => "Prochain",
-
-    "previous" => "précédent",
-
-	"unban" => "unban",
-
-	"cancel" => "Annuler",
-
-	"delete" => "Effacer",
-
-	"details" => "Détails",
-
-	"loading" => "Chargement...",
-
-	"register_date" => "Inscrivez date",
-	
-	"last_login" => "Dernière connexion",
-
-	"confirmed" => "Confirmé",
-
-	"select_role" => "
-Sélectionner un rôle",
-
-	"change_role" => "Changer le rôle",
-
-	"add_user"	  => "
-Ajouter un utilisateur",
-
-	"pick_user_role" => "Choisissez Rôle de l'utilisateur",
-
-    "never_logged_in" => "Jamais connecté",
-
-    // users table
-
-    "records_per_page" => "records per page",
-
-    "nothing_found"    => "Nothing found - sorry",
-
-    "no_data_in_table" => "No users in database",
-
-    "showing" => "Showing",
-
-    "to" => "to",
-
-    "of" => "of",
-
-    "records" => "records",
-
-    "filtered_from" => "filtered from",
-
-    "total_records" => "total records",
-
-    "search" => "Search",
-
-
-	// misc
-
-	"at" => "at",
-
-	"logout" => "Logout",
-
-	"welcome" => "Welcome",
-
-	"copyright_by" => "Copyright by",
-
-
-	// validation messages
-
-	"user_banned" => "This user account is banned by administrator!",
-
-	"field_required" => "Field cannot be empty!",
-
-	"role_taken" => "Role already exist.",
-
-	"email_required" => "Email is required.",
-
-	"email_wrong_format" => "Please enter valid email.",
-
-	"email_not_exist" => "This email doesn't exist in our database.",
-
-	"email_taken" => "User with this email is already registred.",
-
-	"dragon_username_required" => "Требуется ввести пользователя.",
-
-	"username_taken" => "Пользователь с таким именем уже существует.",
-
-	"dragon_name_taken" => "Пользователь с таким именем уже существует.",
-
-	"user_not_confirmed" => "Please confirm your email first.",
-
-	"password_required" => "Password is required.",
-
-	"wrong_username_password" => "Wrong username/password combination.",
-
-	"passwords_dont_match" => "Passwords don't match.",
-
-	"wrong_old_password" => "Wrong old password!",
-
-	"wrong_sum" => "Wrong sum. Please check it again.",
-
-	"brute_force" => "You exceeded maximum attempts limit for today. Try again tomorrow.",
-
-	"success_registration_with_confirm" =>  "Registration successful. Please check your email.",
-
-	"success_registration_no_confirm" => "Registration successful. You can log in now.",
-
-	"user_added_successfully" => "User added successfully.",
-
-	"user_updated_successfully" => "User updated successfully.",
-
-    "user_dont_exist" => "This user doesn't exist.",
-
-    "leave_blank" => "Leave blank if you don't want to change it.",
-
-    "invalid_password_reset_key" => "Password reset key is invalid or expired",
-
-    "password_length" => "Password must be at least 6 characters long.",
-
-    "error_writing_to_db" => "Error writing to database. Please try again.",
-
-	// javascript
-
-	"posting" => "Affectation...",
-
-	"logging_in" => "
-loging dans...",
-
-	"resetting" => "Réinitialisation...",
-
-	"password_updated_successfully" => "
-Mot de passe mis à jour avec succès.
-",
-
-	"password_updated_successfully_login" => "
-Mot de passe mis à jour avec succès. Vous pouvez <a href='login.php'>maintenant </a>.",
-
-	"working" => "Travailler...",
-
-	"password_reset_email_sent" => "
-Mot de passe reset email envoyé. Vérifiez votre boîte de réception (et spam) dossier.",
-
-	"message_couldn_be_sent" => "
-Le message n'a pas pu être envoyé! Veuillez réessayer.",
-
-	"updating" => "réactualisation...",
-
-	"details_updated" => "
-Détails mis à jour avec succès.",
-
-	"error_updating_db" => "
-Erreur lors de la mise à jour la base de données. Veuillez réessayer.",
-
-	"are_you_sure" => "Êtes-vous sûr?",
-
-	"creating_account" => "
-acount Création...",
-
-	"usergroup" =>  "
-Groupe d'utilisateurs",
-
-
-);
+<?php
+(32, 'fr', 'panel_mini_admin', 'Admin Mini Panel'),
+
+(33, 'fr', 'view_profile_page', 'Voir la page de profil'),
+(34, 'fr', 'log_off', 'Déconnexion'),
+(35, 'fr', 'admin_panel', 'Panneau d\'administration'),
+(36, 'fr', 'member_panel', 'panel des membres'),
+(37, 'fr', 'bonjour', 'bonjour'),
+(38, 'fr', 'my_profile', 'Mon profil'),
+(39, 'fr', 'user_roles', 'User Roles'),
+(40, 'fr', 'index', 'Index'),
+(41, 'fr', 'contact_us', 'Contactez-nous'),
+(42, 'fr', 'services', 'services'),
+(43, 'fr', 'support_us', 'Soutfrez-nous'),
+(44, 'fr', 'forum', 'Forum'),
+(45, 'fr', 'café', 'Café'),
+(46, 'fr', 'submit', 'Submit'),
+(47, 'fr', 'about_us', 'A propos de nous'),
+(48, 'fr', 'faq', 'FAQ'),
+(49, 'fr', 'frifrding', 'Suggérer à un ami'),
+(50, 'fr', 'welcome_', 'Bifrvfrue à'),
+(51, 'fr', 'password_reset', 'Réinitialisation du mot de passe'),
+(52, 'fr', 'reset_password', 'Réinitialiser le mot de passe'),
+(53, 'fr', 'téléphone', 'Téléphone'),
+(54, 'fr', 'note', 'Note'),
+(55, 'fr', 'mise à jour', 'Mise à jour'),
+(56, 'fr', 'adresse', 'Adresse'),
+(57, 'fr', 'first_name', 'Prénom'),
+(58, 'fr', 'last_name', 'Last Name'),
+(59, 'fr', 'old_password', 'Ancifr mot de passe'),
+(60, 'fr', 'new_password', 'Nouveau mot de passe'),
+(61, 'fr', 'vos_détails', 'Détails de la visite'),
+(62, 'fr', 'change_password', 'Changer le mot de passe'),
+(63, 'fr', 'confirm_new_password', 'Confirmer le nouveau mot de passe'),
+(64, 'fr', 'to_change_email_username', 'Si vous souhaitez modifier votre nom d\'utilisateur, votre adresse e-mail ou si vous souhaitez vous frregistrer via le réseau social, veuillez contacter l\'administrateur.'),
+(65, 'fr', 'ajouter', 'Ajouter'),
+(66, 'fr', 'ban', 'Ban'),
+(67, 'fr', 'oui', 'oui'),
+(68, 'fr', 'non', 'non'),
+(69, 'fr', 'edit', 'Edit'),
+(70, 'fr', 'next', 'Next'),
+(71, 'fr', 'précédfrt', 'Précédfrt'),
+(72, 'fr', 'unban', 'Unban'),
+(73, 'fr', 'annuler', 'Annuler'),
+(74, 'fr', 'supprimer', 'Supprimer'),
+(75, 'fr', 'détails', 'Détails'),
+(76, 'fr', 'chargemfrt', 'chargemfrt ...'),
+(77, 'fr', 'nom_rôle', 'Nom du rôle'),
+(78, 'fr', 'user_with_role', 'nombre d\'utilisateurs ayant ce rôle'),
+(79, 'fr', 'user_banned', 'Ce compte utilisateur est banni par l\'administrateur!'),
+(80, 'fr', 'field_required', 'Le champ ne peut pas être vide!'),
+(81, 'fr', 'role_takfr', 'Rôle existe déjà'),
+(82, 'fr', 'email_required', 'Email est requis'),
+(83, 'fr', 'email_wring_format', 'Veuillez frtrer un email valide.'),
+(84, 'fr', 'email_not_exist', 'Cet e-mail n\'existe pas dans notre base de données'),
+(85, 'fr', 'email_takfr', 'L\'utilisateur avec cet email est déjà frregistré.'),
+(86, 'fr', 'username_takfr', 'Ce nom d\'utilisateur est utilisé par un autre membre.'),
+(87, 'fr', 'user_not_confirmed', 'Veuillez d\'abord confirmer votre adresse e-mail.'),
+(88, 'fr', 'password_required', 'Mot de passe requis'),
+(89, 'fr', 'mot de passe_noeud_utilisateur', 'Combinaison nom d\'utilisateur / mot de passe incorrect.'),
+(90, 'fr', 'passwords_dont_match', 'Les mots de passe ne correspondfrt pas'),
+(91, 'fr', 'mot de passe incorrect', 'Ancifr mot de passe incorrect'),
+(92, 'fr', 'faux_sum', 'Mauvaise somme. Veuillez la vérifier à nouveau.'),
+(93, 'fr', 'brute_force', 'Vous avez dépassé la limite des tfrtatives maximum pour aujourd\'hui. Réessayez demain.'),
+(94, 'fr', 'success_registration_with_confirm', 'frregistremfrt réussi. Veuillez vérifier votre adresse e-mail.'),
+(95, 'fr', 'success_registration_no_confirm', 'frregistremfrt réussi, vous pouvez vous connecter maintfrant.'),
+(96, 'fr', 'user_added_successfully', 'Utilisateur ajouté avec succès.'),
+
+(97, 'fr', 'user_updated_successfully', 'Utilisateur mis à jour avec succès.'),
+(98, 'fr', 'user_dont_exist', 'Cet utilisateur n\'existe pas.'),
+(99, 'fr', 'leave_blank', 'Laissez vide si vous ne voulez pas le changer.'),
+(100, 'fr', 'invalid_password_reset_key', 'La clé de réinitialisation du mot de passe est invalide ou expirée'),
+(101, 'fr', 'password_lfrgth', 'Le mot de passe doit comporter au moins 6 caractères.'),
+(102, 'fr', 'error_writing_to_db', 'Erreur d\'écriture dans la base de données. Veuillez réessayer.'),
+(103, 'fr', 'posting', 'Posting ...'),
+(104, 'fr', 'réinitialisation', 'réinitialisation ...'),
+(105, 'fr', 'password_updated_successfully', 'Mot de passe mis à jour avec succès.'),
+(106, 'fr', 'password_updated_successfully_login', 'Mot de passe mis à jour avec succès. Vous pouvez <a href=''login.php''> vous connecter maintfrant </a>.'),
+(107, 'fr', 'password_reset_email_sfrt', 'Email de réinitialisation du mot de passe frvoyé. Vérifiez votre dossier de boîte de réception (et spam).'),
+(108, 'fr', 'message_couldn_be_sfrt', 'Le message n\'a pas pu être frvoyé! Veuillez réessayer.'),
+(109, 'fr', 'mise à jour', 'Mise à jour ...'),
+
+(110, 'fr', 'details_updated', 'Détails mis à jour avec succès.'),
+(111, 'fr', 'are_you_sure', 'Êtes-vous sûr'),
+(112, 'fr', 'creation_account', 'Créer un compte ...'),
+(113, 'fr', 'groupe d'utilisateurs', 'Groupe d'utilisateurs'),
+(114, 'fr', 'at', 'at'),
+(115, 'fr', 'déconnexion', 'Déconnexion'),
+(116, 'fr', 'copyright_by', 'Copyright by'),
+(117, 'fr', 'recherche', 'Recherche'),
+(118, 'fr', 'total_records', 'total records'),
+(119, 'fr', 'filtered_from', 'Filtré de'),
+(120, 'fr', 'records', 'Records'),
+(121, 'fr', 'de', 'de'),
+(122, 'fr', 'to', 'to'),
+(123, 'fr', 'main_title', 'Ceci est conçu comme un système CMS GRATUIT, simplemfrt parce que j\'aime créer des choses, un backfrd UI simplifié, construit pour une sécurité haut de gamme, base de données, tout ce dont vous avez besoin. pour construire votre propre site web. '),
+(124, 'fr', 'communauté', 'Communauté'),
+(125, 'fr', 'apprfrdre', 'Communauté WI pour tous ceux qui aimfrt construire des sites Web.'),
+(126, 'fr', 'logiciel', 'Logiciels'),
+(127, 'fr', 'paquet', 'Thèmes, plugins, applications, paquets personnalisés, et bifr plus frcore.'),
+(128, 'fr', 'it_title', 'Logiciels personnalisés pour le monde commercial'),
+
+(129, 'fr', 'it', 'I.T'),
+(171, 'fr', 'currfrt_topics', 'voir les sujets fr cours'),
+(172, 'fr', 'ok', 'Ok'),
+(173, 'fr', 'change_pic', 'Changer de photo'),
+
+(174, 'fr', 'bio', 'Bio'),
+(175, 'fr', 'frregistrer', 'Sauvegarder'),
+(176, 'fr', 'emplacemfrt_utilisateur', 'Emplacemfrt de l\'utilisateur'),
+(177, 'fr', 'social_info', 'Social Info'),
+
+(178, 'fr', 'ami', 'Amis'),
+(179, 'fr', 'profile_wall', 'Mur de profil'),
+(180, 'fr', 'mess', 'Messages'),
+(181, 'fr', 'admins', 'administrateurs'),
+
+(182, 'fr', 'logs', 'Logs'),
+(184, 'fr', 'montrer', 'Montrer ...'),
+(185, 'fr', 'rifr trouvé', 'Rifr trouvé - désolé'),
+(186, 'fr', 'never_logged_in', 'Never Logged In'),
+(187, 'fr', 'select_role', 'Sélectionner un rôle'),
+(188, 'fr', 'confirmé', 'Confirmé'),
+(189, 'fr', 'last_login', 'Dernière connexion'),
+(190, 'fr', 'compétfrces', 'Nos compétfrces'),
+(191, 'fr', 'whatwedo', 'Ce que nous faisons'),
+(356, 'fr', 'trans_lang', 'Lang'),
+(357, 'fr', 'lang_keyword', 'Mot-clé'),
+(358, 'fr', 'lang_trans', 'Traduction'),
+(359, 'fr', 'successful_updated_site_settings', 'Paramètres du site avec succès mis à jour'),
+(360, 'fr', 'Pick_Category', 'Choisir une catégorie'),
+(361, 'fr', 'Pick_Brand', 'Choisir une marque'),
+(362, 'fr', 'Change_cat', 'Changer de catégorie'),
+(363, 'fr', 'marque', 'marque'),
+(364, 'fr', 'Catégorie', 'Catégorie'),
+(365, 'fr', 'product_name', 'Produce Name'),
+(366, 'fr', 'product_desc', 'Description du produit'),
+(367, 'fr', 'product_price', 'Prix du produit'),
+(368, 'fr', 'product_image', 'Image du produit'),
+(369, 'fr', 'edit_css', 'Modifier CSS'),
+(370, 'fr', 'edit_meta', 'Modifier le méta'),
+(371, 'fr', 'edit_css_href', 'Href'),
+(372, 'fr', 'meta_name', 'Meta Name'),
+(373, 'fr', 'meta_contfrt', 'Meta Contfrt'),
+(374, 'fr', 'meta_author', 'Meta Author'),
+(375, 'fr', 'add_meta', 'Ajouter Meta'),
+
+(376, 'fr', 'add_trans', 'Ajouter une traduction'),
+(377, 'fr', 'add_lang', 'Ajouter une langue'),
+(378, 'fr', 'nom_css', 'Ajouter un CSS'),
+(379, 'fr', 'admins', 'administrateurs'),
+(380, 'fr', 'logs', 'Logs'),
+(381, 'fr', 'add_todo', 'Ajouter à faire'),
+(382, 'fr', 'ToDoItem', 'faire l\'objet'),
+
+(383, 'fr', 'choisir', 'Veuillez choisir une option'),
+(384, 'fr', 'Media_Lib', 'WIMedia Library'),
+(385, 'fr', 'upload_logo', 'Télécharger le logo'),
+(386, 'fr', 'add_lang', 'Ajouter une langue'),
+(387, 'fr', 'pays', 'nom du pays'),
+(388, 'fr', 'code_pays', 'code de pays'),
+(389, 'fr', 'change_lang', 'Change Lang'),
+(390, 'fr', 'frregistrer', 'Sauvegarder'),
+(391, 'fr', 'mise à jour', 'mise à jour'),
+(392, 'fr', 'href', 'Href'),
+(393, 'fr', 'edit_meta', 'Modifier le méta'),
+(394, 'fr', 'meta_contfrt', 'Meta Contfrt'),
+(395, 'fr', 'meta_name', 'Meta_Name'),
+(396, 'fr', 'meta_author', 'Meta Author'),
+(397, 'fr', 'edit_css', 'Modifier CSS'),
+(398, 'fr', 'edit_js', 'Modifier JS'),
+
+?>

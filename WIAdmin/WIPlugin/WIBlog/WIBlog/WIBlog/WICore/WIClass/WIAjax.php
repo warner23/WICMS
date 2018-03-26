@@ -163,12 +163,34 @@ switch ($action) {
 
         case "postimage":
         $blog = new WIBlog();
-        $blog->blogPostImage($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['blog_post'], $_POST['type'], $_POST['href'], $_POST['user'], $_POST['button_name'], $_POST['image']);
+        $blog->blogPostImage($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['blog_post'], $_POST['type'], $_POST['cat_id'], $_POST['user'], $_POST['Image']);
+        break;
+
+        case "postslider":
+        $blog = new WIBlog();
+        $blog->blogPostSlider($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['blog_post'], $_POST['type'], $_POST['cat_id'], $_POST['user'], $_POST['Image0'], $_POST['Image1'], $_POST['Image2'], $_POST['caption'], $_POST['caption1'], $_POST['caption2']);
+        break;
+
+        case "postaudio":
+        $blog = new WIBlog();
+        $blog->blogPostAudio($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['blog_post'], $_POST['type'], $_POST['cat_id'], $_POST['user'], $_POST['audio']);
         break;
 
         case "PostVideo":
         $blog = new WIBlog();
-        $blog->blogPostVideo($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['blog_post'], $_POST['type'], $_POST['href'], $_POST['user'], $_POST['button_name'], $_POST['video']);
+        $blog->blogPostVideo($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['blog_post'], $_POST['type'], $_POST['user'],$_POST['cat_id'], $_POST['video']);
+        break;
+
+        case "youtube":
+        $blog = new WIBlog();
+        $blog->YoutubeMedia($_POST['day'], $_POST['month'], $_POST['post_title'], $_POST['ytlink'], $_POST['blog_post'], $_POST['type'], $_POST['user'],$_POST['cat_id']);
+        break;
+
+        case "userRole":
+        onlyAdmin();
+
+        $user = new WIUser(WISession::get('user_id'));
+        echo json_encode($user->getRole());
         break;
 
 	

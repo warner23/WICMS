@@ -175,6 +175,24 @@ class WIInstall
 
     }
 
+    public function productCheck($product)
+    {
+      $sql = "SELECT * FROM `wi_products` WHERE `product_selector`=:title";
+
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':title', $product, PDO::PARAM_STR);
+      $query->execute();
+
+      $result = $query->fetch();
+      //print_r($result);
+      if( count($result) > 1){
+        return "1";
+      }else{
+        return "0";
+      }
+
+    }
+
     public function AddPlugin($configs, $plug)
     {
 
@@ -183,11 +201,13 @@ class WIInstall
       if ($pluginCheck === "0") {
         
               $activated = "false";
+              $Installed = "true";
         //echo "plugin" .$plug;
         // add plugin into db plugin
         $this->WIdb->insert('wi_plugin', array(
             "plugin"     => $plug,
-            "activated"  => $activated
+            "activated"  => $activated,
+            "Installed"  => $Installed
            
         ));
 
@@ -315,6 +335,30 @@ CREATE TABLE IF NOT EXISTS `wi_recommended` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE IF NOT EXISTS `wi_customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `address_line_1` varchar(255) NOT NULL,
+  `address_line_2` varchar(255) NOT NULL,
+  `delivery_method` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+
+CREATE TABLE IF NOT EXISTS `wi_billing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `card_type` varchar(255) NOT NULL,
+  `card_name` varchar(255) NOT NULL,
+  `card_number` varchar(255) NOT NULL,
+  `card_expire` varchar(255) NOT NULL,
+  `card_valid` varchar(255) NOT NULL,
+  `payment_method` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
 ";
 
         $query = $this->WIdb->prepare($sql);
@@ -342,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `wi_recommended` (
         public function InstallBrands($configs, $plug, $brands)
     {
       foreach ($brands as $brand) {
-      $branding = self::CatCheck($brand);
+      $branding = self::brandCheck($brand);
 
       if ($branding === "0") {
         // add plugin into db plugin
@@ -356,52 +400,23 @@ CREATE TABLE IF NOT EXISTS `wi_recommended` (
             
     }
 
-    public function InstallProducts($configs, $plug, $products)
+    public function InstallProducts($configs, $plug, $products, $shopData)
     {
-      foreach ($brands as $brand) {
-      $branding = self::CatCheck($brand);
+            foreach ($products as $product) {
+      $producting = self::productCheck($product);
 
-      if ($branding === "0") {
-        // add plugin into db plugin
-        $this->WIdb->insert('wi_products', array(
-            "title"  => $brand
-           
-        ));
+      if ($producting === "0") {
+       // $productData =array_combine($products, $shopData);
+        //echo $product;
+        //var_dump($shopData[$product]);
+
+        $this->WIdb->insert('wi_products',$shopData[$product]);
 
       }
       }
             
     }
 
-    /*public function InsertShopData($configs, $plug)
-    {
-
-      INSERT INTO `wi_products` (`product_cat`, `product_brand`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_keywords`) VALUES
-( 2, 9, 'Acer Laptop', 500, 'acer laptop 2GB', 'acer laptop.jpg', 'acer, laptop'),
-( 2, 4, 'Apple Mobile', 300, 'Apple Mobile phone', 'apple mobile.jpg', 'apple, mobile'),
-( 3, 0, 'draws', 50, 'draws 3', 'draws.jpg', 'draws, 3, cheap'),
-( 2, 3, 'HP Laptop', 800, 'HP Laptop, 8GB', 'hp laptop.jpg', 'hp, laptop');
-
-INSERT INTO `wi_categories` ( `title`) VALUES
-( 'Furniture'),
-( 'Electrical'),
-( 'Bedding'),
-( 'Ladies Wear'),
-( 'Men Wear'),
-( 'Kids Wear');
-
-INSERT INTO `wi_brands` ( `title`) VALUES
-( 'Samsung'),
-( 'Dell'),
-( 'Hp'),
-( 'Apple'),
-( 'LG'),
-( 'Canon'),
-( 'Nikon'),
-( 'Sony'),
-( 'Acer');
-    }
-*/
     public function StartUpDb($configs, $plug)
     {
       // add meta
@@ -417,13 +432,40 @@ INSERT INTO `wi_brands` ( `title`) VALUES
         $css = "INSERT INTO `wi_css` ( `href`, `rel`, `page`) VALUES
       ( 'site/css/frameworks/bootstrap.css', 'stylesheet', 'shop'),
       ( 'site/css/login_panel/css/slide.css', 'stylesheet', 'shop'),
-      ( 'site/css/frameworks/menus.css', 'stylesheet', 'shop'),
-      ( 'site/css/style.css', 'stylesheet', 'shop'),
+      ( 'shop/css/frameworks/menus.css', 'stylesheet', 'shop'),
+      ( 'shop/css/style.css', 'stylesheet', 'shop'),
       ( 'site/css/font-awesome.css', 'stylesheet', 'shop'),
       ( 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'shop'),
       ( 'shop/css/style.css', 'stylesheet', 'shop'),
       ( 'shop/css/layout/wide.css', 'stylesheet', 'shop'),
-      ( 'shop/css/switcher.css', 'stylesheet', 'shop');";
+      ( 'shop/css/switcher.css', 'stylesheet', 'shop'),
+      ( 'site/css/frameworks/bootstrap.css', 'stylesheet', 'product'),
+      ( 'site/css/login_panel/css/slide.css', 'stylesheet', 'product'),
+      ( 'shop/css/frameworks/menus.css', 'stylesheet', 'product'),
+      ( 'shop/css/style.css', 'stylesheet', 'product'),
+      ( 'site/css/font-awesome.css', 'stylesheet', 'product'),
+      ( 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'product'),
+      ( 'shop/css/style.css', 'stylesheet', 'product'),
+      ( 'shop/css/layout/wide.css', 'stylesheet', 'product'),
+      ( 'shop/css/switcher.css', 'stylesheet', 'product'),
+      ( 'site/css/frameworks/bootstrap.css', 'stylesheet', 'cart'),
+      ( 'site/css/login_panel/css/slide.css', 'stylesheet', 'cart'),
+      ( 'shop/css/frameworks/menus.css', 'stylesheet', 'cart'),
+      ( 'shop/css/style.css', 'stylesheet', 'cart'),
+      ( 'site/css/font-awesome.css', 'stylesheet', 'cart'),
+      ( 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'cart'),
+      ( 'shop/css/style.css', 'stylesheet', 'cart'),
+      ( 'shop/css/layout/wide.css', 'stylesheet', 'cart'),
+      ( 'shop/css/switcher.css', 'stylesheet', 'cart'),
+      ( 'site/css/frameworks/bootstrap.css', 'stylesheet', 'checkout'),
+      ( 'site/css/login_panel/css/slide.css', 'stylesheet', 'checkout'),
+      ( 'shop/css/frameworks/menus.css', 'stylesheet', 'checkout'),
+      ( 'shop/css/style.css', 'stylesheet', 'checkout'),
+      ( 'site/css/font-awesome.css', 'stylesheet', 'checkout'),
+      ( 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'checkout'),
+      ( 'shop/css/style.css', 'stylesheet', 'checkout'),
+      ( 'shop/css/layout/wide.css', 'stylesheet', 'checkout'),
+      ( 'shop/css/switcher.css', 'stylesheet', 'checkout');";
 
       $query = $this->WIdb->prepare($css);
         $query->execute();
@@ -432,9 +474,18 @@ INSERT INTO `wi_brands` ( `title`) VALUES
 
       if ($JsCheck === "0") {
         $js = "INSERT INTO `wi_scripts` ( `src`, `page`) VALUES
-      ( 'site/js/frameworks/JQuery.js', 'shop'),
+        ( 'site/js/frameworks/JQuery.js', 'shop'),
       ( 'site/js/frameworks/bootstrap.js', 'shop'),
-      ( 'site/js/login_panel/js/slide.js', 'shop');
+      ( 'site/js/login_panel/js/slide.js', 'shop'),
+      ( 'site/js/frameworks/JQuery.js', 'product'),
+      ( 'site/js/frameworks/bootstrap.js', 'product'),
+      ( 'site/js/login_panel/js/slide.js', 'product'),
+      ( 'site/js/frameworks/JQuery.js', 'cart'),
+      ( 'site/js/frameworks/bootstrap.js', 'cart'),
+      ( 'site/js/login_panel/js/slide.js', 'cart'),
+      ( 'site/js/frameworks/JQuery.js', 'checkout'),
+      ( 'site/js/frameworks/bootstrap.js', 'checkout'),
+      ( 'site/js/login_panel/js/slide.js', 'checkout')
       ";
 
       $query = $this->WIdb->prepare($js);
@@ -446,7 +497,19 @@ INSERT INTO `wi_brands` ( `title`) VALUES
       ( 'shop', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
       ( 'shop', 'description', 'Warner-Infinity Content Management System with simplified back end', 'Jules Warner'),
       ( 'shop', 'keywords', 'WI, WICMS, System, UI', 'Jules Warner'),
-      ( 'shop', 'author', 'warner-infinity', 'Jules Warner');
+      ( 'shop', 'author', 'warner-infinity', 'Jules Warner'),
+      ( 'product', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
+      ( 'product', 'description', 'Warner-Infinity Content Management System with simplified back end', 'Jules Warner'),
+      ( 'product', 'keywords', 'WI, WICMS, System, UI', 'Jules Warner'),
+      ( 'product', 'author', 'warner-infinity', 'Jules Warner'),
+      ( 'cart', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
+      ( 'cart', 'description', 'Warner-Infinity Content Management System with simplified back end', 'Jules Warner'),
+      ( 'cart', 'keywords', 'WI, WICMS, System, UI', 'Jules Warner'),
+      ( 'cart', 'author', 'warner-infinity', 'Jules Warner'),
+      ( 'checkout', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
+      ( 'checkout', 'description', 'Warner-Infinity Content Management System with simplified back end', 'Jules Warner'),
+      ( 'checkout', 'keywords', 'WI, WICMS, System, UI', 'Jules Warner'),
+      ( 'checkout', 'author', 'warner-infinity', 'Jules Warner')
       ";
       
       $query = $this->WIdb->prepare($Meta);
@@ -455,7 +518,10 @@ INSERT INTO `wi_brands` ( `title`) VALUES
 
       if ($pageCheck === "0") {
         $page = "INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
-      ( 'shop', '1', '1', '0', '0', '0', 'shop', '1');
+      ( 'shop', '1', '1', '0', '0', '0', 'shop', '1'),
+      ( 'product', '1', '1', '0', '0', '0', 'product', '1'),
+      ( 'cart', '1', '1', '0', '0', '0', 'cart', '1'),
+      ( 'checkout', '1', '1', '0', '0', '0', 'checkout', '1');
         ";
         $query = $this->WIdb->prepare($page);
         $query->execute();
@@ -561,9 +627,8 @@ INSERT INTO `wi_brands` ( `title`) VALUES
 
             if(!file_exists($check)){
               $this->System->full_copy($source , $dest);
-               $fil = glob($dest . "/*");
-               print_r($fil);
-
+               //$fil = glob($dest . "/*");
+               //print_r($fil);
             }
                
             

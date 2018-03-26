@@ -6,4 +6,4 @@ include_once 'WIShop.php';
 include_once 'WIInstall.php';
 
 
-$WIShop    = new WIShop();
+//$WIShop    = new WIShop();

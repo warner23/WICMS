@@ -1,0 +1,280 @@
+@charset "utf-8";
+/* CSS Document */
+.feature_extra
+{
+}
+
+.container 
+{
+width: 100%;
+height: 700px;
+}
+
+.row
+{
+}
+
+.title 
+{
+margin: 0 auto 90px;
+position: relative;
+text-align: center;
+}
+
+.recent
+{
+
+width: 100%;
+float: left;
+-webkit-transform: translate3d(0,0,0);
+transform: translate3d(0,0,0);
+opacity: 1;
+position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+#paral
+{
+background-repeat: repeat;
+background-image: url(../img/section/blue-city.jpg);
+background-repeat: no-repeat;
+width: 100%;
+position: relative;
+height:800px;
+
+}
+.content
+{
+	padding: 90px 0;
+position: relative;
+}
+
+*:before, *:after {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+container:before, .container:after {
+content: " ";
+display: table;
+}
+
+.row:before, .row:after {
+content: " ";
+display: table;
+}
+
+.row:after {
+clear: both;
+}
+
+.boxs
+{
+	-webkit-transition: all 0.7s ease-in-out;
+transition: all 0.7s ease-in-out;
+width: 45%;
+float: left;
+position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+.accordion-group 
+{
+border-radius: 0;
+margin-bottom: 10px;
+color: #444;
+font-family: Open Sans, sans-serif;
+font-size: 13.5px;
+border-radius: 0;
+}
+
+.accordion-heading 
+{
+background: none repeat scroll 0 0 #434346;
+height: 40px;
+}
+
+.collapse.in 
+{
+display: block;
+}
+
+media="screen"
+.accordion-heading .accordion-toggle 
+{
+color: #666;
+cursor: pointer;
+display: block;
+float: right;
+font-weight: 600;
+height: 40px;
+outline: medium none !important;
+padding: 0;
+text-decoration: none;
+width: 100%;
+line-height: 38px;
+font-size: 16px;
+}
+
+
+a, a:hover, a:visited, a:focus 
+{
+text-decoration: none !important;
+-webkit-transition: all 0.1s ease;
+transition: all 0.1s ease;
+}
+
+a 
+{
+color: #2ECC71;
+text-decoration: none;
+}
+
+.accordion-toggle i.fa.fa-minus 
+{
+background-color: #e74c3c !important;
+}
+
+.accordion-heading .accordion-toggle 
+{
+color: #666;
+cursor: pointer;
+display: block;
+float: right;
+font-weight: 600;
+height: 40px;
+outline: medium none !important;
+padding: 0;
+text-decoration: none;
+width: 100%;
+line-height: 38px;
+font-size: 16px;
+}
+
+.accordion-toggle i 
+{
+color: #FFFFFF;
+float: left;
+font-size: 12px;
+line-height: 40px;
+margin-right: 15px;
+padding-bottom: 0 !important;
+padding-left: 0 !important;
+padding-top: 0 !important;
+position: relative;
+text-align: center !important;
+transition: all 0.3s ease-in-out 0s;
+width: 40px !important;
+}
+
+.fa 
+{
+display: inline-block;
+font-family: FontAwesome;
+font-style: normal;
+font-weight: normal;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+.fa-minus:before 
+{
+content: "\f068";
+}
+
+
+.accordion-inner 
+{
+border-top: 1px solid #EDEAE3;
+padding: 10px 25px 20px;
+line-height: 22px;
+background-color: #EDEAE3;
+}
+
+.feature_slider 
+{
+margin-bottom: 80px;
+}
+
+media="screen"
+.owl-carousel 
+{
+display: none;
+position: relative;
+width: 100%;
+margin-bottom: 60px;
+-ms-touch-action: pan-y;
+vertical-align: top;
+word-wrap: break-word;
+}
+
+.carousel 
+{
+position: relative;
+}
+
+.owl-carousel .owl-wrapper-outer 
+{
+overflow: hidden;
+position: relative;
+width: 100%;
+}
+
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item 
+{
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+-ms-backface-visibility: hidden;
+}
+
+media="screen"
+.owl-carousel .owl-wrapper 
+{
+display: none;
+position: relative;
+-webkit-transform: translate3d(0px, 0px, 0px);
+-webkit-perspective: 1000;
+}
+
+.owl-carousel .owl-item 
+{
+float: left;
+text-align: center;
+}
+
+li.item 
+{
+display: list-item;
+text-align: -webkit-match-parent;
+float:left;
+margin-left: 10px;
+margin-top: 10px;
+}
+
+.owl-carousel .owl-item 
+{
+float: left;
+text-align: center;
+}
+
+.carousel.owl-theme .owl-controlls 
+{
+bottom: -40px;
+left: 35%;
+}
+
+.owl-theme .owl-controlls .owl-page 
+{
+display: inline-block;
+zoom: 1;
+}
+
+.owl-controlls .owl-page, .owl-controlls .owl-buttons div {
+cursor: pointer;
+}

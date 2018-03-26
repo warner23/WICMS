@@ -41,6 +41,7 @@ class WIWebsite
 
     public function Meta($page)
     {
+      
          $sql = "SELECT * FROM `wi_meta` WHERE `page`=:page";
           $query = $this->WIdb->prepare($sql);
           $query->bindParam(':page', $page, PDO::PARAM_STR);
@@ -330,8 +331,8 @@ class WIWebsite
                        "page" => $page
                      ), $column
                   );
-               // print_r($result[$column]);
-         if(count($result < 1)){
+               //print_r($result[$column]);
+         if(count($result[$column] < 1)){
             return $result[$column];
          }else{
             return $result[$column];

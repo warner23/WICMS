@@ -187,11 +187,56 @@ class WIBlog
 		}
 
 		if($type === "mediaYoutube"){
-			
+			$sql = "SELECT * FROM `wi_blog` WHERE type =:typ AND Category = :cid ORDER BY day DESC";
+		$query = $this->WIdb->prepare($sql);
+		$query->bindParam(':type', $type, PDO::PARAM_STR);
+		$query->bindParam(':cid', $cid, PDO::PARAM_INT);
+		$query->execute();
+
+		while($posts = $query->fetchAll(PDO::FETCH_ASSOC) ){
+			foreach ($posts as $post) {
+				echo '<!-- .latest-posts start -->                            
+    <article class="post_container">                              
+    <div class="post-info">                                    
+    <div class="post-date">                                        
+    <span class="day">' . $post['day']. '</span>                                        
+    <span class="month">' . $post['month'] .'</span>                                    
+    </div>                                    
+    <div class="post-category">                                     
+    <i class="fa fa-picture-o"></i>                                    
+    </div>                                
+    </div><!-- .post-info end -->                                
+    <figure class="post-video">                                    
+   <iframe src="' . $post['youtube'] .'" allowfullscreen></iframe>         
+     </figure>                                
+     <div class="post-content">                                    
+     <a href="blog_post.html">                                        
+     <h4>Blog post with Youtube</h4>                                    
+     </a>                                    
+     <div class="blog-meta">                                        
+     <ul>                                           
+      <li class="fa fa-user">                                                
+      <a href="#">' . $post['user'] . '</a>                                            
+      </li>                                            
+      <li class="post-tags fa fa-tags">                                                
+      <a href="#">news, </a>                                                
+     <a href="#">dois</a>                                            
+      </li>                                        
+    </ul>                                    
+    </div>                                    
+    <p>                                     
+    ' . $post['post'] . '                                 
+    </p>                                    
+    <a href="blog_post.html" class="read-more">Read more</a>                              
+    </div>                        
+    </article>
+      <!-- .blog-post end -->';
+				}
+			}
 		}
+	}
 
 		
-	}
 
 
 
@@ -239,37 +284,97 @@ class WIBlog
 	}
 
 
-		public function blogPostImage($day, $month, $post_title, $blog_post, $type, $href, $user, $button_name, $image)
+		public function blogPostImage($day, $month, $post_title, $blog_post, $type, $cat_id, $user, $image)
 	{
 		//echo $type;
 		 $this->WIdb->insert('wi_blog', array(
             "type"     => $type,
             "day"  => $day,
             "month"  => $month,
+            "Category"  => $cat_id,
             "title" => $post_title,
-            "href" => $href,
             "user" => $user,
             "post" => $blog_post,
-            "button_name" => $button_name,
             "image"    => $image
             ));
 
 	}
 
-	public function blogPostVideo($day, $month, $post_title, $blog_post, $type, $href, $user, $button_name, $video)
+	public function blogPostSlider($day, $month, $post_title, $blog_post, $type, $cat_id, $user, $image, $image1, $image2, $caption, $caption1,$caption2 )
 	{
 		//echo $type;
 		 $this->WIdb->insert('wi_blog', array(
             "type"     => $type,
             "day"  => $day,
             "month"  => $month,
+            "Category"  => $cat_id,
             "title" => $post_title,
-            "href" => $href,
             "user" => $user,
             "post" => $blog_post,
-            "button_name" => $button_name,
+            "image"    => $image,
+            "image2"    => $image1,
+            "image3"    => $image2,
+            "caption"    => $caption,
+            "caption1"    => $caption1,
+            "caption2"    => $caption2
+            ));
+
+	}
+
+	public function blogPostAudio($day, $month, $post_title, $blog_post, $type, $cat_id, $user, $audio)
+	{
+		//echo $type;
+		 $this->WIdb->insert('wi_blog', array(
+            "type"     => $type,
+            "day"  => $day,
+            "month"  => $month,
+            "Category"  => $cat_id,
+            "title" => $post_title,
+            "user" => $user,
+            "post" => $blog_post,
+            "audio"    => $audio
+            ));
+
+	}
+
+	public function blogPostVideo($day, $month, $post_title, $blog_post, $type, $user, $cat_id, $video)
+	{
+		//echo $type;
+		 $this->WIdb->insert('wi_blog', array(
+            "type"     => $type,
+            "day"  => $day,
+			"Category"  => $cat_id,
+            "month"  => $month,
+            "title" => $post_title,
+            "user" => $user,
+            "post" => $blog_post,
             "video"    => $video
             ));
+
+	}
+
+	public function YoutubeMedia($day, $month, $post_title, $ytlink, $blog_post, $type, $user, $cat_id)
+	{
+
+		 $this->WIdb->insert('wi_blog', array(
+            "type"     => $type,
+            "day"  => $day,
+            "month"  => $month,
+            "title" => $post_title,
+            "youtube" => $ytlink,
+            "user" => $user,
+            "post" => $blog_post,
+            "Category"  => $cat_id
+            ));
+
+		 $msg = "Successfully added to db";
+
+		 $result = array(
+		 	"status" => "complete",
+		 	"msg"    => $msg
+		 );
+
+		 echo json_encode($result);
 
 	}
 
@@ -346,6 +451,18 @@ class WIBlog
 	
 	}
 
+	public function Share()
+	{
+		echo '<ul class="shares">									
+		<li class="shareslabel"><h3>Share</h3></li>									
+		<li><a title="" data-toggle="tooltip" data-placement="top" href="#" class="twitter" data-original-title="Twitter"></a></li>	
+		<li><a title="" data-toggle="tooltip" data-placement="top" href="#" class="facebook" data-original-title="Facebook"></a></li>									
+		<li><a title="" data-toggle="tooltip" data-placement="top" href="#" class="gplus" data-original-title="Google Plus"></a></li>									
+		<li><a title="" data-toggle="tooltip" data-placement="top" href="#" class="pinterest" data-original-title="Pinterest"></a></li>									
+		<li><a title="" data-toggle="tooltip" data-placement="top" href="#" class="yahoo" data-original-title="Yahoo"></a></li>									
+		<li><a title="" data-toggle="tooltip" data-placement="top" href="#" class="linkedin" data-original-title="LinkedIn"></a></li>								</ul>';
+	}
+
 	public function catType($cat_id)
 	{
 		 $result = $this->WIdb->select(
@@ -376,6 +493,319 @@ class WIBlog
 	public function hasPosts()
 	{
 		
+		$sql = "SELECT * FROM `wi_blog` ORDER BY day DESC";
+		$query = $this->WIdb->prepare($sql);
+		$query->execute();
+
+		$res = $query->fetchAll(PDO::FETCH_ASSOC);
+		//print_r($res);
+		if(count($res) < 1){
+			echo "No Posts Yet.";
+		}else{
+
+		foreach ($res as $media) {
+			//print_r($media);
+			$MediaType = $media['type'];
+			foreach ($MediaType as $type) {
+				//print_r($type);
+			}
+		if($media['type'] === "NoMedia"){
+				
+				echo '<div class="blog_style_2"><article class="post_container">                             
+         <div class="post-info">                                    
+         <div class="post-date">                                        
+         <span class="day">' . $media['day'] . '</span>                                        
+         <span class="month">' . $media['month'] . '</span>                                    
+         </div>                                    
+         <div class="post-category">                                      
+         <i class="fa fa-file-text-o"></i>                                    
+         </div>                               
+          </div><!-- .post-info end -->                                
+          <div class="post-content">                                   
+           <a href="blog_post.html">                                       
+            <h4>' . $media['title'] . '</h4>                                    
+            </a>                                    
+            <div class="blog-meta">                                        
+            <ul>                                            
+            <li class="fa fa-user">                                               
+             <a href="#">' . $media['user'] . '</a>                                            
+             </li>                                            
+             <li class="post-tags fa fa-tags">                                                
+             <a href="#">news, </a>                                               
+              <a href="#">dois</a>                                            
+              </li>                                        
+              </ul>                                   
+               </div>                                    
+               <p>                                      
+               ' . $media['post'] . '                                  
+               </p>                                    
+                                           
+               </div>                        
+                              
+                    </article></div>
+                              
+                         <!-- .blog-post end -->';
+		}
+	    if($media['type'] === "blog_slider"){
+			echo '<!-- .latest-posts start -->                            
+<article class="post_container">                              
+<div class="post-info">                                   
+ <div class="post-date">                                        
+ <span class="day">' . $media['day'] . '</span>                                        
+ <span class="month">' . $media['month'] . '</span>                                   
+  </div>                                    
+  <div class="post-category">                                     
+  <i class="fa fa-picture-o"></i>                                    
+  </div>                                
+  </div><!-- .post-info end -->                               
+   <figure class="post-image">                                  
+   <div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+   <img src="../../../WIAdmin/WIMedia/Img/blog/revslider/' . $media['image'] . '" style="width:100%">
+  <div class="text">' . $media['caption'] . '</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+<img src="../../../WIAdmin/WIMedia/Img/blog/revslider/' . $media['image2'] . '" style="width:100%">        
+  <div class="text">' . $media['caption1'] . '</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+<img src="../../../WIAdmin/WIMedia/Img/blog/revslider/' . $media['image3'] . '" style="width:100%">
+  <div class="text">' . $media['caption2'] . '</div>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>                                             
+   </figure>                               
+    <div class="post-content">                                    
+    <a href="blog_post.html">                                        
+    <h4>' . $media['title'] . '</h4>                                    
+    </a>                                    
+    <div class="blog-meta">                                        
+    <ul>                                            
+    <li class="fa fa-user">                                                
+    <a href="#">' . $media['user'] . '</a>                                            
+    </li>                                           
+     <li class="post-tags fa fa-tags">                                               
+      <a href="#">news, </a>                                                
+      <a href="#">dois</a>                                            
+      </li>                                        
+</ul>                                    
+</div>                                    
+<p>                                        
+' . $media['post'] . '                                  
+</p>                                    
+</div>                        
+</article><!-- .blog-post end -->
+<script type="text/javascript">
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>';
+		}
+
+		if($media['type'] === "blog_video"){
+			echo '<article class="post_container">                              
+<div class="post-info">                                   
+ <div class="post-date">                                        
+ <span class="day">' . $media['day'] . '</span>                                        
+ <span class="month">' . $media['month'] . '</span>                                    
+ </div>                                   
+  <div class="post-category">                                     
+  <i class="fa fa-picture-o"></i>                                    
+  </div>                                
+  </div><!-- .post-info end -->                                
+  <figure class="post-video">                                    
+  <video width="400" height="160" controls>
+  <source src="../../../WIAdmin/WIMedia/Vid/blog/' . $media['video'] . '" type="video/mp4">
+</video>                                
+  </figure>                               
+   <div class="post-content">                                    
+   <h4>' . $media['title'] . '</h4>                                    
+   <div class="blog-meta">                                        
+   <ul>                                            
+   <li class="fa fa-user">                                                
+   <a href="#">' . $media['user'] . '</a>                                            
+   </li>                                            
+   <li class="post-tags fa fa-tags">                                                
+   <a href="#">news, </a>                                                
+   <a href="#">dois</a>                                            
+   </li>                                        
+   </ul>                                    
+   </div>                                   
+    <p>                                     
+    ' . $media['post'] . '                                 
+    </p>                                    
+    </div>                        
+    </article><!-- .blog-post end --> ';
+			
+		}
+		//$type = "blog_image";
+		if($media['type'] === "blog_image"){
+			
+				echo '<!-- .latest-posts start --><div class="blog_style_2">                            
+                              <article class="post_container">                              
+                              <div class="post-info">                                    
+                              <div class="post-date">                                        
+                              <span class="day">' . $media['day'] . '</span>                                        
+                              <span class="month">' . $media['month'] . '</span>                                    
+                              </div>                                    
+                              <div class="post-category">                                     
+                              <i class="fa fa-picture-o"></i>                                    
+                              </div>                                
+                              </div><!-- .post-info end -->                                
+                              <figure class="post-image">                 
+                              <a href="#"><img src="../../../WIAdmin/WIMedia/Img/blog/' . $media['image'] . '" alt=""></a>                
+                              </figure>                               
+                               <div class="post-content">                                    
+                               <a href="blog_post.html">                                        
+                               <h4>' . $media['title'] . '</h4>                                    
+                               </a>                                    
+                               <div class="blog-meta">                                        
+                               <ul>                                            
+                               <li class="fa fa-user">                                                
+                               <a href="#">' . $media['user'] . '</a>                                           
+                                </li>                                           
+                                 <li class="post-tags fa fa-tags">                                               
+                                  <a href="#">news, </a>                                                
+                                  <a href="#">dois</a>                                           
+                                   </li>                                        
+                                   </ul>                                    
+                                   </div>                                    
+                                   <p>                                      
+                                   ' . $media['post'] . '                               
+                                   </p>                                    
+                                                               
+                                   </div>                         
+                                   </article><!-- .blog-post end --> </div>';
+		}
+
+		if($media['type'] === "blog_audio"){
+			
+			echo ' <!-- .latest-posts start -->                            
+    <article class="post_container">                              
+    <div class="post-info">                                    
+    <div class="post-date">                                        
+    <span class="day">' . $media['day'] . '</span>                                        
+    <span class="month">' . $media['month'] . '</span>                                   
+     </div>                                    
+     <div class="post-category">                                      
+     <i class="fa fa-picture-o"></i>                                   
+      </div>                                
+      </div><!-- .post-info end -->                                
+      <figure class="post-audio">                 
+      <audio controls>
+      <source src="../../../WIAdmin/WIMedia/Audio/blog/' . $media['audio'] . '" type="audio/mp3"></audio>             
+      </figure>                               
+       <div class="post-content">                                    
+       <a href="blog_post.html">                                        
+       <h4>' . $media['title'] . '</h4>                                    
+       </a>                                    
+       <div class="blog-meta">                                        
+       <ul>                                            
+       <li class="fa fa-user">                                                
+       <a href="#">' . $media['user'] . '</a>                                            
+       </li>                                            
+       <li class="post-tags fa fa-tags">                                               
+        <a href="#">news, </a>                                                
+        <a href="#">dois</a>                                            
+        </li>                                        
+        </ul>                                    
+        </div>                                   
+         <p>                                      
+         ' . $media['post'] . '</p>                                    
+         <a href="blog_post.html" class="read-more">Read more</a>                             
+         </div>                         
+         </article><!-- .blog-post end -->  ';
+		}
+
+		if($media['type'] === "blog_youtube"){
+			
+			echo '<!-- .latest-posts start --><div class="blog_style_2">                           
+    <article class="post_container">                              
+    <div class="post-info">                                    
+    <div class="post-date">                                        
+    <span class="day">' . $media['day']. '</span>                                        
+    <span class="month">' . $media['month'] .'</span>                                    
+    </div>                                    
+    <div class="post-category">                                     
+    <i class="fa fa-picture-o"></i>                                    
+    </div>                                
+    </div><!-- .post-info end -->                                
+    <figure class="post-video">                                    
+   "' . $media['youtube'] .'"       
+     </figure>                                
+     <div class="post-content">                                    
+     <a href="blog_post.html">                                        
+     <h4>Blog post with Youtube</h4>                                    
+     </a>                                    
+     <div class="blog-meta">                                        
+     <ul>                                           
+      <li class="fa fa-user">                                                
+      <a href="#">' . $media['user'] . '</a>                                            
+      </li>                                            
+      <li class="post-tags fa fa-tags">                                                
+      <a href="#">news, </a>                                                
+     <a href="#">dois</a>                                            
+      </li>                                        
+    </ul>                                    
+    </div>                                    
+    <p>                                     
+    ' . $media['post'] . '                                 
+    </p>                                    
+    </div>                        
+    </article></div>
+      <!-- .blog-post end -->';
+			  }
+
+			}
+		}
+	}
+
+
+
+
+
+	/*public function hasPosts1()
+	{
+		
 		$sql = "SELECT * FROM `wi_blog`";
 		$query = $this->WIdb->prepare($sql);
 		$query->execute();
@@ -392,7 +822,7 @@ class WIBlog
 	     //$type = "NoMedia";
 		foreach ($res as $media) {
 			//print_r($media);
-			if($media['type'] === "NoMedia"){
+		if($media['type'] === "NoMedia"){
 				$sql = "SELECT * FROM `wi_blog` WHERE type =:type ORDER BY day DESC";
 		$query = $this->WIdb->prepare($sql);
 		$query->bindParam(':type', $media['type'], PDO::PARAM_STR);
@@ -503,14 +933,56 @@ class WIBlog
 			
 		}
 
-		if($media['type'] === "mediaYoutube"){
-			
-		}
+		if($media['type'] === "blog_youtube"){
+			$sql = "SELECT * FROM `wi_blog` WHERE type =:type ORDER BY day DESC";
+		$query = $this->WIdb->prepare($sql);
+		$query->bindParam(':type', $media['type'], PDO::PARAM_STR);
+		$query->execute();
+		while($posts = $query->fetchAll(PDO::FETCH_ASSOC) ){
+			foreach ($posts as $post) {
+			echo '<!-- .latest-posts start -->                            
+    <article class="post_container">                              
+    <div class="post-info">                                    
+    <div class="post-date">                                        
+    <span class="day">' . $post['day']. '</span>                                        
+    <span class="month">' . $post['month'] .'</span>                                    
+    </div>                                    
+    <div class="post-category">                                     
+    <i class="fa fa-picture-o"></i>                                    
+    </div>                                
+    </div><!-- .post-info end -->                                
+    <figure class="post-video">                                    
+   <iframe src="' . $post['youtube'] .'" allowfullscreen></iframe>         
+     </figure>                                
+     <div class="post-content">                                    
+     <a href="blog_post.html">                                        
+     <h4>Blog post with Youtube</h4>                                    
+     </a>                                    
+     <div class="blog-meta">                                        
+     <ul>                                           
+      <li class="fa fa-user">                                                
+      <a href="#">' . $post['user'] . '</a>                                            
+      </li>                                            
+      <li class="post-tags fa fa-tags">                                                
+      <a href="#">news, </a>                                                
+     <a href="#">dois</a>                                            
+      </li>                                        
+    </ul>                                    
+    </div>                                    
+    <p>                                     
+    ' . $post['post'] . '                                 
+    </p>                                    
+    <a href="blog_post.html" class="read-more">Read more</a>                              
+    </div>                        
+    </article>
+      <!-- .blog-post end -->';
+			  }
 			}
 		}
 
-		
-	}
+			}
+		}
+	}*/
 		
 
 }

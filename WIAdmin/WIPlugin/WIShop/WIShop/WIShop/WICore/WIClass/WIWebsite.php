@@ -9,6 +9,7 @@ class WIWebsite
     function __construct() 
     {
          $this->WIdb = WIdb::getInstance();
+         $this->cart = new WICart();
 
     }
 
@@ -40,10 +41,11 @@ class WIWebsite
 
     
 
-    public function Meta()
+    public function Meta($page)
     {
          
-          $query = $this->WIdb->prepare('SELECT * FROM `wi_meta`');
+          $query = $this->WIdb->prepare('SELECT * FROM `wi_meta` WHERE `page`=:page');
+          $query->bindParam(':page', $page, PDO::PARAM_STR);
           $query->execute();
          while($result = $query->fetch(PDO::FETCH_ASSOC))
         {
@@ -68,9 +70,10 @@ class WIWebsite
 
     }
 
-    public function Styling()
+    public function Styling($page)
     {
-         $query = $this->WIdb->prepare('SELECT * FROM `wi_css`');
+         $query = $this->WIdb->prepare('SELECT * FROM `wi_css` WHERE `page`=:page');
+        $query->bindParam(':page', $page, PDO::PARAM_STR);
         $query->execute();
 
         while($res = $query->fetch(PDO::FETCH_ASSOC))
@@ -81,9 +84,10 @@ class WIWebsite
        // $res->closeCursor();
     }
 
-    public function Scripts()
+    public function Scripts($page)
     {
-                 $query = $this->WIdb->prepare('SELECT * FROM `wi_scripts`');
+                 $query = $this->WIdb->prepare('SELECT * FROM `wi_scripts` WHERE `page`=:page');
+                  $query->bindParam(':page', $page, PDO::PARAM_STR);
         $query->execute();
 
         while($res = $query->fetch(PDO::FETCH_ASSOC))
@@ -186,7 +190,7 @@ class WIWebsite
       </button>
       <a class="navbar-brand" href="#"></a>
       <div class="logo">
-        <img alt="WICMS"  class="img-responsive" src="../WIAdmin/WIMedia/Img/header/' . WIWebsite::webSite_essentials('logo') .'"></a>
+ 
         </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -206,12 +210,33 @@ class WIWebsite
             */
             echo '</ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class=""></span></a></li>
+        <li><a href="javascript:void(0)" id="cart" class="dropdown-toggle" aria-expanded="false" dropdown="false" data-toggle="dropdown"><span class="glyphicon glyphicon-shopping-cart"></span>Cart
+<span class="badge">'; echo  $this->cart->CartCount(WISession::get('user_id') ); echo '</span></a>
+<div class="dropdown-menu" >
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">img</div>
+        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">product</div>
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">price</div>
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">quant</div>
+      </div>
+    </div>
+    <div class="panel-body">
+          <div class="row" id="cart_product"></div>
+
+    </div>
+    <div class="panel-footer">
+    <a href="cart.php"> Go to Cart</a>
+    </div>
+  </div>
+</div>
+
+</li>
       </ul>
     </div>
   </div>
 </nav>';
-//$res->closeCursor();
     }
 
 

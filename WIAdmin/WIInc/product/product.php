@@ -3,7 +3,7 @@
                       <div id="legend">
                         <legend class="">Add Product</legend>
                       </div>    
-                      <div class="control-group form-group">
+                      <div class="form-group">
                         <!-- Username -->
                         <label class="control-label col-lg-4"  for="website_name">Category:</label>
                         <div class="controls col-lg-8">
@@ -12,12 +12,12 @@
                   </h4>
                 </div>
                 <div class="modal-body" id="details-body">
-                    <?php $categories = $WIdb->select("SELECT * FROM `wI_Categories`"); ?>
+                    <?php $categories = $WIdb->select("SELECT * FROM `wi_categories`"); ?>
                     <?php if(count($categories) > 0): ?>
                       <p><?php echo WILang::get('Pick_Category'); ?>:</p>
                       <select id="select-user-role" class="form-control" style="width: 100%;">
                       <?php foreach($categories as $category): ?>
-                          <option value="<?php echo $role['cat_id']; ?>">
+                          <option value="<?php echo $category['cat_id']; ?>">
                             <?php echo e(ucfirst($category['title'])); ?>
                           </option>
                       <?php endforeach; ?>

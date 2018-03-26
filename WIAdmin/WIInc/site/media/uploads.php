@@ -79,9 +79,9 @@ margin-right:5px;
     vertical-align:top
     }
 </style>
-</head>
+
+
  
-<body>
 <div id="dragandrophandler">Drag & Drop Files Here</div>
 <br><br>
 <div id="status1"></div>

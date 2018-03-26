@@ -257,9 +257,9 @@
     -o-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
-    min-height: 40px;
-        height: 112px;
-        margin-top: -73px;
+min-height: 40px;
+    height: 102px;
+    margin-top: -18px;
 }
 
 .logo{
@@ -272,6 +272,7 @@
 
 .menu{
       margin-left: 90px;
+          min-height: 50px;
 }
 
 }

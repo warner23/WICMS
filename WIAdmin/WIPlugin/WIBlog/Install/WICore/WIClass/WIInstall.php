@@ -347,13 +347,15 @@ INSERT INTO `wi_blogcategories` (`title`) VALUES
     public function TransferFiles($configs, $plug)
     {
             // blog dir
-           //echo dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) .'/WIPlugin/'. $plug .'/' . $plug.'/' . $plug;
+           echo dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) .'/WIPlugin/'. $plug .'/' . $plug.'/' . $plug;
             $source = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) .'/WIPlugin/'. $plug .'/' . $plug.'/' . $plug;
             $dest = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))))) . '/' . $plug;
             $check = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))))) . '/'. $plug .'/';
 
             if(!file_exists($check)){
-
+              $this->System->full_copy($source , $dest);
+              // $fil = glob($dest . "/*");
+             //  print_r($fil);
             }
 
 
@@ -364,6 +366,8 @@ INSERT INTO `wi_blogcategories` (`title`) VALUES
 
             if(!file_exists($check1)){
               $this->System->full_copy($source1 , $dest1);
+              // $fil = glob($dest . "/*");
+             //  print_r($fil);
             }
             
            // $fil = glob($dest . "/*");

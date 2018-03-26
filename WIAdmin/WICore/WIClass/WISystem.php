@@ -80,7 +80,7 @@ public function full_copy( $source, $target )
 
         while ( FALSE !== ( $entry = $d->read() ) )
         {
-            echo "entry";
+            //echo "entry";
             if ( $entry == '.' || $entry == '..' )
             {
                 continue;
@@ -98,35 +98,9 @@ public function full_copy( $source, $target )
         $d->close();
 
     } else {
-        if(file_exists($target)){
-         mkdir( $target, 0777 );
-        $d = dir( $source );
-
-        while ( FALSE !== ( $entry = $d->read() ) )
-        {
-            //echo "entry";
-            if ( $entry == '.' || $entry == '..' )
-            {
-                continue;
-            }
-
-            $Entry = $source . '/' . $entry;           
-            if ( is_dir( $Entry ) )
-            {
-                self::full_copy( $Entry, $target . '/' . $entry );
-                continue;
-            }
-            copy( $Entry, $target . '/' . $entry );
-        }
-        //$fil = glob($target . "/shop*");
-
-             //print_r($fil);
-        }
-
-        copy ( $source, $target );
-    }
-
         
+
+    }       
   }
 }
 

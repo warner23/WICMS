@@ -1,5 +1,0 @@
-notifications
-
-change site name
-change of user role
-changes to modules and plugins

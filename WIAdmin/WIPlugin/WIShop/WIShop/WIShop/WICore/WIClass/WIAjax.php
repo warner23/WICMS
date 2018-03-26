@@ -136,6 +136,11 @@ switch ($action) {
         $shop->Product($_POST['get_product']);
         break;
 
+        case "productInfo":
+        $shop = new WIShop();
+        $shop->productInfo($_POST['id']);
+        break;
+
         case "selected_cat":
         $shop = new WIShop();
         $shop->selectCat($_POST['cat_id']);
@@ -156,9 +161,9 @@ switch ($action) {
         $cart->addProduct($_POST['pid']);
         break;
 
-        case "cart":
+        case "getCart":
         $cart = new WICart();
-        $cart->getCart($_POST['userId']);
+        $cart->getCart(WISession::get("user_id"));
         break;
 
          case "cartCount":

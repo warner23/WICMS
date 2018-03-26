@@ -1,449 +1,173 @@
-<?php 
-
-return array(
-	
-
-	//login, register and password reset
-
-	"email" => "Email",
-
-	"login" => "Login",
-
-	"username" => "Username",
-
-	"password" => "Password",
-
-	"male"   => "Male",
-
-	"female"   => "Female",
-
-	"your_email" => "Your Email",
-
-	"login_with" => "Login With",
-
-	"email_confirmed" => "Email confirmed",
-
-	"create_account" => "Create Account",
-
-	"forgot_password" => "Forgot Password?",
-
-	"repeat_password" => "Repeat Password",
-
-	"reset_password" => "Reset Password",
-
-	"email_confirmation" => "Email Confirmation",
-
-	"you_can_login_now" => "You can <a href='{link}'>log in</a> now.",
-
-	"user_with_key_doesnt_exist" => "User with this key doesn't exist in our database.",
-
-	"gender" => "Gender",
-
-	"dob" => "DOB",
-
-
-	//Months
-	"january"    =>  "January",
-
-	"february"   => "february",
-
-	"march"    =>  "March",
-
-	"april"    => "April",
-
-	"may"     => "May",
-
-	"june"    => "June",
-
-	"july"  =>  "July",
-
-	"august"  => "August",
-
-	"sept"   => "September",
-
-	"oct"   => "October",
-
-	"nov"  => "November",
-
-	"dec"    => "December",
-
-    /// Panel
-    "welcome" => "Welcome",
-
-    "TO"     => "to",
-
-    "site_name" => "WI CMS",
-
-    "Thank_you"  => "A Big Thanks",
-
-    "warner"   => "To Warner-Infinity",
-
-    "web_master"   => "web master's",
-
-    "Amazing_website"  => "amazing website",
-
-    // panel mini admin
-    "panel_mini_admin"    => "Admin Mini Panel",
-
-    "view_profile_page"   =>  "View profile page",
-
-    "log_off"       =>  "Logoff",
-
-    "admin_panel"   => "Admin Panel",
-
-    // member panel
-
-    "member_panel" => "Member's Panel",
-
-
-    "HELLO"  => "Hello",
-
-
-
-
-
-
-	// navigation menu
-
-	"home" => "Home",
-
-	"users" => "Users",
-
-	"my_profile" => "My Profile",
-
-	"user_roles" => "User Roles",
-
-	"index"   => "Index",
-
-	"blog"   => "Blog",
-
-	"contact_us" => "Contact Us",
-
-	"services"   => "Services",
-
-	"support_us"   => "Support Us",
-
-	"forum"  => "Forum",
-
-	"shop"  => "Shop",
-
-	"cafe"  => "Cafe",
-
-	"submit"  => "Submit",
-
-	"about_us"   => "About Us",
-
-	"info"    => "Info",
-
-	"management"  => "Managment",
-
-	"faq"   => "FAQ",
-
-	"friending"  => "Suggest to a friend",
-
-	// index.php
-
-	"welcome_"  => "Welcome to",
-
-	"main_title" => "This is meant as a FREE CMS System, just because i love to create things, a simplified UI backend, built for high end security, database driven, everything you need in a nice bundle to build your own website.<br />
-							Build for coders and non coders alike, tons of plugins, themes, and options.",
-
-	"community"   =>  "Community",   
-
-    "learn"    =>  "WI Community for anyone who loves to build websites.",
-
-    "software"   => "Software Packages",
-
-    "package"   => "Themes, plugins, apps, custom packages",
-
-    "it_title"  =>  "Custom software for the commercial world.",
-
-     "it"  =>  "IT",
-
-    "student_desc"  =>  "Student here are our no1 prioty",
-
-    "your_role"  => "You are a",
-
-    "view_details"  => "View Details",
-
-    "footer"   => "Made and Developed by WI : Warner-Infinity",
-
-    "copyright"   => "Copyright",
-
-    // about us
-    "about_us" => "About Us",
-
-    "our_history" => "History",
-
-    "our_mission" =>  "Mission",
-
-    "mission" =>  "To be able to create websites,electronics and software from scratch",
-
-    "live_chat" =>  "Live Chat",
-
-"learner" =>  "Learning",
-
-"leanring" =>  "Languages i am in mist of learning :",
-
-    "history"  =>  "
-I started learning to code back in 2003 with basic websites and wordpress, after a few years, decided to make my own cms in order to help me learn other languages and technologies.",
-
-    "whatwedo" => "What We Do",
-
-    "skills" => "Our Skills",
-
-    "about_main" => " ",
-
-
-    // cafe and shop
-
-	"TheRiverCommunityShop" => "The River Manchester Community Shop",
-
-	"opening_sent" => "Our busy shop attracts shoppers from the local community and further afield, in search of good quality low-cost items, from furniture to clothes, fridges to DVDs and more. We have new stock in all the time, thanks to the generosity of our supporters all over Manchester. ",
-
-	"shop_info" => "These are carefully checked and priced by our team of volunteer sorters to represent excellent quality, good value for our customers and a realistic charge, before being attractively displayed in our retail area. You can also buy special and designer items from our Online Shop or our eBay page at bargain prices.
-
-If you find a large item to your liking in the shop or online, you can pay for it and take advantage of our low-cost van delivery service to bring it to your door at a time convenient for you.",
-
-	"shop_sentence" => "If you are on the lookout for particular items that you need or want, join our Wish List by emailing therivermanchesterwish@gmail.com or calling into the shop, or phone us on 0161 1371 5522. As new donations come in, we constantly check this list to ensure that we meet your wishes as soon as we can and let you know.
-",
-
-	"cafe_sentence" => "Coffee and cake anyone? Relax from shopping with something from our range of light hot and cold snacks and drinks and daily specials – you do the chilling, while our friendly staff provide the warmth!
-
-The Cafe also contains our IT Zone where you can access your emails, browse the internet or print and photocopy documents at very reasonable cost. We are also now running free IT courses for the local community – please ring or email us for more details.
-",
-
-	// support page 
-
-	"supporter" => "Becoming a Support",
-
-	"thanks" => "A big <strong>thank you</strong> to our café and shop customers for their continuing support. Did you know that The River Manchester also welcomes support in a variety of other ways?",
-
-	"support" => "–	Become a Member
-Help The River Manchester maintain a secure financial footing by making a regular annual or monthly subscription to the charity to help us continue and expand our work in some of the exciting ways we are currently envisaging. We will keep you in touch with events and new developments via a quarterly Newsletter, and also offer you a 'Member's discount' of 10% off cafe or shop purchases.
-",
-
-	"shoping" => "–	Online Shopping. Did you know that you can get your favourite online retailers to donate to the charity at no cost to you? First go to easyfundraising.org.uk and create a free account. After that, each time you buy online, first log in to your easyfundraising account, click on the 'Causes' section and type in The River Manchester and press 'Support', then shop as you usually do. The retailer will automatically register your charity choice and make a donation to us. Simple – and it makes a real difference to people’s lives!",
-
-	"donor" => "–	Become a donor
-If you are unable to make a regular commitment to support The River , you can still make cash donations when it suits you via BACS secure bank transfer, via Paypal, posting a cheque or even bringing cash into our shop, as some of our current supporters do!
-
-OR donate pre-loved furniture, white goods, household and electrical items, clothes, books, toys and games (though no soft toys please!) and DVDs to help us keep our busy shop stocked. The local community values us as a source of low-cost quality items and we keep a 'wish list' of items that customers and clients are on the look-out for – help make someone's wish come true!
-",
-
-	"fund" => "–	Become a fund-raiser
-Use your own creativity, perhaps with some advice from us, to devise and host a money-raising event for The River Manchester or offer us the opportunity to make a presentation to your playgroup, PTA, or Rotary branch.
-",
-
-	"volunteer" => "–	Become a Volunteer
-You could be retired and looking for a fulfilling activity; unemployed and looking to increase your skills and employment prospects; or in work and taking part in your employer's Corporate Social Responsibility activities.
-Bring your time, expertise or willingness to learn, and we can match you with a task from the range of activities in our shop, cafe, office, fund-raising or community outreach services. It could be ongoing work or a one-off project. It could be anything from mentoring volunteers in training; to working in the shop and helping customers; or decorating and gardening for someone in the community needing that support.
-",
-
-
-	// profile.php
-
-	"phone" => "Phone",
-
-    "note" => "Note",
-
-	"update" => "Update",
-
-	"address" => "Address",
-
-	"first_name" => "First Name",
-
-	"last_name" => "Last Name",
-
-	"old_password" => "Old Password",
-
-	"new_password" => "New Password",
-
-	"your_details" => "Your Details",
-
-	"change_password" => "Change Password",
-
-	"confirm_new_password" => "Confirm New Password",
-
-    "to_change_email_username" => "If you want to change your username, email or you have registred via social network and you want to change your password now, please contact administrator.",
-
-	// passwordreset.php
-
-	"password_reset" => "Password Reset",
-
-	"reset_password" => "Reset Password",
-
-
-	// user_roles.php
-
-	"add" => "Add",
-
-	"action" => "Action",
-
-	"role_name" => "Role Name",
-
-	"users_with_role" => "# of users with this role",
-
-
-	// users.php
-
-	"ok" => "Ok",
-
-	"ban" => "Ban",
-
-	"yes" => "Yes",
-
-	"no"  => "No",
-
-    "edit" => "Edit",
-
-    "next" => "Next",
-
-    "previous" => "Previous",
-
-	"unban" => "Unban",
-
-	"cancel" => "Cancel",
-
-	"delete" => "Delete",
-
-	"details" => "Details",
-
-	"loading" => "Loading...",
-
-	"register_date" => "Register Date",
-	
-	"last_login" => "Last Login",
-
-	"confirmed" => "Confirmed",
-
-	"select_role" => "Select Role",
-
-	"change_role" => "Change Role",
-
-	"add_user"	  => "Add User",
-
-	"pick_user_role" => "Pick User Role",
-
-    "never_logged_in" => "Never logged in",
-
-    // users table
-
-    "records_per_page" => "records per page",
-
-    "nothing_found"    => "Nothing found - sorry",
-
-    "no_data_in_table" => "No users in database",
-
-    "showing" => "Showing",
-
-    "to" => "to",
-
-    "of" => "of",
-
-    "records" => "records",
-
-    "filtered_from" => "filtered from",
-
-    "total_records" => "total records",
-
-    "search" => "Search",
-
-
-	// misc
-
-	"at" => "at",
-
-	"logout" => "Logout",
-
-	"welcome" => "Welcome",
-
-	"copyright_by" => "Copyright by",
-
-
-	// validation messages
-
-	"user_banned" => "This user account is banned by administrator!",
-
-	"field_required" => "Field cannot be empty!",
-
-	"role_taken" => "Role already exist.",
-
-	"email_required" => "Email is required.",
-
-	"email_wrong_format" => "Please enter valid email.",
-
-	"email_not_exist" => "This email doesn't exist in our database.",
-
-	"email_taken" => "User with this email is already registred.",
-
-	"dragon_username_required" => "Требуется ввести пользователя.",
-
-	"username_taken" => "Пользователь с таким именем уже существует.",
-
-	"dragon_name_taken" => "Пользователь с таким именем уже существует.",
-
-	"user_not_confirmed" => "Please confirm your email first.",
-
-	"password_required" => "Password is required.",
-
-	"wrong_username_password" => "Wrong username/password combination.",
-
-	"passwords_dont_match" => "Passwords don't match.",
-
-	"wrong_old_password" => "Wrong old password!",
-
-	"wrong_sum" => "Wrong sum. Please check it again.",
-
-	"brute_force" => "You exceeded maximum attempts limit for today. Try again tomorrow.",
-
-	"success_registration_with_confirm" =>  "Registration successful. Please check your email.",
-
-	"success_registration_no_confirm" => "Registration successful. You can log in now.",
-
-	"user_added_successfully" => "User added successfully.",
-
-	"user_updated_successfully" => "User updated successfully.",
-
-    "user_dont_exist" => "This user doesn't exist.",
-
-    "leave_blank" => "Leave blank if you don't want to change it.",
-
-    "invalid_password_reset_key" => "Password reset key is invalid or expired",
-
-    "password_length" => "Password must be at least 6 characters long.",
-
-    "error_writing_to_db" => "Error writing to database. Please try again.",
-
-	// javascript
-
-	"posting" => "Posting...",
-
-	"logging_in" => "Loging in...",
-
-	"resetting" => "Resetting...",
-
-	"password_updated_successfully" => "Password successfully updated.",
-
-	"password_updated_successfully_login" => "Password successfully updated. You can <a href='login.php'>login now</a>.",
-
-	"working" => "Working...",
-
-	"password_reset_email_sent" => "Password reset email sent. Check your inbox (and spam) folder.",
-
-	"message_couldn_be_sent" => "Message could not be sent! Please try again.",
-
-	"updating" => "Updating...",
-
-	"details_updated" => "Details updated successfully.",
-
-	"error_updating_db" => "Error while updating database. Please try again.",
-
-	"are_you_sure" => "Are you sure?",
-
-	"creating_account" => "Creating acount...",
-
-	"usergroup" =>  "Usergroup",
-
-
-);
+<?php
+(32, 'en', 'panel_mini_admin', 'Admin Mini Panel'),
+
+(33, 'en', 'view_profile_page', 'View profile page'),
+(34, 'en', 'log_off', 'Log Off'),
+(35, 'en', 'admin_panel', 'Admin Panel'),
+(36, 'en', 'member_panel', 'Member''s Panel'),
+(37, 'en', 'hello', 'Hello'),
+(38, 'en', 'my_profile', 'My Profile'),
+(39, 'en', 'user_roles', 'User Roles'),
+(40, 'en', 'index', 'Index'),
+(41, 'en', 'contact_us', 'Contact Us'),
+(42, 'en', 'services', 'Services'),
+(43, 'en', 'support_us', 'Support Us'),
+(44, 'en', 'forum', 'Forum'),
+(45, 'en', 'cafe', 'Cafe'),
+(46, 'en', 'submit', 'Submit'),
+(47, 'en', 'about_us', 'About Us'),
+(48, 'en', 'faq', 'FAQ'),
+(49, 'en', 'friending', 'Suggest to a Friend'),
+(50, 'en', 'welcome_', 'Welcome to '),
+(51, 'en', 'password_reset', 'Password reset'),
+(52, 'en', 'reset_password', 'Reset Password'),
+(53, 'en', 'phone', 'Phone'),
+(54, 'en', 'note', 'Note'),
+(55, 'en', 'update', 'Update'),
+(56, 'en', 'address', 'Address'),
+(57, 'en', 'first_name', 'First Name'),
+(58, 'en', 'last_name', 'Last Name'),
+(59, 'en', 'old_password', 'Old Password'),
+(60, 'en', 'new_password', 'New Password'),
+(61, 'en', 'your_details', 'Tour Details'),
+(62, 'en', 'change_password', 'Change Password'),
+(63, 'en', 'confirm_new_password', 'Confirm New Password'),
+(64, 'en', 'to_change_email_username', 'If you want to change your username, email or you have registred via social network and you want to change your password now, please contact administrator.'),
+(65, 'en', 'add', 'Add'),
+(66, 'en', 'ban', 'Ban'),
+(67, 'en', 'yes', 'Yes'),
+(68, 'en', 'no', 'No'),
+(69, 'en', 'edit', 'Edit'),
+(70, 'en', 'next', 'Next'),
+(71, 'en', 'previous', 'Previous'),
+(72, 'en', 'unban', 'Unban'),
+(73, 'en', 'cancel', 'Cancel'),
+(74, 'en', 'delete', 'Delete'),
+(75, 'en', 'details', 'Details'),
+(76, 'en', 'loading', 'loading...'),
+(77, 'en', 'role_name', 'Role Name'),
+(78, 'en', 'user_with_role', '# of users with this role.'),
+(79, 'en', 'user_banned', 'This user account is banned by administrator!'),
+(80, 'en', 'field_required', 'Field cannot be empty!'),
+(81, 'en', 'role_taken', 'Role already exist.'),
+(82, 'en', 'email_required', 'Email is required'),
+(83, 'en', 'email_wring_format', 'Please enter valid email.'),
+(84, 'en', 'email_not_exist', 'This email does not exist in our database'),
+(85, 'en', 'email_taken', 'User with this email is already registred.'),
+(86, 'en', 'username_taken', 'This username is in use by another member.'),
+(87, 'en', 'user_not_confirmed', 'Please confirm your email first.'),
+(88, 'en', 'password_required', 'Password is required'),
+(89, 'en', 'wrong_username_password', 'Wrong username/password combination.'),
+(90, 'en', 'passwords_dont_match', 'Passwords do not match'),
+(91, 'en', 'wrong_old_password', 'Wrong Old password'),
+(92, 'en', 'wrong_sum', 'Wrong sum. Please check it again.'),
+(93, 'en', 'brute_force', 'You exceeded maximum attempts limit for today. Try again tomorrow.'),
+(94, 'en', 'success_registration_with_confirm', 'Registration successful. Please check your email.'),
+(95, 'en', 'success_registration_no_confirm', 'Registration successful. You can log in now.'),
+(96, 'en', 'user_added_successfully', 'User added successfully.'),
+
+(97, 'en', 'user_updated_successfully', 'User updated successfully.'),
+(98, 'en', 'user_dont_exist', 'This user doesn''t exist.'),
+(99, 'en', 'leave_blank', 'Leave blank if you don''t want to change it.'),
+(100, 'en', 'invalid_password_reset_key', 'Password reset key is invalid or expired'),
+(101, 'en', 'password_length', 'Password must be at least 6 characters long.'),
+(102, 'en', 'error_writing_to_db', 'Error writing to database. Please try again.'),
+(103, 'en', 'posting', 'Posting...'),
+(104, 'en', 'resetting', 'Resetting...'),
+(105, 'en', 'password_updated_successfully', 'Password successfully updated.'),
+(106, 'en', 'password_updated_successfully_login', 'Password successfully updated. You can <a href=''login.php''>login now</a>.'),
+(107, 'en', 'password_reset_email_sent', 'Password reset email sent. Check your inbox (and spam) folder.'),
+(108, 'en', 'message_couldn_be_sent', 'Message could not be sent! Please try again.'),
+(109, 'en', 'updating', 'Updating...'),
+
+(110, 'en', 'details_updated', 'Details updated successfully.'),
+(111, 'en', 'are_you_sure', 'Are you sure'),
+(112, 'en', 'creating_account', 'Creating Account...'),
+(113, 'en', 'usergroup', 'User Group'),
+(114, 'en', 'at', 'at'),
+(115, 'en', 'logout', 'Log Out'),
+(116, 'en', 'copyright_by', 'Copyright by'),
+(117, 'en', 'search', 'Search'),
+(118, 'en', 'total_records', 'total records'),
+(119, 'en', 'filtered_from', 'Filtered from'),
+(120, 'en', 'records', 'Records'),
+(121, 'en', 'of', 'of'),
+(122, 'en', 'to', 'to'),
+(123, 'en', 'main_title', 'This is meant as a FREE CMS System, just because i love to create things, a simplified UI backend, built for high end security, database driven, everything you need in a nice bundle to build your own website.'),
+(124, 'en', 'community', 'Community'),
+(125, 'en', 'learn', 'WI Community for anyone who loves to build websites.'),
+(126, 'en', 'software', 'Software Packages'),
+(127, 'en', 'package', 'Themes, plugins, apps, custom packages, and so much more.'),
+(128, 'en', 'it_title', 'Custom software for the commercial world.'),
+
+(129, 'en', 'it', 'I.T'),
+(171, 'en', 'current_topics', 'view Current Topics'),
+(172, 'en', 'ok', 'Ok'),
+(173, 'en', 'change_pic', 'Change Photo'),
+
+(174, 'en', 'bio', 'Bio'),
+(175, 'en', 'save', 'Save'),
+(176, 'en', 'user_location', 'user Location'),
+(177, 'en', 'social_info', 'Social Info'),
+
+(178, 'en', 'friend', 'Friends'),
+(179, 'en', 'profile_wall', 'Profile Wall'),
+(180, 'en', 'mess', 'Messages'),
+(181, 'en', 'admins', 'Administrators'),
+
+(182, 'en', 'logs', 'Logs'),
+(184, 'en', 'showing', 'Showing...'),
+(185, 'en', 'nothing_found', 'Nothing found - sorry'),
+(186, 'en', 'never_logged_in', 'Never Logged In'),
+(187, 'en', 'select_role', 'Select Role'),
+(188, 'en', 'confirmed', 'Confirmed'),
+(189, 'en', 'last_login', 'Last Login'),
+(190, 'en', 'skills', 'Our Skills'),
+(191, 'en', 'whatwedo', 'What We Do'),
+(356, 'en', 'trans_lang', 'Lang'),
+(357, 'en', 'lang_keyword', 'Keyword'),
+(358, 'en', 'lang_trans', 'Translation'),
+(359, 'en', 'successfully_updated_site_settings', 'successfully Updated Site Settings'),
+(360, 'en', 'Pick_Category', 'Pick Category'),
+(361, 'en', 'Pick_Brand', 'Pick Brand'),
+(362, 'en', 'Change_cat', 'Change category'),
+(363, 'en', 'brand', 'Brand'),
+(364, 'en', 'Category', 'Category'),
+(365, 'en', 'product_name', 'Produce Name'),
+(366, 'en', 'product_desc', 'Product Description'),
+(367, 'en', 'product_price', 'Product Price'),
+(368, 'en', 'product_image', 'Product Image'),
+(369, 'en', 'edit_css', 'Edit CSS'),
+(370, 'en', 'edit_meta', 'Edit Meta'),
+(371, 'en', 'edit_css_href', 'Href'),
+(372, 'en', 'meta_name', 'Meta Name'),
+(373, 'en', 'meta_content', 'Meta Content'),
+(374, 'en', 'meta_author', 'Meta Author'),
+(375, 'en', 'add_meta', 'Add Meta'),
+
+(376, 'en', 'add_trans', 'Add Translation'),
+(377, 'en', 'add_lang', 'Add Language'),
+(378, 'en', 'css_name', 'Add CSS'),
+(379, 'en', 'admins', 'Administrators'),
+(380, 'en', 'logs', 'Logs'),
+(381, 'en', 'add_todo', 'Add to do Item'),
+(382, 'en', 'ToDoItem', 'to do Item'),
+
+(383, 'en', 'choose', 'Please Choose an option'),
+(384, 'en', 'Media_Lib', 'WIMedia Library'),
+(385, 'en', 'upload_logo', 'Upload logo'),
+(386, 'en', 'add_lang', 'Add Language'),
+(387, 'en', 'country', 'country name'),
+(388, 'en', 'country_code', 'country code'),
+(389, 'en', 'change_lang', 'Change Lang'),
+(390, 'en', 'save', 'Save'),
+(391, 'en', 'updating', 'updating'),
+(392, 'en', 'href', 'Href'),
+(393, 'en', 'edit_meta', 'Edit Meta'),
+(394, 'en', 'meta_content', 'Meta Content'),
+(395, 'en', 'meta_name', 'Meta_Name'),
+(396, 'en', 'meta_author', 'Meta Author'),
+(397, 'en', 'edit_css', 'Edit CSS'),
+(398, 'en', 'edit_js', 'Edit JS'),
+
+?>

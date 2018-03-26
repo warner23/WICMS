@@ -1,400 +1,173 @@
-<?php 
-// spanish
-return array(
-
-	//login, register and password reset
-
-	"email" => "Е-маил",
-
-	"login" => "Пријава",
-
-	"username" => "Корисничко име",
-
-	"dragon_name" => "Драгон Име",
-
-	"password" => "Лозинка",
-
-	"male"   => "Мушкарац",
-
-	"female"   => "женски",
-
-	"your_email" => "Ваша емаил",
-
-	"login_with" => "Логин Витх",
-
-	"email_confirmed" => "Е-маил потврдио",
-
-	"create_account" => "Registruj se",
-
-	"forgot_password" => "Zaboravili ste lozinku?",
-
-	"repeat_password" => "Ponovite lozinku",
-
-	"reset_password" => "ресет пассворд",
-
-	"email_confirmation" => "Е-маил Потврда",
-
-	"you_can_login_now" => "Можете <а хреф='{линк}'> се пријавите </а> сада .",
-
-	"user_with_key_doesnt_exist" => "Корисник са овим кључем не постоји у нашој бази .",
-
-	"gender" => "Пол",
-
-	"dob" => "ДОБ",
-
-	"country" => "земља",   /// upto here
-
-
-	//Months
-	"january"    =>  "јануар",
-
-	"february"   => "фебруар",
-
-	"march"    =>  "март",
-
-	"april"    => "април",
-
-	"may"     => "Može",
-
-	"june"    => "јун",
-
-	"july"  =>  "јул",
-
-	"august"  => "август",
-
-	"sept"   => "септембар",
-
-	"oct"   => "октобар",
-
-	"nov"  => "новембар",
-
-	"dec"    => "децембар",
-
-    /// Panel
-    "welcome" => "Dobrodošao",
-
-    "TO"     => "у",
-
-    "Thank_you"  => "Велико хвала",
-
-
-    // panel mini admin
-    "panel_mini_admin"    => "Администратор мини панел",
-
-    "view_profile_page"   =>  "Погледај профил страна",
-
-    "log_off"       =>  "Odjavi se",
-
-    "admin_panel"   => "Админ панел",
-
-    // member panel
-
-    "member_panel" => "Панел Члана",
-
-
-    "HELLO"  => "Здраво",  //upto here
-
-
-
-
-
-
-	// navigation menu
-
-	"home" => "Casa",
-
-	"users" => "usuarios",
-
-	"my_profile" => "Mi perfil",
-
-	"user_roles" => "Roles del usuario",
-
-	"index"   => "Índice",
-
-	"contact_us" => "Contáctenos",
-
-	"services"   => "Servicios",
-
-	"support_us"   => "Apoyanos",
-
-	"forum"  => "
-Foro",
-
-	"shop"  => "tienda",
-
-	"cafe"  => "Cafetería",
-
-	"submit"  => "Enviar",
-
-	"about_us"   => "Sobre nosotros",
-
-	"info"    => "
-información",  // upto here
-
-
-
-	// index.php
-
-	"welcome_"  => "
-Bienvenido a",
-
-	"main_title" => "
-Esto se entiende como un sistema CMS GRATIS, sólo porque me encanta crear cosas, un motor de interfaz de usuario simplificada, construido para la seguridad de gama alta, con base de datos, todo lo que necesita en un buen paquete para construir su propio sitio web. <br />
-Construir para los programadores y no programadores por igual, toneladas de plugins, temas y opciones
-.",
-
-	"community"   =>  "Comunidad",   
-
-    "learn"    =>  "
-Comunidad WI para cualquier persona que le encanta construir sitios web.",
-
-    "software"   => "
-Paquetes de programas",
-
-    "package"   => "Temas, plugins, aplicaciones, paquetes personalizados",
-
-    "it_title"  =>  "
-software a medida para el mundo comercial.",
-
-     "it"  =>  "ESO",
-
-    "student_desc"  =>  "Estudiante que aquí están nuestros prioty no1",
-
-    "your_role"  => "Usted es un",
-
-    "view_details"  => "Ver detalles",
-
-    "footer"   => "Hecho y Desarrollado por WI: Warner-Infinity",
-
-    "copyright"   => "
-Derechos de autor",
-
-    // about us
-    "about_us" => "Acerca de nosotros",
-
-    "our_history" => "Nuestra Historia",
-
-    "our_mission" =>  "Nuestra Misión",
-
-    "mission" =>  "Para ser capaz de trabajar como un codificador",
-
-    "live_chat" =>  "Chat en Vivo",
-
-"learner" =>  "Learning",
-
-"leanring" =>  "Idiomas que estoy en la niebla del aprendizaje:",
-
-    "history"  =>  "
-Hace 10 años empecé codificación, un tiempo muy corto, me siento enamorado después de la codificación, estoy totalmente autodidacta, aprendí fregar los tutoriales netos e información general, y ver vídeos de YouTube y de vez en cuando comprar un guión, y lo distingue",
-
-    "whatwedo" => "Qué hacemos",
-
-    "skills" => "Nuestras Habilidades",
-
-    "about_main" => " ",
-
-
-	// profile.php
-
-	"phone" => "Телефон",
-
-    "note" => "Napomena",
-
-	"update" => "Ажурирање",
-
-	"address" => "Адреса",
-
-	"first_name" => "Ime",
-
-	"last_name" => "Prezime",
-
-	"old_password" => "Stara šifra",
-
-	"new_password" => "Nova lozinka",
-
-	"your_details" => "Ваши Детаљи",
-
-	"change_password" => "Promena lozinke",
-
-	"confirm_new_password" => "Potvrdite novu lozinku",
-
-    "to_change_email_username" => "Ако желите да промените име , е-маил или имате Регистред преко друштвене мреже и желите да сада промените лозинку , контактирајте администратора .",
-
-	// passwordreset.php
-
-	"password_reset" => "Пассворд Ресет",
-
-	"reset_password" => "ресет пассворд",
-
-
-	// user_roles.php
-
-	"add" => "додати",
-
-	"action" => "Акција",
-
-	"role_name" => "Улога Име",
-
-	"users_with_role" => "# Корисника са овом улогом",
-
-
-	// users.php
-
-	"ok" => "Ok",
-
-	"ban" => "забранити",
-
-	"yes" => "јесте",
-
-	"no"  => "Не",
-
-    "edit" => "Уреди",
-
-    "next" => "Следећа",
-
-    "previous" => "Претходна",
-
-	"unban" => "Причина",
-
-	"cancel" => "отказати",
-
-	"delete" => "Делете",
-
-	"details" => "Детаљи",
-
-	"loading" => "Лоадинг ...",
-
-	"register_date" => "Регистер Дате",
-	
-	"last_login" => "Последњи Пријава",
-
-	"confirmed" => "Потврђено",
-
-	"select_role" => "Изабери Улога",
-
-	"change_role" => "Промена Улога",
-
-	"add_user"	  => "Додај корисника",
-
-	"pick_user_role" => "Пицк улога корисника",
-
-    "never_logged_in" => "Никада пријављени",
-
-    // users table
-
-    "records_per_page" => "рецордс пер паге",
-
-    "nothing_found"    => "Нотхинг фоунд - Извини",
-
-    "no_data_in_table" => "Нема корисника у бази",
-
-    "showing" => "Приказ",
-
-    "to" => "у",
-
-    "of" => "од",
-
-    "records" => "Рецордс",
-
-    "filtered_from" => "филтрирана од",
-
-    "total_records" => "Укупан број записа",
-
-    "search" => "Тражи",
-
-
-	// misc
-
-	"at" => "у",
-
-	"logout" => "Izlogovati se",
-
-	"welcome" => "Dobrodošao",
-
-	"copyright_by" => "цопиригхт би",
-
-
-	// validation messages
-
-	"user_banned" => "Овај кориснички налог је забрањен од стране администратора !",
-
-	"field_required" => "Поље не може бити празно !",
-
-	"role_taken" => "Улога већ постоје .",
-
-	"email_required" => "Емаил ис рекуиред .",
-
-	"email_wrong_format" => "Молимо Вас да унесете исправну е-маил .",
-
-	"email_not_exist" => "Ова е-маил не постоји у нашој бази .",
-
-	"email_taken" => "Корисник са овом е-поште је већ Регистред .",
-
-	"dragon_username_required" => "Требуется ввести пользователя.",
-
-	"username_taken" => "Пользователь с таким именем уже существует.",
-
-	"dragon_name_taken" => "Пользователь с таким именем уже существует.",
-
-	"user_not_confirmed" => "Молимо Вас да прво потврди свој емаил.",
-
-	"password_required" => "Лозинка је потребна .",
-
-	"wrong_username_password" => "Погрешно корисничко име / лозинку комбинација .",
-
-	"passwords_dont_match" => "Лозинке се не поклапају .",
-
-	"wrong_old_password" => "Погрешно стара лозинка !",
-
-	"wrong_sum" => "Погрешно сума . Молим вас да проверите поново .",
-
-	"brute_force" => "Премашила максималну покушаја да ограничи за данас . Покушајте поново сутра .",
-
-	"success_registration_with_confirm" =>  "Пријава успешна . Molimo pregledajte E-poštu.",
-
-	"success_registration_no_confirm" => "Пријава успешна . Можете се пријавили .",
-
-	"user_added_successfully" => "Корисник је успешно додат .",
-
-	"user_updated_successfully" => "Корисник је ажуриран .",
-
-    "user_dont_exist" => "Овај корисник не постоји .",
-
-    "leave_blank" => "Оставите празно ако не желите да га промените .",
-
-    "invalid_password_reset_key" => "Пассворд ресет тастер је неважећа или истекла",
-
-    "password_length" => "Лозинка мора имати најмање 6 знакова .",
-
-    "error_writing_to_db" => "Еррор вритинг то базу података . Molim vas, pokušajte ponovo.",
-
-	// javascript
-
-	"posting" => "Постављање ...",
-
-	"logging_in" => "Логинг у ...",
-
-	"resetting" => "Ресетовање ...",
-
-	"password_updated_successfully" => "Лозинка успешно ажурирана .",
-
-	"password_updated_successfully_login" => "Лозинка успешно ажурирана . Можете <а хреф='логин.пхп'> пријава сада </а> .",
-
-	"working" => "Радна ...",
-
-	"password_reset_email_sent" => "Пассворд ресет емаил сент . Проверите Инбок ( спам) и фолдер .",
-
-	"message_couldn_be_sent" => "Порука није могла бити послата ! Molim vas, pokušajte ponovo.",
-
-	"updating" => "Ажурирање ...",
-
-	"details_updated" => "Детаљи успешно ажурирана .",
-
-	"error_updating_db" => "Грешка приликом ажурирања базе података . Molim vas, pokušajte ponovo.",
-
-	"are_you_sure" => "Da li si siguran?",
-
-	"creating_account" => "Креирање ацоунт ...",
-
-
-);
+<?php
+(32, 'es', 'panel_mini_admin', 'Admin Mini Panel'),
+
+(33, 'es', 'view_profile_page', 'Ver página de perfil'),
+(34, 'es', 'log_off', 'Cerrar sesión'),
+(35, 'es', 'admin_panel', 'Panel de administración'),
+(36, 'es', 'member_panel', 'Member''s Panel '),
+(37, 'es', 'hola', 'Hola'),
+(38, 'es', 'my_profile', 'Mi perfil'),
+(39, 'es', 'user_roles', 'Roles de usuario'),
+(40, 'es', 'index', 'Index'),
+(41, 'es', 'contact_us', 'Contact Us'),
+(42, 'es', 'servicios', 'Servicios'),
+(43, 'es', 'support_us', 'Support Us'),
+(44, 'es', 'forum', 'Forum'),
+(45, 'es', 'cafe', 'Cafe'),
+(46, 'es', 'esviar', 'esviar'),
+(47, 'es', 'about_us', 'Sobre nosotros'),
+(48, 'es', 'faq', 'Preguntas frecuestes'),
+(49, 'es', 'friesding', 'Sugerir a un amigo'),
+(50, 'es', 'welcome_', 'Biesvesido a'),
+(51, 'es', 'password_reset', 'Restablecimiesto de contraseña'),
+(52, 'es', 'reset_password', 'Restablecer contraseña'),
+(53, 'es', 'teléfono', 'Teléfono'),
+(54, 'es', 'note', 'Note'),
+(55, 'es', 'actualizar', 'Actualizar'),
+(56, 'es', 'dirección', 'Dirección'),
+(57, 'es', 'first_name', 'First Name'),
+(58, 'es', 'last_name', 'Last Name'),
+(59, 'es', 'old_password', 'Old Password'),
+(60, 'es', 'new_password', 'Nueva contraseña'),
+(61, 'es', 'your_details', 'Detalles del recorrido'),
+(62, 'es', 'change_password', 'Cambiar contraseña'),
+(63, 'es', 'confirm_new_password', 'Confirmar nueva contraseña'),
+(64, 'es', 'to_change_email_username', 'Si desea cambiar su nombre de usuario, correo electrónico o lo ha registrado a través de una red social y desea cambiar su contraseña ahora, póngase es contacto con el administrador.'),
+(65, 'es', 'agregar', 'Agregar'),
+(66, 'es', 'ban', 'Ban'),
+(67, 'es', 'sí', 'Sí'),
+(68, 'es', 'no', 'No'),
+(69, 'es', 'editar', 'Editar'),
+(70, 'es', 'next', 'Next'),
+(71, 'es', 'anterior', 'Anterior'),
+(72, 'es', 'unban', 'Unban'),
+(73, 'es', 'cancelar', 'Cancelar'),
+(74, 'es', 'eliminar', 'Eliminar'),
+(75, 'es', 'detalles', 'Detalles'),
+(76, 'es', 'cargando', 'cargando ...'),
+(77, 'es', 'role_name', 'Role Name'),
+(78, 'es', 'user_with_role', '# de usuarios con este rol.'),
+(79, 'es', 'user_banned', '¡Esta cuesta de usuario está prohibida por el administrador!'),
+(80, 'es', 'field_required', '¡El campo no puede estar vacío!'),
+(81, 'es', 'role_takes', 'Rol ya existe.'),
+(82, 'es', 'email_required', 'Se requiere correo electrónico'),
+(83, 'es', 'email_wring_format', 'Por favor, introduzca un correo electrónico válido.'),
+(84, 'es', 'email_not_exist', 'Este correo electrónico no existe es nuestra base de datos'),
+(85, 'es', 'email_takes', 'Usuario con este correo electrónico ya está registrado.'),
+(86, 'es', 'username_takes', 'Este nombre de usuario está siesdo utilizado por otro miembro'),
+(87, 'es', 'user_not_confirmed', 'Confirme primero su correo electrónico'),
+(88, 'es', 'password_required', 'Se requiere contraseña'),
+(89, 'es', 'wrong_username_password', 'Combinación incorrecta de nombre de usuario / contraseña.'),
+(90, 'es', 'passwords_dont_match', 'Contraseñas no coincides'),
+(91, 'es', 'wrong_old_password', 'Contraseña incorrecta anterior'),
+(92, 'es', 'wrong_sum', 'Wrong sum. Por favor, vuelva a verificarlo'),
+(93, 'es', 'brute_force', 'Excedió el límite máximo de intestos para hoy. Inténtelo de nuevo mañana'),
+(94, 'es', 'success_registration_with_confirm', 'Registro exitoso. Revise su correo electrónico'),
+(95, 'es', 'success_registration_no_confirm', 'Registro exitoso. Puede iniciar sesión ahora'),
+(96, 'es', 'user_added_successfully', 'User added successfully.'),
+
+(97, 'es', 'user_updated_successfully', 'User updated successfully'),
+(98, 'es', 'user_dont_exist', 'Este usuario no existe'),
+(99, 'es', 'leave_blank', 'Dejar es blanco si no quieres cambiarlo'),
+(100, 'es', 'invalid_password_reset_key', 'La clave de restablecimiesto de contraseña no es válida o ha caducado'),
+(101, 'es', 'password_lesgth', 'La contraseña debe teser al mesos 6 caracteres de longitud'),
+(102, 'es', 'error_writing_to_db', 'Error al escribir es la base de datos. Inténtalo de nuevo.'),
+(103, 'es', 'publicar', 'Publicar ...'),
+(104, 'es', 'resetting', 'Resetting ...'),
+(105, 'es', 'password_updated_successfully', 'Password successfully updated.'),
+(106, 'es', 'password_updated_successfully_login', 'Contraseña correctameste actualizada. Puede <a href=''login.php''> iniciar sesión ahora </a>.'),
+(107, 'es', 'password_reset_email_sest', 'Correo electrónico de restablecimiesto de contraseña esviado. Compruebe su bandeja de estrada (y correo no deseado)'),
+(108, 'es', 'message_couldn_be_sest', '¡No se pudo esviar el messaje! Por favor inteste nuevameste.'),
+(109, 'es', 'actualizar', 'Actualizando ...'),
+
+(110, 'es', 'details_updated', 'Detalles actualizados con éxito'),
+(111, 'es', 'are_you_sure', 'Estás seguro'),
+(112, 'es', 'creating_account', 'Creating Account ...'),
+(113, 'es', 'usergroup', 'User Group'),
+(114, 'es', 'at', 'at'),
+(115, 'es', 'logout', 'Log Out'),
+(116, 'es', 'copyright_by', 'Copyright by'),
+(117, 'es', 'buscar', 'Buscar'),
+(118, 'es', 'total_records', 'registros totales'),
+(119, 'es', 'filtered_from', 'Filtrado desde'),
+(120, 'es', 'registros', 'Registros'),
+(121, 'es', 'de', 'de'),
+(122, 'es', 'to', 'to'),
+(123, 'es', 'main_title', 'Esto se estiesde como un sistema CMS GRATUITO, simplemeste porque me escanta crear cosas, un backesd de interfaz de usuario simplificado, creado para seguridad de gama alta, basado es bases de datos, todo lo que necesita es un paquete agradable para construir su propio sitio web. '),
+(124, 'es', 'comunidad', 'Comunidad'),
+(125, 'es', 'learn', 'WI Community para cualquiera que adore construir sitios web.'),
+(126, 'es', 'software', 'Paquetes de software'),
+(127, 'es', 'paquete', 'Temas, complemestos, aplicaciones, paquetes personalizados y mucho más'),
+(128, 'es', 'it_title', 'Software personalizado para el mundo comercial'),
+
+(129, 'es', 'it', 'I.T'),
+(171, 'es', 'currest_topics', 'ver temas actuales'),
+(172, 'es', 'ok', 'Ok'),
+(173, 'es', 'change_pic', 'Cambiar foto'),
+
+(174, 'es', 'bio', 'Bio'),
+(175, 'es', 'guardar', 'Guardar'),
+(176, 'es', 'user_location', 'User Location'),
+(177, 'es', 'social_info', 'Información social'),
+
+(178, 'es', 'amigo', 'Amigos'),
+(179, 'es', 'profile_wall', 'Profile Wall'),
+(180, 'es', 'mess', 'Messajes'),
+(181, 'es', 'admins', 'Administradores'),
+
+(182, 'es', 'logs', 'Logs'),
+(184, 'es', 'mostrando', 'Mostrando ...'),
+(185, 'es', 'nothing_found', 'Nothing found - sorry'),
+(186, 'es', 'never_logged_in', 'Never Logged In'),
+(187, 'es', 'select_role', 'Seleccionar rol'),
+(188, 'es', 'confirmado', 'Confirmado'),
+(189, 'es', 'last_login', 'Último inicio de sesión'),
+(190, 'es', 'skills', 'Our Skills'),
+(191, 'es', 'whatwedo', 'Lo que hacemos'),
+(356, 'es', 'trans_lang', 'Lang'),
+(357, 'es', 'lang_keyword', 'Palabra clave'),
+(358, 'es', 'lang_trans', 'Traducción'),
+(359, 'es', 'successfully_updated_site_settings', 'Configuraciones del sitio actualizadas con éxito'),
+(360, 'es', 'Pick_Category', 'Pick Category'),
+(361, 'es', 'Pick_Brand', 'Pick Brand'),
+(362, 'es', 'Change_cat', 'Cambiar categoría'),
+(363, 'es', 'marca', 'Marca'),
+(364, 'es', 'Categoría', 'Categoría'),
+(365, 'es', 'product_name', 'Produce Name'),
+(366, 'es', 'product_desc', 'Descripción del producto'),
+(367, 'es', 'product_price', 'Product Price'),
+(368, 'es', 'product_image', 'Product Image'),
+(369, 'es', 'edit_css', 'Editar CSS'),
+(370, 'es', 'edit_meta', 'Edit Meta'),
+(371, 'es', 'edit_css_href', 'Href'),
+(372, 'es', 'meta_name', 'Meta Name'),
+(373, 'es', 'meta_contest', 'Meta Contest'),
+(374, 'es', 'meta_author', 'Meta Autor'),
+(375, 'es', 'add_meta', 'Agregar Meta'),
+
+(376, 'es', 'add_trans', 'Añadir traducción'),
+(377, 'es', 'add_lang', 'Agregar idioma'),
+(378, 'es', 'css_name', 'Agregar CSS'),
+(379, 'es', 'administradores', 'Administradores'),
+(380, 'es', 'logs', 'Logs'),
+(381, 'es', 'add_todo', 'Add to do Item'),
+(382, 'es', 'ToDoItem', 'hacer artículo'),
+
+(383, 'es', 'choose', 'Por favor, elija una opción'),
+(384, 'es', 'Media_Lib', 'WIMedia Library'),
+(385, 'es', 'upload_logo', 'Cargar logotipo'),
+(386, 'es', 'add_lang', 'Agregar idioma'),
+(387, 'es', 'país', 'nombre del país'),
+(388, 'es', 'country_code', 'código de país'),
+(389, 'es', 'change_lang', 'Change Lang'),
+(390, 'es', 'guardar', 'Guardar'),
+(391, 'es', 'actualización', 'actualización'),
+(392, 'es', 'href', 'Href'),
+(393, 'es', 'edit_meta', 'Edit Meta'),
+(394, 'es', 'meta_contest', 'Meta Contest'),
+(395, 'es', 'meta_name', 'Meta_Name'),
+(396, 'es', 'meta_author', 'Meta Autor'),
+(397, 'es', 'edit_css', 'Editar CSS'),
+(398, 'es', 'edit_js', 'Editar JS'),
+
+?>

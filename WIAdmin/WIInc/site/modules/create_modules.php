@@ -249,7 +249,7 @@ margin-left: -50px;
 
 
 
-         <div id = "droppable1"  class = "ui-widget-header drop col-md-9 col-lg-9 col-xs-9 cl-sm-9 drop">
+         <div id = "droppable1"  class = "ui-widget-header drop col-md-9 col-lg-9 col-xs-9 cl-sm-9">
          </div>
 
                                    </div>
@@ -282,104 +282,13 @@ margin-left: -50px;
   hoverClass: "ui-state-active",
 });
 
-        $( "#draggable1 li" ).draggable({
-  helper: 'clone',
-});
+
+    
+
       
-
 });
 
-         $(function() {
-
-
-            $( ".drop" ).droppable({
-              greedy: true,
-               accept: "#draggable1 li, #draggable li",
-               hoverClass: "dropping",
-               tolerance: "touch",
-               drop: function( event, ui ) {
-                var container = $(event.target).attr('id')
-      alert(container); 
-
-        $( this )
-            var mod_name = ui.draggable.attr('id');
-          alert(mod_name);
-        //.addClass( "ui-state-highlight" );
-
-
-           if (mod_name == "col1") {
-            WIMod.column(mod_name);
-           }else if (mod_name == "col2") {
-             WIMod.column(mod_name);
-           }else if (mod_name == "col4") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col6") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col8") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col10") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col11") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col12") {
-WIMod.column(mod_name);
-           }
-           else {
-            WIMod.drop(mod_name);
-           }
-               }
-            });
-
-
-          
-         });
-
-
-                  $(function() {
-
-
-            $( ".column_drop" ).droppable({
-              greedy: true,
-               accept: "#draggable1 li, #draggable li",
-               hoverClass: "dropping",
-               tolerance: "touch",
-               drop: function( event, ui ) {
-                var container = $(event.target).attr('id')
-      alert(container); 
-
-        $( this )
-            var mod_name = ui.draggable.attr('id');
-          alert(mod_name);
-        //.addClass( "ui-state-highlight" );
-
-
-           if (mod_name == "col1") {
-            WIMod.column(mod_name);
-           }else if (mod_name == "col2") {
-             WIMod.column(mod_name);
-           }else if (mod_name == "col4") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col6") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col8") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col10") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col11") {
-WIMod.column(mod_name);
-           }else if (mod_name == "col12") {
-WIMod.column(mod_name);
-           }
-           else {
-            WIMod.drop(mod_name);
-           }
-               }
-            });
-
-
-          
-         });
-
+               
       </script>
          
 

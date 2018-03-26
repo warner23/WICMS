@@ -15,7 +15,7 @@ class blog
 		$this->mod  = new WIModules();
 		$this->page = new WIPage();
 		$this->login = new WILogin();
-    $this->user   = new WIUser(WISession::get('user_id'));
+        $this->user   = new WIUser(WISession::get('user_id'));
 	}
 
 		public function editMod()
@@ -271,12 +271,12 @@ if($this->user->isAdmin()){
 
 <div class="admin_post hidden">
 <ul>
-	<li class="blog_type" title="Blog post no media"><a href="#"  onclick="WIBlog.noMedia()"><i class="fa fa-file-text" aria-hidden="true"></i></a></li>
-	<li class="blog_type" title="Blog post slider"><a href="#" onclick="WIBlog.slider()"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-	<li class="blog_type" title="Blog post video"><a href="#" onclick="WIBlog.video()"><i class="fa fa-list-alt" aria-hidden="true"></i></a></li>
-	<li class="blog_type" title="Blog post audio"><a href="#"  onclick="WIBlog.audio()"><i class="fa fa-file-audio-o" aria-hidden="true"></i></a></li>
-	<li class="blog_type" title="Blog post image"><a href="#" onclick="WIBlog.image()"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-	<li class="blog_type" title="Blog post youtube"><a href="#" onclick="WIBlog.youtube()"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+	<li class="blog_type" title="Blog post no media"><a href="javascript:void(0)"  onclick="WIBlog.noMedia(`';echo $this->user->getRole(); echo'`)"><i class="fa fa-file-text" aria-hidden="true"></i></a></li>
+	<li class="blog_type" title="Blog post slider"><a href="javascript:void(0)" onclick="WIBlog.slider(`'; echo $this->user->getRole(); echo'`)"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
+	<li class="blog_type" title="Blog post video"><a href="javascript:void(0)" onclick="WIBlog.video(`'; echo $this->user->getRole(); echo'`)"><i class="fa fa-list-alt" aria-hidden="true"></i></a></li>
+	<li class="blog_type" title="Blog post audio"><a href="javascript:void(0)"  onclick="WIBlog.audio(`'; echo $this->user->getRole(); echo '`)"><i class="fa fa-file-audio-o" aria-hidden="true"></i></a></li>
+	<li class="blog_type" title="Blog post image"><a href="javascript:void(0)" onclick="WIBlog.image(`'; echo $this->user->getRole(); echo '`)"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
+	<li class="blog_type" title="Blog post youtube"><a href="javascript:void(0)" onclick="WIBlog.youtube(`';echo $this->user->getRole(); echo '`)"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 	</div>';
@@ -299,10 +299,16 @@ echo '<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 				
             </div>	
             </div>
-                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-       <script type="text/javascript" src="WICore/WIJ/WIBlog.js"></script>
-       <script type="text/javascript" src="WICore/WIJ/WIBlogUpload.js"></script>
-       <script type="text/javascript" src="WICore/WIJ/WIBlogVidUpload.js"></script>';
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+     <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
+
+     <script type="text/javascript" src="WICore/WIJ/WIBlog.js"></script>
+
+<script type="text/javascript" src="WICore/WIJ/WIMediaCenter.js"></script>
+<script type="text/javascript" src="WICore/WIJ/WIMedia.js"></script>
+<script type="text/javascript" src="WICore/WIJ/WISlideMedia.js"></script>
+';
 
 		if(isset($page)){			
 		$right_sidePower = $this->Web->pageModPower($page, "right_sidebar");

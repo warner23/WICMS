@@ -69,14 +69,8 @@ $web->footer();
 		
 	<!--End Wrapper-->
 
-
-	<script type="text/javascript" src="../WITheme/WICMs/blog/js/vendor/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="../WITheme/WICMs/blog/js/jquery.cookie.js"></script> <!-- jQuery cookie --> 
-	<script type="text/javascript" src="../WITheme/WICMs/blog/js/styleswitch.js"></script> <!-- Style Colors Switcher -->
-	 
-	<script type="text/javascript" src="../WITheme/WICMs/blog/js/plugin/jquery.themepunch.revolution.min.js"></script>
-	<script type="text/javascript" src="../WITheme/WICMs/blog/js/plugin/jquery.plugin.js"></script>
-
+	<script type="text/javascript" src="../WITheme/WICMS/shop/js/jquery.cookie.js"></script> <!-- jQuery cookie --> 
+	<script type="text/javascript" src="../WITheme/WICMS/shop/js/styleswitch.js"></script> <!-- Style Colors Switcher -->
 
 
 	<!-- Start Style Switcher -->

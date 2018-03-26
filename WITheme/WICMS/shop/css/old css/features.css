@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+.content 
+{
+padding: 90px 0;
+position: relative;
+}
+
+.content feature_rwork
+{
+}
+
+.container 
+{
+margin-right: auto;
+margin-left: auto;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+.container:before, .container:after 
+{
+content: " ";
+display: table;
+}
+
+.container:after 
+{
+clear: both;
+}
+
+.row 
+{
+margin-left: -15px;
+margin-right: -15px;
+}
+
+.row:before, .row:after 
+{
+content: " ";
+display: table;
+}
+
+.effect-slide-bottom.in 
+{
+-webkit-transform: translate3d(0,0,0);
+transform: translate3d(0,0,0);
+opacity: 1;
+}
+
+.projects
+{
+position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+.project_container {
+padding: 0;
+border-bottom: 1px solid #e6e6e6;
+-webkit-transition: border 0.2s ease, box-shadow 0.2s ease;
+transition: border 0.2s ease, box-shadow 0.2s ease;
+float: left;
+overflow: hidden;
+position: relative;
+width:155px;
+height:200px;
+}
+
+.project_info {
+text-align: center;
+padding: 25px 0 30px;
+display: block;
+color: #888;
+background: #fff;
+height: 100px;;
+vertical-align: baseline;
+overflow: hidden;
+-webkit-transition: background 0.2s ease;
+transition: background 0.2s ease;
+width:150px;
+}

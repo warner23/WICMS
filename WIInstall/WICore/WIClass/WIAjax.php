@@ -31,6 +31,7 @@ case 'install_settings':
         
         default:
         
+        
         break;
 }
 

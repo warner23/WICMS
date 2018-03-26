@@ -17,40 +17,36 @@ class WICart
 	{
 		$userId = WISession::get('user_id');
 
-		$query = $this->WIdb->prepare('SELECT * FROM WI_cart WHERE p_id =:pid AND user_id =:userId');
-		$query->bindParam(':userId', $userId, PDO::PARAM_INT);
-		$query->bindParam(':pid', $pid, PDO::PARAM_INT);
+		$query_ = $this->WIdb->prepare('SELECT * FROM `wi_cart` WHERE `p_id`=:pid AND `user_id`=:userId');
+		$query_->bindParam(':userId', $userId, PDO::PARAM_INT);
+		$query_->bindParam(':pid', $pid, PDO::PARAM_INT);
 
-		$query->execute();
-
+		$query_->execute();
+		$result = $query_->fetchAll(PDO::FETCH_ASSOC);
+		//print_r($result);
+		//echo "r". $result;
 		if ( count ( $result ) > 0 ){
 			echo "Product is already added into your basket continue shopping....";
 		}else{
 
-			$query = $this->WIdb->prepare('SELECT * FROM WI_Products WHERE product_id =:pid');
+			$query = $this->WIdb->prepare('SELECT * FROM wi_products WHERE product_id =:pid');
 		    $query->bindParam(':pid', $pid, PDO::PARAM_INT);
 		    $query->execute();
-		    $row = $query->fetch(PDO::FETCH_ASSOC);
-		    $id = $row["product_id"];
-			$pname = $row["product_title"];
-			$pimg   = $row["product_image"];
-			$pprice  = $row['product_price'];
-			$ip  =  $_SERVER['REMOTE_ADDR'];
+		    $row = $query->fetchAll(PDO::FETCH_ASSOC);
 			$quant   = "1";
-
-			$userId = $_SESSION["userId"];
-
-			$query = $this->WIdb->prepare('INSERT INTO  `warner_shop`.`WI_cart` (
+			//print_r($row);
+			//echo $row[0]['product_title'];
+			$query1 = $this->WIdb->prepare('INSERT INTO  `wi_cart` (
         `id` ,`p_id` ,`ip_addr` ,`user_id` ,`product_title` ,`product_image` ,`quantity` ,`price` ,`total_amount`)VALUES (NULL , :pid, :ip, :userId, :pname, :pimg, :quant, :pprice, :pprice)');
-			$query->bindParam(':pid', $pid, PDO::PARAM_INT);
-			$query->bindParam(':ip', $ip, PDO::PARAM_STR);
-			$query->bindParam(':userId', $userId, PDO::PARAM_INT);
-			$query->bindParam(':pname', $pname, PDO::PARAM_STR);
-			$query->bindParam(':pimg', $pimg, PDO::PARAM_STR);
-			$query->bindParam(':quant', $quant, PDO::PARAM_INT);
-			$query->bindParam(':pprice', $pprice, PDO::PARAM_INT);
-			$query->bindParam(':pprice', $pprice, PDO::PARAM_INT);
-			$query->execute();
+			$query1->bindParam(':pid', $pid, PDO::PARAM_INT);
+			$query1->bindParam(':ip', $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
+			$query1->bindParam(':userId', $userId, PDO::PARAM_INT);
+			$query1->bindParam(':pname', $row[0]['product_title'], PDO::PARAM_STR);
+			$query1->bindParam(':pimg', $row[0]['product_image'], PDO::PARAM_STR);
+			$query1->bindParam(':quant', $quant, PDO::PARAM_INT);
+			$query1->bindParam(':pprice', $row[0]['product_price'], PDO::PARAM_INT);
+			$query1->bindParam(':pprice', $row[0]['product_price'], PDO::PARAM_INT);
+			$query1->execute();
 
 			echo '<div class="alert alert-success">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -64,7 +60,7 @@ class WICart
 	{
 		//$userId = WISession::get('user_id');
 		//echo "user" . $userId;
-		$sql = "SELECT * FROM `WI_cart` WHERE user_id =:userId";
+		$sql = "SELECT * FROM `wi_cart` WHERE user_id =:userId";
 		$query = $this->WIdb->prepare($sql);
 		$query->bindParam(':userId', $userId, PDO::PARAM_INT);
 		$query->execute();
@@ -75,17 +71,19 @@ class WICart
 			//var_dump($result);
 			$id  = $result['id'];
 			$pid = $result['p_id'];
-			$pname  = $result['product_title'];
-			$pimg  = $result['product_image'];
-			$pprice = $result['price'];
+
+			//<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">' . $no .'</div>
 			//echo "id" . $id;
-			echo '<div class="col-md-12">
-			<div class="col-md-3">' . $no .'</div>
-				<div class="col-md-3">
-				<img src="WIMedia/Img/shop/' . $pimg . '" style="width:60px;height:60px;">
+			echo '<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+			
+				<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+				<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+				<img class="img-responsive" src="../../../WIAdmin/WIMedia/Img/shop/' . $result['product_image'] . '" style="width:60px;height:60px;">
 				</div>
-				<div class="col-md-3">' . $pname . '</div>
-				<div class="col-md-3">' . $pprice . '</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">' . $result['product_title'] . '</div>
+				<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">' . $result['price'] . '</div>
+				<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">' . $result['quantity'] . '</div>
 				</div>';
 				$no = $no +1;
 		}
@@ -94,12 +92,51 @@ class WICart
 
 	}
 
+	public function CheckCart()
+	{
+		$userId = WISession::get('user_id');
+		//echo "user" . $userId;
+		$sql = "SELECT * FROM `wi_cart` WHERE user_id =:userId";
+		$query = $this->WIdb->prepare($sql);
+		$query->bindParam(':userId', $userId, PDO::PARAM_INT);
+		$query->execute();
+
+		while($result = $query->fetchAll() ){
+
+			foreach ($result as $basket) {
+				$subtotal = $basket['price'] * $basket['quantity'];
+				echo '						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="../../../WIAdmin/WIMedia/Img/shop/' . $basket['product_image'] . '" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">' . $basket['product_title'] . '</h4>
+										<p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price"><span>£</span>' . $basket['price'] . '</td>
+							<td data-th="Quantity">
+					<input type="number" pid="' . $basket['id'] . '" class="form-control text-center qty" value="' . $basket['quantity'] . '">
+							</td>
+							<td data-th="Subtotal" class="text-center">' . $subtotal .'</td>
+							<td class="actions" data-th="">
+								<button class="btn btn-info btn-sm update"><i class="fa fa-refresh"></i></button>
+								<button class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i></button>								
+							</td>
+						</tr>';
+			}
+			
+		}
+
+	}
+
 	public function CartCount($userId)
 	{
 		//$userId = WISession::get('user_id');
 		//echo "usert" . $userId;
 		$result = $this->WIdb->select(
-                    "SELECT * FROM `WI_cart` WHERE user_id=:userId", array(
+                    "SELECT * FROM `wi_cart` WHERE user_id=:userId", array(
                     	"userId"  => $userId
                     	));
 		//var_dump($result);

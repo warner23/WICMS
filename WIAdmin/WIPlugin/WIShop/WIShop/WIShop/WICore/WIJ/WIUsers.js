@@ -78,28 +78,7 @@ users.displayInfo = function (userId) {
  * @param {object} element Clicked DOM element.
  * @param {int} userId Id of user that will be deleted.
  */
-users.deleteUser = function (element, userId) {
-        //get whole user row that will be deleted
-	var userRow = $(element).parents(".user-row");
-        
-        //ask admin to confirm that he want to delete this user
-	var c = confirm($_lang.are_you_sure);
-	if(c) {
-                //confimed
-                
-                //send data to server
-		$.ajax({
-			
-            
-                                
-          //remove user row from table
-  				userRow.fadeOut(600, function () {
-  					 $(this).remove();
-  				});
-			}
-		});
-	}
-};
+
 
 
 /**

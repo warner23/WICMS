@@ -57,7 +57,7 @@ class Install
  `info` varchar(255) NOT NULL,
 
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
@@ -81,7 +81,7 @@ INSERT INTO `wi_admin_info_box` (`id`, `name`, `info`) VALUES
   `sort` int(11) DEFAULT NULL,
   `lang` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_admin_menu`
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `wi_admin_msg` (
   `attachments` enum('y','n') NOT NULL DEFAULT 'n',
   `file` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 -- --------------------------------------------------------
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `wi_admin_todo_list` (
   `timeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `completed` enum('y','n') NOT NULL DEFAULT 'n',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `wi_blockedusers` (
   `blockee` varchar(16) NOT NULL,
   `blockdate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `wi_contact_message` (
   `message` varchar(255) NOT NULL,
   `time_sent` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `wi_css` (
   `rel` varchar(255) NOT NULL,
   `page` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_css`
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `wi_footer` (
   `footer_linking` varchar(255) NOT NULL,
   `website_name` varchar(255) NOT NULL,
   PRIMARY KEY (`footer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_footer`
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `wi_friends_requests` (
   `user_id` int(11) NOT NULL,
   `timedate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `wi_header` (
   `header_content` varchar(255) NOT NULL,
   `header_slogan` varchar(255) NOT NULL,
   PRIMARY KEY (`header_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_header`
@@ -276,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `wi_lang` (
   `href` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `lang` (`lang`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_lang`
@@ -315,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `wi_logs` (
   `user` varchar(45) NOT NULL,
   `opperation` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
@@ -339,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `wi_members` (
   `banned` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Table structure for table `wi_menu`
@@ -353,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `wi_menu` (
   `sort` int(11) DEFAULT NULL,
   `lang` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_menu`
@@ -375,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `wi_meta` (
   `content` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_meta`
@@ -419,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `wi_mod` (
   `Mod_description` varchar(255) DEFAULT NULL,
   `mod_font` varchar(225) NOT NULL,
   PRIMARY KEY (`mod_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_mod`
@@ -487,7 +487,7 @@ CREATE TABLE IF NOT EXISTS `wi_modules` (
   `text6` varchar(255) DEFAULT NULL,
   `trans6` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
@@ -499,7 +499,7 @@ CREATE TABLE IF NOT EXISTS `wi_msg` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `chat_id_id` (`chat_id`,`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
@@ -513,12 +513,13 @@ CREATE TABLE IF NOT EXISTS `wi_notifications` (
   `user` varchar(45) NOT NULL,
   `opperation` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
 -- Table structure for table `wi_page`
 --
+
 
 CREATE TABLE IF NOT EXISTS `wi_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -531,18 +532,18 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
   `contents` text,
   `footer` enum('0','1') DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_page`
 --
 
-INSERT INTO `wi_page` (`id`, `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
-(1, 'alogin', '1', '1', '0', '0', '0', 'alogin', '1'),
-(2, 'confirm', '1', '1', '0', '0', '0', 'confirm', '1'),
-(3, 'index', '1', '1', '0', '0', '0', 'welcome_box', '1'),
-(4, 'passwordreset', '1', '1', '0', '0', '0', 'passwordreset', '1'),
-(5, 'profile', '1', '1', '0', '0', '0', profile, '1');
+INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
+( 'alogin', '1', '1', '0', '0', '0', 'alogin', '1'),
+( 'confirm', '1', '1', '0', '0', '0', 'confirm', '1'),
+( 'index', '1', '1', '0', '0', '0', 'welcome_box', '1'),
+( 'passwordreset', '1', '1', '0', '0', '0', 'passwordreset', '1'),
+( 'profile', '1', '1', '0', '0', '0', 'profile', '1');
 
 -- --------------------------------------------------------
 
@@ -555,7 +556,7 @@ CREATE TABLE IF NOT EXISTS `wi_plugin` (
   `plugin` varchar(255) NOT NULL,
   `activated` enum('true','false') NOT NULL,
   PRIMARY KEY (`plugin_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -576,7 +577,7 @@ CREATE TABLE IF NOT EXISTS `wi_private_messages` (
   `senderDelete` enum('0','1') NOT NULL,
   `time_sent` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
@@ -588,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `wi_scripts` (
   `src` varchar(255) NOT NULL,
   `page` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_scripts`
@@ -626,30 +627,30 @@ CREATE TABLE IF NOT EXISTS `wi_sidebar` (
   `lang` varchar(255) NOT NULL,
   `img` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_sidebar`
 --
 
-INSERT INTO `wi_sidebar` (`id`, `label`, `link`, `parent`, `sort`, `lang`, `img`) VALUES
-(1, 'Settings', '', 0, 0, 'settings', 'settings'),
-(2, 'Site', 'WISite.php', 1, 0, 'Site', 'site'),
-(3, 'Users', '', 3, 1, 'Users', 'users'),
-(4, 'Manage User', 'WIUser.php', 3, 0, 'Manage_users', 'manage users'),
-(5, 'Roles', 'WIRoles.php', 5, 1, 'roles', 'roles'),
-(6, 'Menu''s', 'WIMenu.php', 1, 1, 'Menu', 'menu'),
-(7, 'Header', 'WIHeader.php', 1, 2, 'Header', 'header'),
-(8, 'Modules', '', 0, 2, 'Modules', 'modules'),
-(9, 'Modules', 'WIModules.php', 8, 0, 'Modules', 'modules'),
-(10, 'Pages', '', 0, 3, 'Pages', 'pages'),
-(11, 'Pages', 'WIPages.php', 10, 0, 'Pages', 'pages'),
-(12, 'Plugins', '', 0, 4, 'Plugins', 'plugin'),
-(13, 'plugin', 'WIPlugin.php', 12, 0, 'Plugin', 'plugin'),
-(14, 'Styling', 'WIStyling.php', 3, 3, 'Styling', 'styling'),
-(15, 'Media', '', 0, 5, 'media', 'media'),
-(16, 'Media', 'WIMedia.php', 17, 0, 'media', 'media'),
-(17, 'Multi Lang', 'WIMlang.php', 3, 4, 'Multi Lang', 'multi_lang');
+INSERT INTO `wi_sidebar` ( `label`, `link`, `parent`, `sort`, `lang`, `img`) VALUES
+( 'Settings', '', 0, 0, 'settings', 'settings'),
+( 'Site', 'WISite.php', 1, 0, 'Site', 'site'),
+( 'Users', '', 0, 1, 'Users', 'users'),
+( 'Manage User', 'WIUser.php', 3, 0, 'Manage_users', 'manage users'),
+( 'Roles', 'WIRoles.php', 3, 1, 'roles', 'roles'),
+( 'Menus', 'WIMenu.php', 1, 1, 'Menu', 'menu'),
+( 'Header', 'WIHeader.php', 1, 2, 'Header', 'header'),
+( 'Modules', '', 0, 2, 'Modules', 'modules'),
+('Modules', 'WIModules.php', 8, 0, 'Modules', 'modules'),
+( 'Pages', '', 0, 3, 'Pages', 'pages'),
+('Pages', 'WIPages.php', 10, 0, 'Pages', 'pages'),
+( 'Plugins', '', 0, 4, 'Plugins', 'plugin'),
+( 'plugin', 'WIPlugin.php', 12, 0, 'Plugin', 'plugin'),
+('Styling', 'WIStyling.php', 1, 3, 'Styling', 'styling'),
+('Media', '', 0, 5, 'media', 'media'),
+( 'Media', 'WIMedia.php', 15, 0, 'media', 'media'),
+('Multi Lang', 'WIMlang.php', 1, 4, 'Multi Lang', 'multi_lang');
 
 -- --------------------------------------------------------
 
@@ -705,7 +706,7 @@ CREATE TABLE IF NOT EXISTS `wi_site` (
   `bootstrap_version` varchar(50) NOT NULL,
   `wicms_version` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 INSERT INTO `wi_site` (`id`,`site_name`, `site_domain`, `site_url`, `favicon`, `db_host`, `db_username`, `db_pass`, `db_name`, `db_port`, `db_type`, `secure_session`, `http_only`, `regenerate_id`, `use_only_cookie`, `login_fingerprint`, `max_login_attempts`, `redirect_after_login`, `password_encryption`, `encryption_cost`, `sha512_iterations`, `password_salt`, `reset_key_life`, `mail_confirm_required`, `register_confirm`, `reg_pass_reset`, `mailer`, `smpt_host`, `smpt_port`, `smpt_username`, `smpt_password`, `smpt_encryption`, `social_callback_url`, `google_enabled`, `google_id`, `google_secret`, `facebook_enabled`, `facebook_id`, `facebook_secret`, `twitter_enabled`, `twitter_key`, `twitter_secret`, `default_lang`, `multi_lang`, `bootstrap_version`, `wicms_version`) 
@@ -725,7 +726,7 @@ CREATE TABLE IF NOT EXISTS `wi_social_logins` (
   `provider_id` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -738,7 +739,7 @@ CREATE TABLE IF NOT EXISTS `wi_tasks` (
   `item` varchar(255) NOT NULL,
   `percent` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_tasks`
@@ -761,7 +762,7 @@ CREATE TABLE IF NOT EXISTS `wi_theme` (
   `destination` varchar(255) NOT NULL,
   `in_use` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 INSERT INTO `wi_theme` (`id`, `theme`, `destination`, `in_use`) VALUES
@@ -778,7 +779,7 @@ CREATE TABLE IF NOT EXISTS `wi_trans` (
   `keyword` varchar(255) NOT NULL,
   `translation` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=399 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_trans`
@@ -914,9 +915,9 @@ INSERT INTO `wi_trans` (`id`, `lang`, `keyword`, `translation`) VALUES
 (127, 'en', 'package', 'Themes, plugins, apps, custom packages, and so much more.'),
 (128, 'en', 'it_title', 'Custom software for the commercial world.'),
 (129, 'en', 'it', 'I.T'),
-(130, 'es', 'email', 'Е-маил'),
-(131, 'es', 'login', 'Пријава'),
-(132, 'es', 'username', 'Корисничко име'),
+(130, 'es', 'email', N'Е-маил'),
+(131, 'es', 'login', N'Пријава'),
+(132, 'es', 'username', N'Корисничко име'),
 (133, 'es', 'password', 'Лозинка'),
 (134, 'es', 'male', 'Мушкарац'),
 (135, 'es', 'female', 'женски'),
@@ -1201,7 +1202,7 @@ CREATE TABLE IF NOT EXISTS `wi_track`
  `dt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  
  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
@@ -1227,7 +1228,7 @@ CREATE TABLE IF NOT EXISTS `wi_user_details` (
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` enum('Available','in_chat') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Available',
   PRIMARY KEY (`id_user_details`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 --
@@ -1238,7 +1239,7 @@ CREATE TABLE IF NOT EXISTS `wi_user_roles` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wi_user_roles`
@@ -1265,7 +1266,8 @@ CREATE TABLE IF NOT EXISTS `wi_visitors_log` (
   `ip` text NOT NULL,
   `country` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+";
 $pdo->exec($q);
 		//$pdo = null;
 

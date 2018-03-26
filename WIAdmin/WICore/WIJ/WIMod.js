@@ -132,7 +132,7 @@ WIMod.drop = function(mod_name){
         {
             // check to see if another element is there first, if it is place after element
            
-           if( $('.coldrop').is(':empty') ){
+           if( $('.column_drop').is(':empty') ){
             alert("div empty");
            // $("#droppable1").html(result);
            $("#droppable1").html(result);
@@ -169,8 +169,22 @@ WIMod.displayColums = function(){
 }
 
 WIMod.Col12 = function(){
-    var col12 = ('<div class="col-sm-12 col-md-12 col-lg-12 column_drop " id="col12"></div>');
-         $("#droppable1").append(col12);
+         $("#droppable1").html('<div class="col-sm-12 col-md-12 col-lg-12 column_drop " id="col12"></div>')
+         $(".column_drop").droppable({
+               activeClass: "dropping",
+               hoverClass:  "hover",
+               drop: function( event, ui ) {
+                  $( this )
+                  .addClass( "ui-state-highlight" )
+                   var container = $(event.target).attr('id')
+      alert(container); 
+
+        $( this )
+            var mod_name = ui.draggable.attr('id');
+          alert(mod_name);
+          WIMod.dropping(mod_name, container);
+               }
+            });
 
 }
 

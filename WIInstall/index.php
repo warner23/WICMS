@@ -323,7 +323,7 @@ include_once 'WICore/init.php';
                 <div class="form-group">
                     <label for="salt"><?php echo WILang::get('salt') ?></label>
                     <div class="input-prepend">
-                        <input type="text" class="input-xlarge" name="salt" id="salt" value="cv2qWjfQM6VTCpENLdCLNO" />
+                        <input type="text" class="input-xlarge" name="salt" id="salt" value="<?php echo uniqid(mt_rand(), true);  ?>" />
                     </div>
                     <span class="help-block"><?php echo WILang::get('salt_info') ?>
                         

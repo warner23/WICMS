@@ -344,7 +344,7 @@ switch ($action) {
         $page->loadPageOptions($_POST['page']);
         break;
 
-    case "changePage":
+            case "changePage":
     onlyAdmin();
         $page = new WIPage();
         $page->LoadPage($_POST['page']);
@@ -477,12 +477,12 @@ switch ($action) {
         $web->activateThemes($_POST['id']);
         break;
 
-        //  case "themeDeactivate":
-        // $web = new WIWebsite();
-        // $web->deactivateThemes($_POST['id']);
-        // break;
-
-    case "viewMeta":
+         case "themeDeactivate":
+        $web = new WIWebsite();
+        $web->deactivateThemes($_POST['id']);
+        break;
+        
+        case "viewMeta":
     onlyAdmin();
         $web = new WIWebsite();
         $web->ViewMeta($_POST['page']);
@@ -602,7 +602,7 @@ switch ($action) {
         $plug = new WIPlugin();
         $plug->Activate($_POST['plug']);
         break;
-
+    
 
         default:
 

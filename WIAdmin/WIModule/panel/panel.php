@@ -19,7 +19,6 @@ class panel
 
 	}
 
-
   public function social($column, $column1)
   {
 
@@ -48,7 +47,7 @@ class panel
 
        
         if(panel::social("twitter_enabled", "twitter_enabled") === "enabled"){
-        $Twitter =  '<a href="#">
+        $Twitter =  '<a href="javascript:void(0)">
            <img src="assets/img/twitter.png" class="fade high-opacity" alt="Twitter" title="' . WILang::get("login_with") . ' Twitter"/>
             </a>';
        }else{
@@ -56,7 +55,7 @@ class panel
        }
 
        if(panel::social("facebook_enabled", "facebook_enabled") === "enabled"){
-          $Facebook = '<a href="#">
+          $Facebook = '<a href="javascript:void(0)">
       <img src="assets/img/fb.png" class="fade high-opacity" alt="Facebook" title="' . WILang::get("login_with") . ' Facebook"/>
                           </a>';
        }else{
@@ -64,7 +63,7 @@ class panel
        }
 
       if(panel::social("google_enabled", "google_enabled") === "enabled"){
-          $Google = '<a href="#">
+          $Google = '<a href="javascript:void(0)">
   <img src="assets/img/gplus.png" class="fade high-opacity" alt="Google+" title="' . WILang::get("login_with") . ' GooglePlus"/>
                           </a>';
        }else{
@@ -75,7 +74,7 @@ class panel
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : `1684391421633247`,
+      appId      : `' . FACEBOOK_ID . '`,
       cookie     : true,
       xfbml      : true,
       version    : `v2.8`
@@ -282,8 +281,8 @@ class panel
                         <li>' .WILang::get('HELLO') .', '. $username . '!</li>
                     <li class="sep">|</li>
                     <li id="toggle">
-                      <a id="open" class="open" href="#">' . $remote .'</a>
-                      <a id="close" style="display: none;" class="close" href="#">' . WILang::get('login_with') . ' Close Panel</a>     
+                      <a id="open" class="open" href="javascript:void(0)">' . $remote .'</a>
+                      <a id="close" style="display: none;" class="close" href="javascript:void(0)">' . WILang::get('login_with') . ' Close Panel</a>     
                     </li>
                       <li class="right">&nbsp;</li>
                   </ul> 
