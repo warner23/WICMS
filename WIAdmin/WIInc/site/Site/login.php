@@ -36,11 +36,13 @@
                         Specific redirect pages based on user roles can be added later.
                     </span>
                 </div>
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="loginSettings_btn" class="btn btn-success">Save</button> 
                         </div>
+
+                        <div id="lresults"></div>
                       </div>
                         </fieldset>
                       </form>

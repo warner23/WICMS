@@ -56,20 +56,20 @@
 }
  </style>
 
- <form  class="form-horizontal database-form" id="meta">
+ <form  class="form-horizontal trans-form" id="add-lang">
                       <fieldset>
                         <div id="legend">
                           <legend class="">Add Translations</legend>
                         </div>
 
                         <div class="col-lg-12">
-                        <div class="control-group form-group">
+                        <div class="form-group">
                         <!-- Button -->
                         <div class="col-lg-3 col-sm-3 col-md-3">
                            <button id="add_trans_btn" onclick="WILang.AddTransModal()" class="btn btn-success" >Add</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="transresults"></div>
 
        
                         

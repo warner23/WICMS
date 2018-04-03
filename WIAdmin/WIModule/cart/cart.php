@@ -236,24 +236,19 @@ echo '<div class="container-fluid text-center">
 					</thead>
 					<tbody>';
 					echo $this->cart->CheckCart();
-					
-
 					echo '</tbody>
 					<tfoot>
 						<tr class="visible-xs">
-							<td class="text-center"><strong>Total £</strong><strong id="total"></strong></td>
+							<td class="text-center"><strong>Total 1.99</strong></td>
 						</tr>
 						<tr>
 							<td><a href="index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
-
-							<td class="hidden-xs text-center" ><strong>Total £</strong><strong id="total"></strong>
-							</td>
+							<td class="hidden-xs text-center" id="total-"><strong>Total $1.99</strong></td>
 							<td><a href="checkout.php" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
 						</tr>
-					</tfoot>';
-			
-				echo '</table>
+					</tfoot>
+				</table>
 </div>
 
 <script type="text/javascript" src="WICore/WIJ/WIShop.js"></script>

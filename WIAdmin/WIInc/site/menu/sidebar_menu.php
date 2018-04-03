@@ -14,7 +14,7 @@
                         </div>
                       </div>
 
-                      <div class="results" id="results"></div>
+                      <div class="results" id="sbmresults"></div>
                     </fieldset>
                   </form> 
 

@@ -84,13 +84,13 @@ WIVerification.sendData = function(session){
     			 for(var i=0; i<res.errors.length; i++) 
     			 {
                     var error = res.errors[i];
-                    WICore.displayErrorMessage($("#"+error.id), error.msg);
+                    WICore.displayaerrorMessage($("#"+error.id), error.msg);
                 }
     		}
     		else if(res.status === "successful")
     		{
     			// dispaly success message
-    			WICore.displaySuccessfulMessage($("#results"), res.msg);
+    			WICore.displaySuccessfulMessage($("#verifresults"), res.msg);
     		}
     	}
     });

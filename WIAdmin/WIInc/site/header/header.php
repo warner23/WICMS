@@ -37,6 +37,7 @@
                         <?php $web->MainHeader();  ?>
 
                         <div><button onclick="WIMedia.savePic()">Save</button></div>
+                        <div class="results" id="hresults"></div>
 
 
 

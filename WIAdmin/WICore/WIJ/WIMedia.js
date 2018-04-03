@@ -159,7 +159,7 @@ WIMedia.changefaviconPic = function(){
         {
             var res = JSON.parse(result);
             if (res.status === "successful") {
-             $("#results").append(res.msg).fadeOut("slow");
+             $("#favresults").append(res.msg).fadeOut(5000);
             
         }
     }

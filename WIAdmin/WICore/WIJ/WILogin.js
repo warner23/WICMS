@@ -65,7 +65,7 @@ login.loginUser = function (data) {
                 
            }else {
                WICore.displayErrorMessage($("#username"));
-               WICore.displayErrorMessage($("#password"), result.message);
+               WICore.displayaerrorsMessage($("#aerror"), result.message);
            }
 
         }

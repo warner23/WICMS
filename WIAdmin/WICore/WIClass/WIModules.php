@@ -35,14 +35,13 @@ class WIModules
 
         //break records into pages
         $total_pages = ceil($modTotal/$item_per_page);
-        //echo "tot" .$total_pages;
 
         foreach ($modules as $module => $value) {
             
         if ($value === '.' or $value === '..') continue;
         if (is_dir($dir.$value)) {
         //code to use if directory
-                echo '<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+                echo '<div class="col-md-4">
         <div class="panel panel-info">
         <div class="panel-heading">' . $value . '</div>
         <div class="panel-body">
@@ -80,8 +79,7 @@ class WIModules
                         WIMod.uninstall("' . $value . '");
                     })
 </script>';
-
-    }
+        }
 
         }
 
@@ -133,7 +131,7 @@ class WIModules
         $query->execute();
         echo '<ul class="contents">';
         while ($res = $query->fetch(PDO::FETCH_ASSOC)) {
-             echo '<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+             echo '<div class="col-md-4">
         <div class="panel panel-info">
         <div class="panel-heading">' . $res['module_name'] . '</div>
         <div class="panel-body">
@@ -220,7 +218,7 @@ class WIModules
         $query->execute();
         echo '<ul class="contents">';
         while ($res = $query->fetch(PDO::FETCH_ASSOC)) {
-             echo '<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+             echo '<div class="col-md-4">
         <div class="panel panel-info">
         <div class="panel-heading">' . $res['module_name'] . '</div>
         <div class="panel-body">
@@ -358,16 +356,14 @@ class WIModules
 
      public function ActiveMods()
      {
-        $element_status = "enabled";
-        $element_type = "element";
-        $sql = "SELECT * FROM `wi_elements` WHERE `element_type` = :element_type AND `element_status`=:element_status";
+        $mod_status = "enabled";
+        $sql = "SELECT * FROM `wi_elements` WHERE ele_status = :mod_status";
         $query = $this->WIdb->prepare($sql);
-        $query->bindParam(':element_type' ,$element_type, PDO::PARAM_STR);
-        $query->bindParam(':element_status' ,$element_status, PDO::PARAM_STR);
+        $query->bindParam(':mod_status' ,$mod_status, PDO::PARAM_STR);
         $query->execute();
-        echo '<ul id="draggable" class="ui-widget-header col-md-4 col-sm-4 col-xs-4 col-lg-4">';
+        echo '<ul id="draggable" class="ui-widget-header">';
         while ($res = $query->fetch(PDO::FETCH_ASSOC)) {
-            echo '<li id="'.$res['element_name'] . '" title="'.$res['element_name'] . '" class="ui-draggable ui-draggable-handle '.$res['element_font'] . '"></li>';
+            echo '<li id="'.$res['ele_name'] . '" title="'.$res['ele_name'] . '" class="ui-draggable ui-draggable-handle '.$res['ele_font'] . '"></li>';
         }
         echo '</ul>';
 
@@ -375,12 +371,17 @@ class WIModules
 
      public function dropElement($mod_name)
      {
-        //echo $mod_name;
-        include_once dirname(dirname(dirname(__FILE__))) . '/WIModule/elements/' .$mod_name.'/'.$mod_name.'.php';
+        include_once dirname(dirname(dirname(__FILE__))) . '/WIModule/' .$mod_name.'/'.$mod_name.'.php';
+        /*
+        spl_autoload_register(function($mod_name)
+        {
+            require_once $dir .'/' .$mod_name . '.php';
+        });
+        */
 
         $mod_name = new $mod_name;
 
-        $mod_name->mod_drop();
+        $mod_name->mod_name();
 
      }
 

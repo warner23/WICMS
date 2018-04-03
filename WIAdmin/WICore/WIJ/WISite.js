@@ -75,18 +75,19 @@ WISite.sendData = function(site){
     			 for(var i=0; i<res.errors.length; i++) 
     			 {
                     var error = res.errors[i];
-                    WICore.displayErrorMessage($("#"+error.id), error.msg);
+                    WICore.displayadminerrorsMessage($("#"+error.id), error.msg);
                 }
     		}
     		else if(res.status === "successful")
     		{
     			// dispaly success message
-    			 WICore.displaySuccessfulMessage($("#results"), res.msg);
+    			 WICore.displaySuccessfulMessage($("#wresults"), res.msg);
                 
     		}
     	}
     });
 }
+
 
 WISite.Version = function(currentVersion){
 

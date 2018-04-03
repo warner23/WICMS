@@ -1,4 +1,4 @@
- <form  class="form-horizontal database-form" id="del">
+ <form  class="form-horizontal trans-form" id="del">
                       <fieldset>
                         <div id="legend">
                           <legend class="">Script Settings</legend>
@@ -21,7 +21,7 @@
                            <button id="database_btn" class="btn btn-success" >Add</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="delresults"></div>
                     </fieldset>
                         <br /><br />
                   </form>

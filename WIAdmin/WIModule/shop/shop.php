@@ -234,7 +234,7 @@ echo '<div class="container-fluid text-center">
       $this->mod->getMod($leftSideBar);
       echo '<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 index">';
     }else{
-      echo '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 index">';
+      echo '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 index">';
     }
 
     }
@@ -247,7 +247,7 @@ echo '<div class="container-fluid text-center">
 	
 
 </div>
-<div class="col-md-9 col-xs-9 col-xs-9 col-lg-9 col-sm-9">
+<div class="col-md-8 col-xs-8 col-xs-8 col-lg-8 col-sm-8">
 	<div class="panel panel-info">
 	<div id="product_msg"></div>
 	<div class="panel-heading">Products</div>
@@ -258,6 +258,7 @@ echo '<div class="container-fluid text-center">
 	<div class="panel-footer"></div>
 	</div>
 </div>
+<div class="col-md-1 col-xs-1 col-xs-1 col-lg-1 col-sm-1"></div>
 </div>
 </div>
 

@@ -39,7 +39,7 @@
                         </select>
                     </div>
                     
-                    <div class="alert alert-error" id="choice-wrapper-sha">
+                    <div class="alert alert-danger" id="choice-wrapper-sha">
                         <div class="radio">
                               <input type="radio" name="encryption" id="encryption-sha512" value="sha512">
                               SHA512
@@ -76,11 +76,12 @@
                         </select>
                     </div>
                 </div>
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="security_btn" class="btn btn-success" onclick="WISecurity.encryption()" >Save</button> 
                         </div>
+                        <div id="secresults"></div>
                       </div>
                         </fieldset>
                       </form>
@@ -91,14 +92,14 @@
                           if (encryption === "bcrypt"){
                             $("#encryption-bcrypt").attr('checked', 'checked');
                             $("#choice-wrapper-bcrypt").addClass('alert-success');
-                            $("#choice-wrapper-sha").addClass('alert-error');
+                            $("#choice-wrapper-sha").addClass('alert-danger');
 
 
 
                           }else if(encryption === "sha512"){
                             $("#encryption-sha512").attr('checked', 'checked');
                             $("#choice-wrapper-sha").addClass('alert-success');
-                            $("#choice-wrapper-bcrypt").addClass('alert-error');
+                            $("#choice-wrapper-bcrypt").addClass('alert-danger');
 
                           }
 

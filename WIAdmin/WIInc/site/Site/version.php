@@ -24,6 +24,7 @@
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="version_btn" class="btn btn-success">Save</button> 
                         </div>
+                        <div id="versresults"></div>
                       </div>
                       <div class="results" id="version_results"></div>
                         </fieldset>

@@ -81,7 +81,7 @@ WIHeader.sendData = function(header){
     		else if(res.status === "completed")
     		{
     			// dispaly success message
-    			 WICore.displaySuccessfulMessage($("#results"), res.msg);
+    			 WICore.displaySuccessfulMessage($("#hresults"), res.msg);
                 
     		}
     	}

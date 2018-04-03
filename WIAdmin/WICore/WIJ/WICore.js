@@ -39,7 +39,7 @@ WICore.displaySuccessfulMessage = function(Element, message)
   $(".alert-success").remove();
   var div = ("<div class='alert alert-success'>"+message+"</div>");
     Element.append(div)
-            .fadeOut(3000);
+            .fadeOut(5000);
 };
 
 // append error message to an input element
@@ -51,6 +51,23 @@ WICore.displayErrorMessage = function(element, message)
         var helpBlock = $("<span class='help-inline text-error'>"+message+"</span>");
         controlGroup.find(".controls").append(helpBlock);
     }
+};
+
+
+WICore.displayadminerrorsMessage = function(Element, message)
+{
+  $(".alert-danger").remove();
+  var div = ("<div class='alert alert-danger'>"+message+"</div>");
+    Element.append(div)
+            .fadeOut(5000);
+};
+
+WICore.displayaerrorsMessage = function(Element, message)
+{
+  $(".alert-danger").remove();
+  var div = ("<div class='alert alert-danger'>"+message+"</div>");
+    Element.append(div)
+            .fadeOut(5000);
 };
 
 // remove all error messages from all input fields

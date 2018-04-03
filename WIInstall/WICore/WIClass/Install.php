@@ -202,7 +202,8 @@ INSERT INTO `wi_css` (`id`, `href`, `rel`, `page`) VALUES
 (27, 'site/css/frameworks/menus.css', 'stylesheet', 'profile'),
 (28, 'site/css/style.css', 'stylesheet', 'profile'),
 (29, 'site/css/font-awesome.css', 'stylesheet', 'profile'),
-(30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile');
+(30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile'),
+(31, 'user/css/profile.css', 'stylesheet', 'profile');
 
 -- --------------------------------------------------------
 
@@ -705,6 +706,8 @@ CREATE TABLE IF NOT EXISTS `wi_site` (
   `multi_lang` enum('on','off') NOT NULL DEFAULT 'off',
   `bootstrap_version` varchar(50) NOT NULL,
   `wicms_version` varchar(50) NOT NULL,
+  `left_sidebar` ENUM(  '0',  '1' ) NOT NULL DEFAULT  '0',
+  `right_sidebar` ENUM(  '0',  '1' ) NOT NULL DEFAULT  '0'
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1308,8 +1311,12 @@ include_once dirname(dirname(dirname(__FILE__))) . "/WIAdmin/WICore/WILib.php";
 date_default_timezone_set("UTC");
 
 //Bootstrap
-
 define("BOOTSTRAP_VERSION", $bootstrap_version);
+
+//sidebars
+define("LEFT_SIDEBAR", $leftsidebar);
+
+define("RIGHT_SIDEBAR", $rightsidebar);
 
 //WEBSITE
 
@@ -1497,6 +1504,8 @@ $multi_lang            = $config->Website_Info("multi_lang");
 $version               = $config->Website_Info("wicms_version");
 $bootstrap_version     = $config->Website_Info("bootstrap_version");
 $favicon               = $config->Website_Info("favicon");
+$leftsidebar           = $config->Website_Info("left_sidebar");
+$rightsidebar           = $config->Website_Info("right_sidebar");
 ';
 
 $newLibPage = fwrite($path_to_Lib, $lib_txt);

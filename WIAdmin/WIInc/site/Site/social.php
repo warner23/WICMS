@@ -45,11 +45,13 @@
                         <input type="text" class="input-xlarge" id="gp_secret" name="gp_secret" placeholder="<?php echo $site->Website_Info('google_secret')?>">
                     </div>
                 </div>
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="social_btn" class="btn btn-success" >Save</button> 
                         </div>
+
+                        <div id="socresults"></div>
                       </div>
                         </fieldset>
                       </form>

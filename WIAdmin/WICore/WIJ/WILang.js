@@ -125,7 +125,23 @@ WILang.changeLang = function(){
         },
         success: function(result)
         {
-
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "error")
+            {
+                /// display all errors
+                 for(var i=0; i<res.errors.length; i++) 
+                 {
+                    var error = res.errors[i];
+                    WICore.displayaerrorMessage($("#"+error.id), error.msg);
+                }
+            }
+            else if(res.status === "successful")
+            {
+                // dispaly success message
+                WICore.displaySuccessfulMessage($("#mlresults"), res.msg);
+            }
         }
     });
 
@@ -170,13 +186,13 @@ WILang.AddTrans = function(){
                  for(var i=0; i<res.errors.length; i++) 
                  {
                     var error = res.errors[i];
-                    WICore.displayErrorMessage($("#"+error.id), error.msg);
+                    WICore.displayaerrorMessage($("#"+error.id), error.msg);
                 }
             }
             else if(res.status === "successful")
             {
                 // dispaly success message
-                WICore.displaySuccessfulMessage($("#results-lang"), res.msg);
+                WICore.displaySuccessfulMessage($("#mlresults"), res.msg);
                 $("#lang_name").val(''),
               $("#keyword").val(''),
             $("#translation").val('');
@@ -230,7 +246,7 @@ WILang.AddLang = function(){
                  for(var i=0; i<res.errors.length; i++) 
                  {
                     var error = res.errors[i];
-                    WICore.displayErrorMessage($("#"+error.id), error.msg);
+                    WICore.displayaerrorMessage($("#"+error.id), error.msg);
                 }
             }
             else if(res.status === "successful")
@@ -285,7 +301,7 @@ WILang.AdeditteddLang = function(){
                  for(var i=0; i<res.errors.length; i++) 
                  {
                     var error = res.errors[i];
-                    WICore.displayErrorMessage($("#"+error.id), error.msg);
+                    WICore.displayaerrorMessage($("#"+error.id), error.msg);
                 }
             }
             else if(res.status === "successful")

@@ -167,8 +167,8 @@ class WISite
 
 		public function Security_Settings($encryption, $cost) 
 	{
-		echo $encryption;
-		echo $cost;
+		//echo $encryption;
+		//echo $cost;
 			$user_id = 1;
 			if($encryption === "bcrypt"){
 								$query = $this->WIdb->prepare('UPDATE `wi_site` SET  `password_encryption` =:password_encryption , `encryption_cost` =:cost WHERE `id` = :user_id');
@@ -224,7 +224,7 @@ class WISite
 
 		$user_id = 1;
 				
-		$query = $this->WIdb->prepare('UPDATE `WI_site` SET  `login_fingerprint` =:login_fingerprint , `max_login_attempts` =:login_max_login_attempts,  `redirect_after_login` =:redirect_after_login WHERE `id` = :user_id');
+		$query = $this->WIdb->prepare('UPDATE `wi_site` SET  `login_fingerprint` =:login_fingerprint , `max_login_attempts` =:login_max_login_attempts,  `redirect_after_login` =:redirect_after_login WHERE `id` = :user_id');
 		$query->bindParam(':login_fingerprint', $login_settings['fingerprint'], PDO::PARAM_STR);
 		$query->bindParam(':login_max_login_attempts', $login_settings['max_logins'], PDO::PARAM_INT);
 		$query->bindParam(':redirect_after_login', $login_settings['redirect'], PDO::PARAM_STR);

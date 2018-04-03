@@ -21,7 +21,7 @@
                            <button id="footer_btn" class="btn btn-success" >Save</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="fresults"></div>
                     </fieldset>
                         <br /><br />
                   </form>

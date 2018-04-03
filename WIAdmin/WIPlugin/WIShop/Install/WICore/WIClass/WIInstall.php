@@ -335,30 +335,6 @@ CREATE TABLE IF NOT EXISTS `wi_recommended` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE IF NOT EXISTS `wi_customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `address_line_1` varchar(255) NOT NULL,
-  `address_line_2` varchar(255) NOT NULL,
-  `delivery_method` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
-
-
-CREATE TABLE IF NOT EXISTS `wi_billing` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `card_type` varchar(255) NOT NULL,
-  `card_name` varchar(255) NOT NULL,
-  `card_number` varchar(255) NOT NULL,
-  `card_expire` varchar(255) NOT NULL,
-  `card_valid` varchar(255) NOT NULL,
-  `payment_method` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
 ";
 
         $query = $this->WIdb->prepare($sql);

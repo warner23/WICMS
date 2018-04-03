@@ -33,7 +33,7 @@
                        
                         
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="meta_results"></div>
                     </fieldset>
                         <br /><br />
                   </form>

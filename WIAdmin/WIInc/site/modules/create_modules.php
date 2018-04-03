@@ -110,7 +110,7 @@ margin-left: -50px;
 }
 
 #col12{
-  height: 50px;
+  min-height: 50px;
       margin-top: 20px;
 }
 
@@ -161,7 +161,7 @@ margin-left: -50px;
                                              <div id = "zxv" class = "ui-widget-content">
                                               <?php if( $mod->columns() == true){
                                       echo '
-                                      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ><span class="fa fa-th" title="Columns"></span>
+                                      <li><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" ><span class="fa fa-th" title="Columns"></span>
                                       <span class="badge" id="columns"></span></a>
                                       <div class="dropdown-menu">
                                         <div class="panel panel-success">
@@ -171,49 +171,49 @@ margin-left: -50px;
                                           <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                                             <ul class="column">
                                                   
-                                                  <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col1"><a href="#" onclick="WIMod.Col12();">Column 12</a></li>
+                                                  <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col1"><a href="javascript:void(0);" onclick="WIMod.Col12();">Column 12</a></li>
 
 
                                             </ul>
                                             <ul class="column">
                                                   
-                                                  <li class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col1"><a href="#" onclick="WIMod.Col1();">Column 1</a></li>
+                                                  <li class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col1"><a href="javascript:void(0);" onclick="WIMod.Col1();">Column 1</a></li>
 
-                                                  <li class="col-xs-1 col-sm-10 col-md-10 col-lg-10 col1"><a href="#" onclick="WIMod.Col11();">Column 11</a></li>
+                                                  <li class="col-xs-1 col-sm-10 col-md-10 col-lg-10 col1"><a href="javascript:void(0);" onclick="WIMod.Col11();">Column 11</a></li>
                                             </ul>
 
                                             <ul class="column">
                                                   
-                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col2();">Column 2</a></li>
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="javascript:void(0);" onclick="WIMod.Col2();">Column 2</a></li>
 
-                                                  <li class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col1"><a href="#" onclick="WIMod.Col10();">Column 10</a></li>
+                                                  <li class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col1"><a href="javascript:void(0);" onclick="WIMod.Col10();">Column 10</a></li>
                                             </ul>
 
                                             <ul class="column">
                                                   
-                                                  <li class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col1"><a href="#" onclick="WIMod.Col6();">Column 6</a></li>
+                                                  <li class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col1"><a href="javascript:void(0);" onclick="WIMod.Col6();">Column 6</a></li>
 
-                                                  <li class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col1"><a href="#" onclick="WIMod.Col6();">Column 6</a></li>
+                                                  <li class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col1"><a href="javascript:void(0);" onclick="WIMod.Col6();">Column 6</a></li>
                                             </ul>
 
                                             <ul class="column">
                                                   
-                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="#" onclick="WIMod.Col4();">Column 4</a></li>
+                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="javascript:void(0);" onclick="WIMod.Col4();">Column 4</a></li>
 
-                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="#" onclick="WIMod.Col4();">Column 4</a></li>
+                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="javascript:void(0);" onclick="WIMod.Col4();">Column 4</a></li>
 
-                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="#" onclick="WIMod.Col4();">Column 4</a></li>
+                                                  <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col1"><a href="javascript:void(0);" onclick="WIMod.Col4();">Column 4</a></li>
                                             </ul>
 
                                              <ul class="column">
                                                   
-                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="javascript:void(0);" onclick="WIMod.Col3();">Column 3</a></li>
 
-                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="javascript:void(0);" onclick="WIMod.Col3();">Column 3</a></li>
 
-                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="javascript:void(0);" onclick="WIMod.Col3();">Column 3</a></li>
 
-                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="#" onclick="WIMod.Col3();">Column 3</a></li>
+                                                  <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col1"><a href="javascript:void(0);" onclick="WIMod.Col3();">Column 3</a></li>
                                             </ul>
                                           </div>
                                            <img src="WIMedia/Img/Modules/bs_grid.jpg">
@@ -249,7 +249,7 @@ margin-left: -50px;
 
 
 
-         <div id = "droppable1"  class = "ui-widget-header drop col-md-9 col-lg-9 col-xs-9 cl-sm-9">
+         <div id = "droppable1"  class = "ui-widget-header drop col-md-9 col-lg-9 col-xs-9 cl-sm-9 drop">
          </div>
 
                                    </div>
@@ -272,7 +272,7 @@ margin-left: -50px;
 
 
       <hr/>
-            <script>
+           <script>
 
         $( function() {
     $( "#draggable li" ).draggable({

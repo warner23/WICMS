@@ -42,13 +42,13 @@
                     <span class="help-block">Enabling this setting prevents attacks involved passing session ids in URLs. Recommended: <strong>Yes</strong></span>
                 </div>
 
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="session_btn" class="btn btn-success">Save</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="sesresults"></div>
                         </fieldset>
                       </form>
 

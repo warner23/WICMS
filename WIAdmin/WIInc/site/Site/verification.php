@@ -18,13 +18,13 @@
                     <span class="help-block">Select <strong>Yes</strong> to send an email verification, in order to get the user to verify there account, before they can log in.</span>
                     
                    
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="verification_btn" class="btn btn-success">Save</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="verifresults"></div>
                         </fieldset>
                       </form>
 

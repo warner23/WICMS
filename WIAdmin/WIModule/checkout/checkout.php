@@ -17,7 +17,6 @@ class checkout
 		$this->login = new WILogin();
         $this->Info = new WIUserInfo();
         $this->user   = new WIUser(WISession::get('user_id'));
-        $this->check = new WICheckout();
 	}
 
 		public function editMod()
@@ -230,17 +229,17 @@ echo '<div class="container-fluid text-center">
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                            <h2>Checkout Process</h2>
+
 						 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"> ';
-                         if(!$this->login->isLoggedIn()){
+                         if($this->login->isLoggedIn()){
 							
-						echo '<div class="wizard col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+						echo '<div class="wizard col-md-6 col-md-offset-3">
             <div class="steps">
                 <ul>
                     <li>
                         <a :class="active">
                             <div class="stepNumber active" id="stepOne"><i class="fa fa-user"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step1'); 
+                            <span class="stepDesc text-small">'; echo WILang::get('welcoem'); 
                             	echo '
                                </span>
                         </a>
@@ -248,45 +247,45 @@ echo '<div class="container-fluid text-center">
                     <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepTwo"><i class="fa fa-list"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step2'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('client'); echo '</span>
                         </a>
                     </li>
 
                      <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepThree"><i class="fa fa-gears"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step3'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('benefits'); echo '</span>
                         </a>
                     </li>
                     <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepFour"><i class="fa fa-database"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step4'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('support'); echo '</span>
                         </a>
                     </li>
                     <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepFive"><i class="fa fa-terminal"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step4'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('refer'); echo '</span>
                         </a>
                     </li>
 
                      <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepSix"><i class="fa fa-terminal"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step5'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('admin'); echo '</span>
                         </a>
                     </li>
                      <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepSeven"><i class="fa fa-flag-checkered"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step6'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('action_taken'); echo '</span>
                         </a>
                     </li>
                     <li>
                         <a :class="active">
                             <div class="stepNumber inactive" id="stepEight"><i class="fa fa-flag-checkered"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step7'); echo '</span>
+                            <span class="stepDesc text-small">'; echo WILang::get('complete'); echo '</span>
                         </a>
                     </li>
                 </ul>
@@ -294,42 +293,13 @@ echo '<div class="container-fluid text-center">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 step-content show" id="step_one">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-               
+                <h3>'; WILang::get('welcome'); echo '</h3>
+                <hr>
+                <p>'; echo WILang::get('steps'); echo '</p>
+                <p>'; echo WILang::get('guide') ; echo '</p>
+                <br>
 
-<div class="span4">
-                                    <h4>New Registration</h4>
-                                    <form>
-                                        <label class="radio">
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Register Account
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Guest Checkout
-                                        </label>
-                                        <button class="btn btn-primary">Continue</button>
-                                    </form>
-                                    <em>By creating an account you will be able to shop faster, be up to date on an order\'s status, and keep track of the orders you have previously made.</em>
-                                </div>
-
-                                <div class="span4 offset2">
-                                    <h4>Registered User</h4>
-                                    <form>
-                                        <label>Email</label>
-                                        <input type="text" name="email" id="email" />
-                                        
-                                        <label>Password</label>
-                                        <input type="text" name="password" id="password" />
-                                        <br />
-                                        <a href="#">forgot password?</a>
-                                        <br />
-                                        <button class="btn btn-primary">Login</button>
-                                    </form>
-                                </div>
-
-
-
-                <a href="javascript:;" onclick="WICheckout.stepOne();" class="btn btn-as pull-right" type="button">
+                <a href="javascript:;" onclick="WIClient.stepOne();" class="btn btn-as pull-right" type="button">
                     '; echo WILang::get('next'); echo '
 
                     <i class="fa fa-arrow-right"></i>
@@ -346,52 +316,264 @@ echo '<div class="container-fluid text-center">
                 </div>
 
                 
+                    <h3>'; echo WILang::get('personal'); echo '</h3>
+                <hr>
+                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-<form>
-                                    <label> First Name:</label>
-                                    <input type="text" class="large-field" value="" name="firstname">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                    <div class="form-group">
+                        <label for="fname">'; echo WILang::get('fname'); echo '</label>
+                        <input type="text" class="form-control" id="fname" value="John">
+                        <small>'; echo WILang::get('webdom'); echo '
+                            <strong>'; echo WILang::get('donot'); echo '</strong> 
+                            '; echo WILang::get('write_path_info'); echo '
+                        </small>
+                    </div>
+                    </div>
 
-                                    <label> Last Name:</label>
-                                    <input type="text" class="large-field" value="" name="lastname">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                   <div class="form-group">
+                        <label for="fam_name">'; echo WILang::get('fam_name'); echo '</label>
+                        <input type="text" class="form-control" id="fam_name"
+                               v-model="website.fam_name" value="Doe">
+                    </div>
+                    </div>
 
-                                    <label>Company:</label>
-                                    <input type="text" class="large-field" value="" name="company">
+                    
 
-                                    <label> Company ID:</label>
-                                    <input type="text" class="large-field" value="" name="company_id">
+                    <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                     <div class="form-group">
+                     <label for="dependants">'; echo WILang::get('dependants'); echo '</label><br>
+                        <select id="dependants">
+                        	<option id="0" value="0">0</option>
+                        	<option id="1" value="1">1</option>
+                        	<option id="2" value="2">2</option>
+                        	<option id="3" value="3">3</option>
+                        	<option id="4" value="4">4</option>
+                        	<option id="5" value="5">5</option>
+                        	<option id="6" value="6">6</option>
+                        	<option id="7" value="7">7</option>
+                        </select>
+                        <small>'; echo WILang::get('webdom'); echo '
+                            <strong>'; echo WILang::get('donot'); echo '</strong> 
+                            '; echo WILang::get('write_path_info'); echo '
+                        </small>
+                    </div>
+                    </div>
 
-                                    <label> Address 1:</label>
-                                    <input type="text" class="large-field" value="" name="address_1">
+                    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                     <div class="form-group">
+                        <label for="marital">'; echo WILang::get('marital'); echo '</label>
+                        <select id="marital_status">
+                        	<option id="Single" value="Single">Single</option>
+                        	<option id="Married" value="Married">Married</option>
+                        	<option id="Seperated" value="Seperated">Seperated</option>
+                        	<option id="Widowed" value="Widowed">Widowed</option>
+                        	<option id="dv" value="dv">In Abusive relationship</option>
 
-                                    <label>Address 2:</label>
-                                    <input type="text" class="large-field" value="" name="address_2">
+                        </select>
+                        <small>'; echo WILang::get('webdom'); echo '
+                            <strong>'; echo WILang::get('donot'); echo '</strong> 
+                            '; echo WILang::get('write_path_info'); echo '
+                        </small>
+                    </div>
+                    </div>
+                    <br>
+                    </div>
 
-                                    <label> City:</label>
-                                    <input type="text" class="large-field" value="" name="city">
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                    <div class="form-group">
+                        <label for="contact_no">'; echo WILang::get('contact_no'); echo '</label>
+                        <input type="text" class="form-control" id="contact_no" value="07944556677"
+                                value="">
+                        <small>'; echo WILang::get('webdom'); echo '
+                            <strong>'; echo WILang::get('donot'); echo '</strong> 
+                            '; echo WILang::get('write_path_info'); echo '
+                        </small>
+                    </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8">
+                    <label for="dob">'; echo WILang::get('DOB'); echo '</label>
+                     <div class="form-group">
+                        
 
-                                    <label> Post Code:</label>
-                                    <input type="text" class="large-field" value="" name="postcode">
+                        <select id="Month" class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                            <option id="January" value="January">January</option>
+                            <option id="Febuary" value="Febuary">Febuary</option>
+                            <option id="March" value="March">March</option>
+                            <option id="April" value="April">April</option>
+                            <option id="May" value="May">May</option>
+                            <option id="June" value="June">June</option>
+                            <option id="July" value="July">July</option>
+                            <option id="August" value="August">August</option>
+                            <option id="September" value="September">September</option>
+                            <option id="October" value="October">October</option>
+                            <option id="November" value="November">November</option>
+                            <option id="December" value="December">December</option>
+                        </select>
 
-                                    <label> '; echo WILang::get('country'); echo ':</label>
-                                    ';
+                        
+
+                        <input type="text" class="col-sm-4 col-md-4 col-lg-4 col-xs-4" id="date" value="15" placeholder="Date">
+
+                        <input type="text" class="col-sm-4 col-md-4 col-lg-4 col-xs-4" id="year" value="1980" placeholder="Year">
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+					<div class="form-group">
+					 <div id="legend">
+
+                        <label>'; echo WILang::get('sex'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="gender" id="gender" class="btn-group-value" value="male"/>
+                        <button type="button" id="sex_true" name="male" value="male"  class="btn">'; echo WILang::get('male'); echo '</button>
+                        <button type="button" id="sex_false" name="female" value="female" class="btn activewhens" >'; echo WILang::get('female'); echo '</button>
+                    </div>
+
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+
+
+                        <label>'; echo WILang::get('asylum'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="asylum" id="asylum_seeker" class="btn-group-value" value="no"/>
+                        <button type="button" id="asylum_true" name="asylum" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="asylum_false" name="asylum" value="no" class="btn activewhens" >'; echo WILang::get('no'); echo '</button>
+                        
+                    </div>
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    
+                    
+                    <label>'; echo WILang::get('reguse'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" id="refugee" name="refugee" class="btn-group-value" value="no" />
+                        <button id="refugee_true" type="button" name="refugee" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button id="refugee_false" type="button" name="refugee" value="no" class="btn btn-no" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('prevent'); echo ' <strong'; echo WILang::get('yes'); echo '</strong></span>
+                    
+                     <label>'; echo WILang::get('localauth'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input id="localauth" type="hidden" name="localauth" class="btn-group-value" value="no" />
+                        <button id="localauth_true" type="button" name="localauth" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button id="localauth_false" type="button" name="localauth" value="no" class="btn btn-no" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('localAuth'); echo '<strong>'; echo WILang::get('cookies'); echo '</strong></span>
+                   
+                     <label>'; echo WILang::get('fundsav'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="fundsav" type="hidden" name="fundsav" class="btn-group-value" value="no" />
+                        <button id="fundsav_true" type="button" name="fundsav" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="fundsav_false" type="button" name="fundsav" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
+                </div>
+            </div>
+            </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    
+
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7">
+                    <label for="address">';echo WILang::get('address'); echo '</label>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                        <label for="first_line">'; echo WILang::get('first_line');  echo '</label>
+                        <input id="first_line" type="text" value="10 globe lane" placeholder="first line" />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                        <label for="second_line">'; echo WILang::get('second_line');  echo '</label>
+                        <input id="second_line" type="text" value="dukinfield" placeholder="second line" />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                        <label for="town">'; echo WILang::get('town');  echo '</label>
+                        <input id="town" type="text" value="stalybridge" placeholder="town" />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                        <label for="county">'; echo WILang::get('county'); echo '</label>
+                        <input id="county" type="text" value="cheshire" placeholder="county" />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                        <label for="postcode">'; echo WILang::get('post');  echo '</label>
+                        <input id="postcode" type="text" value="sk153hb" placeholder="postcode" />
+
+                        <small>
+                            ';echo WILang::get('script_info'); echo '
+                            
+                        </small>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="country">'; echo WILang::get('countryO'); echo '</label>';
                         $this->site->countries(); echo '
-
-                                    <label>'; echo WILang::get('region'); echo ':</label>
-                                    <select class="large-field" name="zone_id">
-                                        '; include_once 'WIInc/region_list.php'; echo '
-                                    </select>
-                                    
-                                    <br />
-                                    <button class="btn btn-primary">Continue</button>
-                                </form>
-
+                        <small>'; echo WILang::get('webdom'); echo '
+                            <strong>'; echo WILang::get('donot'); echo '</strong> 
+                            '; echo WILang::get('write_path_info'); echo '
+                        </small>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
 
 
+                                      <script type="text/javascript">
+
+                       var sex = $("#gender").attr("value");
+                       if (sex === "male"){
+                        $("#sex_true").removeClass("btn-yes active")
+                        $("#sex_false").addClass("btn-no");
+                       }else if (sex === "female"){
+                        $("#sex_false").removeClass("btn-no active")
+                        $("#sex_true").addClass("btn-yes");
+                       }
 
 
+                       var asylum = $("#asylum_seeker").attr("value");
+                       if (asylum === "yes"){
+                        $("#asylum_true").removeClass("btn-yes active")
+                        $("#asylum_false").addClass("btn-no");
+                       }else if (asylum === "no"){
+                        $("#asylum_false").removeClass("btn-no active")
+                        $("#asylum_true").addClass("btn-yes");
+                       }
+
+                       var refugee = $("#refugee").attr("value");
+
+                       if (refugee === "no"){
+                        $("#refugee_true").removeClass("btn-yes active")
+                        $("#refugee_false").addClass("btn-no");
+                       }else if (refugee === "yes"){
+                        $("#refugee_false").removeClass("btn-no active")
+                        $("#refugee_true").addClass("btn-yes");
+                       }
+
+                       var localauth = $("#localauth").attr("value");
+                       if (localauth === "no"){
+                        $("#localauth_true").removeClass("btn-yes active")
+                        $("#localauth_false").addClass("btn-no");
+                       }else 
+                       if (localauth === "yes"){
+                        $("#localauth_false").removeClass("btn-no active")
+                        $("#localauth_true").addClass("btn-yes");
+                       }
+
+                       var fundsav = $("#fundsav").attr("value");
+                       if (fundsav === "no"){
+                        $("#fundsav_true").removeClass("btn-yes active")
+                        $("#fundsav_false").addClass("btn-no");
+                       }else if (fundsav === "yes"){
+                        $("#fundsav_false").removeClass("btn-no active")
+                        $("#fundsav_true").addClass("btn-yes");
+                       }
+                   
+                      </script>
                   
 
-                    <a href="javascript:;" class="btn btn-as pull-right" onclick="WICheckout.stepTwo()" type="button" id="required">
+                    <a href="javascript:;" class="btn btn-as pull-right" onclick="WIClient.stepTwo()" type="button" id="required">
                         '; echo WILang::get('next') ; echo '
                         <i class="fa fa-arrow-right"></i>
                     </a>
@@ -403,59 +585,134 @@ echo '<div class="container-fluid text-center">
                 <h3>'; echo WILang::get('benefits'); echo '</h3>
                 <hr>
                 
-                 
+                  <div class="form-group">
+                     <label>'; echo WILang::get('jsa'); echo '</label>
+                    <div class="btn-group"  data-toggle="buttons-radio">
+                        <input type="hidden" name="jsa" id="jsa" class="btn-group-value" value="no"/>
+                        <button type="button" id="jsa_true" name="jsa" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="jsa_false" name="jsa" value="no" class="btn btn-no activewhens" >'; echo WILang::get('no'); echo '</button>
+                    </div>
 
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    </div>
 
+					<div class="form-group">
+					 <div id="legend">
 
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                                STEP 3: SHIPPING DETAILS
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <form>
-                                    <label> First Name:</label>
-                                    <input type="text" class="large-field" value="" name="firstname">
+                        <label>'; echo WILang::get('income_sup'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="income_sup" id="income_sup" class="btn-group-value" value="no"/>
+                        <button type="button" id="income_sup_true" name="income_sup" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="income_sup_false" name="income_sup" value="no" class="btn btn-no activewhens" >'; echo WILang::get('no'); echo '</button>
+                    </div>
 
-                                    <label> Last Name:</label>
-                                    <input type="text" class="large-field" value="" name="lastname">
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    
+                    <label>'; echo WILang::get('pension'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" id="pension" name="pension" class="btn-group-value" value="no" />
+                        <button id="pension_true" type="button" name="pension" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button id="pension_false" type="button" name="pension" value="no" class="btn btn-no" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('prevent'); echo ' <strong'; echo WILang::get('yes'); echo '</strong></span>
+                    
+                     <label>'; echo WILang::get('dla'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input id="dla" type="hidden" name="dla" class="btn-group-value" value="no" />
+                        <button id="dla_true" type="button" name="dla" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button id="dla_false" type="button" name="dla" value="no" class="btn btn-no" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+                    <span class="help-block"></span>
+                   
+                     <label>'; echo WILang::get('nass'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="nass" type="hidden" name="nass" class="btn-group-value" value="no" />
+                        <button id="nass_true" type="button" name="nass" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="nass_false" type="button" name="nass" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
 
-                                    <label>Company:</label>
-                                    <input type="text" class="large-field" value="" name="company">
+                    <label>'; echo WILang::get('incap'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="incap" type="hidden" name="incap" class="btn-group-value" value="no" />
+                        <button id="incap_true" type="button" name="incap" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="incap_false" type="button" name="incap" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
 
-                                    <label> Company ID:</label>
-                                    <input type="text" class="large-field" value="" name="company_id">
+                    <label>'; echo WILang::get('none'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="none" type="hidden" name="none" class="btn-group-value" value="no" />
+                        <button id="none_true" type="button" name="none" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="none_false" type="button" name="none" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
+                </div>
+            </div>
 
-                                    <label> Address 1:</label>
-                                    <input type="text" class="large-field" value="" name="address_1">
+                    <script type="text/javascript">
+                       var jsa = $("#jsa").attr("value");
+                       if (jsa === "no"){
+                        $("#jsa_true").removeClass("btn-yes active")
+                        $("#jsa_false").addClass("btn-no");
+                       }else if (jsa === "yes"){
+                        $("#jsa_false").removeClass("btn-no")
+                        $("#jsa_true").addClass("btn-yes active");
+                       }
 
-                                    <label>Address 2:</label>
-                                    <input type="text" class="large-field" value="" name="address_2">
+                       var income_sup = $("#income_sup").attr("value");
 
-                                    <label> City:</label>
-                                    <input type="text" class="large-field" value="" name="city">
+                       if (income_sup === "no"){
+                        $("#income_sup_true").removeClass("btn-yes active")
+                        $("#income_sup_false").addClass("btn-no");
+                       }else if (income_sup === "yes"){
+                        $("#income_sup_false").removeClass("btn-no")
+                        $("#income_sup_true").addClass("btn-yes active");
+                       }
 
-                                    <label> Post Code:</label>
-                                    <input type="text" class="large-field" value="" name="postcode">
+                       var pension = $("#pension").attr("value");
+                       if (pension === "false"){
+                        $("#pension_true").removeClass("btn-yes active")
+                        $("#pension_false").addClass("btn-no");
+                       }else 
+                       if (pension === "true"){
+                        $("#pension_false").removeClass("btn-no")
+                        $("#pension_true").addClass("btn-yes active");
+                       }
 
-                                    <label> '; echo WILang::get('country'); echo ':</label>
-                                    ';
-                        $this->site->countries(); echo '
+                       var dla = $("#dla").attr("value");
+                       if (dla === "yes"){
+                        $("#dla_true").removeClass("btn-yes active")
+                        $("#dla_false").addClass("btn-no");
+                       }else if (dla === "no"){
+                        $("#dla_false").removeClass("btn-no")
+                        $("#dla_true").addClass("btn-yes active");
+                       }
 
-                                    <label>'; echo WILang::get('region'); echo ':</label>
-                                    <select class="large-field" name="zone_id">
-                                        '; include_once 'WIInc/region_list.php'; echo '
-                                    </select>
-                                    
-                                </form>
-                                <br />
-                                <button class="btn btn-primary">Continue</button>
+                       var nass = $("#nass").attr("value");
+                       if (nass === "no"){
+                        $("#nass_true").removeClass("btn-yes active")
+                        $("#nass_false").addClass("btn-no");
+                       }else 
+                       if (nass === "yes"){
+                        $("#nass_false").removeClass("btn-no")
+                        $("#nass_true").addClass("btn-yes active");
+                       }
 
-
+                       var none = $("#none").attr("value");
+                       if (none === "no"){
+                        $("#none_true").removeClass("btn-yes active")
+                        $("#none_false").addClass("btn-no");
+                       }else if (none === "yes"){
+                        $("#none_false").removeClass("btn-no")
+                        $("#none_true").addClass("btn-yes active");
+                       }
+                   
+                      </script>
 
                
 
-                <button class="btn btn-as pull-right" onclick="WICheckout.stepThree();" type="button">
+                <button class="btn btn-as pull-right" onclick="WIClient.stepThree();" type="button">
                     <span class="show" id="next">
                         '; echo WILang::get('next'); echo '
                         
@@ -474,27 +731,133 @@ echo '<div class="container-fluid text-center">
                 <h3>'; echo WILang::get('support'); echo '</h3>
                 <hr>
 
+               <div class="form-group">
+                     <label>'; echo WILang::get('furn'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="furn" id="furn" class="btn-group-value" value="no"/>
+                        <button type="button" id="furn_true" name="furn" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="furn_false" name="furn" value="no" class="btn btn-no activewhens" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    </div>
+
+					<div class="form-group">
+					 <div id="legend">
+
+                        <label>'; echo WILang::get('bedding'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="bedding" id="bedding" class="btn-group-value" value="no"/>
+                        <button type="button" id="bedding_true" name="bedding" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="bedding_false" name="bedding" value="no" class="btn btn-no activewhens" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    
+                    <label>'; echo WILang::get('cloths'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" id="cloths" name="cloths" class="btn-group-value" value=" no" />
+                        <button id="cloths_true" type="button" name="cloths" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button id="cloths_false" type="button" name="cloths" value="no" class="btn btn-no" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('prevent'); echo ' <strong'; echo WILang::get('yes'); echo '</strong></span>
+                    
+                     <label>'; echo WILang::get('training'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input id="training" type="hidden" name="training" class="btn-group-value" value="no" />
+                        <button id="training_true" type="button" name="training" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button id="training_false" type="button" name="training" value="no" class="btn btn-no" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('localAuth'); echo '<strong>'; echo WILang::get('cookies'); echo '</strong></span>
+                   
+                     <label>'; echo WILang::get('food'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="food" type="hidden" name="food" class="btn-group-value" value="no" />
+                        <button id="food_true" type="button" name="food" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="food_false" type="button" name="food" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
+
+                    <label>'; echo WILang::get('room'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="room" type="hidden" name="room" class="btn-group-value" value="no" />
+                        <button id="room_true" type="button" name="room" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="room_false" type="button" name="room" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
+
+                    <label>'; echo WILang::get('house'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input  id="house" type="hidden" name="house" class="btn-group-value" value="no" />
+                        <button id="house_true" type="button" name="house" value="yes"  class="btn">'; echo WILang::get('yes') ; echo '</button>
+                        <button id="house_false" type="button" name="house" value="no" class="btn btn-no">'; echo WILang::get('no') ; echo '</button>
+                    </div>
+                    <span class="help-block">'; echo WILang::get('funds'); echo '</strong></span>
+                </div>
+            </div>
+
+
+                                      <script type="text/javascript">
+                       var furn = $("#furn").attr("value");
+                       if (furn === "no"){
+                        $("#furn_true").removeClass("btn-yes active")
+                        $("#furn_false").addClass("btn-no");
+                       }else if (furn === "yes"){
+                        $("#furn_false").removeClass("btn-no")
+                        $("#furn_true").addClass("btn-yes active");
+                       }
+
+                       var bedding = $("#bedding").attr("value");
+
+                       if (bedding === "no"){
+                        $("#bedding_true").removeClass("btn-yes active")
+                        $("#bedding_false").addClass("btn-no");
+                       }else if (bedding === "yes"){
+                        $("#bedding_false").removeClass("btn-no")
+                        $("#bedding_true").addClass("btn-yes active");
+                       }
+
+                       var cloths = $("#cloths").attr("value");
+                       if (cloths === "no"){
+                        $("#cloths_true").removeClass("btn-yes active")
+                        $("#cloths_false").addClass("btn-no");
+                       }else 
+                       if (cloths === "yes"){
+                        $("#cloths_false").removeClass("btn-no")
+                        $("#cloths_true").addClass("btn-yes active");
+                       }
+
+                       var food = $("#food").attr("value");
+                       if (food === "yes"){
+                        $("#food_true").removeClass("btn-yes active")
+                        $("#food_false").addClass("btn-no");
+                       }else if (food === "no"){
+                        $("#food_false").removeClass("btn-no")
+                        $("#food_true").addClass("btn-yes active");
+                       }
+
+                       var room = $("#room").attr("value");
+                       if (room === "yes"){
+                        $("#room_true").removeClass("btn-yes active")
+                        $("#room_false").addClass("btn-no");
+                       }else if (room === "no"){
+                        $("#room_false").removeClass("btn-no")
+                        $("#room_true").addClass("btn-yes active");
+                       }
+
+                       var house = $("#house").attr("value");
+                       if (house === "yes"){
+                        $("#house_true").removeClass("btn-yes active")
+                        $("#house_false").addClass("btn-no");
+                       }else if (house === "no"){
+                        $("#house_false").removeClass("btn-no")
+                        $("#house_true").addClass("btn-yes active");
+                       }
+                   
+                      </script>
                
 
-<form>
-                                    <label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Free Shipping <b>($0.00)</b>
-                                    </label>
-                                    <label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Flat Shipping Rate <b>($10.00)</b>
-                                    </label>
-                                    <button class="btn btn-primary">Continue</button>
-                                </form>
-
-
-
-
-
-               
-
-                <button class="btn btn-as pull-right" onclick="WICheckout.stepFour();" type="button">
+                <button class="btn btn-as pull-right" onclick="WIClient.stepFour();" type="button">
                     <span class="show" id="next">
                         '; echo WILang::get('next'); echo '
                         <i class="fa fa-arrow-right" ></i>
@@ -516,23 +879,26 @@ echo '<div class="container-fluid text-center">
                 <hr>
 
 
-                    <form>
-                                    <label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Paypal</b>
-                                    </label>
-                                    
-                                    <button class="btn btn-primary">Continue</button>
-                                </form>
+                     <div class="form-group">
+                        <label for="name">'; echo WILang::get('name'); echo '</label>
+                        <input type="text" class="form-control" id="name"
+                               v-model="website.name" value="Doe">
+                    </div>
 
+                     <div class="form-group">
+                        <label for="agency">'; echo WILang::get('agency'); echo '</label>
+                        <input type="text" class="form-control" id="agency"
+                               v-model="agency.name" value="Doe">
+                    </div>
 
-
-
-
-
+                     <div class="form-group">
+                        <label for="contact_num">'; echo WILang::get('contact_num'); echo '</label>
+                        <input type="text" class="form-control" id="contact_num"
+                               v-model="website.contact_num" value="079566854">
+                    </div>
                     
 
-                    <button class="btn btn-as pull-right" onclick="WICheckout.stepFive();">
+                    <button class="btn btn-as pull-right" onclick="WIClient.stepFive();">
                         '; echo WILang::get('next') ; echo '
                         <i class="fa fa-arrow-right"></i>
                     </button>
@@ -545,50 +911,78 @@ echo '<div class="container-fluid text-center">
                 <hr>
 
                 <br>
-               
-                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Item Name</th>
-                                            <th>Qty</th>
-                                            <th>Unit Price</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>AB29837</td>
-                                            <td>1</td>
-                                            <td>$333.33</td>
-                                            <td>$333.33</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AC34423</td>
-                                            <td>2</td>
-                                            <td>$333.33</td>
-                                            <td>$666.66</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                <div class="form-group">
+                        <label for="adname">'; echo WILang::get('adname'); echo '</label>
+                        <input type="text" class="form-control" id="adname"
+                               v-model="website.adname" value="Doe">
+                    </div>
 
-                                <dl class="dl-horizontal pull-right">
-                                    <dt>Sub-total:</dt>
-                                    <dd>$999.99</dd>
+                     <div class="form-group">
+                        <label for="idprov">'; echo WILang::get('idprov'); echo '</label>
+                        <input type="text" class="form-control" id="idprov"
+                               v-model="website.idprov" value="Doe">
+                    </div>
 
-                                    <dt>Shipping Cost:</dt>
-                                    <dd>$0.01</dd>
+                     <div class="form-group">
+                        <label for="clibud">'; echo WILang::get('clibud'); echo '</label>
+                        <input type="text" class="form-control" id="clibud"
+                               v-model="website.clibud" value="">
+                    </div>
 
-                                    <dt>Total:</dt>
-                                    <dd>$1000.00</dd>
-                                </dl>
-                                <div class="clearfix"></div>
-                                <a href="#" class="btn btn-success pull-right">Confirm Order</a>
+                     <div class="form-group">
+                     <label>'; echo WILang::get('furnPak'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="furnPak" id="furnPak" class="btn-group-value" value="no"/>
+                        <button type="button" id="furnPak_true" name="furnPak" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="furnPak_false" name="furnPak" value="no" class="btn btn-no activewhens" >'; echo WILang::get('no'); echo '</button>
+                    </div>
 
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    </div>
+
+                    <div class="form-group">
+                     <label>'; echo WILang::get('gifting'); echo '</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="gifting" id="gifting" class="btn-group-value" value="no"/>
+                        <button type="button" id="gifting_true" name="gifting" value="yes"  class="btn">'; echo WILang::get('yes'); echo '</button>
+                        <button type="button" id="gifting_false" name="gifting" value="no" class="btn btn-no activewhens" >'; echo WILang::get('no'); echo '</button>
+                    </div>
+
+                    <span class="help-block">'; echo WILang::get('select'); echo WILang::get('http_info'); echo ' </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="databy">'; echo WILang::get('databy'); echo '</label>
+                        <input type="text" class="form-control" id="databy"
+                               v-model="website.databy" value="Doe">
+                    </div>
+                                                          <script type="text/javascript">
+
+
+                       var furnPak = $("#furnPak").attr("value");
+                       if (furnPak === "yes"){
+                        $("#furnPak_true").removeClass("btn-yes active")
+                        $("#furnPak_false").addClass("btn-no");
+                       }else if (furnPak === "no"){
+                        $("#furnPak_false").removeClass("btn-no")
+                        $("#furnPak_true").addClass("btn-yes active");
+                       }
+
+                       var gifting = $("#gifting").attr("value");
+                       if (gifting === "yes"){
+                        $("#gifting_true").removeClass("btn-yes active")
+                        $("#gifting_false").addClass("btn-no");
+                       }else if (gifting === "no"){
+                        $("#gifting_false").removeClass("btn-no")
+                        $("#gifting_true").addClass("btn-yes active");
+                       }
+                   
+                      </script>
 
 
                 <br>
 
-                 <button class="btn btn-as pull-right" onclick="WICheckout.stepSix();">
+                 <button class="btn btn-as pull-right" onclick="WIClient.stepSix();">
                          '; echo WILang::get('next') ; echo '
                         <i class="fa fa-arrow-right"></i>
                     </button>
@@ -599,15 +993,39 @@ echo '<div class="container-fluid text-center">
             <div class="step-content hide" id="step_seven">
                 <h3>'; echo WILang::get('Next'); echo '</h3>
                 <hr>
-              
+                <p id="date" class="hide"></p>
+<div id="clock" class="hide">
+  <p class="unit" id="time"></p>
 
+</div>
+                
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                   <div class="form-group">
+                        <label for="action_taken">'; echo WILang::get('action_taken'); echo '</label>
+                        <textarea type="text" class="form-control" id="action_taken"
+                               v-model="website.action_taken" value="Doe">
+                    </textarea>
+                    </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                   <div class="form-group">
+                        <label for="outcome">'; echo WILang::get('outcome'); echo '</label>
+                        <textarea type="text" class="form-control" id="outcome"
+                               v-model="website.outcome" value="Doe"></textarea>
+                    </div>
+                    </div>
 
-
-
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                   <div class="form-group">
+                        <label for="full_name">'; echo WILang::get('full_name'); echo '</label>
+                        <input type="text" class="form-control" id="full_name"
+                               v-model="website.full_name" value="Doe">
+                    </div>
+                    </div>
 
                 <br>
 
-               <button class="btn btn-as pull-right" onclick="WICheckout.install();">
+               <button class="btn btn-as pull-right" onclick="WIClient.install();">
                         <span class="show" id="install">
                                <i class="fa fa-play"></i>
                             '; echo WILang::get('insta'); echo '
@@ -630,7 +1048,7 @@ echo '<div class="container-fluid text-center">
 
                 <br>
 
-                <button class="btn btn-as pull-right" onclick="WICheckout.stepreturn();">
+                <button class="btn btn-as pull-right" onclick="WIClient.stepreturn();">
                         <span class="show" id="next">
                         '; echo WILang::get('next'); echo '
                         
@@ -644,408 +1062,12 @@ echo '<div class="container-fluid text-center">
 
         </div>
     </div>
-</div>'; }else{    // user logged in
-    echo '<div class="wizard col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="steps">
-                <ul>
-                    <li>
-                        <a :class="active">
-                            <div class="stepNumber active" id="stepOne"><i class="fa fa-list"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step2'); echo '</span>
-                        </a>
-                    </li>
-
-                     <li>
-                        <a :class="active">
-                            <div class="stepNumber inactive" id="stepTwo"><i class="fa fa-gears"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step3'); echo '</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a :class="active">
-                            <div class="stepNumber inactive" id="stepThree"><i class="fa fa-database"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step4'); echo '</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a :class="active">
-                            <div class="stepNumber inactive" id="stepFour"><i class="fa fa-terminal"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step5'); echo '</span>
-                        </a>
-                    </li>
-
-                     <li>
-                        <a :class="active">
-                            <div class="stepNumber inactive" id="stepFive"><i class="fa fa-terminal"></i></div>
-                            <span class="stepDesc text-small">'; echo WILang::get('step6'); echo '</span>
-                        </a>
-                    </li>
-                     
-                </ul>
-            </div>
-                
-           
-
-
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 step-content show" id="step_one">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                
-            <div class="alert alert-danger hide" id="snap" >
-                    <strong>'; echo WILang::get('next'); echo '</strong> 
-                </div>
-
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"> 
-
-								<form>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"> 
-                                    <label>'; echo WILang::get('firstname'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="firstname" id="billing_first_name">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('lastname'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="lastname" id="billing_last_name">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('address_1'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="address_1" id="billing_address_1">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('address_2'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="address_2" id="billing_address_2">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('city'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="city" id="billing_city">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('postcode'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="postcode" id="billing_postcode">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                   <label> '; echo WILang::get('country'); echo ':</label>
-                                    ';
-                        $this->site->countries(); echo '
-                        			</div>
-                        			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <label>'; echo WILang::get('region'); echo ':</label>
-                                    <select class="large-field" name="zone_id" id="billing_region">
-                                        '; include_once 'WIInc/region_list.php'; echo '
-                                    </select>
-                                    </div>
-                                    <br />
-                                    <button class="btn btn-primary">'; echo WILang::get('continue'); echo '</button>
-                                </form>
-
-                                </div>
-
-
-
-                  
-
-                    <a href="javascript:;" class="btn btn-as pull-right" onclick="WICheckout.stepOne()" type="button" id="required">
-                        '; echo WILang::get('next') ; echo '
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            </div>
-             <div class="step-content hide" id="step_two">
-                <h3>'; echo WILang::get('step3'); echo '</h3>
-                <hr>
-                
-                
-                                STEP 3: SHIPPING DETAILS
-                        
-<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"> 
-
-								<form>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"> 
-                                    <label>'; echo WILang::get('firstname'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="firstname" id="ship_first_name">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('lastname'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="lastname" id="ship_last_name">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('address_1'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="address_1" id="ship_address_1">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('address_2'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="address_2" id="ship_address_2">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('city'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="city" id="ship_city">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <label>'; echo WILang::get('postcode'); echo ':</label>
-                                    <input type="text" class="large-field" value="" name="postcode" id="ship_postcode">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                   <label> '; echo WILang::get('country'); echo ':</label>
-                                    ';
-                        $this->site->countries(); echo '
-                        			</div>
-                        			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <label>'; echo WILang::get('region'); echo ':</label>
-                                    <select class="large-field" name="zone_id" id="ship_region">
-                                        ';
-                                        echo dirname(__FILE__) . 'WIInc/region_list.php';
-                                         include_once 'WIInc/region_list.php'; echo '
-                                    </select>
-                                    </div>
-                                    <br />
-                                    
-                                </form>
-
-                                </div>
-
-
-
-               
-
-                <button class="btn btn-as pull-right" onclick="WICheckout.stepTwo();" type="button">
-                    <span class="show" id="next">
-                        '; echo WILang::get('next'); echo '
-                        
-                        <i class="fa fa-arrow-right" ></i>
-                    </span>
-                    <span class="hide" id="spin">
-                        <i class="fa fa-circle-o-notch fa-spin"></i>
-                       '; echo WILang::get('connecting'); echo '
-                    </span>
-                </button>
-                <div class="clearfix"></div>
-            </div>
-
-
-            <div class="step-content hide" id="step_three">
-                <h3>'; echo WILang::get('step4'); echo '</h3>
-                <hr>
-
-               
-
-<form>
-                                    <label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="0.00" checked>
-                                        Royal Mail Shipping <b>($0.00)</b>
-                                    </label>
-                                    <label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="10.00">
-                                        Royal Mail: First Class Rate <b>($10.00)</b>
-                                    </label>
-
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="15.00">
-                                        Royal Mail: Next Day Rate <b>($15.00)</b>
-                                    </label>
-                                </form>
-
-
-
-
-
-               
-
-                <button class="btn btn-as pull-right" onclick="WICheckout.stepThree();" type="button">
-                    <span class="show" id="next">
-                        '; echo WILang::get('next'); echo '
-                        <i class="fa fa-arrow-right" ></i>
-                    </span>
-                    <span class="hide" id="spin">
-                        <i class="fa fa-circle-o-notch fa-spin"></i>
-                        '; echo WILang::get('connecting'); echo '
-                    </span>
-                   
-                </button>
-                 <span class="show" id="mess">
-                        <i class="fa"></i>
-                    </span>
-                <div class="clearfix"></div>
-            </div>
-
-            <div class="step-content hide" id="step_four">
-                <h3>'; echo WILang::get('step5'); echo '</h3>
-                <hr>
-
-
-                      <!-- CREDIT CARD FORM STARTS HERE -->
-            <div class="panel panel-default credit-card-box">
-                <div class="panel-heading display-table" >
-                    <div class="row display-tr" >
-                        <h3 class="panel-title display-td" >Payment Details</h3>
-                        <div class="display-td" >                            
-                            <img class="img-responsive pull-right" src="../../../WIAdmin/WIMedia/Img/shop/accepted.jpg">
-                        </div>
-                    </div>                    
-                </div>
-                <div class="panel-body">
-                    <form role="form" id="payment_form">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="cardNumber">CARD NUMBER</label>
-                                    <div class="input-group">
-                                        <input 
-                                            type="tel"
-                                            class="form-control"
-                                            name="cardNumber"
-                                            placeholder="Valid Card Number"
-                                            autocomplete="cc-number"
-                                            required autofocus 
-                                            id="cardNumber"
-                                        />
-                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                    </div>
-                                </div>                            
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-7 col-md-7">
-                                <div class="form-group">
-                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                    <input 
-                                        type="tel" 
-                                        class="form-control" 
-                                        name="cardExpiry"
-                                        placeholder="MM / YY"
-                                        autocomplete="cc-exp"
-                                        required 
-                                        id="expiry"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-xs-5 col-md-5 pull-right">
-                                <div class="form-group">
-                                    <label for="cardCVC">CV CODE</label>
-                                    <input 
-                                        type="tel" 
-                                        class="form-control"
-                                        name="cardCVC"
-                                        placeholder="CVC"
-                                        autocomplete="cc-csc"
-                                        required
-                                        id="cardCVC"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        </div>
-                        <div class="row" style="display:none;">
-                            <div class="col-xs-12">
-                                <p class="payment-errors"></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>         
-            <!-- CREDIT CARD FORM ENDS HERE -->
-            <div><form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-  <input type="hidden" name="cmd" value="_cart">
-  <input type="hidden" name="business" value="seller@designerfotos.com">
-  <input type="hidden" name="item_name" value="hat">
-  <input type="hidden" name="item_number" value="123">
-  <input type="hidden" name="amount" value="15.00">
-  <input type="hidden" name="first_name" value="John">
-  <input type="hidden" name="last_name" value="Doe">
-  <input type="hidden" name="address1" value="9 Elm Street">
-  <input type="hidden" name="address2" value="Apt 5">
-  <input type="hidden" name="city" value="Berwyn">
-  <input type="hidden" name="state" value="PA">
-  <input type="hidden" name="zip" value="19312">
-  <input type="hidden" name="night_phone_a" value="610">
-  <input type="hidden" name="night_phone_b" value="555">
-  <input type="hidden" name="night_phone_c" value="1234">
-  <input type="hidden" name="email" value="jdoe@zyzzyu.com">
-  <input type="image" name="submit"
-    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-    alt="PayPal - The safer, easier way to pay online">
-</form></div>
-
-
-                    <button class="btn btn-as pull-right" onclick="WICheckout.stepFour();">
-                        '; echo WILang::get('next') ; echo '
-                        <i class="fa fa-arrow-right"></i>
-                    </button>
-                <div class="clearfix"></div>
-
-                            <script>
-    $(function() {
-        $("#cardNumber").validateCreditCard(function(result) {
-            $(".log").html("Card type: "" + (result.card_type == null ? "-" : result.card_type.name)
-                     + "<br>Valid: " + result.valid
-                     + "<br>Length valid: " + result.length_valid
-                     + "<br>Luhn valid: " + result.luhn_valid);
-        });
-    });
-</script>
-            </div>
-
-
-            <div class="step-content hide" id="step_five">
-                <h3>'; echo WILang::get('step6'); echo '</h3>
-                <hr>
-
-                <br>
-               
-                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Item Image</th>
-                                            <th>Item Name</th>
-                                            <th>Qty</th>
-                                            <th>Unit Price</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>';
-                                $this->check->confirmOrder(); 
-                                    echo '</tbody>
-                                </table>
-
-                                <dl class="dl-horizontal pull-right">
-                                    <dt>Sub-total:</dt>
-                                    <dd id="cust_sub">$999.99</dd>
-
-                                    <dt>Shipping Cost:</dt>
-                                    <dd id="cust_ship">$0.01</dd>
-
-                                    <dt>Total:</dt>
-                                    <dd id="cust_tot">$1000.00</dd>
-                                </dl>
-                                <div class="clearfix"></div>
-                                
-
-
-
-                <br>
-
-                 <button class="btn btn-as pull-right" onclick="WICheckout.install();">
-                         '; echo WILang::get('confirm_order') ; echo '
-                        <i class="fa fa-arrow-right"></i>
-                    </button>
-                <div class="clearfix"></div>
-            </div>
-
-
-           
-
-
-
-        </div>
-    </div>
-</div>';
-
+</div>'; }else{
+    echo "please log in or register";
 }
 
 
-						echo '<script type="text/javascript" src="WICore/WIJ/WIEncrypt.js"></script>
-						<script type="text/javascript" src="WICore/WIJ/WICheckout.js"></script>
-						<script type="text/javascript" src="WICore/WIJ/jquery.creditCardValidator.js"></script>
-                        </div>
+						echo '</div>
 					</div>
 					</div>';
 

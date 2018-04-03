@@ -18,6 +18,6 @@
                         </div>
                       </div>
 
-                      <div class="results" id="results"></div>
+                      <div class="results" id="admresults"></div>
                     </fieldset>
                   </form> 

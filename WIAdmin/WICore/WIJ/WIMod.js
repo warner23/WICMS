@@ -132,7 +132,7 @@ WIMod.drop = function(mod_name){
         {
             // check to see if another element is there first, if it is place after element
            
-           if( $('.column_drop').is(':empty') ){
+           if( $('.coldrop').is(':empty') ){
             alert("div empty");
            // $("#droppable1").html(result);
            $("#droppable1").html(result);

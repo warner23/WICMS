@@ -19,13 +19,13 @@
                     
                   
 
-                   <div class="control-group form-group">
+                   <div class="form-group">
                         <!-- Button -->
                         <div class="controls col-lg-offset-4 col-lg-8">
                            <button id="multilanguage_btn" class="btn btn-success" onclick="WILang.changeLang();">Save</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="mlresults"></div>
                         </fieldset>
                       </form>
 

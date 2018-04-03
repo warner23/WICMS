@@ -11,13 +11,13 @@
 
                        </div>
                        <div id="ViewTheme"></div>
-                              <div class="control-group form-group">
+                              <div class="form-group">
                         <!-- Button -->
                         <div class="col-lg-3 col-sm-3 col-md-3">
                            <button id="add_meta_btn" class="btn btn-success" >Add</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="thresults"></div>
                     </fieldset>
                         <br /><br />
                   </form>

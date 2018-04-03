@@ -13,7 +13,7 @@ WISession::startSession();
 WISession::set("name", 'WIInstall');
 
 $installer = WISession::get('name');
-define('DEFAULT_LANGUAGE', 'en'); 
+
 
 if ( isset ( $_GET['lang'] ) )
 	WILang::setLanguage($_GET['lang']);

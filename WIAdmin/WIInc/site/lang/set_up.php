@@ -1,5 +1,5 @@
 
- <form  class="form-horizontal database-form" id="setup">
+ <form  class="form-horizontal trans-form" id="setup">
                       <fieldset>
                         <div id="legend">
                           <legend class="">Add Language</legend>
@@ -19,7 +19,7 @@
                            <button id="add_lang_btn" onclick="WILang.AddLangModal()" class="btn btn-success" >Add</button> 
                         </div>
                       </div>
-                      <div class="results" id="results"></div>
+                      <div class="results" id="setresults"></div>
                     </fieldset>
                         <br /><br />
                   </form>
