@@ -1,19 +1,22 @@
-<?php
+<?php 
+
 /**
- * This is just an example of how a file could be processed from the
- * upload script. It should be tailored to your own requirements.
- */
+* 
+*/
+class WIFrontEndUploading
+{
+	
+	function __construct(argument)
+	{
+		 $this->WIdb = WIdb::getInstance();
+	}
 
-// Only accept files with these extensions
-$whitelist = array('jpg', 'jpeg', 'png', 'gif', 'JPEG','JPG');
-$blacklist = array('avi', 'wmv', 'mov', 'WMV', 'mp4');
-$imgs      = null;
-$vids      = null;
-$error     = 'No file uploaded.';
-$acceptList = array_merge($whitelist, $blacklist);
+	public function ImageUploading($formData, $dir)
+	{
+		echo "form". $formData;
+		echo "dir". $dir;
 
-
-if (isset($_FILES)) {
+		if (isset($_FILES)) {
 	if (isset($_FILES['file'])) {
 		$tmp_name = $_FILES['file']['tmp_name'];
 		$imgs     = "../../WIMedia/Img/" . basename($_FILES['file']['name']);
@@ -50,9 +53,15 @@ if (isset($_FILES)) {
 ));
 			}
 
-		}
+		  }
+	   }
+     }
 	}
+
+
+
+
 }
 
 
-die();
+?>

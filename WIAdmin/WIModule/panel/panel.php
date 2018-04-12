@@ -70,26 +70,7 @@ class panel
         $Google = "";
        }
 
-       echo '
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : `' . FACEBOOK_ID . '`,
-      cookie     : true,
-      xfbml      : true,
-      version    : `v2.8`
-    });
-    FB.AppEvents.logPageView();   
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, `script`, `facebook-jssdk`));
-</script><div id="toppanel">
+       echo '<div id="toppanel">
   <div id="panel">
     <div class="content clearfix">
       <div class="left">
@@ -235,7 +216,7 @@ class panel
                  </div>';
                  
              }elseif($this->user->isAdmin()){
-                echo '<div class="left">
+                echo '<div class="leftt">
                   <h1>' .WILang::get("panel_mini_admin") . '</h1>
                   <a href="WIMembers/profile.php"> ' .WILang::get("view_profile_page") . '</a>
                   <p>- or -</p>
@@ -246,7 +227,7 @@ class panel
                   <div class="left right">
                   </div>';
              }else{
-              echo '<div class="left">
+              echo '<div class="leftt">
                   <h1>' . WILang::get("member_panel") . '</h1>
                   <a href="WIMembers/profile.php">' . WILang::get("view_profile_page") . ' </a>
                   <p>- or -</p>

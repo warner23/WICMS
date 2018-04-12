@@ -28,21 +28,14 @@ $panelPower = $web->pageModPower($page, "panel");
 
 $Panel = $web->PageMod($page, "panel");
 //echo $Panel;
-if ($panelPower === 0) {
-	
-}else{
-
+if ($panelPower > 0) {
 	$mod->getMod($Panel);
-//include_once 'WIInc/panel.php';
 }
 
 $topPower = $web->pageModPower($page, "top_head");
 $top_head = $web->PageMod($page, "top_head");
 //echo $Panel;
-if ($topPower === 0) {
-	
-}else{
-
+if ($topPower > 0) {
 	$mod->getMod($top_head);
 }
 
@@ -53,8 +46,12 @@ if ($headerPower > 0) {
 	$web->MainHeader();
 }
 
+$menuPower = $web->pageModPower($page, "menu");
+if ($menuPower > 0) {
+	$web->MainMenu();
+}
 
-$web->MainMenu();	
+	
 
 
 $contents = $web->pageModPower($page, "contents");

@@ -210,81 +210,116 @@ class WIPage
       $directory = dirname(dirname(dirname(dirname(__FILE__))));
      // echo $directory.$pageName;
       $NewPage = fopen($directory. '/'  .$pageName .'.php', "w") or die("Unable to open file!");
-      $txt = '
-      <?php
+      $txt = '<?php
+$page = "'. $pageName .'";
 
-      include_once "WIInc/WI_StartUp.php";
+include_once "WIInc/WI_StartUp.php";
 
-      $ip = getenv("REMOTE_ADDR");
-      $country = $maint->ip_info($ip, "country");
+$ref = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : "";
 
-      $page = "' . $pageName .'";
-      $maint->visitors_log($page, $ip, $country);
-      $Panel = $web->PageMod($page, "panel");
-
-      if ($Panel === "null") {
-        
-      }else{
-
-        $mod->getMod($Panel);
-      }
-
-      $top_head = $web->PageMod($page, "top_head");
-      //echo $Panel;
-      if ($top_head === "null") {
-        
-      }else{
-
-        $mod->getMod($top_head);
-      }
-
-      $web->MainMenu(); 
-
-      $leftSideBar = $web->PageMod($page, "left_sidebar");
-      if ($leftSideBar === "null") {
-        
-      }else{
-
-        $mod->getMod($leftSideBar);
-      }
-
-      $contents = $web->PageMod($page, "contents");
-      //echo $Panel;
-      if ($contents === "null") {
-        
-      }else{
-
-        $mod->getMod($contents);
-      }
-
-      $rightSideBar = $web->PageMod($page, "right_sidebar");
-      //echo $Panel;
-      if ($rightSideBar === "null") {
-        
-      }else{
-
-        $mod->getMod($rightSideBar);
-      }
-          
-      //include_once "WIInc/welcome_box.php";
-
-      $web->footer();
-      ?>
+$agent = $_SERVER["HTTP_USER_AGENT"];
+$ip = $_SERVER["REMOTE_ADDR"];
 
 
+$tracking_page = $_SERVER["SCRIPT_NAME"];
 
-      </body>
-      </html>
+$country = $maint->ip_info($ip, "country");
+if($country === null){
+  $country = "localhost";
+}
 
-      ';
+$maint->visitors_log($page, $ip, $country, $ref, $agent, $tracking_page);
+
+$panelPower = $web->pageModPower($page, "panel");
+$Panel = $web->PageMod($page, "panel");
+if ($panelPower > 0) {
+  $mod->getMod($Panel);
+}
+
+$topPower = $web->pageModPower($page, "top_head");
+$top_head = $web->PageMod($page, "top_head");
+if ($topPower > 0) {
+  $mod->getMod($top_head);
+}
+$headerPower = $web->pageModPower($page, "header");
+if ($headerPower > 0) {
+  $web->MainHeader();
+}
+
+$web->MainMenu(); 
+
+$contents = $web->pageModPower($page, "contents");
+$mod->getModMain($contents, $page, $contents);
+
+$web->footer();
+?>
+</body>
+</html>
+';
       fwrite($NewPage, $txt);
       fclose($NewPage);
 
-       $this->WIdb->insert('wi_page', array(
-          "name" => $pageName
-        )); 
+       $cssCheck = self::CssCheck($pageName);
+      $JsCheck = self::JsCheck($pageName);
+      $MetaCheck = self::MetaCheck($pageName);
+      $pageCheck = self::pageCheck($pageName);
+      if ($cssCheck === "0") {
+        
+        $css = "INSERT INTO `wi_css` ( `href`, `rel`, `page`) VALUES
+      ( 'site/css/frameworks/bootstrap.css', 'stylesheet', '" . $pageName . "'),
+      ( 'site/css/login_panel/css/slide.css', 'stylesheet', '" . $pageName . "'),
+      ( 'site/css/frameworks/menus.css', 'stylesheet', '" . $pageName . "'),
+      ( 'site/css/style.css', 'stylesheet', '" . $pageName . "'),
+      ( 'site/css/font-awesome.css', 'stylesheet', '" . $pageName . "'),
+      ( 'site/css/vendor/bootstrap.min.css', 'stylesheet', '" . $pageName . "');";
 
-       $page_id = $this->WIdb->lastInsertId();
+      $query = $this->WIdb->prepare($css);
+        $query->execute();
+
+      }
+
+      if ($JsCheck === "0") {
+        $js = "INSERT INTO `wi_scripts` ( `src`, `page`) VALUES
+      ( 'site/js/frameworks/JQuery.js', '" . $pageName . "'),
+      ( 'site/js/frameworks/bootstrap.js', '" . $pageName . "'),
+      ( 'site/js/login_panel/js/slide.js', '" . $pageName . "');
+      ";
+
+      $query = $this->WIdb->prepare($js);
+        $query->execute();
+      }
+
+      if ($MetaCheck === "0") {
+        $Meta = "INSERT INTO `wi_meta` ( `page`, `name`, `content`, `author`) VALUES
+      ( '" . $pageName . "', 'viewport', 'width=device-width, initial-scale=1', 'Jules Warner'),
+      ( '" . $pageName . "', 'description', 'Warner-Infinity Content Management System with simplified back end', 'Jules Warner'),
+      ( '" . $pageName . "', 'keywords', 'WI, WICMS, System, UI', 'Jules Warner'),
+      ( '" . $pageName . "', 'author', 'warner-infinity', 'Jules Warner');
+      ";
+      
+      $query = $this->WIdb->prepare($Meta);
+        $query->execute();
+      }
+
+      if ($pageCheck === "0") {
+        if (RIGHT_SIDEBAR > 0) {
+          $page = "INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
+      ( '" . $pageName . "', '1', '0', '0', '0', '1', '" . $pageName . "', '1');
+        ";
+        $query = $this->WIdb->prepare($page);
+        $query->execute();
+        $page_id = $this->WIdb->lastInsertId();
+        }else{
+           $page = "INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
+      ( '" . $pageName . "', '1', '0', '0', '0', '0', '" . $pageName . "', '1');
+        ";
+        $query = $this->WIdb->prepare($page);
+        $query->execute();
+        $page_id = $this->WIdb->lastInsertId();
+        }
+        
+        
+      }
 
   $results = array(
     "completed" => "saved",
@@ -511,6 +546,78 @@ public function changeRSC($page, $col)
             );
           echo json_encode($result);
       }
+
+      public function CssCheck($pageName)
+    {
+      $label = $pageName;
+      $sql = "SELECT * FROM `wi_css` WHERE `page`=:label";
+
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':label', $label, PDO::PARAM_STR);
+      $query->execute();
+
+      $result = $query->fetch();
+      //print_r($result);
+      if( count($result) > 1){
+        return "1";
+      }else{
+        return "0";
+      }
+    }
+
+    public function JsCheck($pageName)
+    {
+      $label = $pageName;
+      $sql = "SELECT * FROM `wi_scripts` WHERE `page`=:label";
+
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':label', $label, PDO::PARAM_STR);
+      $query->execute();
+
+      $result = $query->fetch();
+      //print_r($result);
+      if( count($result) > 1){
+        return "1";
+      }else{
+        return "0";
+      }
+    }
+
+    public function MetaCheck($pageName)
+    {
+      $label = $pageName;
+      $sql = "SELECT * FROM `wi_meta` WHERE `page`=:label";
+
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':label', $label, PDO::PARAM_STR);
+      $query->execute();
+
+      $result = $query->fetch();
+      //print_r($result);
+      if( count($result) > 1){
+        return "1";
+      }else{
+        return "0";
+      }
+    }
+
+        public function pageCheck($pageName)
+    {
+      $label = $pageName;
+      $sql = "SELECT * FROM `wi_page` WHERE `name`=:label";
+
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':label', $label, PDO::PARAM_STR);
+      $query->execute();
+
+      $result = $query->fetch();
+      //print_r($result);
+      if( count($result) > 1){
+        return "1";
+      }else{
+        return "0";
+      }
+    }
 
 
    

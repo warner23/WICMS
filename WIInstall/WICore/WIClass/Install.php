@@ -202,8 +202,7 @@ INSERT INTO `wi_css` (`id`, `href`, `rel`, `page`) VALUES
 (27, 'site/css/frameworks/menus.css', 'stylesheet', 'profile'),
 (28, 'site/css/style.css', 'stylesheet', 'profile'),
 (29, 'site/css/font-awesome.css', 'stylesheet', 'profile'),
-(30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile'),
-(31, 'user/css/profile.css', 'stylesheet', 'profile');
+(30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile');
 
 -- --------------------------------------------------------
 
@@ -527,7 +526,8 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
   `name` varchar(255) NOT NULL,
   `panel` enum('0','1') DEFAULT '0',
   `top_head` enum('0','1') DEFAULT '0',
-  `header` enum('0','1') DEFAULT '0',
+  `header` enum('0','1') DEFAULT '1',
+  `menu` enum('0','1') DEFAULT '0',
   `left_sidebar` enum('0','1') NOT NULL DEFAULT '0',
   `right_sidebar` enum('0','1') NOT NULL DEFAULT '0',
   `contents` text,
@@ -539,12 +539,12 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
 -- Dumping data for table `wi_page`
 --
 
-INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
-( 'alogin', '1', '1', '0', '0', '0', 'alogin', '1'),
-( 'confirm', '1', '1', '0', '0', '0', 'confirm', '1'),
-( 'index', '1', '1', '0', '0', '0', 'welcome_box', '1'),
-( 'passwordreset', '1', '1', '0', '0', '0', 'passwordreset', '1'),
-( 'profile', '1', '1', '0', '0', '0', 'profile', '1');
+INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`,`menu`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
+( 'alogin', '1', '1', '0', '1', '0', '0', 'alogin', '1'),
+( 'confirm', '1', '1', '0', '1', '0', '0', 'confirm', '1'),
+( 'index', '1', '1', '1', '0', '0', '0', 'welcome_box', '1'),
+( 'passwordreset', '1', '1', '1', '0', '0', '0', 'passwordreset', '1'),
+( 'profile', '1', '1', '1', '0', '0', '0', 'profile', '1');
 
 -- --------------------------------------------------------
 
@@ -706,8 +706,6 @@ CREATE TABLE IF NOT EXISTS `wi_site` (
   `multi_lang` enum('on','off') NOT NULL DEFAULT 'off',
   `bootstrap_version` varchar(50) NOT NULL,
   `wicms_version` varchar(50) NOT NULL,
-  `left_sidebar` ENUM(  '0',  '1' ) NOT NULL DEFAULT  '0',
-  `right_sidebar` ENUM(  '0',  '1' ) NOT NULL DEFAULT  '0'
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1311,12 +1309,8 @@ include_once dirname(dirname(dirname(__FILE__))) . "/WIAdmin/WICore/WILib.php";
 date_default_timezone_set("UTC");
 
 //Bootstrap
+
 define("BOOTSTRAP_VERSION", $bootstrap_version);
-
-//sidebars
-define("LEFT_SIDEBAR", $leftsidebar);
-
-define("RIGHT_SIDEBAR", $rightsidebar);
 
 //WEBSITE
 
@@ -1504,8 +1498,6 @@ $multi_lang            = $config->Website_Info("multi_lang");
 $version               = $config->Website_Info("wicms_version");
 $bootstrap_version     = $config->Website_Info("bootstrap_version");
 $favicon               = $config->Website_Info("favicon");
-$leftsidebar           = $config->Website_Info("left_sidebar");
-$rightsidebar           = $config->Website_Info("right_sidebar");
 ';
 
 $newLibPage = fwrite($path_to_Lib, $lib_txt);

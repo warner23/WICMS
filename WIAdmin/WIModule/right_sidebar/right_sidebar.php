@@ -26,14 +26,12 @@ class right_sidebar
     </div>';
 	}
 
-	public function mod_name($module, $page)
+	public function mod_name()
 	{
 
-	echo '<div class="col-sm-1 col-lg-2 col-md-2 col-xl-2 col-xs-2 sidenav" id="sidenavR">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-    </div>';
+	echo '<aside id="Lsidebar" class="col-sm-3 col-lg-3 col-md-3 col-xl-3 col-xs-3 sidenav">';
+	$this->Web->RsideBar();
+echo '</aside>';
 	}
 
 

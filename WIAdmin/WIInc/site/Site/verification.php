@@ -5,12 +5,14 @@
   //  $( "input" ).checkboxradio();
   } );
   </script>
+
  <form  class="form-horizontal" id="verification-form">
                         <fieldset>
                           <div id="legend">
                         <label>Email Verification</label>
-                    <div class="btn-group" id="mail_confirm_required" data-toggle="buttons-radio">
+                    <div class="btn-group" id="mail_confirm_requirement" data-toggle="buttons-radio">
                         <input type="hidden" name="mail_confirm_required" id="mail_confirm_required" class="btn-group-value" value="<?php echo $site->Website_Info('mail_confirm_required')?>"/>
+
                         <button type="button" id="verification_true" name="mail_confirm_required" value="true"  class="btn">yes</button>
                         <button type="button" id="verification_false" name="mail_confirm_required" value="false" class="btn btn-danger activewhens" >No</button>
                     </div>

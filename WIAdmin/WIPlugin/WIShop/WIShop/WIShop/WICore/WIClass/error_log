@@ -1,5 +1,0 @@
-[19-Mar-2018 21:08:38 UTC] PHP Notice:  Undefined index: product_title in /home/warner/public_html/WIShop/WICore/WIClass/WICart.php on line 38
-[19-Mar-2018 21:08:38 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'product_title' cannot be null in /home/warner/public_html/WIShop/WICore/WIClass/WICart.php on line 49
-[19-Mar-2018 21:09:04 UTC] PHP Notice:  Undefined index: product_title in /home/warner/public_html/WIShop/WICore/WIClass/WICart.php on line 38
-[19-Mar-2018 21:09:04 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'product_title' cannot be null in /home/warner/public_html/WIShop/WICore/WIClass/WICart.php on line 49
-[19-Mar-2018 21:10:17 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'product_title' cannot be null in /home/warner/public_html/WIShop/WICore/WIClass/WICart.php on line 49

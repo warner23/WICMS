@@ -40,7 +40,6 @@
                         <div class="results" id="hresults"></div>
 
 
-
                     <div class="modal off" id="modal-header-edit">
             <div class="modal-dialog">
               <div class="modal-content">

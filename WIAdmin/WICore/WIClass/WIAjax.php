@@ -396,7 +396,7 @@ switch ($action) {
     case "changePic":
     onlyAdmin();
         $site = new WISite();
-        $site->headerPic($_POST['img']);
+        $site->headerPic($_POST['img'], $_POST['header_content'], $_POST['button']);
         break;
 
     case "changefaviconPic":
@@ -555,30 +555,6 @@ switch ($action) {
         $web->DeleteJs($_POST['id']);
         break;
 
-    case "addNew":
-    onlyAdmin();
-        $topic = new WITopic();
-        $topic->addNew();
-        break;
-
-    case "newTopic":
-    onlyAdmin();
-        $topic = new WITopic();
-        $topic->newTopic($_POST['topic']);
-        break;
-
-    case "Topics":
-    onlyAdmin();
-        $topic = new WITopic();
-        $topic->topic_Info();
-        break;
-
-    case "editTopics":
-    onlyAdmin();
-        $topic = new WITopic();
-        $topic->editTopics($_POST['topic'], $_POST['id']);
-        break;
-
     case "version_control":
     onlyAdmin();
         $site = new WISite();
@@ -600,9 +576,22 @@ switch ($action) {
         case "enable_plugin":
     onlyAdmin();
         $plug = new WIPlugin();
-        $plug->Activate($_POST['plug']);
+        $plug->Activate($_POST['Form'], $_POST['dir']);
+        break; 
+
+        case "userRole":
+        onlyAdmin();
+
+        $admin = new WIAdmin(WISession::get('user_id'));
+        echo json_encode($admin->getRole());
         break;
-    
+
+
+        case "mediaPictures":
+        $image  = new WIImage();
+        $image->UploadedPics($_POST['selector'], $_POST['ele_id']);
+        break;
+
 
         default:
 

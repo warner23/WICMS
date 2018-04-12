@@ -104,4 +104,5 @@
     <script type="text/javascript" src="WICore/WIJ/WISession.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WISocial.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WILang.js"></script>
+    <script type="text/javascript" src="WICore/WIJ/WIVerification.js"></script>
    

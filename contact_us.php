@@ -1,67 +1,70 @@
+<?php
+$page = "contact_us";
 
-      <?php
+include_once 'WIInc/WI_StartUp.php';
 
-      include_once "WIInc/WI_StartUp.php";
+$ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 
-      $ip = getenv("REMOTE_ADDR");
-      $country = $maint->ip_info($ip, "country");
-
-      $page = "contact_us";
-      $maint->visitors_log($page, $ip, $country);
-      $Panel = $web->PageMod($page, "panel");
-
-      if ($Panel === "null") {
-        
-      }else{
-
-        $mod->getMod($Panel);
-      }
-
-      $top_head = $web->PageMod($page, "top_head");
-      //echo $Panel;
-      if ($top_head === "null") {
-        
-      }else{
-
-        $mod->getMod($top_head);
-      }
-
-      $web->MainMenu(); 
-
-      $leftSideBar = $web->PageMod($page, "left_sidebar");
-      if ($leftSideBar === "null") {
-        
-      }else{
-
-        $mod->getMod($leftSideBar);
-      }
-
-      $contents = $web->PageMod($page, "contents");
-      //echo $Panel;
-      if ($contents === "null") {
-        
-      }else{
-
-        $mod->getMod($contents);
-      }
-
-      $rightSideBar = $web->PageMod($page, "right_sidebar");
-      //echo $Panel;
-      if ($rightSideBar === "null") {
-        
-      }else{
-
-        $mod->getMod($rightSideBar);
-      }
-          
-      //include_once "WIInc/welcome_box.php";
-
-      $web->footer();
-      ?>
+//$ref = $_SERVER['HTTP_REFERER'];
+//echo $ref;
+$agent = $_SERVER['HTTP_USER_AGENT'];
+$ip = $_SERVER['REMOTE_ADDR'];
 
 
+$tracking_page = $_SERVER['SCRIPT_NAME'];
+//$ip = getenv('REMOTE_ADDR');
+//$ip2 = $maint->get_ip();
+//echo "ip". $ip;
+//echo "ip2". $ip2;
+$country = $maint->ip_info($ip, "country");
+//echo "country"  .$country;
+if($country === null){
+  $country = "localhost";
+}
 
-      </body>
-      </html>
+$maint->visitors_log($page, $ip, $country, $ref, $agent, $tracking_page);
 
-      
+$panelPower = $web->pageModPower($page, "panel");
+
+$Panel = $web->PageMod($page, "panel");
+//echo $Panel;
+if ($panelPower > 0) {
+  $mod->getMod($Panel);
+}
+
+$topPower = $web->pageModPower($page, "top_head");
+$top_head = $web->PageMod($page, "top_head");
+//echo $Panel;
+if ($topPower > 0) {
+  $mod->getMod($top_head);
+}
+
+$headerPower = $web->pageModPower($page, "header");
+//echo $headPower;
+//echo $Panel;
+if ($headerPower > 0) {
+  $web->MainHeader();
+}
+
+$menuPower = $web->pageModPower($page, "menu");
+if ($menuPower > 0) {
+  $web->MainMenu();
+}
+
+  
+
+
+$contents = $web->pageModPower($page, "contents");
+//echo $contents;
+$mod->getModMain($contents, $page, $contents);
+
+    
+//include_once 'WIInc/welcome_box.php';
+
+$web->footer();
+?>
+
+
+
+</body>
+</html>

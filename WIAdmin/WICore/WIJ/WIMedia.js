@@ -1,10 +1,16 @@
 $(document).ready(function(){
 
-  $("img").click(function() {      
-    $(this).toggleClass("hover");
-    var id = $(".hover").attr("id");
-   // alert(id);
-    WIMedia.change(id);
+  $("img").on('click', function() {      
+    //$(this).toggleClass("hover");
+    var id = $(this).attr("id");
+    var selector = $(this).attr("name");
+    var folder = $(this).attr("value");
+    var ele_id = $(this).attr('alt');
+    alert(id);
+    alert(selector);
+    alert(folder);
+    alert(ele_id);
+    WIMedia.changePhoto(id, selector, folder, $ele_id);
   });
 
 
@@ -51,6 +57,11 @@ $(document).on('drop', function (e)
 
 var WIMedia = {};
 
+WIMedia.MediaManager = function(selector){
+     $("#modal-"+selector+"-media").removeClass("off");
+    $("#modal-"+selector+"-media").addClass("on");
+}
+
 WIMedia.media = function(){
    $("#modal-header-edit").removeClass("on");
     $("#modal-header-edit").addClass("off");
@@ -72,6 +83,12 @@ WIMedia.changeiconPic = function(){
     $("#modal-header-edit").addClass("on");
   }
 
+  WIMedia.ActorchangePic = function(){
+
+         $("#modal-actor-edit").removeClass("off");
+    $("#modal-actor-edit").addClass("on");
+  }
+
 WIMedia.changefaviconPic = function(){
 
          $("#modal-favicon-edit").removeClass("off");
@@ -90,9 +107,9 @@ WIMedia.changefaviconPic = function(){
     $("#modal-favicon-edit").addClass("off");
   }
 
-  WIMedia.closeMedia = function(){
-    $("#modal-header-media").removeClass("on");
-    $("#modal-header-media").addClass("off");
+  WIMedia.closeMedia = function(selector){
+    $("#modal-"+selector+"-media").removeClass("on");
+    $("#modal-"+selector+"-media").addClass("off");
   }
 
     WIMedia.closeFMedia = function(){
@@ -100,9 +117,9 @@ WIMedia.changefaviconPic = function(){
     $("#modal-favicon-media").addClass("off");
   }
 
-  WIMedia.closeUpload = function(){
-    $("#modal-header-upload").removeClass("on");
-    $("#modal-header-upload").addClass("off");
+  WIMedia.closeUpload = function(selector){
+    $("#modal-"+selector+"-upload").removeClass("on");
+    $("#modal-"+selector+"-upload").addClass("off");
   }
 
     WIMedia.closeFUpload = function(){
@@ -116,6 +133,14 @@ WIMedia.changefaviconPic = function(){
     $("#modal-header-media").addClass("off");
     $(".cp").attr("src", "WIMedia/Img/header/"+img);
     $(".cp").attr("id", img);
+  }
+
+    WIMedia.changePhoto = function(img, selector, folder, ele_id){
+      //alert(selector);
+        $("#modal-"+selector+"-media").removeClass("on").addClass("off");
+        $("#uploadOptions").removeClass("on").addClass("off");
+    preview = ('<img src="WIMedia/Img/'+folder+'/'+img+'" class="img-responsive ShowImg" value="'+img+'" id="preview-preview">');
+            $("#"+ele_id).append(preview);
   }
 
 
@@ -172,6 +197,18 @@ WIMedia.changefaviconPic = function(){
     $("#modal-header-edit").addClass("off");
   	  	$("#modal-header-upload").removeClass("off");
     $("#modal-header-upload").addClass("on");
+
+  }
+
+    WIMedia.dropAndDragUpload = function(selector){
+        $("#modal-"+selector+"-upload").removeClass("off");
+    $("#modal-"+selector+"-upload").addClass("on");
+
+  }
+
+  WIMedia.Actorupload = function(){
+        $("#modal-actor-upload").removeClass("off");
+    $("#modal-actor-upload").addClass("on");
 
   }
 

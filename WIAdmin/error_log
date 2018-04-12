@@ -1,8 +1,0 @@
-[17-Mar-2018 13:23:44 UTC] PHP Warning:  include_once(WIInc/sidebar.php): failed to open stream: No such file or directory in /home/warner/public_html/WIAdmin/dashboard.php on line 8
-[17-Mar-2018 13:23:44 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/sidebar.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/warner/public_html/WIAdmin/dashboard.php on line 8
-[17-Mar-2018 13:40:59 UTC] PHP Notice:  Undefined index: Installed in /home/warner/public_html/WIAdmin/WICore/WIClass/WIPlugin.php on line 113
-[18-Mar-2018 15:42:10 UTC] PHP Warning:  include_once(WIInc/WIShop_Options.php): failed to open stream: No such file or directory in /home/warner/public_html/WIAdmin/WIShop_Options.php on line 9
-[18-Mar-2018 15:42:10 UTC] PHP Warning:  include_once(): Failed opening 'WIInc/WIShop_Options.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/warner/public_html/WIAdmin/WIShop_Options.php on line 9
-[18-Mar-2018 23:56:00 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'warner_showcase.wI_Categories' doesn't exist in /home/warner/public_html/WIAdmin/WICore/WIClass/WIdb.php on line 52
-[18-Mar-2018 23:56:00 UTC] PHP Notice:  Undefined variable: WI in /home/warner/public_html/WIAdmin/WIInc/site/WIShop/change_product.php on line 62
-[18-Mar-2018 23:56:00 UTC] PHP Notice:  Undefined variable: WI in /home/warner/public_html/WIAdmin/WIInc/site/WIShop/change_product.php on line 62

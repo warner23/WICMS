@@ -37,6 +37,177 @@ function sendFileToServer(formData,status)
     status.setAbort(jqXHR);
 }
  
+
+function sendFileToShowServer(formData,status, ele_id)
+{
+      var uploadURL ="WICore/WIClass/ShowImageUpload.php"; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+            xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        //Set progress
+                        status.setProgress(percent);
+                    }, false);
+                }
+            return xhrobj;
+        },
+    url: uploadURL,
+    type: "POST",
+    contentType:false,
+    processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+            info = JSON.parse(data);
+            //alert(info.name);
+            status.setProgress(100);
+            $("#status").append("File upload Done<br>").fadeOut(7000);
+            $(".dragandrophandler").remove()
+            //alert(ele_id);
+            preview = ('<img src="'+info.name+'" class="img-responsive ShowImg" value="'+info.id+'" id="preview-'+ele_id+'">');
+            $("#"+ele_id).append(preview);
+        }
+    }); 
+ 
+    status.setAbort(jqXHR);
+}
+
+
+function sendFileToTheatreServer(formData,status, ele_id)
+{
+      var uploadURL ="WICore/WIClass/TheatreImageUpload.php"; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+            xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        //Set progress
+                        status.setProgress(percent);
+                    }, false);
+                }
+            return xhrobj;
+        },
+    url: uploadURL,
+    type: "POST",
+    contentType:false,
+    processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+            info = JSON.parse(data);
+            //alert(info.name);
+            status.setProgress(100);
+            $("#status").append("File upload Done<br>").fadeOut(7000);
+            $(".dragandrophandler").remove()
+            //alert(ele_id);
+            preview = ('<img src="'+info.name+'" class="img-responsive TheatreImg" value="'+info.id+'" id="preview-'+ele_id+'">');
+            $("#"+ele_id).append(preview);
+        }
+    }); 
+ 
+    status.setAbort(jqXHR);
+}
+
+
+function sendFileToPersonServer(formData,status, ele_id)
+{
+      var uploadURL ="WICore/WIClass/PersonImageUpload.php"; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+            xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        //Set progress
+                        status.setProgress(percent);
+                    }, false);
+                }
+            return xhrobj;
+        },
+    url: uploadURL,
+    type: "POST",
+    contentType:false,
+    processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+            info = JSON.parse(data);
+            //alert(info.name);
+            status.setProgress(100);
+            $("#status").append("File upload Done<br>").fadeOut(7000);
+            $(".dragandrophandler").remove()
+            //alert(ele_id);
+            preview = ('<img src="'+info.name+'" class="img-responsive personImg" value="'+info.id+'" id="preview-'+ele_id+'">');
+            $("#"+ele_id).append(preview);       
+        }
+    }); 
+ 
+    status.setAbort(jqXHR);
+}
+
+
+function sendFileToCompanyServer(formData,status, ele_id)
+{
+      var uploadURL ="WICore/WIClass/CompanyImageUpload.php"; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+            xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        //Set progress
+                        status.setProgress(percent);
+                    }, false);
+                }
+            return xhrobj;
+        },
+    url: uploadURL,
+    type: "POST",
+    contentType:false,
+    processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+            info = JSON.parse(data);
+            //alert(info.name);
+            status.setProgress(100);
+            $("#status").append("File upload Done<br>").fadeOut(7000);
+            $(".dragandrophandler").remove()
+            //alert(ele_id);
+            preview = ('<img src="'+info.name+'" class="img-responsive companyImg" value="'+info.id+'" id="preview-'+ele_id+'">');
+            $("#"+ele_id).append(preview);       
+        }
+    }); 
+ 
+    status.setAbort(jqXHR);
+}
 var rowCount=0;
 function createStatusbar(obj)
 {
@@ -99,7 +270,33 @@ function handleFileUpload(files,obj)
  
         var status = new createStatusbar(obj); //Using this we can set progress.
         status.setFileNameSize(files[i].name,files[i].size);
-        sendFileToServer(fd,status);
+       
+            sendFileToServer(fd,status);
+   }
+}
+
+
+function showCreationhandleFileUpload(files,obj, dir, ele_id)
+{
+   for (var i = 0; i < files.length; i++) 
+   {
+        var fd = new FormData();
+        fd.append('file', files[i]);
+ 
+        var status = new createStatusbar(obj); //Using this we can set progress.
+        status.setFileNameSize(files[i].name,files[i].size);
+        if (dir === "person") {
+            sendFileToPersonServer(fd,status, ele_id);
+        }else if(dir === "theatres") {
+            sendFileToTheatreServer(fd,status, ele_id);
+        }else if(dir === "company") {
+             sendFileToCompanyServer(fd,status, ele_id);
+        }else if(dir === "show") {
+             sendFileToShowServer(fd,status, ele_id);
+        }else{
+            sendFileToServer(fd,status);
+        }
+        
  
    }
 }

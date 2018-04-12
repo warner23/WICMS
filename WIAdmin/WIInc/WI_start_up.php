@@ -13,12 +13,13 @@
 	
 		  <link rel="stylesheet" href="WIInc/css/jquery-ui.css">
 
-
 <script src="WIInc/js/jquery-1.10.2.js"></script>
   <script src="WIInc/js/jquery_new.js"></script>
   <script src="WIInc/js/jquery-ui.js"></script>
 
-  
+ <link rel="stylesheet" href="WIInc/css/font-awesome.css">
+
+
 
 <script type="text/javascript">
             var $_lang = <?php echo WILang::all(); ?>;

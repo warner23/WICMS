@@ -10,18 +10,18 @@ $(document).ready(function () {
             valid = true;
 
          //remove prevuious error messages
-        wiengine.removeErrorMessages();
+        WICore.removeErrorMessages();
 
         //check if email is entered
         if($.trim(email.val()) === "") {
             valid = false;
-            wiengine.displayErrorMessage(email);
+            WICore.displayErrorMessage(email);
         }
 
         //validate email format
-        if(!wiengine.validateEmail(email.val())) {
+        if(!WICore.validateEmail(email.val())) {
             valid = false;
-            wiengine.displayErrorMessage(email, $_lang.email_wrong_format);
+            WICore.displayErrorMessage(email, $_lang.email_wrong_format);
         }
 
         //if email is valid, send reset password request to the server
@@ -37,12 +37,12 @@ $(document).ready(function () {
         
         if($.trim(np.val()) === "") {
             valid = false;
-            wiengine.displayErrorMessage(np);
+            WICore.displayErrorMessage(np);
         }
 
         if($.trim(np.val()).length <= 5) {
             valid = false;
-            wiengine.displayErrorMessage(np, $_lang.password_length);
+            WICore.displayErrorMessage(np, $_lang.password_length);
         }
 
         if(valid)
@@ -66,13 +66,13 @@ passres.resetPassword = function (newPass) {
     var btn = $("#btn-reset-pass");
     
     //change button state to indicate working process
-    wiengine.loadingButton(btn, $_lang.resetting);
+    WICore.loadingButton(btn, $_lang.resetting);
     
     //hash password
     var pass = CryptoJS.SHA512(newPass).toString();
     
     //get confirmation key from url
-    var key  = wiengine.urlParam("k");
+    var key  = WICore.urlParam("k");
     
     //send data to server
     $.ajax({
@@ -88,7 +88,7 @@ passres.resetPassword = function (newPass) {
             if ( result == '' )
             {
                 //Successful. Display success mesage.
-                wiengine.displaySuccessMessage(
+                WICore.displaySuccessMessage(
                     $("#password-reset-form fieldset"), 
                     $_lang.password_updated_successfully_login
                 );
@@ -96,14 +96,14 @@ passres.resetPassword = function (newPass) {
             else
             {   
                 //Error. Display error mesage.
-                wiengine.displayErrorMessage(
+                WICore.displayErrorMessage(
                     $("#password-reset-new-password"), 
                     result
                 );
             }
 
             //return button to normal state
-            wiengine.removeLoadingButton(btn);
+            WICore.removeLoadingButton(btn);
         }
     });
 };
@@ -118,7 +118,7 @@ passres.forgotPassword = function (userEmail) {
     var btn = $("#btn-forgot-password");
     
     //put button to working state
-    wiengine.loadingButton(btn, $_lang.working);
+    WICore.loadingButton(btn, $_lang.working);
     
     //send data to server
     $.ajax({
@@ -133,26 +133,26 @@ passres.forgotPassword = function (userEmail) {
             try {
                 
                 if(result == '')
-                    wiengine.displaySuccessMessage(
+                    WICore.displaySuccessMessage(
                             $("#forgot-pass-form fieldset"),
                             $_lang.password_reset_email_sent
                         );
                 else {
-                    wiengine.displayErrorMessage(
+                    WICore.displayErrorMessage(
                         $("#forgot-password-email"),
                         result
                     );
                 }
             }
             catch (err) {
-                  wiengine.displayErrorMessage(
+                  WICore.displayErrorMessage(
                         $("#forgot-password-email"),
                         $_lang.message_couldnt_be_sent
                     );
             }
 
             //return button to normal state
-            wiengine.removeLoadingButton(btn);
+            WICore.removeLoadingButton(btn);
            
         }
     });

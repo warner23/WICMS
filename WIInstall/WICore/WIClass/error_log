@@ -232,3 +232,6 @@ Stack trace:
 [17-Mar-2018 07:11:18 America/New_York] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner/public_html/WIInstall/WICore/WIClass/Install.php on line 1503
 [17-Mar-2018 11:11:18 UTC] PHP Notice:  Constant DEFAULT_LANGUAGE already defined in /home/warner/public_html/WICore/WIClass/WIConfig.php on line 118
 [17-Mar-2018 11:11:18 UTC] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/warner/public_html/WICore/WIVendor/phpmailer/PHPMailerAutoload.php on line 45
+[12-Apr-2018 09:11:35 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner/public_html/IVO/WIInstall/WICore/WIClass/Install.php on line 1428
+[12-Apr-2018 09:11:35 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner/public_html/IVO/WIInstall/WICore/WIClass/Install.php on line 1503
+[12-Apr-2018 09:11:35 UTC] PHP Notice:  Constant DEFAULT_LANGUAGE already defined in /home/warner/public_html/IVO/WICore/WIClass/WIConfig.php on line 118

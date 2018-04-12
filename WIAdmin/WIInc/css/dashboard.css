@@ -11,6 +11,318 @@ img, object, embed, video {
 	width:100%;
 }
 
+.btn.btn-default {
+    background-color: #fafafa;
+    color: #666;
+    border-color: #ddd;
+    border-bottom-color: #ddd;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 1px 2px 0px rgba(255,255,255, 0.3), inset 1px 1px 2px rgba(255,255,255, 0.3);
+}
+
+.actor-image{
+
+}
+
+.modal-header{
+        padding: 15px;
+    border-bottom: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-footer{
+      padding: 15px;
+    text-align: right;
+    border-top: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-header-actor{
+      padding: 15px;
+    border-bottom: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-footer-actor{
+      padding: 15px;
+    text-align: right;
+    border-top: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-header-company{
+      padding: 15px;
+    border-bottom: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-footer-company{
+      padding: 15px;
+    text-align: right;
+    border-top: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-header-theatre{
+      padding: 15px;
+    border-bottom: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-footer-theatre{
+      padding: 15px;
+    text-align: right;
+    border-top: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-header-Shows{
+      padding: 15px;
+    border-bottom: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-footer-Shows{
+      padding: 15px;
+    text-align: right;
+    border-top: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+.modal-body{
+      min-height: 50px;
+}
+
+#person-body{
+      overflow-y: scroll;
+    height: 337px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    overflow-y: scroll;
+}
+
+.TheatreImg{
+  width: 80px;
+  height: 80px;
+}
+
+.middle-bit-theatre{
+    margin-top: 13px;
+}
+.modal-footer-theatre{
+      padding: 15px;
+    text-align: right;
+    border-top: 1px solid #0a0a0a;
+    background-color: #8e6da7;
+}
+
+#search {
+    float: right;
+    margin-top: 9px;
+    width: 250px;
+}
+
+.search {
+    padding: 5px 0;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+    float: right;
+    line-height: 22px;
+}
+
+#Theatre_location{
+      margin-top: 0;
+    margin-bottom: 10px;
+    width: 50%;
+    overflow-y: scroll;
+    height: 152px;
+}
+
+.required{
+  color: red;
+}
+
+#companyul{
+      margin-top: 0;
+    margin-bottom: 10px;
+    width: 50%;
+    overflow-y: scroll;
+    height: 152px;
+}
+
+.th{
+      border: 1px solid black;
+}
+
+.theatre_img{
+      width: 192px;
+    height: 79px;
+}
+
+.tbio{
+    color: white;
+}
+.search input {
+  position: absolute;
+        width: 0px;
+        float: Left;
+        margin-left: 210px;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.7s ease-in-out;
+        transition: all 0.7s ease-in-out;
+        height: 30px;
+        line-height: 18px;
+        padding: 0 2px 0 2px;
+        border-radius:1px;
+    }
+
+        .search:hover input, .search input:focus {
+            width: 200px;
+            margin-left: 0px;
+        }
+
+.btn_search {
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    border-radius:1px;
+}
+
+.off-grey-theatre{
+    float: left;
+    margin-left: 45px;
+    margin-top: -7px;
+}
+
+.off-grey-show{
+    float: left;
+    margin-left: 45px;
+    margin-top: -7px;
+}
+
+.theatresName{
+  margin: 19px 17px 0px -21px;
+    width: 115%;
+}
+.delete{
+  background-color: #bf6cda;
+    color: white;
+    perspective: 638px;
+    margin-left: 95px;
+    margin-top: 10px;
+}
+
+.theatre-delete{
+      background-color: #bf6cda;
+    color: white;
+    perspective: 638px;
+    margin-right: 7px;
+    margin-top: 10px;
+    float: right;
+}
+
+.show-delete{
+      background-color: #bf6cda;
+    color: white;
+    perspective: 638px;
+    margin-right: 7px;
+    margin-top: 10px;
+    float: right;
+}
+.selectionPerson{
+      width: 100%;
+    padding: 0;
+}
+#findCast{
+       min-height: 101px;
+    width: 20%;
+    float: right;
+    margin-right: 75px;
+}
+
+.countries{
+      width: 100%;
+    color: black;
+    float: left;
+}
+
+#countries{
+      width: 100%;
+    color: black;
+    float: left;
+}
+.fa-stack {
+    display: inline-block;
+    height: 2em;
+    line-height: 2em;
+    position: relative;
+    vertical-align: middle;
+  }
+
+.fa-stack-company {
+    display: inline-block;
+    height: 4em;
+    line-height: 2em;
+    position: relative;
+    vertical-align: middle;
+  }
+
+.fa-2x {
+    font-size: 1em!important;
+    width: 13em !important;
+}
+.personImg{
+      width: 60px;
+    height: 60px;
+    margin-left: 63px;
+    margin-top: -42px;
+}
+.personsName{
+    margin: 32px 0;
+        color: #f7f3f3;
+}
+
+.pbio{
+  overflow-y: scroll;
+    height: 101px;
+    color: white;
+}
+
+.address{
+color: black;
+width: 100%;
+}
+
+.bcity{
+color: black;
+width: 100%;
+}
+
+.datepicker{
+  color:black;
+  width: 100%;
+}
+
+figure {
+
+    width: 100%;
+}
+
 body {
 	    overflow-x: hidden!important;
     font-family: 'Source Sans Pro', sans-serif;
@@ -32,6 +344,395 @@ a:focus {
 
 .control-group{
     margin-top: 38%;
+}
+
+
+.icon-theatre{
+    float: left;
+}
+
+.icon-theatre:before{
+    content: url('../../../../WIAdmin/WIMedia/Img/icons/theatre.png');
+    background-position: center center;
+}
+
+.icon-address{
+    float: left;
+}
+
+.icon-address:before{
+    content: url('../../../../WIAdmin/WIMedia/Img/icons/address.png');
+    background-position: center center;
+}
+
+.icon-company{
+    float: left;
+}
+
+.icon-company:before{
+    content: url('../..//WIMedia/Img/icons/company.png');
+    background-position: center center;
+}
+
+.icon-dates{
+    float: left;
+}
+
+.icon-dates:before{
+    content: url('../../WIMedia/Img/icons/dates.png');
+    background-position: center center;
+}
+
+.icon-actor{
+    float: left;
+}
+
+.icon-actor:before{
+    content: url('../../WIMedia/Img/icons/actor.png');
+    background-position: center center;
+}
+
+.icon-director{
+    float: left;
+}
+
+.icon-director:before{
+    content: url('../../WIMedia/Img/icons/director.png');
+    background-position: center center;
+}
+
+.icon-crew{
+    float: left;
+}
+
+.icon-crew:before{
+    content: url('../..//WIMedia/Img/icons/crew.png');
+    background-position: center center;
+}
+
+.icon-shows{
+    float: left;
+}
+
+.icon-shows:before{
+    content: url('../../WIMedia/Img/icons/shows.png');
+    background-position: center center;
+}
+
+.casting{
+      margin-left: -54px;
+}
+
+.person{
+  height:200px; 
+  width:18%;
+  overflow:hidden;
+   overflow-y:scroll;
+}
+
+.personImage{
+      border-radius: 75%;
+}
+
+.personel{
+    height: 170px;
+    width: 95%;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.cast_name{
+      font-size: 9px;
+    display: inline-flex;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: small;
+    line-height: normal;
+    color: black;
+}
+
+.bio{
+  width: 80%;
+    margin-left: 43px;
+    height: 94px;
+    color: black;
+}
+
+.name{
+}
+
+blockquote {
+    padding: 10px 20px;
+    margin: -17px 0px 12px !important;
+    font-size: 17.5px;
+    border-left: 5px solid #eee;
+}
+
+.top-bit {
+    border-bottom: 1px solid #3d3d3d;
+}
+.middle-bit {
+    margin-top: 10px;
+
+}
+
+.middle-bit-admin {
+    margin-top: 9px;
+    overflow-y: scroll;
+    height: 167px;
+}
+
+.demure {
+    color: #6b6b6b;
+}
+.plan_price {
+    display: block;
+    font-size: 6.853em;
+    font-weight: 900;
+    height: 1em;
+    letter-spacing: -2px;
+    line-height: 1.2em;
+    margin-left: -2.5vw;
+    position: relative;
+}
+.plan-bottom {
+    margin-bottom: 15px;
+}
+.plan_price .currency, .plan_price-md .currency {
+    font-size: .382em;
+    font-weight: 400;
+    letter-spacing: 0;
+    position: relative;
+    top: -1.15em;
+}
+.plan_price .cents {
+    font-size: .146em;
+    font-weight: 700;
+    letter-spacing: -1px;
+    position: absolute;
+    top: -.75em;
+}
+.plan_price_details {
+    display: block;
+    font-size: 1em;
+    line-height: 1.2em;
+    opacity: .8;
+    text-shadow: none;
+}
+.plan-bottom {
+    margin-bottom: 15px;
+}
+.end-bit {
+    border-top: 1px solid #3d3d3d;
+}
+.btn-custom {
+    background-color: #222;
+    border-color: #222;
+}
+.btn-smooth {
+    min-width: 200px !important;
+    margin-top: 1.5vh;
+}
+.cards-rear {
+    margin-top: 5px;
+    color: #6b6b6b;
+    min-height: 256px;
+}
+.pc-text {
+    color: #FDFDFD;
+}
+.plan-summary-para {
+    margin-top: 5px;
+}
+
+.editing{
+      background-color: #bf6cda;
+    color: white;
+    perspective: 638px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.flipcard {
+    position: relative;
+    width: 244px;
+    height: 412px;
+    perspective: 638px;
+    margin: 0px 6px 10px 0px;
+}
+.flipcard.flip .front {
+  transform: rotateY(180deg);
+}
+.flipcard.flip .back {
+  transform: rotateY(0deg);
+}
+.flipcard .back{
+  transform: rotateY(-180deg);
+}
+.flipcard .front, .flipcard .back
+{
+      background-color: #2c2c2c;
+    border: 1px solid #222;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transition: all 1s ease 0s;
+    color: white;
+    padding: 10px 23px;
+    backface-visibility: hidden;
+    top: 5px;
+    z-index: -1;
+}
+
+.image-flip, .backside,
+.image-flip .backside {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    border-radius: .25rem;
+}
+
+.rotated .frontside,
+.rotated .frontside {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.mainflip {
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -moz-transition: 1s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.frontside {
+    position: relative;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+.backside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+}
+
+
+#dragandrophandler
+{
+    border: 2px dotted #0B85A1;
+    width: 100%;
+    color: #92AAB0;
+    text-align: left;
+    vertical-align: middle;
+    padding: 10px 10px 10 10px;
+    margin-bottom: 8px;
+    margin-top: 30px;
+    font-size: 102%;
+}
+.progressBar {
+    width: 200px;
+    height: 22px;
+    border: 1px solid #ddd;
+    border-radius: 5px; 
+    overflow: hidden;
+    display:inline-block;
+    margin:0px 10px 5px 5px;
+    vertical-align:top;
+}
+ 
+.progressBar div {
+    height: 100%;
+    color: #fff;
+    text-align: right;
+    line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+    width: 0;
+    background-color: #0ba1b5; border-radius: 3px; 
+}
+.statusbar
+{
+    border-top:1px solid #A9CCD1;
+    min-height:25px;
+    width:100%;
+    padding:10px 10px 0px 10px;
+    vertical-align:top;
+}
+.statusbar:nth-child(odd){
+    background:#EBEFF0;
+}
+.filename
+{
+display:inline-block;
+vertical-align:top;
+width:250px;
+}
+.filesize
+{
+display:inline-block;
+vertical-align:top;
+color:#30693D;
+width:100px;
+margin-left:10px;
+margin-right:5px;
+}
+
+.abort{
+    background-color:#A8352F;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;display:inline-block;
+    color:#fff;
+    font-family:arial;font-size:13px;font-weight:normal;
+    padding:4px 15px;
+    cursor:pointer;
+    vertical-align:top
+    }
+
+
+.frontside,
+.backside {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
 }
 
 
@@ -150,7 +851,21 @@ body > .header {
     margin-top: 26px;
 }
 
+.theatres-wrapper
+{
+      width: 71%;
+    margin-left: 29%;
+    margin-top: 58px;
+}
+
 @media screen and (min-width: 992px) {
+
+#findCast {
+    min-height: 101px;
+    width: 20%;
+    float: right;
+    margin-right: 430px;
+}
   .left-side {
     top: 50px;
   }
@@ -172,6 +887,17 @@ body > .header {
     margin-left: 247px;
     margin-top: 26px;
 }
+
+.theatres-wrapper
+{
+      width: 71%;
+    margin-left: 29%;
+    margin-top: 58px;
+}
+
+
+
+
 
 }
 /*Give content full width on xs screens*/
@@ -367,6 +1093,10 @@ img {
 .hide {
   display: none !important;
 }
+
+.show {
+  display: block !important;
+}
 /* Remove borders */
 .no-border {
   border: 0px !important;
@@ -551,8 +1281,12 @@ body > .header .logo .icon {
     float: none;
     background: #efefef;
   }
+
 }
 @media (max-width: 767px) {
+
+
+
   .navbar .navbar-nav > li {
     float: left;
   }
@@ -668,7 +1402,7 @@ body > .header .logo .icon {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     text-align: -webkit-center;
-    font-size: 2em;
+    font-size: 0.8em;
 }
 
 #chat{
@@ -797,6 +1531,7 @@ body > .header .logo .icon {
  *  Gives us the push menu effect
  */
 @media screen and (max-width: 992px) {
+
   .relative {
     position: relative;
   }
@@ -3681,10 +4416,23 @@ body > .header {
     margin-top: 26px;
 }
 
+.theatres-wrapper
+{
+      width: 71%;
+    margin-left: 29%;
+    margin-top: 58px;
+}
+
 @media screen and (min-width: 992px) {
   .left-side {
     top: 50px;
   }
+    #findCast {
+    min-height: 101px;
+    width: 20%;
+    float: right;
+    margin-right: 45%!important;
+}
   /*Right side strech mode*/
   .right-side.strech {
     margin-left: 0;
@@ -3702,6 +4450,13 @@ body > .header {
   width: 80%;
     margin-left: 247px;
     margin-top: 26px;
+}
+
+.theatres-wrapper
+{
+      width: 71%;
+    margin-left: 29%;
+    margin-top: 58px;
 }
 
 }
@@ -7080,6 +7835,12 @@ fieldset[disabled] .btn-vk.active {
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
 @media only screen and (min-width: 769px) {
+    #findCast {
+    min-height: 101px;
+    width: 20%;
+    float: right;
+    margin-right: 27%;
+}
 .gridContainer {
 	width: 88.2%;
 	max-width: 1232px;
@@ -7133,14 +7894,21 @@ body > .header {
 .left-side {
   position: absolute;
   width: 220px;
-  top: 0;
+  top: 54px;
 }
 
 .users-wrapper
 {
-  width: 80%;
-    margin-left: 286px;
-    margin-top: 26px;
+      width: 71%;
+    margin-left: 29%;
+    margin-top: 58px;
+}
+
+.theatres-wrapper
+{
+      width: 69%;
+    margin-left: 29%;
+    margin-top: 58px;
 }
 
 @media screen and (min-width: 992px) {
@@ -7164,6 +7932,13 @@ body > .header {
   width: 80%;
     margin-left: 247px;
     margin-top: 26px;
+}
+
+.theatres-wrapper
+{
+      width: 71%;
+    margin-left: 29%;
+    margin-top: 58px;
 }
 
 }

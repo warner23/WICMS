@@ -212,19 +212,50 @@ class WIWebsite
 
         while($res = $query->fetch(PDO::PARAM_STR))
         {
-         echo ' <header class="header">
+        //  echo ' <header class="header">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <div class="col-lg-3 col-md-3 col-sm-2">
+        //                     <div class="navbar_brand">
+        //          <img class="img-responsive cp" id="headerPic" src="WIMedia/Img/header/'. $res['logo'] . '" style="width:120px; height:120px;">
+        //             <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
+                                
+        //                     </div>
+        //                 </div>
+
+        //         </div> 
+        // </header>';
+
+        echo '<header class="header">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-2">
-                            <div class="navbar_brand">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                             <div class="navbar_brand">
                  <img class="img-responsive cp" id="headerPic" src="WIMedia/Img/header/'. $res['logo'] . '" style="width:120px; height:120px;">
                     <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
                                 
                             </div>
                         </div>
 
-                      
+                        <!-- start of header-->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-ms"> 
+                        <div class="zapfino"><h2><b><input type="text" id="content" value="' . $res['header_content'] . '"></b></h2>
+                        <span class="slogan"><input type="text" id="slogan" placeholder="Slogan" value="' . $res['header_slogan'] . '"></span>
+                        </div>
+                        </div><!-- end col-ms-->
+                         <!--end opf header-->
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div class="controls col-lg-12 col-sm-12 col-md-12 col-xs-12"> 
+                          <button class="btn" id="btn-search"><input type="text" id="button" value="' . $res['button'] . '"></button>
+                        </div><!-- end col-ms-->
+                         <!--end opf header-->
+                        </div>
+
                 </div> 
+                </div>
         </header>';
     	}
 
@@ -276,20 +307,10 @@ class WIWebsite
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
-                <div class="col-md-4 col-md-ol col-sm-4 col-lg-3">
-                <a href="alogin.php"><button class="btn">' .WILang::get('admin') . '</button></a>
-                <a href="contact_us.php"><button class="btn">' . WILang::get('contact_us'). '</button></a>
-                <a href="about_us.php"> <button class="btn">' . WILang::get('about_us'). '</button></a>
-
-                </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-4">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xl-12">
                         <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-4">
-                            <a href="info.php"><button class="btn">' . WILang::get('info'). '</button></a>
-                            <a href="privacy_policy.php"><button class="btn">' . WILang::get('privacy'). '</button></a>
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -312,20 +333,11 @@ class WIWebsite
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
-                <div class="col-md-2 col-md-2 col-sm-2 col-lg-3 col-xs-1">
-                <input class="btn" value="' .WILang::get('admin') . '">
-                <input class="btn" value="' . WILang::get('contact_us'). '">
-                 <input class="btn" value="' . WILang::get('about_us'). '">
-
-                </div>
-
-                    <div class="col-md-2 col-md-2 col-sm-2 col-lg-3 col-xs-1">
+                
+                    <div class="col-md-12 col-md-12 col-sm-12 col-lg-12 col-xs-12">
                         <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
                     </div>
-                    <div class="col-md-2 col-md-2 col-sm-2 col-lg-3 col-xs-1">
-                            <input class="btn" value="' . WILang::get('info'). '">
-                            <input class="btn" value="' . WILang::get('privacy'). '">
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -340,10 +352,13 @@ class WIWebsite
         $header_id = 1;
 
 
-        $sql = "UPDATE `wi_header` SET logo =:logo  WHERE  `header_id` =:header_id";
+        $sql = "UPDATE `wi_header` SET logo =:logo, header_content=:content, header_slogan=:slogan, button=:button  WHERE  `header_id` =:header_id";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':logo', $header['upload_pic'], PDO::PARAM_STR);
         $query->bindParam(':header_id', $header_id, PDO::PARAM_INT);
+        $query->bindParam(':content', $header['header_content'], PDO::PARAM_INT);
+        $query->bindParam(':slogan', $header['header_slogan'], PDO::PARAM_);
+        $query->bindParam(':button', $header['button'], PDO::PARAM_INT);
         $query->execute();
 
         $result = "complete";

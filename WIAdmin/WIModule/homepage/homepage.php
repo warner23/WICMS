@@ -3,7 +3,7 @@
 /**
 * 
 */
-class content_box 
+class homepage 
 {
 	
 
@@ -17,7 +17,7 @@ class content_box
 		//$this->page = new WIPage();
 	}
 
-		public function mod_drop()
+		public function editMod()
 	{
 		echo '<div id="remove">
       <a href="#">
@@ -45,7 +45,43 @@ echo '<div class="container-fluid text-center">
 						</div>
 					</div>
 				
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-laptop"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("community") . '</h3>
+								<p>' . WILang::get("learn") . '
+</p>
+							</div>
+						</div>
+					</div>
 					
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("software") . '</h3>
+								<p>' .WILang::get("software") . '
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4" >
+						<div class="services">
+							<div class="icon">
+								<i class="fa fa-cogs"></i>
+							</div>
+							<div class="serv_detail">
+								<h3>' . WILang::get("it") . '</h3>
+								<p>' . WILang::get("it_title")  . '
+</p>
+							</div>
+						</div>
 					</div>
 					</div>
 					
@@ -112,7 +148,7 @@ echo '<div class="container-fluid text-center">
 					<div class="col-lg-4 col-md-4 col-sm-4" >
 						<div class="services">
 							<div class="icon">
-								<i class="fa fa-laptop"></i>
+								<i class="fas fa-film"></i>
 							</div>
 							<div class="serv_detail">
 								<h3>' . WILang::get("community") . '</h3>
@@ -171,55 +207,75 @@ echo '<div class="container-fluid text-center">
 
 	}
 
-	public function mod_name()
+	public function mod_name($module, $page)
 	{
+		echo '<div class="container-fluid text-center">    
+  <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+
 		if(isset($page)){
+			$right_sidePower = $this->Web->pageModPower($page, "right_sidebar");
+		$rightSideBar = $this->Web->PageMod($page, "right_sidebar");
 		$left_sidePower = $this->Web->pageModPower($page, "left_sidebar");
 		$leftSideBar = $this->Web->PageMod($page, "left_sidebar");
 		//echo $Panel;
-		if ($left_sidePower === 0) {
-			
-		}else{
-
+		if ($left_sidePower > 0) {
 			$this->mod->getMod($leftSideBar);
+			echo '<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left">';
+		}elseif ( $right_sidePower > 0){
+			echo '<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-left">';
+		}else{
+			echo '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-8 text-left">';
 		}
+
 		}
 
-
-		echo '<div class="container-fluid text-center">    
-  <div class="row content">
-
-	<div class="col-lg-12 col-md-12 col-sm-12" >
-						<div class="col-lg-12 col-md-12 col-sm-12" >
-
-						 <div class="col-lg-12 col-md-12 col-sm-12 text-left"> 
-							<div class="intro_box">
-<h1>' .WILang::get("welcome_") . '<span>'. $this->site->Website_Info('site_name') . '</span></h1>
-							<p>' . WILang::get("main_title") . '</p>
+echo '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+						<div class="services">
+						<figure class="post-video">                                    
+						   <iframe width="100%" height="315" src="https://www.youtube.com/embed/f1W_FQsVkfE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>         
+						     </figure>
+							<div class="serv_detail text-center">
+								<h3><p class="show_trailer">' . WILang::get("trailer") . '</p></h3>
 							</div>
 						</div>
 					</div>
-				
-
+					
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="services">
+						<div class="serv_detail text-center">
+						<figure class="post-video">                                    
+						  <iframe width="100%" height="315" src="https://www.youtube.com/embed/P_ZwHafvPJQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>        
+						     </figure>
+							
+								<h3><p class="show_trailer">' . WILang::get("trailer") . '</p></h3>
+								
+							</div>
+						</div>
 					</div>
-					</div>';
+					
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+						<div class="services">
+						<figure class="post-video">                                    
+						   <iframe width="100%" height="315" src="https://www.youtube.com/embed/uPjm5stSegU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>         
+						     </figure>
+							<div class="serv_detail text-center">
+								<h3><p class="show_trailer">' . WILang::get("trailer") . '</p></h3>
+								
+							</div>
+						</div>
+					</div>
+					</div><script type="text/javascript" src="WICore/WIJ/WIShows.js"></script>';
 
-		if(isset($page)){			
-		$right_sidePower = $this->Web->pageModPower($page, "right_sidebar");
-		$rightSideBar = $this->Web->PageMod($page, "right_sidebar");
+		
 		//echo $Panel;
-		if ($right_sidePower === 0) {
-			
-		}else{
-
+		if ($right_sidePower > 0) {
 			$this->mod->getMod($rightSideBar);
 		}
-
-		}			
 					
 
 	echo '</div>
-			</div>';
+			</div></div>';
 	}
 
 
