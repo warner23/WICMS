@@ -203,6 +203,8 @@ INSERT INTO `wi_css` (`id`, `href`, `rel`, `page`) VALUES
 (28, 'site/css/style.css', 'stylesheet', 'profile'),
 (29, 'site/css/font-awesome.css', 'stylesheet', 'profile'),
 (30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile');
+(31, 'user/css/profile.css', 'stylesheet', 'profile');
+
 
 -- --------------------------------------------------------
 
