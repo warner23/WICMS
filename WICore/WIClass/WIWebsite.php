@@ -182,10 +182,10 @@ class WIWebsite
 
         while($res = $query1->fetch(PDO::FETCH_ASSOC))
         {    
-         echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+         echo '<li><a href="' . $res['link'] . '">' .$res['label'] .'</a></li>';
          if($res['parent'] > 0)
          {
-            echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+            echo '<li><a href="' . $res['link'] . '">' .$res['label'] .'</a></li>';
          }
         }
         echo '</ul>
@@ -212,10 +212,10 @@ class WIWebsite
 
         while($res = $query1->fetch(PDO::FETCH_ASSOC))
         {    
-         echo '<li><a href="#" onclick="WIChat.close">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+         echo '<li><a href="#" onclick="WIChat.close">' .$res['label'] .'</a></li>';
          if($res['parent'] > 0)
          {
-            echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+            echo '<li><a href="' . $res['link'] . '">' .$res['label'] .'</a></li>';
          }
         }
         echo '</ul>
@@ -298,6 +298,19 @@ class WIWebsite
     }
 
 
+        public function google_lang()
+    {
+      echo '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
+                         <div class="flags-wrapper">
+                         <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: `en`, layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, `google_translate_element`);
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                         </div>
+                    </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
+
+    }
 
    
 

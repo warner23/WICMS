@@ -45,7 +45,7 @@ echo '<div class="top_head">';
 	{
 		//$basename = dirname(dirname(dirname(__FILE__)));
 		echo '<div class="top_head">';
-		$this->Web->viewLang();
+		$this->Web->google_lang();
 
 				
 				echo '</div>';

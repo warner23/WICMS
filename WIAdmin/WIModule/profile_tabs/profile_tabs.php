@@ -29,6 +29,7 @@ $thisRandNum = rand(9999999999999,999999999999999999);
     $( "#tabs" ).tabs();
   } );
   </script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div id="tabs">
   <ul>
@@ -123,7 +124,7 @@ Message:
     $( "#tabs" ).tabs();
   } );
   </script>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">' . WILang::get('profile_wall'). '</a></li>
