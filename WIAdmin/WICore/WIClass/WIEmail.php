@@ -72,6 +72,23 @@ class WIEmail {
         }
     }
 
+
+        function sendEmail($email, $subject, $mess) 
+    {
+        $mail = $this->_getMailer();
+
+        $mail->addAddress($email);
+
+        $mail->Subject = $subject;
+        $mail->Body    = $mess;
+        $mail->addReplyTo($email, WEBSITE_NAME);
+        if( ! $mail->send() ) {
+            echo 'Message could not be sent. ';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            exit;
+        }
+    }
+
     
     /* PRIVATE AREA
      =================================================*/

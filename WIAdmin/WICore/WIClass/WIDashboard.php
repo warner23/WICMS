@@ -11,6 +11,7 @@ class WIDashboard
 	{
 		$this->WIdb = WIdb::getInstance();
         $this->Page = new WIPagination();
+        $this->email = new WIEmail();
 	}
 
 
@@ -284,6 +285,19 @@ class WIDashboard
 
     }
 
+
+        public function UniqueVisitors()
+    {
+        //echo "unique";
+     $sql = "SELECT `id` FROM `wi_track`";
+     $query = $this->WIdb->prepare($sql);
+     $query->execute();
+
+     $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($result);
+        echo count($result);
+    }
+
     public function VisitorCount($country)
     {
 
@@ -345,6 +359,46 @@ class WIDashboard
         
         
 
+    }
+
+            public function VisitorsMap()
+    {
+        //$ip = $this->Visitors_ip();
+        $sql = "SELECT * FROM `wi_track` group by country";
+        
+        $query = $this->WIdb->prepare($sql);
+        //$query->bindParam(':ip', $ip, PDO::PARAM_STR);
+        $query->execute();
+        echo "['Country', 'Visitors'],";
+
+        while($res = $query->fetchAll(PDO::FETCH_ASSOC)){
+            //print_r($res);
+           // $country = $res['country'];
+            foreach ($res as $key) {
+            //print_r($key);['Country', 'Visitors'],
+            //$Ip = $key['ip'];
+                echo "['" . $key['country'] . "', '";$this->VisitorCount($key['country']); echo "']";        
+        }  
+        }
+        //print_r($res);
+        
+
+    }
+
+
+    public function Send_Mail($settings)
+    {
+        $email = $settings['UserData'];
+        $emailTo = $email['emailto'];
+        $subject = $email['subject'];
+        $mess = $email['Message'];
+        //echo $mess;
+        $this->email->sendEmail($emailTo, $subject, $mess);
+        $result = array(
+            "status" => "completed",
+            "msg" => "Successfully sent message."
+        );
+        echo json_encode($result);
     }
 
 

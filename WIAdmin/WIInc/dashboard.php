@@ -51,6 +51,29 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="pad">
+                                               <?  $server_Load = get_server_load();
+                                               print_r($server_Load);
+                                               function get_server_load() {
+    $load = '';
+    if (stristr(PHP_OS, 'win')) {
+        $cmd = 'wmic cpu get loadpercentage /all';
+        @exec($cmd, $output);
+        if ($output) {
+            foreach($output as $line) {
+                if ($line && preg_match('/^[0-9]+$/', $line)) {
+                    $load = $line;
+                    break;
+                }
+            }
+        }
+
+    } else {
+        $sys_load = sys_getloadavg();
+        $load = $sys_load[0];
+    }
+    return $load;
+}
+?>
                                                 <!-- Progress bars -->
                                                 <div class="clearfix">
                                                     <span class="pull-left">Bandwidth</span>
@@ -94,7 +117,7 @@
                                 <div class="box-footer">
                                     <div class="row">
                                         <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                            <input type="text" class="knob" data-readonly="true" value="80" data-width="60" data-height="60" data-fgColor="#f56954"/>
+                                            <input type="text" class="knob" data-readonly="true" value="<? echo $server_Load; ?>" data-width="60" data-height="60" data-fgColor="#f56954"/>
                                             <div class="knob-label">CPU</div>
                                         </div><!-- ./col -->
                                         <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
@@ -129,8 +152,7 @@
                                 <div class="box-header">
                                     <i class="fa fa-calendar"></i>
                                     <div class="box-title">Calendar</div>
-                                    
-                                    <!-- tools box -->
+                                                                        <!-- tools box -->
                                     <div class="pull-right box-tools">
                                         <!-- button with a dropdown -->
                                         <div class="btn-group">
@@ -142,7 +164,9 @@
                                                 <li><a href="#">View calendar</a></li>
                                             </ul>
                                         </div>
-                                    </div><!-- /. tools -->                                    
+                                    </div><!-- /. tools --> 
+                                    <?php echo $cal->getCalendar();  ?>
+                                   
                                 </div><!-- /.box-header -->
                                 <div class="box-body no-padding">
                                     <!--The calendar -->
@@ -163,18 +187,19 @@
                                 <div class="box-body">
                                     <form action="#" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="emailto" placeholder="Email to:"/>
+                                            <input type="email" class="form-control" id="emailto" name="emailto" placeholder="Email to:"/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="subject" placeholder="Subject"/>
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject"/>
                                         </div>
                                         <div>
-                                            <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            <textarea class="textarea" placeholder="Message" id="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="box-footer clearfix">
                                     <button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
+                                    <div id="sendResults"></div>
                                 </div>
                             </div>
 
@@ -197,7 +222,40 @@
                                     </h3>
                                 </div>
                                 <div class="box-body no-padding">
-                                    <div id="world-map" style="height: 300px;"></div>
+                                    <div id="world-map" style="height: 300px;">
+                                        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+      //var Visitors = <?php $dashboard->VisitorsMap(); ?>
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([ <?php $dashboard->VisitorsMap(); ?>
+/*          ['Country', 'Visitors'],
+          ['Germany', 200],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['RU', 700]*/
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div id="regions_div" style="width:100%; height: 250px;"></div>
+                                    </div>
                                     <div class="table-responsive">
                                         <!-- .table - Uses sparkline charts-->
                                         <table class="table table-striped">
@@ -240,7 +298,10 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
+<script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
 <script type="text/javascript" src="WICore/WIJ/WIChat.js"></script>
+<script type="text/javascript" src="WICore/WIJ/WISendMail.js"></script>
+<script type="text/javascript" src="WICore/WIJ/WICalendar.js"></script>
 
  <div class="modal off" id="modal-todo-add">
             <div class="modal-dialog">

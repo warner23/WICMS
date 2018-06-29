@@ -12,6 +12,27 @@ class WIPage
        $this->WIdb = WIdb::getInstance();
     }
 
+
+  public function findPage()
+    {
+
+        $sql = "SELECT * FROM `wi_page`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+         echo '<ul class="page_link_list">';
+        while ($res = $query->fetch()) {
+
+            echo '<a class="col-lg-4 col-md-3 col-xs-3 col-sm-3"  href="javascript:void(0);" id="' . $res['name'] . '" onclick="WIMenu.placelink(`' . $res['name'] . '`);">
+            <li class="col-lg-4 col-dm-4 col-xs-4 col-sm-4">
+            <div class="col-lg-2 col-dm-3 col-xs-3 col-sm-3">
+                          ' .  $res['name'] . '
+              </div>
+              </li></a>';
+        }
+        echo '</ul>';
+
+    }
+
     public function Pages()
 	{
 		$dir = "../";

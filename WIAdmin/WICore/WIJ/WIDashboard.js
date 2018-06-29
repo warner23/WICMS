@@ -6,6 +6,7 @@ $(document).ready(function(event)
     WIDashboard.MessagesCount();
     WIDashboard.registeredUsercount();
     WIDashboard.TasksCount();
+    WIDashboard.UniqueVisitors();
    
 
 
@@ -158,6 +159,23 @@ WIDashboard.registeredUsercount = function(){
         }
     });
 }
+
+WIDashboard.UniqueVisitors = function(){
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "GET",
+        data: {
+            action : "UniqueVisitors"
+                    },
+        success: function(result)
+        {
+             $("#visitors").html(result)
+        }
+    });
+}
+
+
 
 WIDashboard.messages = function(){
 

@@ -34,7 +34,7 @@ class WIWebsite
     	while ($res = $query->fetch()) {
 
     		echo '<li><a href="' . $res['link'] . '"><i class="fa fa-angle-double-right"></i>
-            <img class="img-responsive mobileShow" src="WIMedia/Img/icons/admin_sidebar/' . $res['img'] . '.PNG">
+            <img class="img-responsive mobileShow" src="WIMedia/Img/icons/admin_sidebar/' . $res['img'] . '.png">
             <span class="mobileHide">' . $res['lang'] . '</span></a></li>';
     	}
 
@@ -163,15 +163,19 @@ class WIWebsite
               <div id="nav">
                <ul id="mainMenu" class="mainMenu default">';
 
-        while($res = $query1->fetch(PDO::FETCH_ASSOC))
+        while($res = $query1->fetchAll(PDO::FETCH_ASSOC))
         {    
-         echo '<li> <input type="text" id="menu_name"  maxlength="88" name="menu_name" placeholder="menu name" class="input-xlarge form-control" value="' . WILang::get('' .$res['lang'] .'') . '"></li>';
-         if($res['parent'] > 0)
+            foreach ($res as $part) {
+                echo '<li> <input type="text" id="menu_name_' . $part['id'] . '"  maxlength="88" name="menu_name" placeholder="menu name" class="input-xlarge form-control" value="' . $part['label'] . '"></li>';
+         if($part['parent'] > 0)
          {
-            echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+            echo '<li><a href="' . $part['link'] . '">' .$part['label'] .'</a></li>';
          }
+            }
+         
         }
-        echo '</ul>
+        echo '</ul><a href="javascript:void(0);" onclick="WIMenu.newTab()">
+        <div class="new_tab_icon"></div></a>
             </div><!-- nav -->   
             <!-- end of menu -->
             </div>';
@@ -608,6 +612,20 @@ class WIWebsite
             </div><!-- /.modal-dialog -->';
         }
 
+    }
+
+    public function updateMenu($settings)
+    {
+        $menu = $settings['UserData']; 
+
+
+        $this->WIdb->insert('wi_menu', array(
+            "label"     => $menu['menu_name'],
+            "link"  => $menu['menu_link']. '.php',
+        )); 
+
+        $result = "complete";
+        echo json_encode($result);
     }
 
 

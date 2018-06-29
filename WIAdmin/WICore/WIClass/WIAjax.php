@@ -139,6 +139,12 @@ switch ($action) {
         $site->Email_settings($_POST['settings']);
         break;
 
+    case "email_send":
+        onlyAdmin();
+        $dash = new WIDashboard();
+        $dash->Send_Mail($_POST['settings']);
+        break;
+
      case "mailer_settings":
      onlyAdmin();
         $site = new WISite();
@@ -198,6 +204,12 @@ switch ($action) {
     onlyAdmin();
         $web = new WIWebsite(); 
         $web->CheckMultiLang();
+        break;
+
+     case "update_Menu":
+        onlyAdmin();
+        $web = new WIWebsite();
+        $web->updateMenu($_POST['settings']);
         break;
 
         case "EditModLang":
@@ -385,6 +397,11 @@ switch ($action) {
     onlyAdmin();
         $page = new WIPage();
         $page->newPage($_POST['page']);
+        break;
+
+     case "findPage":
+        $page  = new WIPage();
+        $page->findPage();
         break;
 
     case "page_delete":
@@ -637,6 +654,12 @@ switch($action){
         onlyAdmin();
         $site = new WISite();
         $site->notifications_badge();
+        break;
+
+         case "UniqueVisitors":
+        onlyAdmin();
+        $dash = new WIDashboard();
+        $dash->UniqueVisitors();
         break;
 
         case "MessagesCount":

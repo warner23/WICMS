@@ -221,9 +221,17 @@ class panel
                   <a href="WIMembers/profile.php"> ' .WILang::get("view_profile_page") . '</a>
                   <p>- or -</p>
                   <a href="logout.php">' . WILang::get("log_off") . '</a>
-                  <p>- or -</p>
-                  <a href="alogin.php">' .WILang::get("admin_panel") . ' </a>
-                  </div>
+                  <p>- or -</p>';
+
+                      $url = $_SERVER['PHP_SELF'];
+
+                    if (strpos($url,'WIMembers') !== false) {
+                    echo '<a href="../alogin.php">' .WILang::get("admin_panel") . ' </a>';
+                  } else {
+                    echo '<a href="alogin.php">' .WILang::get("admin_panel") . ' </a>';
+                  }
+                  
+                 echo '</div>
                   <div class="left right">
                   </div>';
              }else{

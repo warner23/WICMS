@@ -18,6 +18,7 @@ include_once 'WIWebsite.php';
 include_once 'WIPagination.php';
 include_once 'WISystem.php';
 include_once 'WIWidget.php';
+include_once 'WICalendar.php';
 
 
 //include_once 'WIUserInfo.php';
@@ -38,6 +39,7 @@ $validator    = new WIValidator();
 $maint        = new WIMaintenace();
 $web          = new WIWebsite();  
 $system       = new WISystem();
+$cal       = new WICalendar();
 
 
 //$mod          = new WIModules();
