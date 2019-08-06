@@ -1,70 +1,67 @@
-<?php
-$page = "contact_us";
 
-include_once 'WIInc/WI_StartUp.php';
+      <?php
 
-$ref = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+      include_once "WIInc/WI_StartUp.php";
 
-//$ref = $_SERVER['HTTP_REFERER'];
-//echo $ref;
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$ip = $_SERVER['REMOTE_ADDR'];
+      $ip = getenv("REMOTE_ADDR");
+      $country = $maint->ip_info($ip, "country");
 
+      $page = "contact_us";
+      $maint->visitors_log($page, $ip, $country);
+      $Panel = $web->PageMod($page, "panel");
 
-$tracking_page = $_SERVER['SCRIPT_NAME'];
-//$ip = getenv('REMOTE_ADDR');
-//$ip2 = $maint->get_ip();
-//echo "ip". $ip;
-//echo "ip2". $ip2;
-$country = $maint->ip_info($ip, "country");
-//echo "country"  .$country;
-if($country === null){
-  $country = "localhost";
-}
+      if ($Panel === "null") {
+        
+      }else{
 
-$maint->visitors_log($page, $ip, $country, $ref, $agent, $tracking_page);
+        $mod->getMod($Panel);
+      }
 
-$panelPower = $web->pageModPower($page, "panel");
+      $top_head = $web->PageMod($page, "top_head");
+      //echo $Panel;
+      if ($top_head === "null") {
+        
+      }else{
 
-$Panel = $web->PageMod($page, "panel");
-//echo $Panel;
-if ($panelPower > 0) {
-  $mod->getMod($Panel);
-}
+        $mod->getMod($top_head);
+      }
 
-$topPower = $web->pageModPower($page, "top_head");
-$top_head = $web->PageMod($page, "top_head");
-//echo $Panel;
-if ($topPower > 0) {
-  $mod->getMod($top_head);
-}
+      $web->MainMenu(); 
 
-$headerPower = $web->pageModPower($page, "header");
-//echo $headPower;
-//echo $Panel;
-if ($headerPower > 0) {
-  $web->MainHeader();
-}
+      $leftSideBar = $web->PageMod($page, "left_sidebar");
+      if ($leftSideBar === "null") {
+        
+      }else{
 
-$menuPower = $web->pageModPower($page, "menu");
-if ($menuPower > 0) {
-  $web->MainMenu();
-}
+        $mod->getMod($leftSideBar);
+      }
 
-  
+      $contents = $web->PageMod($page, "contents");
+      //echo $Panel;
+      if ($contents === "null") {
+        
+      }else{
 
+        $mod->getMod($contents);
+      }
 
-$contents = $web->pageModPower($page, "contents");
-//echo $contents;
-$mod->getModMain($contents, $page, $contents);
+      $rightSideBar = $web->PageMod($page, "right_sidebar");
+      //echo $Panel;
+      if ($rightSideBar === "null") {
+        
+      }else{
 
-    
-//include_once 'WIInc/welcome_box.php';
+        $mod->getMod($rightSideBar);
+      }
+          
+      //include_once "WIInc/welcome_box.php";
 
-$web->footer();
-?>
+      $web->footer();
+      ?>
 
 
 
-</body>
-</html>
+      </body>
+      </html>
+
+      
