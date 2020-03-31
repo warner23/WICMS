@@ -4,7 +4,7 @@
   }
 </style>
               <div class="col-md-8 right">
-                  <div class="roles-input">
+                  <div class="control-group roles-input">
                     <div class="controls col-lg-3">
                       <input type="text" class="form-control col-lg-3" id='role-name' placeholder="<?php echo WILang::get('role_name'); ?>">
                     </div>

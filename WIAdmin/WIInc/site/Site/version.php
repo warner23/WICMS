@@ -8,7 +8,7 @@
  <form  class="form-horizontal" id="version-form">
                         <fieldset>
                           <div id="legend">
-                        <label>Version Control</label>
+                        <label class="center">Version Control</label>
                     <div class="btn-group" id="version" data-toggle="buttons-radio">
                         Your Current Version is <?php echo $site->Website_Info('wicms_version')?>
                         <input type="hidden" name="version_control" id="version_control" class="btn-group-value" value="<?php echo $site->Website_Info('wicms_version')?>"/>
@@ -21,7 +21,7 @@
                    
                    <div class="form-group">
                         <!-- Button -->
-                        <div class="controls col-lg-offset-4 col-lg-8">
+                        <div class="controls col-lg-offset-10 col-lg-2">
                            <button id="version_btn" class="btn btn-success">Save</button> 
                         </div>
                         <div id="versresults"></div>

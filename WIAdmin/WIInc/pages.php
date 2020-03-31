@@ -65,24 +65,30 @@
                      </div>
                      </section>
                      </aside>
+<script type="text/javascript" src="WICore/WIJ/WIPages.js"></script>
 
  <script type="text/javascript">
      $(document).ready(function () {
     //button  click
-    $("a.page").click(function () {
+    $("a.edit").click(function () {
       // alert('item submitted');
             //validation passed
-            var page_id     = this.id;
+            var page     = this.id;
             //alert(page_id);
             //$.cookie.set("page_id", "page_id");
 
              var date = new Date();
  var minutes = 30;
  date.setTime(date.getTime() + (minutes * 60 * 1000));
-            $.cookie("page_id", page_id, {expires: date});
+            $.cookie("page", page, {expires: date});
             
+            window.location.href = "WIEditpage.php";
         });
+
+
 
 });
 
  </script>
+
+<?php $modal->new_modal('delete', 'Delete Page', 'WIPages', 'delete','delete');    ?>

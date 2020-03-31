@@ -8,10 +8,12 @@ include_once 'WIAdminChat.php';
 include_once 'WIPage.php';
 include_once 'WIContact.php';
 include_once 'WIImage.php';
+include_once 'WITopic.php';
 include_once 'WIPlugin.php';
-
-
-
+include_once 'WIPermissions.php';
+include_once 'WIModules.php';
+include_once 'WICalendar.php';
+include_once 'WIEditor.php';
 
 
 /*
@@ -31,5 +33,8 @@ $page         = new WIPage();
 $site         = new WISite();
 $contact      = new WIContact();
 $img          = new WIImage();
+$topic        = new WITopic();
 $plug         = new WIPlugin();
+$mod          = new WIModules();
+$editor       = new WIEditor();
 ?>

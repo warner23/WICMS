@@ -27,8 +27,7 @@ $maint->visitors_log($page, $ip, $country, $ref, $agent, $tracking_page);
 $panelPower = $web->pageModPower($page, "panel");
 
 $Panel = $web->PageMod($page, "panel");
-//echo $Panel;
-if ($panelPower === 0) {
+if ($panelPower === "0") {
 	
 }else{
 
@@ -39,7 +38,7 @@ if ($panelPower === 0) {
 $topPower = $web->pageModPower($page, "top_head");
 $top_head = $web->PageMod($page, "top_head");
 //echo $Panel;
-if ($topPower === 0) {
+if ($topPower === "0") {
 	
 }else{
 
@@ -49,12 +48,19 @@ if ($topPower === 0) {
 $headerPower = $web->pageModPower($page, "header");
 //echo $headPower;
 //echo $Panel;
-if ($headerPower > 0) {
-	$web->MainHeader();
+if ($headerPower === "0") {
+	
+}else{
+$web->MainHeader();
 }
 
+$menuPower = $web->pageModPower($page, "menu");
 
-$web->MainMenu();	
+if ($menuPower === "0") {
+	
+}else{
+$web->MainMenu();
+}
 
 
 $contents = $web->pageModPower($page, "contents");
@@ -64,7 +70,13 @@ $mod->getModMain($contents, $page, $contents);
   	
 //include_once 'WIInc/welcome_box.php';
 
+$footerPower = $web->pageModPower($page, "footer");
+
+if ($footerPower === "0") {
+	
+}else{
 $web->footer();
+}
 ?>
 
 

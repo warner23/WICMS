@@ -11,12 +11,17 @@
     background-color: #555;
     color: white;
     padding: 15px;
-    position: relative;
-    left: 0;
-    bottom: 0;
-    height: 100px;
+    height: 58px;
     width: 100%;
     overflow: hidden;
+    clear: both;
+    height: 40px;
+    margin-top: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
 }
 
 .col-lg-6 {

@@ -1,4 +1,17 @@
- 
+ <script>
+
+if(!isBlank(sessionStorage)){
+  
+  sessionStorage.getItem("tab");
+}else{
+sessionStorage.setItem("tab", "tab1");
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
+}
+
+ </script>
  <aside class="left-side">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
@@ -20,12 +33,52 @@
 
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-  <script>
+
+    <!------ original
+
+        <script>
   $( function() {
     
     $( "#accordion" ).accordion({
-      collapsible: true
+      collapsible: true,
+      heightStyle: "content"
     });
+  } );
+  </script>
+
+-->
+  <script>
+  $( function() {
+    
+    var selectedIndex = localStorage.getItem("selected"),
+            // If a valid item exits in localStorage use it, else use the default
+            active = (selectedIndex >= 0) ? parseInt(selectedIndex) : false;
+        console.log(active);
+        $("#accordion").accordion({
+            active: active,
+            autoHeight: false,
+            collapsible: true,
+            heightStyle: "content",
+            animate: 300, // collapse will take 300ms,
+            activate: function (event, ui) {
+                if (ui.newHeader.length) // item opened
+                    var index = $('#accordion h3').index(ui.newHeader);
+                if (index > -1)  // has a valid index
+                    localStorage.setItem("selected", index);
+
+
+            }
+        });
+
+        $('#accordion h3').bind('click', function () {
+            var self = this;
+            setTimeout(function () {
+                theOffset = $(self).offset();
+                $('body,html').animate({
+                    scrollTop: theOffset.top - 100
+                });
+            }, 310); // ensure the collapse animation is done
+        });
   } );
   </script>
   <?php $web->AdminSideBar(); ?>

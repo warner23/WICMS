@@ -211,9 +211,9 @@ class WIImage
     }
 
 
-        public function UploadedPics($img_selector, $ele_id)
+    public function PagePics()
         {
-        $dir = dirname(dirname(dirname(__FILE__))) . '/WIMedia/Img/' . $img_selector . '/';
+        $dir = dirname(dirname(dirname(__FILE__))) . '/WIMedia/Img/contents/';
         $images = scandir($dir);
 
         $extensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp', 'PNG');
@@ -257,9 +257,7 @@ class WIImage
                             echo '<div class="col-md-4">
         <div class="panel panel-info">
         <div class="panel-heading">' . $value . '</div>
-        <div class="panel-body">
-        <img src="WIMedia/Img/' . $img_selector . '/' . $value .'" class="img-responsive uli" id="' . $value .'" style="width:50px; height:50px;" value="person" name="actor" alt="' . $ele_id . '">
-        </div>
+        <div class="panel-body"><img src="WIMedia/Img/header/' . $value .'" class="img-responsive" id="' . $value .'" style="width:50px; height:50px;"></div>
         <div class="panel-footer"></div>
         </div></div>';
         }

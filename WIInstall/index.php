@@ -53,34 +53,12 @@ include_once 'WICore/init.php';
             <div class="container">
             <div class="col-lg-4 col-md-6 col-sm-6 lang">
                          <div class="flags-wrapper">
-             <a href="?lang=en">
-                 <img src="../WIAdmin/WIMedia/Img/lang/en.png" alt="English" title="English"
-                      class="<?php echo WILang::getLanguage() != 'en' ? 'fade' : ''; ?>" />
-             </a>
-             <a href="?lang=rs">
-                 <img src="../WIAdmin/WIMedia/Img/lang/rs.png" alt="Serbian" title="Serbian"
-                      class="<?php echo WILang::getLanguage() != 'rs' ? 'fade' : ''; ?>" />
-             </a>
-              <a href="?lang=ru">
-                  <img src="../WIAdmin/WIMedia/Img/lang/ru.png" alt="Russian" title="Russian"
-                       class="<?php echo WILang::getLanguage() != 'ru' ? 'fade' : ''; ?>" />
-              </a>
-               <a href="?lang=es">
-                  <img src="../WIAdmin/WIMedia/Img/lang/es.png" alt="Spanish" title="Spanish"
-                       class="<?php echo WILang::getLanguage() != 'es' ? 'fade' : ''; ?>" />
-              </a>
-               <a href="?lang=fr">
-                  <img src="../WIAdmin/WIMedia/Img/lang/fr.png" alt="French" title="french"
-                       class="<?php echo WILang::getLanguage() != 'fr' ? 'fade' : ''; ?>" />
-              </a>
-              <a href="?lang=cn">
-                  <img src="../WIAdmin/WIMedia/Img/lang/cn.png" alt="Chinese" title="chinese"
-                       class="<?php echo WILang::getLanguage() != 'cn' ? 'fade' : ''; ?>" />
-              </a>
-              <a href="?lang=be">
-                  <img src="../WIAdmin/WIMedia/Img/lang/be.png" alt="Belgium" title="belgium"
-                       class="<?php echo WILang::getLanguage() != 'be' ? 'fade' : ''; ?>" />
-              </a>
+             <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: `en`, layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, `google_translate_element`);
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                         </div>
          </div>
                     </div><!-- end col-lg-6 col-md-6 col-sm-6-->
                     <!--  search area-->
@@ -300,8 +278,14 @@ include_once 'WICore/init.php';
                     <div class="form-group">
                     <label for="max_login_attempts"><?php echo WILang::get('max_login') ?></label>
                     <div class="input-prepend">
-                      <span class="add-on">#</span>
-                      <input type="text" class="input-small" name="login_max_login_attempts" id="max_login_attempts" value="5" />
+                      <span class="add-on"></span>
+                      <select name="max_login_attempts" id="max_login_attempts">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                      </select>
                     </div>
                     <span class="help-block"><?php echo WILang::get('max_login') ?>
                         <br />
@@ -486,8 +470,12 @@ include_once 'WICore/init.php';
 
                     <div class="form-group">
                         <label for="bootstrap_version"><?php echo WILang::get('bv') ?> </label>
-                        <input type="text" class="form-control" id="bootstrap_version"
-                               v-model="bootstrap.version" value="1">
+                        <select name="bootstrap_version" id="bootstrap_version">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
                     </div>
 
                      <div class="form-group">
@@ -503,13 +491,17 @@ include_once 'WICore/init.php';
                         <input type="password" class="input-xlarge" name="admin_password" id="admin_password" value="password" />
                     </div>
 
+                    <label for="admin_password">Confirm Password</label>
+                    <div class="input-prepend">
+                        <input type="password" class="input-xlarge" name="admin_password" id="admin_confirm_password" value="password" />
+                    </div>
+                    <div id="pass_match"></div>
+
                      <label for="email_address">Email Address</label>
                     <div class="input-prepend">
                         <input type="email" class="input-xlarge" name="email_address" id="email_address" value="example@hotmail.com" />
                     </div>
                 </div>
-
-               
 
                 <button class="btn btn-as pull-right" onclick="WIInstall.stepThree();" type="button">
                     <span class="show" id="next">

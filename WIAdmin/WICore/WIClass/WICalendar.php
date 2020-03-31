@@ -1,5 +1,6 @@
 <?php
 
+
 class WICalendar 
 {  
   private $WIdb;
@@ -22,7 +23,7 @@ class WICalendar
   $boxDisplay = ($totalDaysOfMonthDisplay <= 35)?35:42;
 
   ?>
-  <div id="calender_section">
+  <div id="calender_section" class="showing_cal">
     <h2>
           <a href="javascript:void(0);" onclick="WICalendar.getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&lt;&lt;</a>
             <select name="month_dropdown" class="month_dropdown dropdown"><?php echo WICalendar::getAllMonths($dateMonth); ?></select>
@@ -57,7 +58,7 @@ class WICalendar
         
            $status = 1;
             $result = $this->WIdb->select(
-                    "SELECT `title` FROM `wi_events` WHERE date =:d AND status = :s ",
+                    "SELECT `title` FROM `WI_Events` WHERE date =:d AND status = :s ",
                      array(
                        "d" => $currentDate,
                        "s" => $status
@@ -145,7 +146,7 @@ function getYearList($selected = ''){
 
          $status = 1;
                   $result = $this->WIdb->select(
-                          "SELECT `title` FROM `wi_events` WHERE date =:d AND status = :s ",
+                          "SELECT `title` FROM `WI_Events` WHERE date =:d AND status = :s ",
                            array(
                              "d" => $date,
                              "s" => $status

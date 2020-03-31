@@ -1,20 +1,14 @@
 $(document).ready(function(){
 
-  $("img").on('click', function() {      
-    //$(this).toggleClass("hover");
-    var id = $(this).attr("id");
-    var selector = $(this).attr("name");
-    var folder = $(this).attr("value");
-    var ele_id = $(this).attr('alt');
-    alert(id);
-    alert(selector);
-    alert(folder);
-    alert(ele_id);
-    WIMedia.changePhoto(id, selector, folder, $ele_id);
+  $("img").click(function() {      
+    $(this).toggleClass("hover");
+    var id = $(".hover").attr("id");
+   // alert(id);
+    WIMedia.change(id);
   });
 
-
   var obj = $("#dragandrophandler");
+  var dir = $("#supload").attr("value");
 obj.on('dragenter', function (e) 
 {
     e.stopPropagation();
@@ -34,7 +28,7 @@ obj.on('drop', function (e)
      var files = e.originalEvent.dataTransfer.files;
  
      //We need to send dropped files to Server
-     handleFileUpload(files,obj);
+     handleFileUpload(files,obj,dir);
 });
 $(document).on('dragenter', function (e) 
 {
@@ -57,16 +51,18 @@ $(document).on('drop', function (e)
 
 var WIMedia = {};
 
-WIMedia.MediaManager = function(selector){
-     $("#modal-"+selector+"-media").removeClass("off");
-    $("#modal-"+selector+"-media").addClass("on");
+WIMedia.media = function(){
+   $("#modal-header-edit-details").removeClass("hide");
+    $("#modal-header-edit-details").addClass("show");
+     $("#modal-header-media-details").removeClass("hide");
+    $("#modal-header-media-details").addClass("show");
 }
 
-WIMedia.media = function(){
-   $("#modal-header-edit").removeClass("on");
-    $("#modal-header-edit").addClass("off");
-     $("#modal-header-media").removeClass("off");
-    $("#modal-header-media").addClass("on");
+WIMedia.pagemedia = function(){
+   $("#modal-page-edit-details").removeClass("hide");
+    $("#modal-page-edit-details").addClass("show");
+     $("#modal-page-media-details").removeClass("hide");
+    $("#modal-page-media-details").addClass("show");
 }
 
 WIMedia.changeiconPic = function(){
@@ -77,16 +73,18 @@ WIMedia.changeiconPic = function(){
 }
 
 
-  WIMedia.changePic = function(){
+  WIMedia.changePic = function(ele){
 
-  	     $("#modal-header-edit").removeClass("off");
-    $("#modal-header-edit").addClass("on");
+  	     $("#modal-"+ele+"-details").removeClass("hide");
+    $("#modal-"+ele+"-details").addClass("show");
   }
 
-  WIMedia.ActorchangePic = function(){
+    WIMedia.editPic = function(ele){
 
-         $("#modal-actor-edit").removeClass("off");
-    $("#modal-actor-edit").addClass("on");
+    var t = $(event.target).parent().parent().children();
+    t.closest('.view').attr('id','newpic');
+    $("#modal-"+ele+"-details").removeClass("hide");
+    $("#modal-"+ele+"-details").addClass("show");
   }
 
 WIMedia.changefaviconPic = function(){
@@ -101,15 +99,21 @@ WIMedia.changefaviconPic = function(){
     $("#modal-header-edit").addClass("off");
   }
 
+  WIMedia.closed = function(ele){
+
+     $("#modal-"+ele+"-details").removeClass("show");
+    $("#modal-"+ele+"-details").addClass("hide");
+  }
+
     WIMedia.closeFEdit = function(){
 
      $("#modal-favicon-edit").removeClass("on");
     $("#modal-favicon-edit").addClass("off");
   }
 
-  WIMedia.closeMedia = function(selector){
-    $("#modal-"+selector+"-media").removeClass("on");
-    $("#modal-"+selector+"-media").addClass("off");
+  WIMedia.closeMedia = function(){
+    $("#modal-header-media").removeClass("on");
+    $("#modal-header-media").addClass("off");
   }
 
     WIMedia.closeFMedia = function(){
@@ -117,9 +121,9 @@ WIMedia.changefaviconPic = function(){
     $("#modal-favicon-media").addClass("off");
   }
 
-  WIMedia.closeUpload = function(selector){
-    $("#modal-"+selector+"-upload").removeClass("on");
-    $("#modal-"+selector+"-upload").addClass("off");
+  WIMedia.closeUpload = function(){
+    $("#modal-header-upload").removeClass("on");
+    $("#modal-header-upload").addClass("off");
   }
 
     WIMedia.closeFUpload = function(){
@@ -133,14 +137,6 @@ WIMedia.changefaviconPic = function(){
     $("#modal-header-media").addClass("off");
     $(".cp").attr("src", "WIMedia/Img/header/"+img);
     $(".cp").attr("id", img);
-  }
-
-    WIMedia.changePhoto = function(img, selector, folder, ele_id){
-      //alert(selector);
-        $("#modal-"+selector+"-media").removeClass("on").addClass("off");
-        $("#uploadOptions").removeClass("on").addClass("off");
-    preview = ('<img src="WIMedia/Img/'+folder+'/'+img+'" class="img-responsive ShowImg" value="'+img+'" id="preview-preview">');
-            $("#"+ele_id).append(preview);
   }
 
 
@@ -193,22 +189,18 @@ WIMedia.changefaviconPic = function(){
 
 
   WIMedia.upload = function(){
-  	  	     $("#modal-header-edit").removeClass("on");
-    $("#modal-header-edit").addClass("off");
-  	  	$("#modal-header-upload").removeClass("off");
-    $("#modal-header-upload").addClass("on");
+  	  	     $("#modal-header-edit-details").removeClass("show");
+    $("#modal-header-edit-details").addClass("hide");
+  	  	$("#modal-header-upload-details").removeClass("hide");
+    $("#modal-header-upload-details").addClass("show");
 
   }
 
-    WIMedia.dropAndDragUpload = function(selector){
-        $("#modal-"+selector+"-upload").removeClass("off");
-    $("#modal-"+selector+"-upload").addClass("on");
-
-  }
-
-  WIMedia.Actorupload = function(){
-        $("#modal-actor-upload").removeClass("off");
-    $("#modal-actor-upload").addClass("on");
+    WIMedia.pageupload = function(){
+             $("#modal-page-edit-details").removeClass("show");
+    $("#modal-page-edit-details").addClass("hide");
+        $("#modal-page-upload-details").removeClass("hide");
+    $("#modal-page-upload-details").addClass("show");
 
   }
 
@@ -263,122 +255,3 @@ WIMedia.changefaviconPic = function(){
         }
     });
   }
-// WIMedia.sendFileToServer = function(formData,status){
-
-//       var uploadURL ="WICore/WIClass/ImageUpload.php"; //Upload URL
-//     var extraData ={}; //Extra Data.
-//     var jqXHR=$.ajax({
-//             xhr: function() {
-//             var xhrobj = $.ajaxSettings.xhr();
-//             if (xhrobj.upload) {
-//                     xhrobj.upload.addEventListener('progress', function(event) {
-//                         var percent = 0;
-//                         var position = event.loaded || event.position;
-//                         var total = event.total;
-//                         if (event.lengthComputable) {
-//                             percent = Math.ceil(position / total * 100);
-//                         }
-//                         //Set progress
-//                         WIMedia.handleFileUpload.status.setProgress(percent);
-//                     }, false);
-//                 }
-//             return xhrobj;
-//         },
-//     url: uploadURL,
-//     type: "POST",
-//     contentType:false,
-//     processData: false,
-//         cache: false,
-//         data: formData,
-//         success: function(data){
-//             status.setProgress(100);
- 
-//             $("#status1").append("File upload Done<br>");         
-//         }
-//     }); 
- 
-//     status.setAbort(jqXHR);
-// }
-
-
-
-// var rowCount=0;
-// WIMedia.createStatusbar = function(obj){
-//      rowCount++;
-//      var row="odd";
-//      if(rowCount %2 ==0) row ="even";
-//      this.statusbar = $("<div class='statusbar "+row+"'></div>");
-//      this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
-//      this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
-//      this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
-//      this.abort = $("<div class='abort'>Abort</div>").appendTo(this.statusbar);
-     
-//      obj.after(this.statusbar);
-
- 
-// this.setFileNameSize = function(name,size){
-//         var sizeStr="";
-//         var sizeKB = size/1024;
-//         if(parseInt(sizeKB) > 1024)
-//         {
-//             var sizeMB = sizeKB/1024;
-//             sizeStr = sizeMB.toFixed(2)+" MB";
-//         }
-//         else
-//         {
-//             sizeStr = sizeKB.toFixed(2)+" KB";
-//         }
- 
-//         this.filename.html(name);
-//         this.size.html(sizeStr);
-// }
-
-// this.setProgress = function(progress){       
-//         var progressBarWidth =progress*this.progressBar.width()/ 100;  
-//         this.progressBar.find('div').animate({ width: progressBarWidth }, 10).html(progress + "% ");
-//         if(parseInt(progress) >= 100)
-//         {
-//             this.abort.hide();
-//             this.statusbar.hide();
-//         }
-// }
-  
-// this.setAbort = function(jqxhr){
-//         var sb = WIMedia.statusbar;
-//         WIMedia.abort.click(function()
-//         {
-//             jqxhr.abort();
-//             sb.hide();
-//         });
-//     }
-//   }
-
-
-
-// WIMedia.handleFileUpload = function(files,obj){
-//    for (var i = 0; i < files.length; i++) 
-//    {
-//         var fd = new FormData();
-//         fd.append('file', files[i]);
- 
-//         var status = WIMedia.createStatusbar(obj); //Using this we can set progress.
-//         WIMedia.setFileNameSize(files[i].name,files[i].size);
-//        // $("#uploads").append(status);
-//         WIMedia.sendFileToServer(fd,status);
- 
-//    }
-// }
-
-// WIMedia.ManualhandleFileUpload = function(files,obj){
-//    for (var i = 0; i < files.length; i++) 
-//    {
-//         var fd = new FormData();
-//         fd.append('file', files[i]);
- 
-//         var status =  WIMedia.createStatusbar(obj); //Using this we can set progress.
-//         status.setFileNameSize(files[i].name,files[i].size);
-//        // $("#uploads").append(status);
-//         WIMedia.sendFileToServer(fd,status);
- 
-//    }
-// }

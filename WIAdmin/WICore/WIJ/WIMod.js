@@ -14,8 +14,7 @@ $(document).ready(function(event)
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
-            action : "NextPage",
-            lang   : 1,
+            action : "NextModPage",
             page : page
         },
         success: function(result)
@@ -31,14 +30,39 @@ $(document).ready(function(event)
  });
 
 
+        $("a.pagination").on( "click", "a.pagination", function (e){
+        e.preventDefault();
+        $(".loading-div").removeClass('closed'); //remove closed element
+        $(".loading-div").addClass('open'); //show loading element
+        var page = $(this).attr("data-page"); //get page number from link
+
+             $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "NextElementsPage",
+            page : page
+        },
+        success: function(result)
+        {
+            $("#elementsContents").html(result);
+              $(".loading-div").removeClass('open'); //remove closed element
+        $(".loading-div").addClass('closed'); //show loading element
+        }
+       
+        
+    });
+
+ });
+
+
 
 });
 
 
-
 var WIMod = {}
 
-WIMod.install = function(mod_name, author){
+WIMod.install = function(mod_name){
 
 //alert(mod_name);
 
@@ -47,16 +71,14 @@ WIMod.install = function(mod_name, author){
         type: "POST",
         data: {
             action : "mod_install",
-            mod_name : mod_name,
-            author   : author
+            mod_name : mod_name
         },
         success: function(result)
         {
-            
+           WICore.Refresh(); 
         }
-    })
-
-}
+    });
+};
 
 
 WIMod.uninstall = function(mod_name){
@@ -71,9 +93,9 @@ WIMod.uninstall = function(mod_name){
         },
         success: function(result)
         {
-
+        WICore.Refresh(); 
         }
-    })
+    });
 
 }
 
@@ -92,7 +114,7 @@ WIMod.enable = function(mod_name, enable){
         },
         success: function(result)
         {
-            
+            WICore.Refresh(); 
         }
     })
 
@@ -111,15 +133,117 @@ WIMod.disable = function(mod_name, disable){
         },
         success: function(result)
         {
-
+WICore.Refresh(); 
         }
     })
 
 }
 
-WIMod.drop = function(mod_name){
+WIMod.installElement = function(element_name, author){
+
+//alert(mod_name);
+
+ $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "element_install",
+            element_name : element_name,
+            author   : author
+        },
+        success: function(result)
+        {
+            WICore.Refresh(); 
+        }
+    })
+
+}
+
+
+WIMod.uninstallElements = function(mod_name){
+
+
+ $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "ele_uninstall",
+            mod_name : mod_name
+        },
+        success: function(result)
+        {
+        //WICore.Refresh(); 
+        }
+    })
+
+}
+
+
+WIMod.uninstall = function(mod_name){
+
+
+ $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "mod_uninstall",
+            mod_name : mod_name
+        },
+        success: function(result)
+        {
+WICore.Refresh(); 
+        }
+    })
+
+}
+
+WIMod.enabler = function(value, ele){
+
+    $("#modal-"+ele+"-details").removeClass("hide");
+     $("#modal-"+ele+"-details").addClass("show");
+}
+
+WIMod.enableElement = function(element_name, enable){
+
+ $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "Element_enable",
+            element_name : element_name,
+            enable : enable
+        },
+        success: function(result)
+        {
+            WICore.Refresh(); 
+        }
+    })
+
+}
+
+WIMod.disableElement = function(element_name, disable){
+
+
+ $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "mod_disable",
+            element_name : element_name,
+            disable : disable
+        },
+        success: function(result)
+        {
+WICore.Refresh(); 
+        }
+    })
+
+}
+
+
+WIMod.dropping = function(mod_name, id){
     //alert("droppped");
-    //alert(mod_name);
+    //alert(id);
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
@@ -130,121 +254,20 @@ WIMod.drop = function(mod_name){
         },
         success: function(result)
         {
-            // check to see if another element is there first, if it is place after element
-           
-           if( $('.coldrop').is(':empty') ){
-            alert("div empty");
-           // $("#droppable1").html(result);
-           $("#droppable1").html(result);
-           }else{
-alert("div not empty");
-$("#droppable1").append(result);
-           }
+        	if( $("#stage").hasClass('stage-empty') )
+        	{
+        		$("#stage").removeClass('stage-empty');
+        		$("#"+id).html(result);
+
+        	}else{
+				$("#"+id).html(result);
+        	}
             
         }
     })
 }
 
-WIMod.dropping = function(mod_name, id){
-    //alert("droppped");
-    //alert(mod_name);
 
-     $.ajax({
-        url: "WICore/WIClass/WIAjax.php",
-        type: "POST",
-        data: {
-            action : "drop_call",
-            mod_name : mod_name
-        },
-        success: function(result)
-        {
-            $("#"+id).html(result);
-        }
-    })
-}
-
-
-WIMod.displayColums = function(){
-    
-}
-
-WIMod.Col12 = function(){
-         $("#droppable1").html('<div class="col-sm-12 col-md-12 col-lg-12 column_drop " id="col12"></div>')
-         $(".column_drop").droppable({
-               activeClass: "dropping",
-               hoverClass:  "hover",
-               drop: function( event, ui ) {
-                  $( this )
-                  .addClass( "ui-state-highlight" )
-                   var container = $(event.target).attr('id')
-      alert(container); 
-
-        $( this )
-            var mod_name = ui.draggable.attr('id');
-          alert(mod_name);
-          WIMod.dropping(mod_name, container);
-               }
-            });
-
-}
-
-WIMod.Col11 = function(){
-    var col11 = ('<div class="col-sm-11 col-md-11 col-lg-11 column_drop" id="col11"></div>');
-         $("#droppable1").append(col12);
-
-}
-
-WIMod.column = function(mod_name){
-    //alert("droppped");
-    //alert(mod_name);
- var i = 0;
-     $.ajax({
-        url: "WICore/WIClass/WIAjax.php",
-        type: "POST",
-        data: {
-            action : "col_call",
-            mod_name : mod_name
-        },
-        success: function(result)
-        {
-                     if( $('.dropcol').is(':empty') ){
-            alert("div empty");
-           // $("#droppable1").html(result);
- i++;
-
-        $("#droppable1").html(result);
-
-
-           }else{
-alert("div not empty");
-
-        $("#droppable1").append(result);
-    
-        }
-    }
-    
-    })
-}
-
-
-
-WIMod.columns = function(mod_name, id){
-    //alert("droppped");
-    //alert(mod_name);
-
-     $.ajax({
-        url: "WICore/WIClass/WIAjax.php",
-        type: "POST",
-        data: {
-            action : "col_call",
-            mod_name : mod_name
-        },
-        success: function(result)
-        {
-            $("#"+id).html(result);
-        }
-    })
-}
 
 WIMod.editdrop = function(mod_name,  page_id){
     //alert("droppped");
@@ -272,8 +295,7 @@ WIMod.editdrop = function(mod_name,  page_id){
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
-            action : "Next",
-            lang   : 1
+            action : "Next"
         },
         success: function(result)
         {
@@ -318,9 +340,21 @@ WIMod.editdrop = function(mod_name,  page_id){
     $( "#dialog-confirm" ).addClass( "hide" );
  }
 
+
   WIMod.createMod = function(){
 
-    var contents = $("#droppable1").html();
+    var contents = $("#dropStage").html();
+    layout = $(".stageRow").attr('data-mod-tag');
+
+    elements = [];
+
+    $(".fBtnGroup").each(function(){
+        elements.push({
+            'element' : $(this).attr('data-mod-tag')
+        });
+    });
+    //elements = $(".fBtnGroup").attr('data-mod-tag');
+    columnPreset = $("#columnPreset option:selected").attr("value");
     mod_name = $("#mod_name").val();
 
      $.ajax({
@@ -328,6 +362,9 @@ WIMod.editdrop = function(mod_name,  page_id){
         type: "POST",
         data: {
             action : "createMod",
+            layout :layout,
+            elements : elements,
+            columnPreset : columnPreset,
             contents : contents,
             mod_name   : mod_name
         },
@@ -529,5 +566,52 @@ input.val( input.val() + res.trans );
     });
 }
 
+
+WIMod.nextElement = function(page){
+
+        $(".loading-div").removeClass('closed'); //remove closed element
+        $(".loading-div").addClass('open'); //show loading element
+        //var page = $(this).attr("data-page"); //get page number from link
+
+             $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "NextElementsPage",
+            page : page
+        },
+        success: function(result)
+        {
+            $("#elementsContents").html(result);
+              $(".loading-div").removeClass('open'); //remove closed element
+        $(".loading-div").addClass('closed'); //show loading element
+        }
+       
+    });
+}
+
+
+WIMod.nextMod = function(page){
+
+        $(".loading-div").removeClass('closed'); //remove closed element
+        $(".loading-div").addClass('open'); //show loading element
+        //var page = $(this).attr("data-page"); //get page number from link
+
+             $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+           action : "NextModPage",
+            page : page
+        },
+        success: function(result)
+        {
+            $("#elementsContents").html(result);
+              $(".loading-div").removeClass('open'); //remove closed element
+        $(".loading-div").addClass('closed'); //show loading element
+        }
+       
+    });
+}
  
 

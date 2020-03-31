@@ -1,237 +1,279 @@
-<?php
-/*!
-* HybridAuth
-* http://hybridauth.sourceforge.net | http://github.com/hybridauth/hybridauth
-* (c) 2009-2012, HybridAuth authors | http://hybridauth.sourceforge.net/licenses.html 
-*/
-
-/** 
- * Yahoo OAuth Class
- * 
- * @package             HybridAuth providers package 
- * @author              Lukasz Koprowski <azram19@gmail.com>
- * @version             0.2
- * @license             BSD License
- */ 
-
-/**
- * Hybrid_Providers_Yahoo - Yahoo provider adapter based on OAuth1 protocol
+uthor Brent R. Matzelle (original founder)
  */
-class Hybrid_Providers_Yahoo extends Hybrid_Provider_Model_OAuth1
+class PHPMailer
 {
-	function initialize() 
-	{
-		parent::initialize();
+    /**
+     * The PHPMailer Version number.
+     * @type string
+     */
+    public $Version = '5.2.7';
 
-		// Provider api end-points
-		$this->api->api_base_url      = 'https://social.yahooapis.com/v1/';
-		$this->api->authorize_url     = 'https://api.login.yahoo.com/oauth/v2/request_auth';
-		$this->api->request_token_url = 'https://api.login.yahoo.com/oauth/v2/get_request_token';
-		$this->api->access_token_url  = 'https://api.login.yahoo.com/oauth/v2/get_token';
-	}
+    /**
+     * Email priority.
+     * Options: 1 = High, 3 = Normal, 5 = low.
+     * @type int
+     */
+    public $Priority = 3;
 
-	function getUserProfile()
-	{
-		$userId = $this->getCurrentUserId();
+    /**
+     * The character set of the message.
+     * @type string
+     */
+    public $CharSet = 'iso-8859-1';
 
-		$parameters = array();
-		$parameters['format']	= 'json';
+    /**
+     * The MIME Content-type of the message.
+     * @type string
+     */
+    public $ContentType = 'text/plain';
 
-		$response = $this->api->get( 'user/' . $userId . '/profile', $parameters ); 
+    /**
+     * The message encoding.
+     * Options: "8bit", "7bit", "binary", "base64", and "quoted-printable".
+     * @type string
+     */
+    public $Encoding = '8bit';
 
-		if ( ! isset( $response->profile ) ){
-			throw new Exception( "User profile request failed! {$this->providerId} returned an invalid response.", 6 );
-		}
+    /**
+     * Holds the most recent mailer error message.
+     * @type string
+     */
+    public $ErrorInfo = '';
 
-		$data = $response->profile;
+    /**
+     * The From email address for the message.
+     * @type string
+     */
+    public $From = 'root@localhost';
 
-		$this->user->profile->identifier    = (property_exists($data,'guid'))?$data->guid:"";
-		$this->user->profile->firstName     = (property_exists($data,'givenName'))?$data->givenName:"";
-		$this->user->profile->lastName      = (property_exists($data,'familyName'))?$data->familyName:"";
-		$this->user->profile->displayName   = (property_exists($data,'nickname'))?trim( $data->nickname ):"";
-		$this->user->profile->profileURL    = (property_exists($data,'profileUrl'))?$data->profileUrl:"";
-		$this->user->profile->gender        = (property_exists($data,'gender'))?$data->gender:"";
+    /**
+     * The From name of the message.
+     * @type string
+     */
+    public $FromName = 'Root User';
 
-		if( $this->user->profile->gender == "F" ){
-			$this->user->profile->gender = "female";
-		}
+    /**
+     * The Sender email (Return-Path) of the message.
+     * If not empty, will be sent via -f to sendmail or as 'MAIL FROM' in smtp mode.
+     * @type string
+     */
+    public $Sender = '';
 
-		if( $this->user->profile->gender == "M" ){
-			$this->user->profile->gender = "male";
-		} 
+    /**
+     * The Return-Path of the message.
+     * If empty, it will be set to either From or Sender.
+     * @type string
+     * @deprecated Email senders should never set a return-path header;
+     * it's the receiver's job (RFC5321 section 4.4), so this no longer does anything.
+     * @link https://tools.ietf.org/html/rfc5321#section-4.4 RFC5321 reference
+     */
+    public $ReturnPath = '';
 
-		if( isset($data->emails) ){
-			$email = "";
-			foreach( $data->emails as $v ){
-				if( isset($v->primary) && $v->primary ) {
-					$email = (property_exists($v,'handle'))?$v->handle:"";
+    /**
+     * The Subject of the message.
+     * @type string
+     */
+    public $Subject = '';
 
-					break;
-				}
-			}
+    /**
+     * An HTML or plain text message body.
+     * If HTML then call isHTML(true).
+     * @type string
+     */
+    public $Body = '';
 
-			$this->user->profile->email         = $email;
-			$this->user->profile->emailVerified = $email;
-		}
-		
-		$this->user->profile->age           = (property_exists($data,'displayAge'))?$data->displayAge:"";
-		$this->user->profile->photoURL      = (property_exists($data,'image'))?$data->image->imageUrl:"";
+    /**
+     * The plain-text message body.
+     * This body can be read by mail clients that do not have HTML email
+     * capability such as mutt & Eudora.
+     * Clients that can read HTML will view the normal Body.
+     * @type string
+     */
+    public $AltBody = '';
 
-		$this->user->profile->address       = (property_exists($data,'location'))?$data->location:"";
-		$this->user->profile->language      = (property_exists($data,'lang'))?$data->lang:"";
+    /**
+     * An iCal message part body.
+     * Only supported in simple alt or alt_inline message types
+     * To generate iCal events, use the bundled extras/EasyPeasyICS.php class or iCalcreator
+     * @link http://sprain.ch/blog/downloads/php-class-easypeasyics-create-ical-files-with-php/
+     * @link http://kigkonsult.se/iCalcreator/
+     * @type string
+     */
+    public $Ical = '';
 
-		return $this->user->profile;
-	}
+    /**
+     * The complete compiled MIME message body.
+     * @access protected
+     * @type string
+     */
+    protected $MIMEBody = '';
 
-	/**
-	 * load the user contacts
-	 */
-	function getUserContacts()
-	{
-		$userId = $this->getCurrentUserId();
+    /**
+     * The complete compiled MIME message headers.
+     * @type string
+     * @access protected
+     */
+    protected $MIMEHeader = '';
 
-		$parameters = array();
-		$parameters['format']	= 'json';
-		$parameters['count'] = 'max';
-		
-		$response = $this->api->get('user/' . $userId . '/contacts', $parameters);
+    /**
+     * Extra headers that createHeader() doesn't fold in.
+     * @type string
+     * @access protected
+     */
+    protected $mailHeader = '';
 
-		if ( $this->api->http_code != 200 )
-		{
-			throw new Exception( 'User contacts request failed! ' . $this->providerId . ' returned an error: ' . $this->errorMessageByStatus( $this->api->http_code ) );
-		}
+    /**
+     * Word-wrap the message body to this number of chars.
+     * @type int
+     */
+    public $WordWrap = 0;
 
-		if ( !$response->contacts->contact && ( $response->errcode != 0 ) )
-		{
-			return array();
-		}
+    /**
+     * Which method to use to send mail.
+     * Options: "mail", "sendmail", or "smtp".
+     * @type string
+     */
+    public $Mailer = 'mail';
 
-		$contacts = array();
+    /**
+     * The path to the sendmail program.
+     * @type string
+     */
+    public $Sendmail = '/usr/sbin/sendmail';
 
-		foreach( $response->contacts->contact as $item ) {
-			$uc = new Hybrid_User_Contact();
+    /**
+     * Whether mail() uses a fully sendmail-compatible MTA.
+     * One which supports sendmail's "-oi -f" options.
+     * @type bool
+     */
+    public $UseSendmailOptions = true;
 
-			$uc->identifier   = $this->selectGUID( $item );
-			$uc->email        = $this->selectEmail( $item->fields );
-			$uc->displayName  = $this->selectName( $item->fields );
-			$uc->photoURL     = $this->selectPhoto( $item->fields );
+    /**
+     * Path to PHPMailer plugins.
+     * Useful if the SMTP class is not in the PHP include path.
+     * @type string
+     * @deprecated Should not be needed now there is an autoloader.
+     */
+    public $PluginDir = '';
 
-			$contacts[] = $uc;
-		}
-		
-		return $contacts;
-	}
+    /**
+     * The email address that a reading confirmation should be sent to.
+     * @type string
+     */
+    public $ConfirmReadingTo = '';
 
-	/**
-	* return the user activity stream  
-	*/
-	function getUserActivity( $stream ) 
-	{
-		$userId = $this->getCurrentUserId();
+    /**
+     * The hostname to use in Message-Id and Received headers
+     * and as default HELO string.
+     * If empty, the value returned
+     * by SERVER_NAME is used or 'localhost.localdomain'.
+     * @type string
+     */
+    public $Hostname = '';
 
-		$parameters = array();
-		$parameters['format']	= 'json';
-		$parameters['count']	= 'max';
-		
-		$response = $this->api->get('user/' . $userId . '/updates', $parameters);
+    /**
+     * An ID to be used in the Message-Id header.
+     * If empty, a unique id will be generated.
+     * @type string
+     */
+    public $MessageID = '';
 
-		if( ! $response->updates || $this->api->http_code != 200 )
-		{
-			throw new Exception( 'User activity request failed! ' . $this->providerId . ' returned an error: ' . $this->errorMessageByStatus( $this->api->http_code ) );
-		}
+    /**
+     * The message Date to be used in the Date header.
+     * If empty, the current date will be added.
+     * @type string
+     */
+    public $MessageDate = '';
 
-		$activities = array();
+    /**
+     * SMTP hosts.
+     * Either a single hostname or multiple semicolon-delimited hostnames.
+     * You can also specify a different port
+     * for each host by using this format: [hostname:port]
+     * (e.g. "smtp1.example.com:25;smtp2.example.com").
+     * Hosts will be tried in order.
+     * @type string
+     */
+    public $Host = 'localhost';
 
-		foreach( $response->updates as $item ){
-			$ua = new Hybrid_User_Activity();
+    /**
+     * The default SMTP server port.
+     * @type int
+     * @Todo Why is this needed when the SMTP class takes care of it?
+     */
+    public $Port = 25;
 
-			$ua->id = (property_exists($item,'collectionID'))?$item->collectionID:"";
-			$ua->date = (property_exists($item,'lastUpdated'))?$item->lastUpdated:"";
-			$ua->text = (property_exists($item,'loc_longForm'))?$item->loc_longForm:"";
+    /**
+     * The SMTP HELO of the message.
+     * Default is $Hostname.
+     * @type string
+     * @see PHPMailer::$Hostname
+     */
+    public $Helo = '';
 
-			$ua->user->identifier  = (property_exists($item,'profile_guid'))?$item->profile_guid:"";
-			$ua->user->displayName = (property_exists($item,'profile_nickname'))?$item->profile_nickname:"";
-			$ua->user->profileURL  = (property_exists($item,'profile_profileUrl'))?$item->profile_profileUrl:"";
-			$ua->user->photoURL    = (property_exists($item,'profile_displayImage'))?$item->profile_displayImage:""; 
+    /**
+     * The secure connection prefix.
+     * Options: "", "ssl" or "tls"
+     * @type string
+     */
+    public $SMTPSecure = '';
 
-			$activities[] = $ua;
-		}
+    /**
+     * Whether to use SMTP authentication.
+     * Uses the Username and Password properties.
+     * @type bool
+     * @see PHPMailer::$Username
+     * @see PHPMailer::$Password
+     */
+    public $SMTPAuth = false;
 
-		if( $stream == "me" ){
-			$userId = $this->getCurrentUserId();
-			$my_activities = array();
+    /**
+     * SMTP username.
+     * @type string
+     */
+    public $Username = '';
 
-			foreach( $activities as $a ){
-				if( $a->user->identifier == $userId ){
-					$my_activities[] = $a;
-				}
-			}
+    /**
+     * SMTP password.
+     * @type string
+     */
+    public $Password = '';
 
-			return $my_activities;
-		}
+    /**
+     * SMTP auth type.
+     * Options are LOGIN (default), PLAIN, NTLM, CRAM-MD5
+     * @type string
+     */
+    public $AuthType = '';
 
-		return $activities;
-	}
+    /**
+     * SMTP realm.
+     * Used for NTLM auth
+     * @type string
+     */
+    public $Realm = '';
 
-	//--
+    /**
+     * SMTP workstation.
+     * Used for NTLM auth
+     * @type string
+     */
+    public $Workstation = '';
 
-	function select($vs, $t)
-	{
-		foreach( $vs as $v ){
-			if( $v->type == $t ) {
-				return $v;
-			}
-		}
+    /**
+     * The SMTP server timeout in seconds.
+     * @type int
+     */
+    public $Timeout = 10;
 
-		return NULL;
-	}
-
-	function selectGUID( $v )
-	{
-		return (property_exists($v,'id'))?$v->id:"";
-	}
-
-	function selectName( $v )
-	{
-		$s = $this->select($v, 'name');
-		
-		if( ! $s ){
-			$s = $this->select($v, 'nickname');
-			return ($s)?$s->value:"";
-		} else {
-			return ($s)?$s->value->givenName . " " . $s->value->familyName:"";
-		}
-	}
-
-	function selectNickame( $v )
-	{
-		$s = $this->select($v, 'nickname');
-		return ($s)?$s:"";
-	}
-
-	function selectPhoto( $v )
-	{
-		$s = $this->select($v, 'guid');
-		return ($s)?(property_exists($s,'image')):"";
-	}
-
-	function selectEmail( $v )
-	{
-		$s = $this->select($v, 'email');
-		return ($s)?$s->value:"";
-	}
-
-	public function getCurrentUserId()
-	{
-		$parameters = array();
-		$parameters['format']	= 'json';
-
-		$response = $this->api->get( 'me/guid', $parameters );
-
-		if ( ! isset( $response->guid->value ) ){
-			throw new Exception( "User id request failed! {$this->providerId} returned an invalid response." );
-		}
-
-		return $response->guid->value;
-	}
-}
+    /**
+     * SMTP class debug output mode.
+     * Options:
+     *   0: no output
+     *   1: commands
+     *   2: data and commands
+     *   3: as 2 plus connection status
+     *   4: low level data output
+     * @type int
+     * @see SMTP::$do_debug
+     */

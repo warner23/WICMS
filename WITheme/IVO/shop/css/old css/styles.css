@@ -1,0 +1,143 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 1.428571429;
+color: #333333;
+background-color: #ffffff;
+}
+
+
+#preloader 
+{
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #fff;
+z-index: 999999;
+}
+
+#status 
+{
+width: 200px;
+height: 200px;
+color: #fff;
+position: absolute;
+left: 50%;
+top: 50%;
+background-image: url(../img/bx_loader.gif);
+background-repeat: no-repeat;
+background-position: center;
+margin: -100px 0 0 -100px;
+}
+
+.wrapper, .slider {
+background: none repeat scroll 0 0 #FFFFFF;
+margin: 0 auto;
+width: 100%;
+overflow:hidden;
+}
+
+media="screen"
+@media (max-width: 768px)
+.top_head 
+{
+max-height: 100px;
+height: 40px;
+overflow: hidden;
+}
+
+media="screen"
+@media (max-width: 768px)
+.head 
+{
+max-height: 100px;
+height: 40px;
+overflow: hidden;
+}
+
+.top_head 
+{
+max-height: 100px;
+height: 40px;
+overflow: hidden;
+}
+
+
+.head 
+{
+background: #8CCEDF;
+border-bottom: 1px solid #155CC5;
+transition: all 0.17s ease-in-out;
+-moz-transition: all 0.17s ease-in-out;
+-webkit-transition: all 0.17s ease-in-out;
+-o-transition: all 0.17s ease-in-out;
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+-o-backface-visibility: hidden;
+-ms-backface-visibility: hidden;
+backface-visibility: hidden;
+min-height: 40px;
+height: 40px;
+max-height: 100px;
+height: 40px;
+overflow: hidden;
+}
+
+.container 
+{
+margin-right: auto;
+margin-left: auto;
+padding-left: 15px;
+padding-right: 15px;
+position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+.contact
+{
+	width: 50%;
+	float: left;
+	height:40px;
+}
+
+
+
+@media (min-width: 768px)
+media="screen"
+.contact
+{
+	width: 50%;
+	float: left;
+	position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+height:40px;
+}
+
+
+.row 
+{
+margin-left: -15px;
+margin-right: -15px;
+}
+
+.social
+{
+position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+width: 50%;
+float: left;
+}
+
+

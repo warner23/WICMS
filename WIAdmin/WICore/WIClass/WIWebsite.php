@@ -9,18 +9,23 @@ class WIWebsite
     {
          $this->WIdb = WIdb::getInstance();
          $this->Page = new WIPagination();
+         $this->System = new WISystem();
 
     }
 
 
             public function webSite_essentials($column)
     {
-        $sql = "SELECT * FROM `wi_header`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
+        //$sql = "SELECT * FROM `wi_header`";
+        //$query = $this->WIdb->prepare($sql);
+        //$query->execute();
 
-        $res = $query->fetch(PDO::PARAM_STR);
-        return $res[$column];
+        $result = $this->WIdb->select(
+                    "SELECT * FROM `wi_header`"
+                 );
+
+        //$res = $query->fetch(PDO::PARAM_STR);
+        return $result[$column];
     }
 
 
@@ -163,19 +168,15 @@ class WIWebsite
               <div id="nav">
                <ul id="mainMenu" class="mainMenu default">';
 
-        while($res = $query1->fetchAll(PDO::FETCH_ASSOC))
+        while($res = $query1->fetch(PDO::FETCH_ASSOC))
         {    
-            foreach ($res as $part) {
-                echo '<li> <input type="text" id="menu_name_' . $part['id'] . '"  maxlength="88" name="menu_name" placeholder="menu name" class="input-xlarge form-control" value="' . $part['label'] . '"></li>';
-         if($part['parent'] > 0)
+         echo '<li> <input type="text" id="menu_name"  maxlength="88" name="menu_name" placeholder="menu name" class="input-xlarge form-control" value="' . WILang::get('' .$res['lang'] .'') . '"></li>';
+         if($res['parent'] > 0)
          {
-            echo '<li><a href="' . $part['link'] . '">' .$part['label'] .'</a></li>';
+            echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
          }
-            }
-         
         }
-        echo '</ul><a href="javascript:void(0);" onclick="WIMenu.newTab()">
-        <div class="new_tab_icon"></div></a>
+        echo '</ul>
             </div><!-- nav -->   
             <!-- end of menu -->
             </div>';
@@ -207,8 +208,7 @@ class WIWebsite
 
     }
 
-
-     public function MainHeader()
+     public function MainHeader($ele)
     {
         $sql = "SELECT * FROM `wi_header`";
         $query = $this->WIdb->prepare($sql);
@@ -216,50 +216,18 @@ class WIWebsite
 
         while($res = $query->fetch(PDO::PARAM_STR))
         {
-        //  echo ' <header class="header">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <div class="col-lg-3 col-md-3 col-sm-2">
-        //                     <div class="navbar_brand">
-        //          <img class="img-responsive cp" id="headerPic" src="WIMedia/Img/header/'. $res['logo'] . '" style="width:120px; height:120px;">
-        //             <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
-                                
-        //                     </div>
-        //                 </div>
-
-        //         </div> 
-        // </header>';
-
-        echo '<header class="header">
+         echo ' <header class="header">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                             <div class="navbar_brand">
-                 <img class="img-responsive cp" id="headerPic" src="WIMedia/Img/header/'. $res['logo'] . '" style="width:120px; height:120px;">
-                    <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
-                                
+                        <div class="col-lg-3 col-md-3 col-sm-2">
+                            <div class="navbar_brand">
+                            <div id="HeaderImg">
+                 <img class="img-responsive cp" id="headerPic" src="WIMedia/Img/header/'. $res['logo'] . '" style="width:120px; height:120px;"></div>
+                    <button class="btn mediaPic" onclick="WIMedia.changePic(`' . $ele .'`)">Change Picture</button>
+                    </div>
                             </div>
                         </div>
-
-                        <!-- start of header-->
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <div class="col-ms"> 
-                        <div class="zapfino"><h2><b><input type="text" id="content" value="' . $res['header_content'] . '"></b></h2>
-                        <span class="slogan"><input type="text" id="slogan" placeholder="Slogan" value="' . $res['header_slogan'] . '"></span>
-                        </div>
-                        </div><!-- end col-ms-->
-                         <!--end opf header-->
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <div class="controls col-lg-12 col-sm-12 col-md-12 col-xs-12"> 
-                          <button class="btn" id="btn-search"><input type="text" id="button" value="' . $res['button'] . '"></button>
-                        </div><!-- end col-ms-->
-                         <!--end opf header-->
-                        </div>
-
                 </div> 
-                </div>
         </header>';
     	}
 
@@ -277,6 +245,7 @@ class WIWebsite
         {
          echo '<div class="container">
                     <div class="row">
+                    <div id="HeaderImg">
                     <img class="img-responsive cp" id="faviconPic" src="WIMedia/Img/favicon/'. $res['favicon'] . '" style="width:120px; height:120px;">
                     <button class="btn mediaPic" onclick="WIMedia.changefaviconPic()">Change Picture</button>
                         </div>
@@ -287,7 +256,7 @@ class WIWebsite
                            <button id="favicon_settings" onclick="WIMedia.savefaviconPic()" class="btn btn-success">Save</button> 
                         </div>
 
-                      <div class="results" id="results"></div>
+                      <div class="results" id="favresults"></div>
                         </div>
 
                         </div>
@@ -311,10 +280,10 @@ class WIWebsite
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
+
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xl-12">
-                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
+                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved. Powered by WICMS</p>
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -337,9 +306,9 @@ class WIWebsite
             <section class="footer_bottom container-fluid text-center">
             <div class="container">
                 <div class="row">
-                
+
                     <div class="col-md-12 col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
+                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' <input type="text" value= "' . $res['website_name'] . '">-  All rights reserved Powered by WICMS.</p>
                     </div>
 
                 </div>
@@ -356,13 +325,10 @@ class WIWebsite
         $header_id = 1;
 
 
-        $sql = "UPDATE `wi_header` SET logo =:logo, header_content=:content, header_slogan=:slogan, button=:button  WHERE  `header_id` =:header_id";
+        $sql = "UPDATE `wi_header` SET logo =:logo  WHERE  `header_id` =:header_id";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':logo', $header['upload_pic'], PDO::PARAM_STR);
         $query->bindParam(':header_id', $header_id, PDO::PARAM_INT);
-        $query->bindParam(':content', $header['header_content'], PDO::PARAM_INT);
-        $query->bindParam(':slogan', $header['header_slogan'], PDO::PARAM_);
-        $query->bindParam(':button', $header['button'], PDO::PARAM_INT);
         $query->execute();
 
         $result = "complete";
@@ -374,16 +340,22 @@ class WIWebsite
     {
         $footer = $settings['UserData']; 
         $footer_id = 1;
-        echo $footer_id;
+        //echo $footer_id;
 
 
-        $sql = "UPDATE `wi_footer` SET  website_name =:footer_content WHERE  `footer_id` =:footer_id";
+/*        $sql = "UPDATE `wi_footer` SET  website_name =:footer_content WHERE  `footer_id` =:footer_id";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':footer_content', $footer['website_name'], PDO::PARAM_STR);
         $query->bindParam(':footer_id', $footer_id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute();*/
 
 
+        $this->WIdb->update(
+                    "wi_footer", 
+                    $footer, 
+                    "`footer_id` = :footer_id",
+                    array( "id" => $user_id )
+               );
         $result = "complete";
         echo json_encode($result);
     }
@@ -478,23 +450,61 @@ class WIWebsite
                         $("#theme_false-' . $result['id'] . '").removeClass("btn-danger active");
                         $("#theme_true-' . $result['id'] . '").addClass("btn-success active");
                        }
-                        </script>';
+
+                        </script><script type="text/javascript">';
+
+                        foreach ($result as $res ) {
+                            echo '
+                        $("#theme_true-' . $res['id'] . '").click(function(){
+                        $("#WITheme-' . $res['id'] . '").attr("value", "1")
+                        $("#theme_true-' . $res['id'] . '").removeClass("btn-danger active")
+                        $("#theme_false-' . $res['id'] . '").addClass("btn-success active");
+                        WITheme.setTheme(' . $res['id'] . ');
+                    })
+
+                    $("#theme_false-' . $res['id'] . '").click(function(){
+                        $("#WITheme-' . $res['id'] . '").attr("value", "0")
+                        $("#theme_true-' . $res['id'] . '").removeClass("btn-success active")
+                        $("#theme_false-' . $res['id'] . '").addClass("btn-danger active");
+                        WITheme.setTheme(' . $res['id'] . ');
+                    })
+
+
+                    
+                        ';
+                        }
+                        echo '</script>';
         }
         echo '</ul>';
         
     }
 
 
+    public function setTheme($id, $val)
+    {
+         $sql2 = "UPDATE `wi_theme` SET  `in_use` =:val WHERE  `id` =:current_id";
+        $query2 = $this->WIdb->prepare($sql2);
+        $query2->bindParam(':current_id', $id, PDO::PARAM_INT);
+        $query2->bindParam(':val', $val, PDO::PARAM_INT);
+        $query2->execute();
+        $result = "success";
+        echo json_encode($result);
+
+    }
+
+
     public function activateThemes($id)
     {
         $in_use = "1";
-        $sql = "SELECT * FROM `wi_theme` WHERE `in_use`=:in_use";
 
-        $query = $this->WIdb->prepare($sql);
-        $query->bindParam(':in_use', $in_use, PDO::PARAM_INT);
-        $query->execute();
+        $result = $this->WIdb->select(
+                    "SELECT * FROM `wi_theme`
+                     WHERE `in_use` = :in_use",
+                     array(
+                       "in_use" => $in_use
+                     )
+                  );
 
-        $result = $query->fetch(PDO::FETCH_ASSOC);
         $currentActiveTheme = $result['id'];
 
         $sql1 = "UPDATE `wi_theme` SET  `in_use` = '1' WHERE  `id` =:id"; 
@@ -506,6 +516,47 @@ class WIWebsite
         $query2 = $this->WIdb->prepare($sql2);
         $query2->bindParam(':current_id', $currentActiveTheme, PDO::PARAM_INT);
         $query2->execute();
+
+        $result = "success";
+        echo json_encode($result);
+    }
+
+
+        public function Theme($name)
+    {
+        // copy all theme files, and use the name as the name
+          // echo dirname(dirname(dirname(dirname(__FILE__)))) .'/WITheme/' . $name;
+            $source = dirname(dirname(dirname(dirname(__FILE__)))) .'/WITheme/WICMS';
+            $dest = dirname(dirname(dirname(dirname(__FILE__)))) . '/WITheme/' . $name;
+            $check = dirname(dirname(dirname(dirname(__FILE__)))) . '/WITheme/'. $name .'/';
+
+
+            if(!file_exists($check)){
+              $this->System->full_copy($source , $dest);
+          }
+
+          $dest = "WITheme/$name/";
+          $in_use = 0;
+
+                  $result = $this->WIdb->select(
+                    "SELECT * FROM `wi_theme`
+                     WHERE `theme` = :name",
+                     array(
+                       "name" => $name
+                     )
+                  );
+
+          if(count($result) > 0){
+           
+          }else{
+             $this->WIdb->insert('wi_theme', array(
+            "theme"  => strip_tags($name),
+            "destination" => $dest,
+            "in_use" => $in_use
+        )); 
+          }
+
+          
 
         $result = "success";
         echo json_encode($result);
@@ -614,20 +665,6 @@ class WIWebsite
 
     }
 
-    public function updateMenu($settings)
-    {
-        $menu = $settings['UserData']; 
-
-
-        $this->WIdb->insert('wi_menu', array(
-            "label"     => $menu['menu_name'],
-            "link"  => $menu['menu_link']. '.php',
-        )); 
-
-        $result = "complete";
-        echo json_encode($result);
-    }
-
 
     public function EditMeta($id, $name, $content, $auth)
     {
@@ -651,6 +688,7 @@ class WIWebsite
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
+
 
         $result = "complete";
         echo json_encode($result);
@@ -678,7 +716,7 @@ class WIWebsite
                                 
                             </div>
 
-                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WICSS.showCssModal(' . $result['id'].')">Edit</a></div>
+                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WICSS.editCode(`' . $result['href'].'`)">Edit</a></div>
 
                                 <div class="col-sm-1 col-md-1 col-lg-1 glyphicon glyphicon-trash"><a href="#" onclick="WICSS.CssDelete(' . $result['id'].')">Delete</a></div>
                             </div>';
@@ -742,17 +780,21 @@ class WIWebsite
         $query->bindParam(':id',  $id, PDO::PARAM_INT);
         $query->execute();
 
+
         echo "Successfully updated css";
 
     }
 
     public function DeleteCss($id)
     {
-        $sql = "DELETE FROM `wi_css` WHERE `id` =:id";
+        /*$sql = "DELETE FROM `wi_css` WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute();*/
+
+
+        $this->WIdb->delete("wi_css", "id = :id", array( "id" => $id ));
 
         $result = "complete";
         echo json_encode($result);
@@ -772,7 +814,7 @@ class WIWebsite
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' . $result['src'].'</div>
                             </div>
                     
-                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="#" onclick="WIJS.showJsModal(' . $result['id'].')">Edit</a></div>
+                                <div class="col-sm-1 col-md-1 col-lg-1"><a href="javascript:void(0);" onclick="WIJS.editCode(`' . $result['src'].'`)">Edit</a></div>
 
                                 <div class="col-sm-1 col-md-1 col-lg-1 glyphicon glyphicon-trash"><a href="#" onclick="WIJS.JsDelete(' . $result['id'].')">Delete</a></div>
                             </div>';
@@ -829,12 +871,21 @@ class WIWebsite
         public function EditJs($id, $js)
     {
 
-        $sql = "UPDATE `wi_scripts` SET `src`=:js WHERE `id` =:id";
+/*        $sql = "UPDATE `wi_scripts` SET `src`=:js WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':js',  $js, PDO::PARAM_STR);
         $query->bindParam(':id',  $id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute();*/
+
+
+        $this->WIdb->update(
+                    "wi_scripts", 
+                    $js, 
+                    "`src` = :js",
+                    array( "id" => $id )
+               );
+
 
         echo "Successfully updated css";
 
@@ -842,23 +893,19 @@ class WIWebsite
 
     public function DeleteJs($id)
     {
-        $sql = "DELETE FROM `wi_scripts` WHERE `id` =:id";
+/*        $sql = "DELETE FROM `wi_scripts` WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute();*/
+
+
+        $this->WIdb->delete("wi_scripts", "id = :id", array( "id" => $id ));
 
         $result = "complete";
         echo json_encode($result);
     }
 
-
-    public function NewPage($name)
-    {
-
-
-        
-    }
 
     public function viewLang()
     {
@@ -893,6 +940,7 @@ class WIWebsite
 
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_trans`");
+        $onclick = "WIWebsite.trans();";
         $rows = count($result);
         //echo $rows;
         //break records into pages
@@ -937,11 +985,12 @@ class WIWebsite
         echo '</li>';
     }
     echo '</ul>';
+
     // echo "per page" . $item_per_page;
     // echo " page no" . $page_number;
     // echo " rows" . $rows;
     // echo " total page" . $total_pages;
-    $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages);
+    $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages, $onclick);
     //print_r($Pagination);
 
 
@@ -957,9 +1006,14 @@ class WIWebsite
 
             public function Styling()
     {
-
+/*
          $query = $this->WIdb->prepare('SELECT * FROM `wi_css`');
-        $query->execute();
+        $query->execute();*/
+
+         $res = $this->WIdb->select(
+                    "SELECT * FROM `wi_css`"
+                 );
+
 
         while($res = $query->fetch(PDO::FETCH_ASSOC))
         {
@@ -969,8 +1023,13 @@ class WIWebsite
 
     public function Scripts()
     {
-                 $query = $this->WIdb->prepare('SELECT * FROM `wi_scripts`');
-        $query->execute();
+       /*          $query = $this->WIdb->prepare('SELECT * FROM `wi_scripts`');
+        $query->execute();*/
+
+        $res = $this->WIdb->select(
+                    "SELECT * FROM `wi_scripts`"
+                 );
+
 
         while($res = $query->fetch(PDO::FETCH_ASSOC))
         {
@@ -1025,12 +1084,6 @@ class WIWebsite
 
      public function saveeditLang($name, $code, $flag, $id)
     {
-
-        $sql ="UPDATE  `wi_lang` SET  `lang` = 'code', `name` =:name WHERE  `wi_lang`.`id`=:id";
-        $query = $this->WIdb->prepare($sql);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->bindParam(':name', $name, PDO::PARAM_STR);
-
 
          $this->WIdb->insert(' wi_lang', array(
             "name"     => $name,
@@ -1240,6 +1293,113 @@ class WIWebsite
             echo json_encode($result);
     }
 }
+
+
+        public function href($href)
+        {
+             //echo dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/'. self::gettheme() . '' . $href;
+            include dirname(dirname(dirname(dirname(__FILE__))))  . '/'.  self::gettheme() . '' . $href;
+        }
+
+        public function gettheme()
+        {
+     $in_use = 1;
+      $sql ="SELECT * FROM `wi_theme` WHERE `in_use`=:in_use";
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':in_use', $in_use, PDO::PARAM_INT);
+      $query->execute();
+
+      $result = $query->fetch();
+      $theme = $result['destination'];
+
+      return $theme;
+        }
+
+
+    public function newCss($styling, $href)
+    {
+       
+        $new_css =  $_POST['styling']['UserData']['css'];
+         $NewPage = fopen(dirname(dirname(dirname(dirname(__FILE__))))  . '/'.  self::gettheme() . '' . $href, "w") or die("Unable to open file!");
+
+      //$File = $styling;
+
+
+     
+      fwrite($NewPage, $new_css);
+      fclose($NewPage);
+
+      $msg = "Successfully created Module";
+
+    $result = array(
+                "status" => "success",
+                "msg"    => $msg
+            );
+            
+            echo json_encode($result);
+    }
+
+
+        public function newJs($script, $href)
+    {
+       
+        $new_js =  $_POST['script']['UserData']['js'];
+         $NewPage = fopen(dirname(dirname(dirname(dirname(__FILE__))))  . '/'.  self::gettheme() . '' . $href, "w") or die("Unable to open file!");
+
+      //$File = $styling;
+
+
+     
+      fwrite($NewPage, $new_js);
+      fclose($NewPage);
+
+      $msg = "Successfully created Module";
+
+    $result = array(
+                "status" => "success",
+                "msg"    => $msg
+            );
+            
+            echo json_encode($result);
+    }
+
+
+       public function pageModPower($page, $column)
+    {
+    //echo "col" . $column;
+
+            $result[$column] = $this->WIdb->selectColumn(
+                "SELECT * FROM `wi_page` WHERE `name`=:page",
+                 array(
+                   "page" => $page
+                 ), $column
+              );
+           //print_r($result[$column]);
+         if(count($result[$column] < 1)){
+            return $result[$column];
+         }else{
+            return $result[$column];
+         }
+
+    }
+
+        public function PageMod($page, $column)
+    {
+        //echo "col" . $column;
+
+                $result = $this->WIdb->selectColumn(
+                    "SELECT * FROM `wi_page` WHERE `name`=:page",
+                     array(
+                       "page" => $page
+                     ), $column
+                  );
+               // print_r($result[$column]);
+         if(count($result < 1)){
+            return $column;
+         }else{
+            return $column;
+         }
+    }
     
 
 

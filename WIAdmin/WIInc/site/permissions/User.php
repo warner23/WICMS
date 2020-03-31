@@ -9,7 +9,7 @@
                            
                            <label>Edit Site</label>
                     <div class="btn-group" id="session_secure_only" data-toggle="buttons-radio">
-                        <input type="hidden" name="edit_site" id="edit_site" class="btn-group-value" value="<?php echo $site->Website_Info('edit_site')?>"/>
+                        <input type="hidden" name="edit_site" id="edit_site" class="btn-group-value" value=""/>
                         <button type="button" id="edit_site_true" name="edit_site" value="true"  class="btn">yes</button>
                         <button type="button" id="edit_site_false" name="edit_site" value="false" class="btn btn-danger activewhens" >No</button>
                     </div>

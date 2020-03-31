@@ -1,317 +1,429 @@
 <?php
-/*
-Plugin Name: Image 
-Plugin URI: #
-Description: Image module for minimax
-Author: Shaon
-Version: 1.6
-Author URI: #
+
+/**
+* 
 */
-
-class MiniMax_Image extends WP_Widget {
-    function __construct() {
-        parent::WP_Widget( 
-                    'MiniMax_Image',                        /* Base ID */
-                    'Image',                                /* Name */ 
-                    array( 'description' => 'Image Widget' )/* Args */ 
-                );
-    }
-
-    /** @see WP_Widget::widget */
-    function widget( $args, $instance ) {
-         wp_enqueue_style("minimax-image",base_theme_url.'/modules/image/image.css');
-         $style = $instance['style'] ;
-         $fn = "image_$style";
-         $this->{$fn}($args, $instance);
-    }
-
-    function preview($instance){
-        extract($instance);
-        
-        $imgpath = str_replace(site_url('/'), ABSPATH, $url);
-        $thumbpath = minimax_dynamic_thumb($imgpath, array(50, 50));
-        $thumburl = str_replace(ABSPATH, site_url('/'), $thumbpath);
-                  
-        echo "<div class='widget'>";
-        ?>
-
-        <div class="media">
-            <a href="#" class="pull-left thumbnail" style="margin-right: 5px !important;">
-                <img class="imgbr" src="<?php echo $thumburl; ?>" title="<?php echo $title; ?>" alt="<?php echo $alt; ?>">
-            </a>
-            <div class="meida-body" style="padding-top:5px !important;">
-                <h3 class='media-heading'><i class="icon icon-th"></i> <?php echo $title; ?></h3>
-                <i class="icon icon-link"></i> <?php echo $link; ?><br/>
-                <i class='icon icon-resize-horizontal'></i> Width: <?php echo $imgw;?>
-                <i class='icon icon-resize-vertical'></i> Height: <?php echo $imgh;?> <br/>
-                <i class='icon icon-eye-open'></i> Style: <?php echo $style;?>
-            </div>
-        </div>
-        <div style="clear: both;"></div>
-
-        <?php
-        echo "</div>";
-    }
+class image 
+{
     
-    function image_2l($args, $instance){
-        extract( $args );       
-        extract($instance);             
-        $id = uniqid();
-        if($imgw && $imgh){
-            $imgpath = str_replace(site_url('/'), ABSPATH, $url);
-            $thumbpath = minimax_dynamic_thumb($imgpath, array($imgw, $imgh));
-            $thumburl = str_replace(ABSPATH, site_url('/'), $thumbpath);
-        }
-        else
-            $thumburl = $url;
-        
-        echo $before_widget;
-        ?>
-        <div class="media">
-            <div class="pull-left">
-                <?php if($link !='') echo '<a href="'.$link.'">'; ?>
-                <img class="img-responsive img-<?php echo $bootstrap_style;?>" src="<?php echo $thumburl; ?>" title="<?php echo $title; ?>" alt="No Image">
-                <?php if($link !='') echo '</a>'; ?>
-            </div>
-            <div class="media-body" id="mx-img-txt-<?php echo $id; ?>">
-            <?php
-                echo '<'.$titleh.'>';
-                    if($link !='') echo '<a href="'.$link.'">'; 
-                        echo $title;
-                    if($link !='') echo '</a>'; 
-                echo '</'.$titleh.'>';        
-                echo '<p>'.$desc.'</p>'; ?>         
-            </div>
-        </div> 
-         
-        <?php
-        echo $after_widget;         
-    }
-    
-    function image_2r($args, $instance){
-        extract( $args );       
-        extract($instance);             
-        $id = uniqid();
-        if($imgw && $imgh){
-            $imgpath = str_replace(site_url('/'), ABSPATH, $url);
-            $thumbpath = minimax_dynamic_thumb($imgpath, array($imgw, $imgh));
-            $thumburl = str_replace(ABSPATH, site_url('/'), $thumbpath);
-        }
-        else
-            $thumburl = $url;
-        
-        echo $before_widget; 
-        ?>
-        <div class="media">
-            <div class="pull-right">
-                <?php if($link !='') echo '<a href="'.$link.'">'; ?>
-                    <img class="img-responsive img-<?php echo $bootstrap_style;?>" src="<?php echo $thumburl;?>" title="<?php echo $title; ?>" alt="No Image">
-                <?php if($link !='') echo '</a>'; ?>
-            </div>
-        
-            <div  class="media-body" id="mx-img-txt-<?php echo $id; ?>">
-                <?php 
-                    echo '<'.$titleh.'>';
-                    if($link !='') echo '<a href="'.$link.'">'; 
-                        echo $title;
-                    if($link !='') echo '</a>'; 
-                    echo '</'.$titleh.'>';
-                    echo '<p>'.$desc.'</p>';
-                ?>         
-            </div>
-        </div>
-        <?php
-        echo $after_widget;         
-    }
-    
-    function image_1t($args, $instance){
-        extract( $args );       
-        extract($instance);             
-        $id = uniqid();
-        if($imgw && $imgh){
-            $imgpath = str_replace(site_url('/'), ABSPATH, $url);
-            $thumbpath = minimax_dynamic_thumb($imgpath, array($imgw, $imgh));
-            $thumburl = str_replace(ABSPATH, site_url('/'), $thumbpath);
-        }
-        else
-            $thumburl = $url;
-        
-        echo $before_widget;
-        ?>
-           
-        <?php if($link !='') echo '<a href="'.$link.'">'; ?>
-            <img class="img-responsive img-<?php echo $bootstrap_style;?>" src="<?php echo $thumburl; ?>" title="<?php echo $title; ?>" alt="No Image">
-        <?php if($link !='') echo '</a>';         
-        
-        echo '<'.$titleh.'>';
-            if($link !='') echo '<a href="'.$link.'">'; 
-                echo $title;
-            if($link !='') echo '</a>'; 
-        echo '</'.$titleh.'>';
-        echo '<p>'.$desc.'</p>';               
-        
-        echo $after_widget;         
-    }
-    
-    function image_1l($args, $instance){
-        extract( $args );       
-        extract($instance);             
-        $id = uniqid();
-        if($imgw && $imgh){
-            $imgpath = str_replace(site_url('/'), ABSPATH, $url);
-            $thumbpath = minimax_dynamic_thumb($imgpath, array($imgw, $imgh));
-            $thumburl = str_replace(ABSPATH, site_url('/'), $thumbpath);
-        }
-        else
-            $thumburl = $url;
-        
-        echo $before_widget; 
-        ?>
-        <?php 
-        echo '<'.$titleh.'>';
-            if($link !='') echo '<a href="'.$link.'">'; 
-                echo $title;
-            if($link !='') echo '</a>'; 
-        echo '</'.$titleh.'>';
-        ?> 
-            <div class="pull-left" style="margin-right: 10px; margin-top: 5px;">
-                <?php if($link !='') echo '<a href="'.$link.'">'; ?>
-                    <img class="img-responsive img-<?php echo $bootstrap_style;?>" src="<?php echo $thumburl; ?>" title="<?php echo $title; ?>" alt="No Image">
-                <?php if($link !='') echo '</a>'; ?>
-            </div>
-        <?php echo '<p>'.$desc.'</p>';
-        
-        echo $after_widget;         
-    }
-    
-    function image_1r($args, $instance){
-        extract( $args );       
-        extract($instance);             
-        $id = uniqid();
-        if($imgw && $imgh){
-            $imgpath = str_replace(site_url('/'), ABSPATH, $url);
-            $thumbpath = minimax_dynamic_thumb($imgpath, array($imgw, $imgh));
-            $thumburl = str_replace(ABSPATH, site_url('/'), $thumbpath);
-        }
-        else
-            $thumburl = $url;
-        
-        echo $before_widget;
-        ?>
-        <?php 
-        echo '<'.$titleh.'>';
-            if($link !='') echo '<a href="'.$link.'">'; 
-                echo $title;
-            if($link !='') echo '</a>'; 
-        echo '</'.$titleh.'>';        
-        ?>
-            <div class="pull-right" style="margin-left: 10px;margin-top: 5px;">
-                <?php if($link !='') echo '<a href="'.$link.'">'; ?>
-                <img class="img-responsive img-<?php echo $bootstrap_style;?>" src="<?php echo $thumburl; ?>" title="<?php echo $title; ?>" alt="No Image">
-                <?php if($link !='') echo '</a>'; ?>
-            </div>
-        <?php echo '<p>'.$desc.'</p>';
-        
-        echo $after_widget;         
-    }
-    
+  function __construct()
+  {
+    $this->WIdb = WIdb::getInstance();
+  }
 
-    /** @see WP_Widget::update */
-    function update( $new_instance, $old_instance ) {
-        $instance = $new_instance;       
-        return $instance;
+  public function Install($element_name)
+  {
+    $author = "Jules Warner";
+    $type = "Common Fields";
+    $font = "wi_" . $element_name;
+    $power = "power_on";
+    $this->WIdb->insert('wi_elements', array(
+            "element_name" => $element_name,
+            "element_author" => $author,
+            "element_type" => $type,
+            "element_font" => $font,
+            "element_powered" => $power
+        )); 
+  }
+
+    public function createMod()
+    {
+        echo '<img src="" class"">';
     }
 
-    /** @see WP_Widget::form */
-    function form( $instance ) {
-            if ( $instance ) {
-                extract($instance);
-            }
-            else{
-                $imgw = 200;
-                $imgh = 200;
-            }
-        ?>
-        
-        <div id="tabpane">
- 
-        <div class="row">    
-            <div class="col-md-8">
-                <p>
-                    <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
-                    <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
-                </p>
-            </div>
-            <div class="col-md-4">
-                <p>
-                    <label for="<?php echo $this->get_field_id('titleh'); ?>"><?php _e('Title Tag:'); ?></label> 
-                    <select class="widefat" id="<?php echo $this->get_field_id('titleh'); ?>" name="<?php echo $this->get_field_name('titleh'); ?>">
-                    <option value="h1">H1</option>
-                    <option value="h2" <?php if($titleh=='h2') echo 'selected=selected'; ?> >H2</option>
-                    <option value="h3" <?php if($titleh=='h3') echo 'selected=selected'; ?> >H3</option>
-                    <option value="h4" <?php if($titleh=='h4') echo 'selected=selected'; ?> >H4</option>
-                    </select>
-                </p>
-            </div>
-        </div>
-        <p>
-            <label for="<?php echo $this->get_field_id('desc'); ?>"><?php _e('Description:'); ?></label> 
-            <textarea class="widefat" id="<?php echo $this->get_field_id('desc'); ?>" name="<?php echo $this->get_field_name('desc'); ?>" ><?php echo $desc; ?></textarea>
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Image URL:'); ?></label> <Br/>
-            <input class="widefat" id="<?php echo $this->get_field_id('url'); ?>" name="<?php echo $this->get_field_name('url'); ?>" type="text" value="<?php echo $url; ?>" />
-            <br><br><input type="button" style="font-size: 10px;" value="Browse" onclick="mediaupload('<?php echo $this->get_field_id('url'); ?>')" />
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link URL:'); ?></label> 
-            <input class="widefat" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="text" value="<?php echo $link; ?>" />
-        </p>
-        <div class="row">    
-            <div class="col-md-6">
-                <p>
-                    <label><?php _e('Image Width :'); ?></label>
-                    <input placeholder="i.e. 300" class="widefat" id="<?php echo $this->get_field_id('imgw'); ?>" name="<?php echo $this->get_field_name('imgw'); ?>" type="text" value="<?php echo $imgw; ?>" />
-                </p>
-            </div>
-            <div class="col-md-6">
-                <p>
-                    <label><?php _e('Image Height :'); ?></label>
-                    <input placeholder="i.e. 300" class="widefat" id="<?php echo $this->get_field_id('imgh'); ?>" name="<?php echo $this->get_field_name('imgh'); ?>" type="text" value="<?php echo $imgh; ?>" />
-                </p>
-            </div>
-        </div>
-        <div class="row">    
-            <div class="col-md-6">
-                <p>
-                    <label><?php _e('Template :'); ?></label> <br/>
-                    <select class="widefat" id="<?php echo $this->get_field_id('style'); ?>" name="<?php echo $this->get_field_name('style'); ?>" type="text">
-                    <option value="2l" <?php if($style=='2l') echo 'selected=selected'; ?> > Two Column, Image Left </option>
-                    <option value="1t" <?php if($style=='1t') echo 'selected=selected'; ?> > One Column, Image Top </option>
-                    <option value="2r" <?php if($style=='2r') echo 'selected=selected'; ?> > Two Column, Image Right </option>
-                    <option value="1l" <?php if($style=='1l') echo 'selected=selected'; ?> > One Column, Image Left </option>
-                    <option value="1r" <?php if($style=='1r') echo 'selected=selected'; ?> > One Column, Image Right </option>
-                    </select>
-                </p>
-            </div>
-            <div class="col-md-6">
-                <p>
-                    <label><?php _e('Image Style:'); ?></label> <br/>
-                    <select class="widefat" id="<?php echo $this->get_field_id('bootstrap_style'); ?>" name="<?php echo $this->get_field_name('bootstrap_style'); ?>" type="text">
-                    <option value="rounded" <?php if($bootstrap_style=='rounded') echo 'selected=selected'; ?> >Rounded</option>
-                    <option value="circle" <?php if($bootstrap_style=='circle') echo 'selected=selected'; ?> >Circle </option>
-                    <option value="thumbnail" <?php if($bootstrap_style=='thumbnail') echo 'selected=selected'; ?> >Thumbnail </option>
-                    </select>
-                </p>
-            </div>
-        </div>
-        
-        </div>
-   
-        <?php 
+            public function editMod()
+    {
+        echo '<div id="remove">
+      <a href="#">
+      <button id="delete" onclick="WIMod.delete(event);">Delete</button>
+      </a>
+       <div id="dialog-confirm" title="Remove Module?" class="hide">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;">
+  </span>Are you sure?</p>
+  <p> This will remove the module and any unsaved data.</p>
+  <span><button class="btn btn-danger" onclick="WIMod.remove(event);">Remove</button> <button class="btn" onclick="WIMod.close(event);">Close</button></span>
+</div>
+
+        <button><input text="text" placeholder="button" id="button"></button></div>';
     }
 
-} // class Foo_Widget
+ public function mod_name()
+  {
+    echo '<li class="stageFields fieldTypeButton firstField LastField" data-hover-tag="Field" id="field" style="display:none;">
+       <li class="columnEdit groupConfig"></li>
+      <li class="resizeXHandle"></li>
+      <ul class="stageFields fieldTypeButton firstField LastField" data-hover-tag="Field" id="buttonFields" style="display:none;">
+      </ul>
+      <div class="fieldActions groupActions">';
+      self::RgroupActions();
+      echo '</div>
+      <div class="fieldEdit slideToggle panelsWrap panelCount" style="display:none; position:relative; opacity:1; height:auto;">';
+      self::fieldEdit();
+      echo '</div>
+      <div class="panels" style="height:116.313px;">
+      <div class="Fpanel attrsPanels">';
+      self::attrsPanels();
+      echo '</div>
+      </div>
+      <div class="fieldPreview">';
+      self::feature();
+      echo '</div>
+     </li>
+     <script>
+     $(".right").mouseover(function(){
+  $("#right").css("height", "70px");
+  $(".columnActions").css("height", "80px");
+  $(".ritemhandle").css("display", "none");
+  });
+
+  $("#right").mouseleave(function(){
+  $("#right").css("height", "24px");
+  $(".columnActions").css("height", "24px");
+  $(".ritemhandle").css("display", "block");
+});
 
 
-add_action( 'widgets_init', create_function( '', 'register_widget("minimax_image");' ) );
+
+  $(".left").mouseover(function(){
+
+            
+            
+  $(".drop").droppable({
+                tolerance: "pointer",
+                greedy: true,
+               drop: function(e, ui) {
+                const div = $(this).attr("id");
+                const mod_name = ui.draggable.attr("id");
+                console.log(div);
+                console.log(mod_name);
+                $("#tempStage").remove();
+                WIMod.dropping(mod_name, div);
+                
+                $( this ).css("border", "none");
+               },
+               over: function (e, ui) {
+                console.log( $(this).attr("id") );
+                  $( this ).css("border", "2px solid #0B85A1");
+                
+                $("ul.stage").append(`<li class="stageRow" data-hover-tag="Row" data-editing-hover-tag="Editing Row" id="tempStage"></li>`); 
+               },
+               out: function (e, ui) {
+                  $("#tempStage").remove();
+                  $( this ).css("border", "none");
+               }
+
+               
+            });
+
+     </script>
+
+
+
+    </li>';
+  }
+
+  public function LgroupActions()
+  {
+    echo '<div class="lactionBtnWrapper">
+    <button class="btn litemhandle" type="button" id="lgab">
+    <i class="fas fa-grip-vertical left"></i>
+    </button>
+    <button class="btn item_editToggle" onclick="WIPageBuilder.edit();" type="button">
+    <i class="fas fa-edit"></i>    
+    </button>
+    <button class="btn item_clone" onclick="WIPageBuilder.clone();" type="button">
+    <i class="far fa-copy"></i>
+    </button>
+    <button class="btn item_remove" onclick="WIPageBuilder.delete();" type="button">
+    <i class="fas fa-times"></i> 
+    </button>
+    </div>';
+  }
+
+    public function MgroupActions()
+  {
+    echo '<div class="mactionBtnWrapper">
+    <button class="btn mitemhandle" type="button" id="mgab">
+    <i class="fas fa-grip-vertical middle"></i>
+    </button>
+    <button class="btn item_editToggle" type="button">
+    <i class="fas fa-edit"></i>    
+    </button>
+    <button class="btn item_clone" type="button">
+    <i class="far fa-copy"></i>
+    </button>
+    <button class="btn item_remove" type="button">
+    <i class="fas fa-times"></i> 
+    </button>
+    </div>';
+  }
+
+    public function RgroupActions()
+  {
+    echo '<div class="ractionBtnWrapper">
+    <button class="btn ritemhandle" type="button" id="rgab">
+    <i class="fas fa-grip-vertical right"></i>
+    </button>
+    <button class="btn item_editToggle" type="button">
+    <i class="fas fa-edit"></i>    
+    </button>
+    <button class="btn item_clone" type="button">
+    <i class="far fa-copy"></i>
+    </button>
+    <button class="btn item_remove" type="button">
+    <i class="fas fa-times"></i> 
+    </button>
+    </div>';
+  }
+
+
+  public function feature()
+  {
+    echo '<div class="fBtnGroup" data-mod-tag="image">
+    <img src="#">
+        </div>';
+  }
+
+  public function groupConfig()
+  {
+    echo '<div class="fCheck">
+        <label for="inputting">
+          <input name="inputting" type="checkbox" aria=label="rowSeetingsInputGroupAria" id="inputGroup">
+          <span class="checkable">Repeatable Region</span>
+          </label>
+        </div>
+        <hr>
+      <div class="FFieldGroup">
+      <label>Wrap row in a <fieldset> tag</label>
+      <div class="inputGroup">
+      <span class="inputGroupAddon">
+      <input name="checkboxX" type="checkbox" aria-label="wrap Row in Fieldset" id="fieldset">
+      </span>
+      <input name="legend" type="text" aria-label="Legend for fieldset" placeholder="legend" id="legend">
+      </div>
+      </div>
+      <hr>
+      <label>Define Column widths</label>
+      <div class="FFieldGroupNew row">
+      <label class="col-sm-4 form-control-label">Layout Preset</label>
+      <div class="col-sm-8">
+
+      <span class="help-block">
+                  xs (for phones - screens less than 768px wide)
+sm (for tablets - screens equal to or greater than 768px wide)
+md (for small laptops - screens equal to or greater than 992px wide)
+lg (for laptops and desktops - screens equal to or greater than 1200px wide)          
+                        </span>
+
+        <select name="column" aria-label="Define a column layout" class="columnPreset" id="columnPreset">
+        <option value="xs-12" label="col-xs-12 (100%)" selected="true">100%</option>
+        <option value="xs-10" label="col-xs-10 (90%)" selected="true">col-xs-10 (90%)</option>
+        <option value="xs-8" label="col-xs-8 (80%)" selected="true">col-xs-8 (80%)</option>
+        <option value="xs-7" label="col-xs-7 (65%)" selected="true">col-xs-7 (65%)</option>
+        <option value="xs-6" label="col-xs-6 (50%)" selected="true">col-xs-6 (50%)</option>
+        <option value="xs-5" label="col-xs-5 (40%)" selected="true">col-xs-5 (40%)</option>
+        <option value="xs-4" label="col-xs-4 (30%)" selected="true">col-xs-4 (30%)</option>
+        <option value="xs-3" label="col-xs-3 (15%)" selected="true">col-xs-3 (15%)</option>
+        <option value="xs-2" label="col-xs-2 (10%)" selected="true">col-xs-2 (10%)</option>
+        <option value="xs-1" label="col-xs-1 (5%)" selected="true">col-xs-1 (5%)</option>
+
+        <option value="sm-12" label="col-sm-12 (100%)" selected="true">col-sm-12 (100%)</option>
+        <option value="sm-10" label="col-sm-10 (90%)" selected="true">col-sm-10 (90%)</option>
+        <option value="sm-8" label="col-sm-8 (80%)" selected="true">col-sm-8 (80%)</option>
+        <option value="sm-7" label="col-sm-7 (65%)" selected="true">col-sm-7 (65%)</option>
+        <option value="sm-6" label="col-sm-6 (50%)" selected="true">col-sm-6 (50%)</option>
+        <option value="sm-5" label="col-sm-5 (40%)" selected="true">col-sm-5 (40%)</option>
+        <option value="sm-4" label="col-sm-4 (30%)" selected="true">col-sm-4 (30%)</option>
+        <option value="sm-3" label="col-sm-3 (15%)" selected="true">col-sm-3 (15%)</option>
+        <option value="sm-2" label="col-sm-2 (10%)" selected="true">col-sm-2 (10%)</option>
+        <option value="sm-1" label="col-sm-1 (5%)" selected="true">col-sm-1 (5%)</option>
+
+        <option value="md-12" label="col-md-12 (100%)" selected="true">col-md-12 (100%)</option>
+        <option value="md-10" label="col-md-10 (90%)" selected="true">col-md-10 (90%)</option>
+        <option value="md-8" label="col-md-8 (80%)" selected="true">col-md-8 (80%)</option>
+        <option value="md-7" label="col-md-7 (65%)" selected="true">col-md-7 (65%)</option>
+        <option value="md-6" label="col-md-6 (50%)" selected="true">col-md-6 (50%)</option>
+        <option value="md-5" label="col-md-5 (40%)" selected="true">col-md-5 (40%)</option>
+        <option value="md-4" label="col-md-4 (30%)" selected="true">col-md-4 (30%)</option>
+        <option value="md-3" label="col-md-3 (15%)" selected="true">col-md-3 (15%)</option>
+        <option value="md-2" label="col-md-2 (10%)" selected="true">col-md-2 (10%)</option>
+        <option value="md-1" label="col-md-1 (5%)" selected="true">col-md-1 (5%)</option>
+
+        <option value="lg-12" label="col-lg-12 (100%)" selected="true">col-lg-12 (100%)</option>
+        <option value="lg-10" label="col-lg-10 (90%)" selected="true">col-lg-10 (90%)</option>
+        <option value="lg-8" label="col-lg-8 (80%)" selected="true">col-lg-8 (80%)</option>
+        <option value="lg-7" label="col-lg-7 (65%)" selected="true">col-lg-7 (65%)</option>
+        <option value="lg-6" label="col-lg-6 (50%)" selected="true">col-lg-6 (50%)</option>
+        <option value="lg-5" label="col-lg-5 (40%)" selected="true">col-lg-5 (40%)</option>
+        <option value="lg-4" label="col-lg-4 (30%)" selected="true">col-lg-4 (30%)</option>
+        <option value="lg-3" label="col-lg-3 (15%)" selected="true">col-lg-3 (15%)</option>
+        <option value="lg-2" label="col-lg-2 (10%)" selected="true">col-lg-2 (10%)</option>
+        <option value="lg-1" label="col-lg-1 (5%)" selected="true">col-lg-1 (5%)</option>
+        </select>
+        </div>
+      </div>
+      <script>
+      $(`#columnPreset`).on(`change`, function() {
+            // alert( this.value );
+    $("#columnPreset").val(this.value).prop("selected", "selected");                      
+    })
+    </script>';
+  }
+
+   public function attrsPanels()
+  {
+    echo '<div class="Fpanel attrsPanels">
+      <div class="fPanelWrap">
+      <ul class="fieldEditGroup fieldEditAttrs">
+      <li class="attrsClassNameWrap propWrapper controlCount="1" id="PanelWrapers">
+      <div class="propControls">
+      <button type="button" class="propRemove propControls"></button>
+      </div>
+      <div class="propInputs">
+      <div class="fieldGroup">
+      <label for="className">Class</label>
+      <select name="className" id="className">
+        <option value="fBtnGroup">Grouped</option>
+        <option value="FieldGroup">Un-Grouped</option>
+        </select>
+      </div>
+      </div>
+      </li>
+      </ul>
+      <div class="panelActionButtons">
+      <button type="button" class="addAttrs">+ Atrribute</button>
+      </div>
+      </div>
+      <div class="Fpanel optionsPanel">
+      <div class="FpanelWrap">
+        <ul class="fieldEditGroup fieldEditOptions">
+          <li class="OptionsXWrapper propWrapper controlCount_2" id="propCont">
+          <div class="propControls">
+          <button type="button" class="propOrder propControls"></button>
+          <button type="button" class="propOrder propControls"></button>
+          </div>
+          <div class="propInput FinputGroup">
+          <input name="button" type="text" value="button" placeholder="label" id="buttons">
+          <select name="button" id="buttonz">
+          <option value="button" selected="true">appearing_button</option>
+          <option value="reset">Reset</option>
+          <option value="submit">Submit</option>
+          </select>
+          <select name="options" id="optional">
+          <option selected="true">default</option>
+          <option value="primary">Primary</option>
+          <option value="error">Error</option>
+          <option value="success">Success</option>
+          <option value="warning">Warning</option>
+          </select>
+          </div>
+          </li>
+        </ul>
+        </div>
+        <div class="panelActionButtons">
+        <button type="button" class="addOptions">+ Options</button>
+        </div>
+        </div>
+        </div>';
+  }
+
+
+  public function fieldActions()
+  {
+    echo '    <div class="fieldEdit slideToggle panelsWrap panelCount" style="display:none; position:relative; opacity:1; height:auto;">
+      <nav class="panel-nav">
+      <button class="prev-group" title="previous group"  type="button" data-toggle="tooltip"data-placement="top"></button>
+      <div class="panel-labels">
+      <div class="options">
+      <h5 class="active-tab">Attrs</h5>
+      <h5>Options</h5>
+      </div>
+      </div>
+      <button class="next-group" title="Next group"  type="button" data-toggle="tooltip"data-placement="top"></button>
+      </nav>
+      <div class="panels" style="height:116.313px;">
+      <div class="Fpanel attrsPanels">
+      <div class="fPanelWrap">
+      <ul class="fieldEditGroup fieldEditAttrs">
+      <li class="attrsClassNameWrap propWrapper controlCount="1" id="PanelWrapers">
+      <div class="propControls">
+      <button type="button" class="propRemove propControls"></button>
+      </div>
+      <div class="propInputs">
+      <div class="fieldGroup">
+      <label for="className">Class</label>
+      <select name="className" id="className">
+        <option value="fBtnGroup">Grouped</option>
+        <option value="FieldGroup">Un-Grouped</option>
+        </select>
+      </div>
+      </div>
+      </li>
+      </ul>
+      <div class="panelActionButtons">
+      <button type="button" class="addAttrs">+ Atrribute</button>
+      </div>
+      </div>
+      <div class="Fpanel optionsPanel">
+      <div class="FpanelWrap">
+        <ul class="fieldEditGroup fieldEditOptions">
+          <li class="OptionsXWrapper propWrapper controlCount_2" id="propCont">
+          <div class="propControls">
+          <button type="button" class="propOrder propControls"></button>
+          <button type="button" class="propOrder propControls"></button>
+          </div>
+          <div class="propInput FinputGroup">
+          <input name="button" type="text" value="button" placeholder="label" id="buttons">
+          <select name="button" id="buttonz">
+          <option value="button" selected="true">appearing_button</option>
+          <option value="reset">Reset</option>
+          <option value="submit">Submit</option>
+          </select>
+          <select name="options" id="optional">
+          <option selected="true">default</option>
+          <option value="primary">Primary</option>
+          <option value="error">Error</option>
+          <option value="success">Success</option>
+          <option value="warning">Warning</option>
+          </select>
+          </div>
+          </li>
+        </ul>
+        </div>
+        <div class="panelActionButtons">
+        <button type="button" class="addOptions">+ Options</button>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>';
+  }
+
+    public function fieldEdit()
+  {
+    echo '<nav class="panel-nav">
+      <button class="prev-group" title="previous group"  type="button" data-toggle="tooltip"data-placement="top"></button>
+      <div class="panel-labels">
+      <div class="options">
+      <h5 class="active-tab">Attrs</h5>
+      <h5>Options</h5>
+      </div>
+      </div>
+      <button class="next-group" title="Next group"  type="button" data-toggle="tooltip"data-placement="top"></button>
+      </nav>';
+  }
+
+
+  public function main_element()
+  {
+    echo '<img src="#">';
+  }
+
+  public function main_layout($column)
+  {
+    echo '<img src="#">';
+  }
+}
+
+
+

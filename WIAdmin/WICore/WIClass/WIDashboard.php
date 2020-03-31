@@ -11,7 +11,6 @@ class WIDashboard
 	{
 		$this->WIdb = WIdb::getInstance();
         $this->Page = new WIPagination();
-        $this->email = new WIEmail();
 	}
 
 
@@ -23,12 +22,13 @@ class WIDashboard
         $query->execute();
 
         $result = $query->fetchAll();
+
         //print_r($result);
         //echo $result;
         foreach ($result as $box) {
             echo ' <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
-                            <div class="small-box bg-aqua">
+                            <div class="small-box styleswitcher">
                                 <div class="inner">
                                     <h3 id="' .$box['info'] . '">
                                         
@@ -59,7 +59,7 @@ class WIDashboard
     }
 
         $item_per_page = 15;
-
+        $onclick = "todoListItem";
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_admin_todo_list`");
         $rows = count($result);
@@ -133,7 +133,7 @@ class WIDashboard
 
 		}
 
-		 $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages);
+		 $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages, $onclick);
     //print_r($Pagination);
 
 		 echo '</ul>
@@ -223,7 +223,7 @@ class WIDashboard
     }
 
         $item_per_page = 15;
-
+        $onclick = "nextNotification";
         $result = $this->WIdb->select(
                     "SELECT * FROM `wi_notifications`");
         $rows = count($result);
@@ -270,7 +270,7 @@ class WIDashboard
 
          echo '</ul>
                </div><!-- /.box-body -->';
-               $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages);
+               $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages, $onclick);
          echo ' <div class="box-footer clearfix no-border">';
 
          echo '<div align="center">';
@@ -285,22 +285,9 @@ class WIDashboard
 
     }
 
-
-        public function UniqueVisitors()
-    {
-        //echo "unique";
-     $sql = "SELECT `id` FROM `wi_track`";
-     $query = $this->WIdb->prepare($sql);
-     $query->execute();
-
-     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        //print_r($result);
-        echo count($result);
-    }
-
     public function VisitorCount($country)
     {
-
+        //echo $country;
      $sql = "SELECT * FROM `wi_visitors_log` WHERE `country`=:country";
      $query = $this->WIdb->prepare($sql);
      $query->bindParam(':country', $country, PDO::PARAM_STR);
@@ -308,8 +295,30 @@ class WIDashboard
 
      $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        //print_r($result);
-        echo count($result);
+     if( count($result) >0)
+        {
+            echo count($result);
+        }else{
+            echo "0";
+        }
+
+       
+    }
+
+        public function MapCount($country)
+    {
+        //echo $country;
+     $result = $this->WIdb->select("SELECT * FROM `wi_visitors_log` WHERE `country`=:country", array(
+                       "country" => $country
+                     ));
+     if( count($result) >0)
+        {
+            return count($result);
+        }else{
+            return "0";
+        }
+
+       
     }
 
     public function Visitors_ip()
@@ -329,6 +338,9 @@ class WIDashboard
         }  
         
     }
+
+
+
 
     public function Visitors()
     {
@@ -354,54 +366,128 @@ class WIDashboard
             </tr>';        
         }  
         }
-        //print_r($res);
-
-        
-        
 
     }
+        //print_r($res);
 
-            public function VisitorsMap()
-    {
-        //$ip = $this->Visitors_ip();
-        $sql = "SELECT * FROM `wi_track` group by country";
-        
-        $query = $this->WIdb->prepare($sql);
-        //$query->bindParam(':ip', $ip, PDO::PARAM_STR);
-        $query->execute();
-        echo "['Country', 'Visitors'],";
+        public function BounceRate()
+        {
+            //bounce rate
+            //Bounce Rate = (Visits With Only 1 Pageview) / (Total Visits)
+            $result = $this->WIdb->select("SELECT * FROM `wi_visitors_log`");
+            $counter = "0";
+            foreach ($result as $res ) {
+                //var_dump($res);
+                $ip = $res["ip"];
+                $page = $res["page"];
 
-        while($res = $query->fetchAll(PDO::FETCH_ASSOC)){
-            //print_r($res);
-           // $country = $res['country'];
-            foreach ($res as $key) {
-            //print_r($key);['Country', 'Visitors'],
-            //$Ip = $key['ip'];
-                echo "['" . $key['country'] . "', '";$this->VisitorCount($key['country']); echo "']";        
-        }  
+
+            }
+            
+            $total_view = count($result);
+            $bouce = $counter / $total_view;
+
+            if(count($bouce) > 1){
+                return $bouce;
+            }else{
+                return "0";
+            }
+            
+
         }
-        //print_r($res);
-        
 
-    }
+        public function UniqueVisit()
+        {
+            $result = $this->WIdb->select("SELECT * FROM `wi_track`");
+            $viewers = count($result);
+
+            
+
+            if(count($viewers) > 1){
+                return $viewers;
+            }else{
+                return "0";
+            }
+        }
 
 
-    public function Send_Mail($settings)
+        public function Map_visitors()
     {
-        $email = $settings['UserData'];
-        $emailTo = $email['emailto'];
-        $subject = $email['subject'];
-        $mess = $email['Message'];
-        //echo $mess;
-        $this->email->sendEmail($emailTo, $subject, $mess);
-        $result = array(
-            "status" => "completed",
-            "msg" => "Successfully sent message."
-        );
-        echo json_encode($result);
+         $result = $this->WIdb->select("SELECT * FROM `wi_track` group by country");
+
+        
+         $values = array();
+         $values[] = array('Country', 'Popularity',);
+
+            foreach ($result as $key) {
+                 $values[]=array($key["country"] ,  $this->MapCount($key["country"])  );
+            }
+        echo json_encode($values);
+
     }
 
 
+    public function get_server_load()
+{
+
+    $serverload = array();
+
+    // DIRECTORY_SEPARATOR checks if running windows
+    if(DIRECTORY_SEPARATOR != '\\')
+    {
+        if(function_exists("sys_getloadavg"))
+        {
+            // sys_getloadavg() will return an array with [0] being load within the last minute.
+            $serverload = sys_getloadavg();
+            $serverload[0] = round($serverload[0], 4);
+        }
+        else if(@file_exists("/proc/loadavg") && $load = @file_get_contents("/proc/loadavg"))
+        {
+            $serverload = explode(" ", $load);
+            $serverload[0] = round($serverload[0], 4);
+        }
+        if(!is_numeric($serverload[0]))
+        {
+            if(@ini_get('safe_mode') == 'On')
+            {
+                return "Unknown";
+            }
+
+            // Suhosin likes to throw a warning if exec is disabled then die - weird
+            if($func_blacklist = @ini_get('suhosin.executor.func.blacklist'))
+            {
+                if(strpos(",".$func_blacklist.",", 'exec') !== false)
+                {
+                    return "Unknown";
+                }
+            }
+            // PHP disabled functions?
+            if($func_blacklist = @ini_get('disable_functions'))
+            {
+                if(strpos(",".$func_blacklist.",", 'exec') !== false)
+                {
+                    return "Unknown";
+                }
+            }
+
+            $load = @exec("uptime");
+            $load = explode("load average: ", $load);
+            $serverload = explode(",", $load[1]);
+            if(!is_array($serverload))
+            {
+                return "Unknown";
+            }
+        }
+    }
+    else
+    {
+        return "Unknown";
+    }
+
+    $returnload = trim($serverload[0]);
+
+    return $returnload;
+}
 
 
 

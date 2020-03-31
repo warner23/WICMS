@@ -11,7 +11,7 @@ $(document).ready(function(event)
 	$("#database_btn").click(function()
 	{
 
-			var host               = $("#host").val(),
+			var db_host               = $("#host").val(),
 			 db_username           = $("#db_username").val(),
 			 db_pass               = $("#db_pass").val(),
              db_name               = $("#db").val()
@@ -21,14 +21,14 @@ $(document).ready(function(event)
 
 			 var database = {
 			 	UserData:{
-			 	    host           : host,
+			 	    db_host           : db_host,
                     db_username    : db_username,
                     db_pass        : db_pass,
                     db_name        : db_name
 
 			 	},
 			 	FieldId:{
-			 		host           : "host",
+			 		db_host           : "host",
 			 		db_username         : "db_username",
                     db_pass            : "db_pass",
                     db_name            : "db"

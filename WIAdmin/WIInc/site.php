@@ -1,8 +1,41 @@
 
+<style>
+.center{
+ text-align: -webkit-center;
+}
+
+</style>
+
   <script>
   $( function() {
-    $( "#tabs" ).tabs();
-  } );
+
+    var index = 'key';
+    //  Define friendly data store name
+    var dataStore = window.sessionStorage;
+    //  Start magic!
+    try {
+        // getter: Fetch previous value
+        var oldIndex = dataStore.getItem(index);
+    } catch(e) {
+        // getter: Always default to first tab in error state
+        var oldIndex = 0;
+    }
+
+    
+    $( "#tabs" ).tabs({
+        // The zero-based index of the panel that is active (open)
+        active : oldIndex,
+        // Triggered after a tab has been activated
+        activate : function( event, ui ){
+            //  Get future value
+            var newIndex = ui.newTab.parent().children().index(ui.newTab);
+            //  Set future value
+            dataStore.setItem( index, newIndex ) 
+        }
+    }); 
+
+    
+    });
   </script>
 
  <aside class="right-side">
@@ -104,5 +137,4 @@
     <script type="text/javascript" src="WICore/WIJ/WISession.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WISocial.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WILang.js"></script>
-    <script type="text/javascript" src="WICore/WIJ/WIVerification.js"></script>
    

@@ -1,34 +1,4 @@
-<style type="text/css">
-  #header_content{
-        width: 30%;
-    margin-top: 20px;
-  }
-
-  #header_slogan{
-        margin-top: -54px;
-  }
-
-  #wiupload{
-    margin-left: 44px;
-  }
-
-  .on{
-    display: block;
-  }
-
-  .off{
-    display: none;
-  }
-
-  .logo {
-    width: 322%;
-    /* height: 70px; */
-    float: left;
-    margin-left: -19px;
-    margin-top: 4px;
-}
-  img.hover { border: 2px solid black; }
-</style>     
+   
                    
                       <div id="legend">
                         <legend class="">Favicon Settings</legend>

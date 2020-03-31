@@ -2482,426 +2482,7 @@ class PHPMailer
         }
         $matches = array();
         if (preg_match_all("/[{$pattern}]/", $encoded, $matches)) {
-            //If the string contains an '=', make sure it's the first thing we replace
-            //so as to avoid double-encoding
-            $eqkey = array_search('=', $matches[0]);
-            if ($eqkey !== false) {
-                unset($matches[0][$eqkey]);
-                array_unshift($matches[0], '=');
-            }
-            foreach (array_unique($matches[0]) as $char) {
-                $encoded = str_replace($char, '=' . sprintf('%02X', ord($char)), $encoded);
-            }
-        }
-        //Replace every spaces to _ (more readable than =20)
-        return str_replace(' ', '_', $encoded);
-    }
-
-
-    /**
-     * Add a string or binary attachment (non-filesystem).
-     * This method can be used to attach ascii or binary data,
-     * such as a BLOB record from a database.
-     * @param string $string String attachment data.
-     * @param string $filename Name of the attachment.
-     * @param string $encoding File encoding (see $Encoding).
-     * @param string $type File extension (MIME) type.
-     * @param string $disposition Disposition to use
-     * @return void
-     */
-    public function addStringAttachment(
-        $string,
-        $filename,
-        $encoding = 'base64',
-        $type = '',
-        $disposition = 'attachment'
-    ) {
-        //If a MIME type is not specified, try to work it out from the file name
-        if ($type == '') {
-            $type = self::filenameToType($filename);
-        }
-        // Append to $attachment array
-        $this->attachment[] = array(
-            0 => $string,
-            1 => $filename,
-            2 => basename($filename),
-            3 => $encoding,
-            4 => $type,
-            5 => true, // isStringAttachment
-            6 => $disposition,
-            7 => 0
-        );
-    }
-
-    /**
-     * Add an embedded (inline) attachment from a file.
-     * This can include images, sounds, and just about any other document type.
-     * These differ from 'regular' attachmants in that they are intended to be
-     * displayed inline with the message, not just attached for download.
-     * This is used in HTML messages that embed the images
-     * the HTML refers to using the $cid value.
-     * @param string $path Path to the attachment.
-     * @param string $cid Content ID of the attachment; Use this to reference
-     *        the content when using an embedded image in HTML.
-     * @param string $name Overrides the attachment name.
-     * @param string $encoding File encoding (see $Encoding).
-     * @param string $type File MIME type.
-     * @param string $disposition Disposition to use
-     * @return bool True on successfully adding an attachment
-     */
-    public function addEmbeddedImage($path, $cid, $name = '', $encoding = 'base64', $type = '', $disposition = 'inline')
-    {
-        if (!@is_file($path)) {
-            $this->setError($this->lang('file_access') . $path);
-            return false;
-        }
-
-        //If a MIME type is not specified, try to work it out from the file name
-        if ($type == '') {
-            $type = self::filenameToType($path);
-        }
-
-        $filename = basename($path);
-        if ($name == '') {
-            $name = $filename;
-        }
-
-        // Append to $attachment array
-        $this->attachment[] = array(
-            0 => $path,
-            1 => $filename,
-            2 => $name,
-            3 => $encoding,
-            4 => $type,
-            5 => false, // isStringAttachment
-            6 => $disposition,
-            7 => $cid
-        );
-        return true;
-    }
-
-    /**
-     * Add an embedded stringified attachment.
-     * This can include images, sounds, and just about any other document type.
-     * Be sure to set the $type to an image type for images:
-     * JPEG images use 'image/jpeg', GIF uses 'image/gif', PNG uses 'image/png'.
-     * @param string $string The attachment binary data.
-     * @param string $cid Content ID of the attachment; Use this to reference
-     *        the content when using an embedded image in HTML.
-     * @param string $name
-     * @param string $encoding File encoding (see $Encoding).
-     * @param string $type MIME type.
-     * @param string $disposition Disposition to use
-     * @return bool True on successfully adding an attachment
-     */
-    public function addStringEmbeddedImage(
-        $string,
-        $cid,
-        $name = '',
-        $encoding = 'base64',
-        $type = '',
-        $disposition = 'inline'
-    ) {
-        //If a MIME type is not specified, try to work it out from the name
-        if ($type == '') {
-            $type = self::filenameToType($name);
-        }
-
-        // Append to $attachment array
-        $this->attachment[] = array(
-            0 => $string,
-            1 => $name,
-            2 => $name,
-            3 => $encoding,
-            4 => $type,
-            5 => true, // isStringAttachment
-            6 => $disposition,
-            7 => $cid
-        );
-        return true;
-    }
-
-    /**
-     * Check if an inline attachment is present.
-     * @access public
-     * @return bool
-     */
-    public function inlineImageExists()
-    {
-        foreach ($this->attachment as $attachment) {
-            if ($attachment[6] == 'inline') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if an attachment (non-inline) is present.
-     * @return bool
-     */
-    public function attachmentExists()
-    {
-        foreach ($this->attachment as $attachment) {
-            if ($attachment[6] == 'attachment') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if this message has an alternative body set.
-     * @return bool
-     */
-    public function alternativeExists()
-    {
-        return !empty($this->AltBody);
-    }
-
-    /**
-     * Clear all To recipients.
-     * @return void
-     */
-    public function clearAddresses()
-    {
-        foreach ($this->to as $to) {
-            unset($this->all_recipients[strtolower($to[0])]);
-        }
-        $this->to = array();
-    }
-
-    /**
-     * Clear all CC recipients.
-     * @return void
-     */
-    public function clearCCs()
-    {
-        foreach ($this->cc as $cc) {
-            unset($this->all_recipients[strtolower($cc[0])]);
-        }
-        $this->cc = array();
-    }
-
-    /**
-     * Clear all BCC recipients.
-     * @return void
-     */
-    public function clearBCCs()
-    {
-        foreach ($this->bcc as $bcc) {
-            unset($this->all_recipients[strtolower($bcc[0])]);
-        }
-        $this->bcc = array();
-    }
-
-    /**
-     * Clear all ReplyTo recipients.
-     * @return void
-     */
-    public function clearReplyTos()
-    {
-        $this->ReplyTo = array();
-    }
-
-    /**
-     * Clear all recipient types.
-     * @return void
-     */
-    public function clearAllRecipients()
-    {
-        $this->to = array();
-        $this->cc = array();
-        $this->bcc = array();
-        $this->all_recipients = array();
-    }
-
-    /**
-     * Clear all filesystem, string, and binary attachments.
-     * @return void
-     */
-    public function clearAttachments()
-    {
-        $this->attachment = array();
-    }
-
-    /**
-     * Clear all custom headers.
-     * @return void
-     */
-    public function clearCustomHeaders()
-    {
-        $this->CustomHeader = array();
-    }
-
-    /**
-     * Add an error message to the error container.
-     * @access protected
-     * @param string $msg
-     * @return void
-     */
-    protected function setError($msg)
-    {
-        $this->error_count++;
-        if ($this->Mailer == 'smtp' and !is_null($this->smtp)) {
-            $lasterror = $this->smtp->getError();
-            if (!empty($lasterror) and array_key_exists('smtp_msg', $lasterror)) {
-                $msg .= '<p>' . $this->lang('smtp_error') . $lasterror['smtp_msg'] . "</p>\n";
-            }
-        }
-        $this->ErrorInfo = $msg;
-    }
-
-    /**
-     * Return an RFC 822 formatted date.
-     * @access public
-     * @return string
-     * @static
-     */
-    public static function rfcDate()
-    {
-        //Set the time zone to whatever the default is to avoid 500 errors
-        //Will default to UTC if it's not set properly in php.ini
-        date_default_timezone_set(@date_default_timezone_get());
-        return date('D, j M Y H:i:s O');
-    }
-
-    /**
-     * Get the server hostname.
-     * Returns 'localhost.localdomain' if unknown.
-     * @access protected
-     * @return string
-     */
-    protected function serverHostname()
-    {
-        $result = 'localhost.localdomain';
-        if (!empty($this->Hostname)) {
-            $result = $this->Hostname;
-        } elseif (isset($_SERVER) and array_key_exists('SERVER_NAME', $_SERVER) and !empty($_SERVER['SERVER_NAME'])) {
-            $result = $_SERVER['SERVER_NAME'];
-        } elseif (function_exists('gethostname') && gethostname() !== false) {
-            $result = gethostname();
-        } elseif (php_uname('n') !== false) {
-            $result = php_uname('n');
-        }
-        return $result;
-    }
-
-    /**
-     * Get an error message in the current language.
-     * @access protected
-     * @param string $key
-     * @return string
-     */
-    protected function lang($key)
-    {
-        if (count($this->language) < 1) {
-            $this->setLanguage('en'); // set the default language
-        }
-
-        if (isset($this->language[$key])) {
-            return $this->language[$key];
-        } else {
-            return 'Language string failed to load: ' . $key;
-        }
-    }
-
-    /**
-     * Check if an error occurred.
-     * @access public
-     * @return bool True if an error did occur.
-     */
-    public function isError()
-    {
-        return ($this->error_count > 0);
-    }
-
-    /**
-     * Ensure consistent line endings in a string.
-     * Changes every end of line from CRLF, CR or LF to $this->LE.
-     * @access public
-     * @param string $str String to fixEOL
-     * @return string
-     */
-    public function fixEOL($str)
-    {
-        // Normalise to \n
-        $nstr = str_replace(array("\r\n", "\r"), "\n", $str);
-        // Now convert LE as needed
-        if ($this->LE !== "\n") {
-            $nstr = str_replace("\n", $this->LE, $nstr);
-        }
-        return $nstr;
-    }
-
-    /**
-     * Add a custom header.
-     * $name value can be overloaded to contain
-     * both header name and value (name:value)
-     * @access public
-     * @param string $name Custom header name
-     * @param string $value Header value
-     * @return void
-     */
-    public function addCustomHeader($name, $value = null)
-    {
-        if ($value === null) {
-            // Value passed in as name:value
-            $this->CustomHeader[] = explode(':', $name, 2);
-        } else {
-            $this->CustomHeader[] = array($name, $value);
-        }
-    }
-
-    /**
-     * Create a message from an HTML string.
-     * Automatically makes modifications for inline images and backgrounds
-     * and creates a plain-text version by converting the HTML.
-     * Overwrites any existing values in $this->Body and $this->AltBody
-     * @access public
-     * @param string $message HTML message string
-     * @param string $basedir baseline directory for path
-     * @param bool $advanced Whether to use the advanced HTML to text converter
-     * @return string $message
-     */
-    public function msgHTML($message, $basedir = '', $advanced = false)
-    {
-        preg_match_all('/(src|background)=["\'](.*)["\']/Ui', $message, $images);
-        if (isset($images[2])) {
-            foreach ($images[2] as $imgindex => $url) {
-                // do not change urls for absolute images (thanks to corvuscorax)
-                if (!preg_match('#^[A-z]+://#', $url)) {
-                    $filename = basename($url);
-                    $directory = dirname($url);
-                    if ($directory == '.') {
-                        $directory = '';
-                    }
-                    $cid = md5($url) . '@phpmailer.0'; //RFC2392 S 2
-                    if (strlen($basedir) > 1 && substr($basedir, -1) != '/') {
-                        $basedir .= '/';
-                    }
-                    if (strlen($directory) > 1 && substr($directory, -1) != '/') {
-                        $directory .= '/';
-                    }
-                    if ($this->addEmbeddedImage(
-                        $basedir . $directory . $filename,
-                        $cid,
-                        $filename,
-                        'base64',
-                        self::_mime_types(self::mb_pathinfo($filename, PATHINFO_EXTENSION))
-                    )
-                    ) {
-                        $message = preg_replace(
-                            '/' . $images[1][$imgindex] . '=["\']' . preg_quote($url, '/') . '["\']/Ui',
-                            $images[1][$imgindex] . '="cid:' . $cid . '"',
-                            $message
-                        );
-                    }
-                }
-            }
-        }
-        $this->isHTML(true);
-        //Convert all message body line breaks to CRLF, makes quoted-printable encoding work much better
+       akes quoted-printable encoding work much better
         $this->Body = $this->normalizeBreaks($message);
         $this->AltBody = $this->normalizeBreaks($this->html2text($message, $advanced));
         if (empty($this->AltBody)) {
@@ -3412,3 +2993,413 @@ class phpmailerException extends Exception
         return $errorMsg;
     }
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <?php
+/**
+ * PHPMailer POP-Before-SMTP Authentication Class.
+ * PHP Version 5
+ * @package PHPMailer
+ * @link https://github.com/PHPMailer/PHPMailer/
+ * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
+ * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
+ * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
+ * @author Brent R. Matzelle (original founder)
+ * @copyright 2012 - 2014 Marcus Bointon
+ * @copyright 2010 - 2012 Jim Jagielski
+ * @copyright 2004 - 2009 Andy Prevost
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @note This program is distributed in the hope that it will be useful - WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * PHPMailer POP-Before-SMTP Authentication Class.
+ * Specifically for PHPMailer to use for RFC1939 POP-before-SMTP authentication.
+ * Does not support APOP.
+ * @package PHPMailer
+ * @author Richard Davey (original author) <rich@corephp.co.uk>
+ * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
+ * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
+ * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
+ */
+class POP3
+{
+    /**
+     * The POP3 PHPMailer Version number.
+     * @type string
+     * @access public
+     */
+    public $Version = '5.2.7';
+
+    /**
+     * Default POP3 port number.
+     * @type int
+     * @access public
+     */
+    public $POP3_PORT = 110;
+
+    /**
+     * Default timeout in seconds.
+     * @type int
+     * @access public
+     */
+    public $POP3_TIMEOUT = 30;
+
+    /**
+     * POP3 Carriage Return + Line Feed.
+     * @type string
+     * @access public
+     * @deprecated Use the constant instead
+     */
+    public $CRLF = "\r\n";
+
+    /**
+     * Debug display level.
+     * Options: 0 = no, 1+ = yes
+     * @type int
+     * @access public
+     */
+    public $do_debug = 0;
+
+    /**
+     * POP3 mail server hostname.
+     * @type string
+     * @access public
+     */
+    public $host;
+
+    /**
+     * POP3 port number.
+     * @type int
+     * @access public
+     */
+    public $port;
+
+    /**
+     * POP3 Timeout Value in seconds.
+     * @type int
+     * @access public
+     */
+    public $tval;
+
+    /**
+     * POP3 username
+     * @type string
+     * @access public
+     */
+    public $username;
+
+    /**
+     * POP3 password.
+     * @type string
+     * @access public
+     */
+    public $password;
+
+    /**
+     * Resource handle for the POP3 connection socket.
+     * @type resource
+     * @access private
+     */
+    private $pop_conn;
+
+    /**
+     * Are we connected?
+     * @type bool
+     * @access private
+     */
+    private $connected;
+
+    /**
+     * Error container.
+     * @type array
+     * @access private
+     */
+    private $error;
+
+    /**
+     * Line break constant
+     */
+    const CRLF = "\r\n";
+
+    /**
+     * Constructor.
+     * @access public
+     */
+    public function __construct()
+    {
+        $this->pop_conn = 0;
+        $this->connected = false;
+        $this->error = null;
+    }
+
+    /**
+     * Simple static wrapper for all-in-one POP before SMTP
+     * @param $host
+     * @param bool $port
+     * @param bool $tval
+     * @param string $username
+     * @param string $password
+     * @param int $debug_level
+     * @return bool
+     */
+    public static function popBeforeSmtp(
+        $host,
+        $port = false,
+        $tval = false,
+        $username = '',
+        $password = '',
+        $debug_level = 0
+    ) {
+        $pop = new POP3;
+        return $pop->authorise($host, $port, $tval, $username, $password, $debug_level);
+    }
+
+    /**
+     * Authenticate with a POP3 server.
+     * A connect, login, disconnect sequence
+     * appropriate for POP-before SMTP authorisation.
+     * @access public
+     * @param string $host
+     * @param bool|int $port
+     * @param bool|int $tval
+     * @param string $username
+     * @param string $password
+     * @param int $debug_level
+     * @return bool
+     */
+    public function authorise($host, $port = false, $tval = false, $username = '', $password = '', $debug_level = 0)
+    {
+        $this->host = $host;
+        // If no port value provided, use default
+        if ($port === false) {
+            $this->port = $this->POP3_PORT;
+        } else {
+            $this->port = $port;
+        }
+        // If no timeout value provided, use default
+        if ($tval === false) {
+            $this->tval = $this->POP3_TIMEOUT;
+        } else {
+            $this->tval = $tval;
+        }
+        $this->do_debug = $debug_level;
+        $this->username = $username;
+        $this->password = $password;
+        //  Refresh the error log
+        $this->error = null;
+        //  connect
+        $result = $this->connect($this->host, $this->port, $this->tval);
+        if ($result) {
+            $login_result = $this->login($this->username, $this->password);
+            if ($login_result) {
+                $this->disconnect();
+                return true;
+            }
+        }
+        // We need to disconnect regardless of whether the login succeeded
+        $this->disconnect();
+        return false;
+    }
+
+    /**
+     * Connect to a POP3 server.
+     * @access public
+     * @param string $host
+     * @param bool|int $port
+     * @param integer $tval
+     * @return boolean
+     */
+    public function connect($host, $port = false, $tval = 30)
+    {
+        //  Are we already connected?
+        if ($this->connected) {
+            return true;
+        }
+
+        //On Windows this will raise a PHP Warning error if the hostname doesn't exist.
+        //Rather than suppress it with @fsockopen, capture it cleanly instead
+        set_error_handler(array($this, 'catchWarning'));
+
+        //  connect to the POP3 server
+        $this->pop_conn = fsockopen(
+            $host, //  POP3 Host
+            $port, //  Port #
+            $errno, //  Error Number
+            $errstr, //  Error Message
+            $tval
+        ); //  Timeout (seconds)
+        //  Restore the error handler
+        restore_error_handler();
+        //  Does the Error Log now contain anything?
+        if ($this->error && $this->do_debug >= 1) {
+            $this->displayErrors();
+        }
+        //  Did we connect?
+        if ($this->pop_conn == false) {
+            //  It would appear not...
+            $this->error = array(
+                'error' => "Failed to connect to server $host on port $port",
+                'errno' => $errno,
+                'errstr' => $errstr
+            );
+            if ($this->do_debug >= 1) {
+                $this->displayErrors();
+            }
+            return false;
+        }
+
+        //  Increase the stream time-out
+        //  Check for PHP 4.3.0 or later
+        if (version_compare(phpversion(), '5.0.0', 'ge')) {
+            stream_set_timeout($this->pop_conn, $tval, 0);
+        } else {
+            //  Does not work on Windows
+            if (substr(PHP_OS, 0, 3) !== 'WIN') {
+                socket_set_timeout($this->pop_conn, $tval, 0);
+            }
+        }
+
+        //  Get the POP3 server response
+        $pop3_response = $this->getResponse();
+        //  Check for the +OK
+        if ($this->checkResponse($pop3_response)) {
+            //  The connection is established and the POP3 server is talking
+            $this->connected = true;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Log in to the POP3 server.
+     * Does not support APOP (RFC 2828, 4949).
+     * @access public
+     * @param string $username
+     * @param string $password
+     * @return boolean
+     */
+    public function login($username = '', $password = '')
+    {
+        if ($this->connected == false) {
+            $this->error = 'Not connected to POP3 server';
+
+            if ($this->do_debug >= 1) {
+                $this->displayErrors();
+            }
+        }
+        if (empty($username)) {
+            $username = $this->username;
+        }
+        if (empty($password)) {
+            $password = $this->password;
+        }
+
+        // Send the Username
+        $this->sendString("USER $username" . self::CRLF);
+        $pop3_response = $this->getResponse();
+        if ($this->checkResponse($pop3_response)) {
+            // Send the Password
+            $this->sendString("PASS $password" . self::CRLF);
+            $pop3_response = $this->getResponse();
+            if ($this->checkResponse($pop3_response)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Disconnect from the POP3 server.
+     * @access public
+     */
+    public function disconnect()
+    {
+        $this->sendString('QUIT');
+        //The QUIT command may cause the daemon to exit, which will kill our connection
+        //So ignore errors here
+        @fclose($this->pop_conn);
+    }
+
+    /**
+     * Get a response from the POP3 server.
+     * $size is the maximum number of bytes to retrieve
+     * @param integer $size
+     * @return string
+     * @access private
+     */
+    private function getResponse($size = 128)
+    {
+        $response = fgets($this->pop_conn, $size);
+        if ($this->do_debug >= 1) {
+            echo "Server -> Client: $response";
+        }
+        return $response;
+    }
+
+    /**
+     * Send raw data to the POP3 server.
+     * @param string $string
+     * @return integer
+     * @access private
+     */
+    private function sendString($string)
+    {
+        if ($this->pop_conn) {
+            if ($this->do_debug >= 2) { //Show client messages when debug >= 2
+                echo "Client -> Server: $string";
+            }
+            return fwrite($this->pop_conn, $string, strlen($string));
+        }
+        return 0;
+    }
+
+    /**
+     * Checks the POP3 server response.
+     * Looks for for +OK or -ERR.
+     * @param string $string
+     * @return boolean
+     * @access private
+     */
+    private function checkResponse($string)
+    {
+        if (substr($string, 0, 3) !== '+OK') {
+            $this->error = array(
+                'error' => "Server reported an error: $string",
+                'errno' => 0,
+                'errstr' => ''
+            );
+            if ($this->do_debug >= 1) {
+                $this->displayErrors();
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Display errors if debug is enabled.
+     * @access private
+     */
+    private function displayErrors()
+    {
+        echo '<pre>';
+        foreach ($this->error as $single_error) {
+            print_r($single_error);
+        }
+        echo '</pre>';
+    }
+
+    /**
+     * POP3 connection error handler.
+     * @param integer $errno
+     * @param string $errstr
+     * @param string $errfile
+     * @param integer $errline
+     * @access private
+     */
+    private function catchWarning($errno, $errstr, $errfile, $errline)
+    {
+        $this->error[] = array(
+            'error' => "Connecting to th

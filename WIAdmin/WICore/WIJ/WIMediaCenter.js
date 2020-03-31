@@ -1,46 +1,8 @@
 //var WIMediaCenter = {};
 
-function sendFileToServer(formData,status)
+function sendFileToHeaderServer(formData,status)
 {
-      var uploadURL ="WICore/WIClass/ImageUpload.php"; //Upload URL
-    var extraData ={}; //Extra Data.
-    var jqXHR=$.ajax({
-            xhr: function() {
-            var xhrobj = $.ajaxSettings.xhr();
-            if (xhrobj.upload) {
-                    xhrobj.upload.addEventListener('progress', function(event) {
-                        var percent = 0;
-                        var position = event.loaded || event.position;
-                        var total = event.total;
-                        if (event.lengthComputable) {
-                            percent = Math.ceil(position / total * 100);
-                        }
-                        //Set progress
-                        status.setProgress(percent);
-                    }, false);
-                }
-            return xhrobj;
-        },
-    url: uploadURL,
-    type: "POST",
-    contentType:false,
-    processData: false,
-        cache: false,
-        data: formData,
-        success: function(data){
-            status.setProgress(100);
- 
-            $("#status1").append("File upload Done<br>");         
-        }
-    }); 
- 
-    status.setAbort(jqXHR);
-}
- 
-
-function sendFileToShowServer(formData,status, ele_id)
-{
-      var uploadURL ="WICore/WIClass/ShowImageUpload.php"; //Upload URL
+      var uploadURL ="WICore/WIClass/HeaderImageUpload.php"; //Upload URL
     var extraData ={}; //Extra Data.
     var jqXHR=$.ajax({
             xhr: function() {
@@ -70,10 +32,57 @@ function sendFileToShowServer(formData,status, ele_id)
             //alert(info.name);
             status.setProgress(100);
             $("#status").append("File upload Done<br>").fadeOut(7000);
-            $(".dragandrophandler").remove()
-            //alert(ele_id);
-            preview = ('<img src="'+info.name+'" class="img-responsive ShowImg" value="'+info.id+'" id="preview-'+ele_id+'">');
-            $("#"+ele_id).append(preview);
+            $("#dragandrophandler").remove()
+            $("#headerPic").remove()
+            $("#modal-header-upload").removeClass("on");
+            $("#modal-header-upload").addClass("off"); 
+            preview = ('<img src="'+info.name+'" class="img-responsive cp" id="headerPic" value="'+info.id+'">');
+            $("#HeaderImg").append(preview);        
+        }
+    }); 
+ 
+    status.setAbort(jqXHR);
+}
+
+function sendFileToPageServer(formData,status)
+{
+      var uploadURL ="WICore/WIClass/PageImageUpload.php"; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+            xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        //Set progress
+                        status.setProgress(percent);
+                    }, false);
+                }
+            return xhrobj;
+        },
+    url: uploadURL,
+    type: "POST",
+    contentType:false,
+    processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+            info = JSON.parse(data);
+            console.log(info.name);
+            status.setProgress(100);
+            $("#dragandrophandler").remove();
+            $("img.cp").remove();
+            $("#modal-page-upload-details").removeClass("show");
+            $("#modal-page-upload-details").addClass("hide"); 
+            var preview = '<img src="'+info.name+'" class="img-responsive cp" style="width:140px;" id="pagePic" value="'+info.id+'">';
+            $("#newpic .mediaPic").before(preview);
+            $("#newpic").removeAttr("id");
+
         }
     }); 
  
@@ -81,9 +90,9 @@ function sendFileToShowServer(formData,status, ele_id)
 }
 
 
-function sendFileToTheatreServer(formData,status, ele_id)
+function sendFileToFaviconServer(formData,status)
 {
-      var uploadURL ="WICore/WIClass/TheatreImageUpload.php"; //Upload URL
+      var uploadURL ="WICore/WIClass/FaviconImageUpload.php"; //Upload URL
     var extraData ={}; //Extra Data.
     var jqXHR=$.ajax({
             xhr: function() {
@@ -113,101 +122,18 @@ function sendFileToTheatreServer(formData,status, ele_id)
             //alert(info.name);
             status.setProgress(100);
             $("#status").append("File upload Done<br>").fadeOut(7000);
-            $(".dragandrophandler").remove()
-            //alert(ele_id);
-            preview = ('<img src="'+info.name+'" class="img-responsive TheatreImg" value="'+info.id+'" id="preview-'+ele_id+'">');
-            $("#"+ele_id).append(preview);
+            $("#dragandrophandler").remove()
+            $("#headerPic").remove()
+            $("#modal-header-upload").removeClass("on");
+            $("#modal-header-upload").addClass("off"); 
+            preview = ('<img src="'+info.name+'" class="img-responsive cp" id="headerPic" value="'+info.id+'">');
+            $("#HeaderImg").append(preview);          
         }
     }); 
  
     status.setAbort(jqXHR);
 }
-
-
-function sendFileToPersonServer(formData,status, ele_id)
-{
-      var uploadURL ="WICore/WIClass/PersonImageUpload.php"; //Upload URL
-    var extraData ={}; //Extra Data.
-    var jqXHR=$.ajax({
-            xhr: function() {
-            var xhrobj = $.ajaxSettings.xhr();
-            if (xhrobj.upload) {
-                    xhrobj.upload.addEventListener('progress', function(event) {
-                        var percent = 0;
-                        var position = event.loaded || event.position;
-                        var total = event.total;
-                        if (event.lengthComputable) {
-                            percent = Math.ceil(position / total * 100);
-                        }
-                        //Set progress
-                        status.setProgress(percent);
-                    }, false);
-                }
-            return xhrobj;
-        },
-    url: uploadURL,
-    type: "POST",
-    contentType:false,
-    processData: false,
-        cache: false,
-        data: formData,
-        success: function(data){
-            info = JSON.parse(data);
-            //alert(info.name);
-            status.setProgress(100);
-            $("#status").append("File upload Done<br>").fadeOut(7000);
-            $(".dragandrophandler").remove()
-            //alert(ele_id);
-            preview = ('<img src="'+info.name+'" class="img-responsive personImg" value="'+info.id+'" id="preview-'+ele_id+'">');
-            $("#"+ele_id).append(preview);       
-        }
-    }); 
  
-    status.setAbort(jqXHR);
-}
-
-
-function sendFileToCompanyServer(formData,status, ele_id)
-{
-      var uploadURL ="WICore/WIClass/CompanyImageUpload.php"; //Upload URL
-    var extraData ={}; //Extra Data.
-    var jqXHR=$.ajax({
-            xhr: function() {
-            var xhrobj = $.ajaxSettings.xhr();
-            if (xhrobj.upload) {
-                    xhrobj.upload.addEventListener('progress', function(event) {
-                        var percent = 0;
-                        var position = event.loaded || event.position;
-                        var total = event.total;
-                        if (event.lengthComputable) {
-                            percent = Math.ceil(position / total * 100);
-                        }
-                        //Set progress
-                        status.setProgress(percent);
-                    }, false);
-                }
-            return xhrobj;
-        },
-    url: uploadURL,
-    type: "POST",
-    contentType:false,
-    processData: false,
-        cache: false,
-        data: formData,
-        success: function(data){
-            info = JSON.parse(data);
-            //alert(info.name);
-            status.setProgress(100);
-            $("#status").append("File upload Done<br>").fadeOut(7000);
-            $(".dragandrophandler").remove()
-            //alert(ele_id);
-            preview = ('<img src="'+info.name+'" class="img-responsive companyImg" value="'+info.id+'" id="preview-'+ele_id+'">');
-            $("#"+ele_id).append(preview);       
-        }
-    }); 
- 
-    status.setAbort(jqXHR);
-}
 var rowCount=0;
 function createStatusbar(obj)
 {
@@ -261,7 +187,7 @@ function createStatusbar(obj)
         });
     }
 }
-function handleFileUpload(files,obj)
+function handleFileUpload(files,obj,dir)
 {
    for (var i = 0; i < files.length; i++) 
    {
@@ -270,33 +196,19 @@ function handleFileUpload(files,obj)
  
         var status = new createStatusbar(obj); //Using this we can set progress.
         status.setFileNameSize(files[i].name,files[i].size);
-       
-            sendFileToServer(fd,status);
-   }
-}
-
-
-function showCreationhandleFileUpload(files,obj, dir, ele_id)
-{
-   for (var i = 0; i < files.length; i++) 
-   {
-        var fd = new FormData();
-        fd.append('file', files[i]);
- 
-        var status = new createStatusbar(obj); //Using this we can set progress.
-        status.setFileNameSize(files[i].name,files[i].size);
-        if (dir === "person") {
-            sendFileToPersonServer(fd,status, ele_id);
-        }else if(dir === "theatres") {
-            sendFileToTheatreServer(fd,status, ele_id);
-        }else if(dir === "company") {
-             sendFileToCompanyServer(fd,status, ele_id);
-        }else if(dir === "show") {
-             sendFileToShowServer(fd,status, ele_id);
-        }else{
-            sendFileToServer(fd,status);
+        if (dir === "header") {
+            sendFileToHeaderServer(fd,status);
+        }else if(dir === "favicon") {
+             sendFileToFaviconServer(fd,status);
+        }else if(dir === "shop") {
+             sendFileToShopServer(fd,status);
+        }else if(dir === "blog") {
+             sendFileToBlogServer(fd,status);
+        }else if(dir === "forum"){
+            sendFileToForumServer(fd,status);
+        }else if(dir === "page"){
+            sendFileToPageServer(fd,status);
         }
-        
  
    }
 }

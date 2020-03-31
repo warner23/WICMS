@@ -1,14 +1,5 @@
-<style type="text/css">
-  
-    #website_name{
-             width: 33%;
-    float: left;
-  }
-
-</style>
 
 
- <form  class="form-horizontal footer" id="footer">
                       <fieldset>
                         <div id="legend">
                           <legend class="">Footer</legend>
@@ -24,7 +15,6 @@
                       <div class="results" id="fresults"></div>
                     </fieldset>
                         <br /><br />
-                  </form>
 
 
                       <?php $web->edit_footer();?>

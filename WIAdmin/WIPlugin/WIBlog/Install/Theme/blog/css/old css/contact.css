@@ -1,0 +1,96 @@
+@charset "utf-8";
+/* CSS Document */
+
+.top_contact
+{
+	float:left;
+	margin-top: 0;
+	margin-bottom: 10px;
+	width:400px;	
+}
+
+.top_contact > .t_phone:before
+ {
+content: "\f095";
+font-family: FontAwesome;
+color: #888;
+line-height: 40px;
+left: 0;
+position: relative;
+padding-right: 10px;
+}
+
+.t_phone
+{
+	
+display: block;
+float: left;
+max-height: 40px;
+overflow: hidden;
+padding: 0 10px;
+}
+
+.top_contact > .t_email:before 
+{
+content: "\f0e0";
+font-family: FontAwesome;
+color: #888;
+line-height: 40px;
+left: 0;
+position: relative;
+padding-right: 10px;
+}
+
+
+.t_email
+{
+display: block;
+float: left;
+max-height: 40px;
+overflow: hidden;
+padding: 0 10px;
+border-right: none;
+
+}
+
+element.style {
+}
+
+.top_contact > li {
+ display: block;
+  float: left;
+ max-height: 40px;
+ overflow: hidden;
+ padding: 0 10px;
+}
+media="screen"
+.top_contact > li {
+display: block;
+ float: left;
+ max-height: 40px;
+ overflow: hidden;
+ padding: 0 10px;
+}
+media="screen"
+ul li {
+list-style: none;
+}
+media="screen"
+*, *:before, *:after {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+
+
+.top_contact > li.t_phone:before {
+content: "\f095";
+font-family: FontAwesome;
+color: #888;
+line-height: 40px;
+left: 0;
+position: relative;
+float: left;
+padding-right: 10px;
+}

@@ -109,6 +109,9 @@ echo '<div class="container-fluid text-center">
 		.text-left{
 			text-align: center;
 		}
+		.edit{
+			width:21%;
+		}
 
 		</style>
 
@@ -138,9 +141,8 @@ echo '<div class="container-fluid text-center">
 			echo '<div class="col-lg-12 col-md-12 col-sm-12" >
 
 						 <div class="col-lg-12 col-md-12 col-sm-12 text-left"> 
-							<div class="intro_box">
-<h1>' .WILang::get("welcome_") . '<span>'. $this->site->Website_Info('site_name') . '</span></h1>
-							<p>' . WILang::get("main_title") . '</p>
+							<input type="text" class="edit" value="' .WILang::get("welcome_") . '"><span>'. $this->site->Website_Info('site_name') . '</span></h1>
+							<p><input class="edit" type="text" value="' . WILang::get("main_title") . '>"</p>
 							</div>
 						</div>
 					</div>
@@ -151,8 +153,8 @@ echo '<div class="container-fluid text-center">
 								<i class="fa fa-laptop"></i>
 							</div>
 							<div class="serv_detail">
-								<h3>' . WILang::get("community") . '</h3>
-								<p>' . WILang::get("learn") . '
+								<h3><input type="text" class="edit" value="' . WILang::get("community") . '"></h3>
+								<p><input type="text" class="edit" value="' . WILang::get("learn") . '">"
 </p>
 							</div>
 						</div>
@@ -164,8 +166,8 @@ echo '<div class="container-fluid text-center">
 								<i class="fa fa-trophy"></i>
 							</div>
 							<div class="serv_detail">
-								<h3>' . WILang::get("software") . '</h3>
-								<p>' .WILang::get("software") . '
+								<h3><input type="text" class="edit" value="' . WILang::get("software") . '"></h3>
+								<p><input type="text" class="edit" value="' .WILang::get("software") . '">"
 </p>
 							</div>
 						</div>
@@ -177,8 +179,8 @@ echo '<div class="container-fluid text-center">
 								<i class="fa fa-cogs"></i>
 							</div>
 							<div class="serv_detail">
-								<h3>' . WILang::get("it") . '</h3>
-								<p>' . WILang::get("it_title")  . '
+								<h3><input type="text" class="edit" value="' . WILang::get("it") . '"></h3>
+								<p><input type="text" class="edit" value="' . WILang::get("it_title")  . '">"
 </p>
 							</div>
 						</div>

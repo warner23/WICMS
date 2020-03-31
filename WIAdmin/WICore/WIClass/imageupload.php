@@ -10,6 +10,7 @@ $blacklist = array('avi', 'wmv', 'mov', 'WMV', 'mp4');
 $imgs      = null;
 $vids      = null;
 $error     = 'No file uploaded.';
+
 $acceptList = array_merge($whitelist, $blacklist);
 
 

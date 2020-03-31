@@ -1,14 +1,41 @@
   <script>
   $( function() {
-    $( "#tabs5" ).tabs();
-  } );
-  </script>
+
+    var index = 'key';
+    //  Define friendly data store name
+    var dataStore = window.sessionStorage;
+    //  Start magic!
+    try {
+        // getter: Fetch previous value
+        var oldIndex = dataStore.getItem(index);
+    } catch(e) {
+        // getter: Always default to first tab in error state
+        var oldIndex = 0;
+    }
+
+    $( "#tabs5" ).tabs({
+        // The zero-based index of the panel that is active (open)
+        active : oldIndex,
+        // Triggered after a tab has been activated
+        activate : function( event, ui ){
+            //  Get future value
+            var newIndex = ui.newTab.parent().children().index(ui.newTab);
+            //  Set future value
+            dataStore.setItem( index, newIndex ) 
+        }
+    }); 
+
+    
+    });
+  </script> <link href="WIInc/css/toolbox.css" rel="stylesheet">
+    <link href="WIInc/css/editor.css" rel="stylesheet">
+    <link href="WIInc/css/docs.min.css" rel="stylesheet">
  <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <h1>Modules</h1>
+                <h1>Modules <small> Control panel</small></h1>
                         
-                        <small>Control panel</small>
+                        
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -86,21 +113,7 @@ position: absolute;
     margin-left: 39px;
     padding: 10px;
 }
-    .w3eden{
-        font-family: 'Open Sans', serif;
-        font-size: 10pt;
-        color: #555555;
-    }
-    .w3eden .panel-heading .mod_status{
-        width:70px;font-size:9pt;font-weight:300;border-radius:2px;padding:5px;
-        margin-top: -1px;
-    }
-    .w3eden .panel-heading{
-        font-size: 11pt;
-        font-weight: 900;
-        color: #333333;
-        line-height: normal;
-    }
+ 
     .icon-ok{
         color: #008800;
     }
@@ -110,11 +123,7 @@ position: absolute;
     a{
         outline: none !important;
     }
-    #modpreview .btn,
-    #cache .btn{
-        opacity: 1 !important;
-        width: 80px !important;
-    }
+   
     .popover .arrow{
         margin-left: 0 !important;
     }
@@ -123,37 +132,41 @@ position: absolute;
         font-size: 11px;
     }
 
-    .mid
-    {
-
-    }
 </style>
 
 <div class="well">
 
    <div id="tabs5">
   <ul>
-    <li><a href="#tabs-1">Install Modules</a></li>
-    <li><a href="#tabs-2">Available Modules</a></li>
-    <li><a href="#tabs-3">Settings</a></li>
-    <li><a href="#tabs-4">Edit Modules</a></li>
-    <li><a href="#tabs-5">Modules Shop</a></li>
+    <li><a href="#tabs-1">Install Elements</a></li>
+    <li><a href="#tabs-2">Available Elements</a></li>
+    <li><a href="#tabs-3">Install Modules</a></li>
+    <li><a href="#tabs-4">Available Modules</a></li>
+    <li><a href="#tabs-5">Settings</a></li>
+    <li><a href="#tabs-6">Edit Modules</a></li>
+    <li><a href="#tabs-7">Modules Shop</a></li>
   </ul>
-  <div id="tabs-1">
-<?php include_once 'WIInc/site/modules/install.php';?>
+    <div id="tabs-1">
+<?php include_once 'WIInc/site/modules/install_elements.php';?>
   </div>
   <div id="tabs-2">
-<?php include_once 'WIInc/site/modules/available_modules.php';?>
+<?php include_once 'WIInc/site/modules/available_elements.php';?>
   </div>
   <div id="tabs-3">
+<?php include_once 'WIInc/site/modules/install.php';?>
+  </div>
+  <div id="tabs-4">
+<?php include_once 'WIInc/site/modules/available_modules.php';?>
+  </div>
+  <div id="tabs-5">
  <?php include_once 'WIInc/site/modules/modules_settings.php';?>
   </div>
 
-    <div id="tabs-4">
+    <div id="tabs-6">
 <?php include_once 'WIInc/site/modules/edit_modules.php';?>
   </div>
 
-    <div id="tabs-5">
+    <div id="tabs-7">
  <?php include_once 'WIInc/site/modules/modules_store.php';?>
   </div>
 </div> 
@@ -169,9 +182,25 @@ position: absolute;
 
 </div><!-- end content-->
  </section>
-             <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
-             <script type="text/javascript" src="WICore/WIJ/WIMod.js"></script>
+ <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
+ <script type="text/javascript" src="WICore/WIJ/WIMedia.js"></script>
+<script type="text/javascript" src="WICore/WIJ/WIMediaCenter.js"></script>
+ <script type="text/javascript" src="WICore/WIJ/WIMod.js"></script>
+ <script type="text/javascript" src="WICore/WIJ/WIImage.js"></script>
+ <script type="text/javascript" src="WICore/WIJ/WIPageBuilder.js"></script>
+    <script type="text/javascript" src="WIInc/js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="WIInc/js/jquery.htmlClean.js"></script>
+<!--     <script type="text/javascript" src="WIInc/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="WIInc/ckeditor/config.js"></script>  -->
+    <script type="text/javascript" src="WICore/WIJ/WIScripts.js"></script>
+    <script type="text/javascript" src="WIInc/js/FileSaver.js"></script>
+    <script type="text/javascript" src="WIInc/js/blob.js"></script>
 
-                          <script type="text/javascript" src="WICore/WIJ/WIMedia.js"></script>
-                                      <script type="text/javascript" src="WICore/WIJ/WIImage.js"></script>
+               <?php  
+
+ $modal->moduleModal('element_enable', 'Element Enabler', 'WIMod', 'enabler','Enable all elements'); 
+
+   ?>
+    <!--<script src="WIInc/js/docs.min.js"></script>
+
 

@@ -9,6 +9,34 @@ $(document).ready(function(event)
     $("#page_selection_css").val('index').prop("selected", true);
     var page = $("#page_selection_css").val();
     WICSS.viewCss(page);
+
+    WICSS.href();
+
+
+        $("#css_btn").click(function()
+    {
+
+            var css               = $("#codecss").html(),
+
+
+
+             //create data that will be sent over server
+
+              styling = {
+                UserData:{
+                    css           : css
+
+                },
+                FieldId:{
+                    css           : "codecss"
+
+                }
+             };
+             // send data to server
+             WICSS.sendData(styling);
+        
+    });
+
 });
 
 var WICSS = {}
@@ -62,6 +90,15 @@ WICSS.showCssModal = function (id) {
     });
  
 };
+
+WICSS.editCode = function(href){
+
+      var date = new Date();
+                     var minutes = 30;
+               date.setTime(date.getTime() + (minutes * 60 * 1000));
+            $.cookie("href", href, {expires: date});
+            window.location = "WICss.php";
+}
 
 WICSS.edditCssModal = function (id) {
     //jQuery.noConflict();
@@ -199,6 +236,81 @@ WICSS.addCSS = function(){
                 $("#css").val('');
                 WICSS.Close();
                 //WICore.displaySuccessMessage($(".msg"), res.msg);
+            }
+        }
+    });
+}
+
+
+WICSS.href = function(){
+    var href = $.cookie("href"); 
+    console.log(href);
+
+
+         $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "href",
+            href   : href
+        },
+        success: function(result)
+        {
+
+         $("#codecss").html(result);
+
+        }
+       
+        
+    });
+
+
+}
+
+WICSS.sendData = function(styling){
+
+var btn = $("#css_btn");
+    event.preventDefault();
+
+     href = $.cookie("href"); 
+    // put button into the loading state
+    WICore.loadingButton(btn, $_lang.creating_Account);
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "new_css",
+            styling   : styling,
+            href     : href
+        },
+        success: function(result)
+        {
+            
+            console.log(result);
+            // return the button to normasl state
+            WICore.removeLoadingButton(btn);
+            
+            //window.alert(result);
+            //parse the data to json
+            //var res = JSON.stringify(result);
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "error")
+            {
+                /// display all errors
+                 for(var i=0; i<res.errors.length; i++) 
+                 {
+                    var error = res.errors[i];
+                    WICore.displayadminerrorsMessage($("#"+error.id), error.msg);
+                }
+            }
+            else if(res.status === "success")
+            {
+                // dispaly success message
+                WICore.displaySuccessfulMessage($("#dresults"), res.msg);
+                WICore.Refresh();
             }
         }
     });

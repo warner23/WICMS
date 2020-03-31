@@ -101,41 +101,19 @@ $(document).ready(function(event)
     })
 
 
-// // button register click below
-//     $("#email-settings-smtp").click(function()
-//     {
 
-//             var smtp_host           = $("#smtp_host").val(),
-//              smtp_username           = $("#smtp_username-").val(),
-//              smtp_pass               = $("#smtp_password").val(),
-//              smtp_enc               = $("#smtp_enc").val(),
-//              port_name             = $("#smtp_port").val()
+         $('#max_login_attempts').on('change', function() {
+            // alert( this.value );
+    $("#max_login_attempts").val(this.value).prop("selected", "selected");                      
+    })
+
+    $('#bootstrap_version').on('change', function() {
+    // alert( this.value );
+
+    $("#bootstrap_version").val(this.value).prop("selected", "selected");
+    })
 
 
-//              //create data that will be sent over server
-
-//              var email = {
-//                 UserData:{
-//                     smtp_host        : smtp_host,
-//                     smtp_username    : smtp_username,
-//                     smtp_pass        : smtp_pass,
-//                     smtp_enc         : db_name,
-//                     port_name        : smtp_port
-
-//                 },
-//                 FieldId:{
-//                     smtp_host           : "smtp_host",
-//                     smtp_username       : "smtp_username",
-//                     smtp_pass           : "smtp_password",
-//                     smtp_enc            : "smtp_enc",
-//                     port_name           : "smtp_port"
-
-//                 }
-//              };
-//              // send data to server
-//              WIEmail.sendData(database);
-        
-//     });
 
 });
 
@@ -173,15 +151,25 @@ WIInstall.stepTwo = function(){
 }
 
 WIInstall.stepThree = function(){
-	$("#step_three").removeClass('show');
-	$("#step_three").addClass('hide');
-	$("#step_four").removeClass('hide');
-	$("#step_four").addClass('show');
-	$("#stepThree").removeClass('active');
-	$("#stepThree").addClass('passActive');
-	$("#stepFour").removeClass('inactive');
-	$("#stepFour").addClass('active');
 
+    admin_password = $("#admin_password").val(),
+    admin_conf_password = $("#admin_confirm_password").val();
+
+    if(admin_password != admin_conf_password)
+    {
+        $("#pass_match").html('passwords do not match');
+    }else{
+       $("#step_three").removeClass('show');
+    $("#step_three").addClass('hide');
+    $("#step_four").removeClass('hide');
+    $("#step_four").addClass('show');
+    $("#stepThree").removeClass('active');
+    $("#stepThree").addClass('passActive');
+    $("#stepFour").removeClass('inactive');
+    $("#stepFour").addClass('active');
+ 
+    }
+	
 
 }
 
@@ -277,7 +265,7 @@ WIInstall.install = function(){
     session_regenerate = $("#session_regenerate").attr("value"),
     cookieonly = $("#cookieonly").attr("value"),
     login_fingerprint = $("#login_fingerprint").attr("value"),
-    max_login_attempts = $("#max_login_attempts").val(),
+    max_login_attempts = $("#max_login_attempts option:selected").attr("value"),
     redirect_after_login = $("#redirect_after_login").val();
 //    encryption_bcrypt = $("#encryption-bcrypt").val(),
     var encryption  = $('input[name=encryption]:checked').val();
@@ -299,13 +287,14 @@ WIInstall.install = function(){
     smtp_enc = $("#smtp_enc").val();
      }
      var salt = $("#salt").val(),
-    bootstrap_version = $("#bootstrap_version").val(),
+    bootstrap_version = $("#bootstrap_version option:selected").attr("value"),
     db_host = $("#host").val(),
     db_username = $("#username").val(),
     db_password = $("#password").val(),
     db_name = $("#db_name").val(),
     admin_user = $("#admin_username").val(),
     admin_password = $("#admin_password").val(),
+    admin_conf_password = $("#admin_confirm_password").val(),
     user_email = $("#email_address").val();
 
     var admin_pass = CryptoJS.SHA512(admin_password).toString();

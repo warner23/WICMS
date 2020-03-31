@@ -28,7 +28,6 @@ class panel
         )
       );
 
-
     return $result[$column];
   }
 
@@ -45,8 +44,7 @@ class panel
          $remote =  "Log In | Register";
        }
 
-       
-        if(panel::social("twitter_enabled", "twitter_enabled") === "enabled"){
+        if(TWITTER_ENABLED === "true"){
         $Twitter =  '<a href="javascript:void(0)">
            <img src="assets/img/twitter.png" class="fade high-opacity" alt="Twitter" title="' . WILang::get("login_with") . ' Twitter"/>
             </a>';
@@ -54,15 +52,15 @@ class panel
         $Twitter = "";
        }
 
-       if(panel::social("facebook_enabled", "facebook_enabled") === "enabled"){
-          $Facebook = '<a href="javascript:void(0)">
+       if(FACEBOOK_ENABLED === "true"){
+          $Facebook = '<a href="javascript:void(0)" onclick="">
       <img src="assets/img/fb.png" class="fade high-opacity" alt="Facebook" title="' . WILang::get("login_with") . ' Facebook"/>
                           </a>';
        }else{
         $Facebook = "";
        }
 
-      if(panel::social("google_enabled", "google_enabled") === "enabled"){
+      if(GOOGLE_ENABLED === "true"){
           $Google = '<a href="javascript:void(0)">
   <img src="assets/img/gplus.png" class="fade high-opacity" alt="Google+" title="' . WILang::get("login_with") . ' GooglePlus"/>
                           </a>';
@@ -75,7 +73,7 @@ class panel
     <div class="content clearfix">
       <div class="left">
         <h1>' .WILang::get("Welcome") . '</h1>
-        <h2>' . WILang::get("TO"). ' <strong>' . WILang::get("site_name") . '</strong></h2>
+        <h2>' . WILang::get("TO"). ' <strong>' . WEBSITE_NAME . '</strong></h2>
         <p class="grey"></p>
         <p class="grey">
       </div>
@@ -223,15 +221,14 @@ class panel
                   <a href="logout.php">' . WILang::get("log_off") . '</a>
                   <p>- or -</p>';
 
-                      $url = $_SERVER['PHP_SELF'];
+                  $url = $_SERVER["PHP_SELF"];
 
-                    if (strpos($url,'WIMembers') !== false) {
+                    if (strpos($url,"WIMembers") !== false) {
                     echo '<a href="../alogin.php">' .WILang::get("admin_panel") . ' </a>';
                   } else {
                     echo '<a href="alogin.php">' .WILang::get("admin_panel") . ' </a>';
                   }
-                  
-                 echo '</div>
+                  echo '</div>
                   <div class="left right">
                   </div>';
              }else{

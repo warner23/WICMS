@@ -1,0 +1,102 @@
+
+/* ===================================================== */
+/* FOOTER                                                */
+/* ===================================================== */
+footer{background:#222222;color:#fff;}
+.footer{
+        padding: 5px 0;
+    margin-top: 206px;
+}
+footer p{color: #eee !important;}
+
+/*-------------------------------------------------*/
+/* =  SOCIAL MEDIA FOOTER
+/*-------------------------------------------------*/
+.footer_social{
+    float: right;
+}
+.footbot_social {
+    list-style: none outside none;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+}
+.footbot_social li {
+    float: left;
+    background: none !important;
+}
+.footbot_social li a {
+    color: #ffffff;
+    display:block;
+    height: 40px;
+    text-align: center;
+    width: 40px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+}
+.footbot_social li a i {
+    font-size: 18px;
+    line-height: 40px;
+    margin-right: 0;
+    float: none;
+}
+.footbot_social li a.fb:hover      {color: #2f5a9a;}
+.footbot_social li a.twtr:hover    {color: #3abdd1;}
+.footbot_social li a.gmail:hover   {color: #222222;}
+.footbot_social li a.pinterest:hover{color: #d13a3a;}
+.footbot_social li a.rss:hover     {color: #f15200;}
+.footbot_social li a.tumblr:hover  {color: #203550;}
+.footbot_social li a.flickr:hover        {color: #ff0084;}
+.footbot_social li a.instagram:hover     {color: #507ea4;}
+.footbot_social li a.linkedin:hover      {color: #0072b2;}
+.footbot_social li a.skype:hover         {color: #00aaf1;}
+.footbot_social li a.youtube:hover       {color: #ff3330;}
+.footbot_social li a.dribbble:hover      { color: #f973a4;}
+
+
+/* ===================================================== */
+/* WIDGET TITLE                                          */
+/* ===================================================== */
+.widget_title {
+    color: #FFFFFF;
+    margin: auto auto 15px;
+}
+.widget_title > h4 {
+    border-bottom: 1px solid #464646;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+.widget_title span:after {
+    border-bottom: 1px solid #FFFFFF;
+    content: " ";
+    display: block;
+    margin-top: 10px;
+    position: relative;
+    top: 1px;
+    width: 50px;
+    z-index: 999;
+}
+.wfoot_content > p {
+    line-height: 24px;
+}
+.footer_bottom {
+    padding: 20px 0;
+    position: relative;
+    background: #1a1a1a;
+}
+.copyright {
+    line-height: 40px;
+    margin: 0 auto 0;
+    color: #ffffff;
+}
+.wfoot_content .recent_posts, .wfoot_content .tweet_go, .wfoot_content .flickr{
+    margin-top: 25px;
+}
+
+
+

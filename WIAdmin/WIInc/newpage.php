@@ -21,7 +21,15 @@
                             Page Name:<input type="text" name="newpage" id="page_title">
                         </div>
 
-                        <input type="checkbox" name="vehicle" value="menu">want your page in the main menu<br>
+                    <div class="btn-group perm" id="editing" data-toggle="buttons-radio">
+
+                      <label class="switch">
+                       <input type="hidden" name="edit" id="edit" class="btn-group-value" value="0"/>
+                        <input type="checkbox" id="menu_linking" checked>
+                        <span class="slider round" id="ed"></span>
+                      </label>
+
+                    </div>
 
                          <div class="col-lg-12">
                              <button id="newpage" class="btn btn-success">Save</button> 

@@ -11,24 +11,24 @@ $(document).ready(function(event)
 	$("#site_settings").click(function()
 	{
 
-			var name            = $("#website_name").val(),
-			 domain               = $("#website_domain").val(),
-			 url               = $("#website_url").val()
+			var site_name           = $("#website_name").val(),
+			 site_domain            = $("#website_domain").val(),
+			 site_url               = $("#website_url").val()
 
 
 			 //create data that will be sent over server
 
 			 var site = {
 			 	UserData:{
-			 	    name           : name,
-                    domain         : domain,
-                    url            : url
+			 	    site_name           : site_name,
+                    site_domain         : site_domain,
+                    site_url            : site_url
 
 			 	},
 			 	FieldId:{
-			 		name           : "website_name",
-			 		domain         : "website_domain",
-                    url            : "website_url"
+			 		site_name           : "website_name",
+			 		site_domain         : "website_domain",
+                    site_url            : "website_url"
 
 			 	}
 			 };
@@ -82,6 +82,7 @@ WISite.sendData = function(site){
     		{
     			// dispaly success message
     			 WICore.displaySuccessfulMessage($("#wresults"), res.msg);
+                 window.location.reload();
                 
     		}
     	}

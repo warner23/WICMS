@@ -2,7 +2,7 @@
   
                         <fieldset>
                           <div id="legend">
-                          <h3>Email Configuration</h3>
+                          <h3 class="center">Email Configuration</h3>
 
                     <label for="mailer">Mailer</label>
                     <select name="mailer" id="mailer">
@@ -34,7 +34,7 @@
 
                          <div class="form-group">
                            
-                            <div class="controls col-lg-offset-4 col-lg-8">
+                            <div class="controls col-lg-offset-10 col-lg-2">
                               <button id="email-settings" class="btn btn-success" onclick="WIEmail.EmailMethod()">Save Settings</button>
                             </div>
                           </div>

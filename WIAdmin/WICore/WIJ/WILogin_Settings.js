@@ -7,19 +7,23 @@
 $(document).ready(function(event)
 {
     
-$("#fingerPrint_true").click(function(){
+    $("#print").click(function(){
                         //alert('clicked');
-                        $("#login_fingerprint").attr("value", 'yes')
-                        $("#fingerPrint_false").removeClass('btn-danger active')
-                        $("#fingerPrint_true").addClass('btn-success active');
-                    })
+                        var login = $("#login_fingerprint").attr('value');
+                        console.log(login);
+                        if (login === "false"){
+                        $("#finger").prop("checked", true);
+                        $("#print").text('ON');
+                        $("#login_fingerprint").attr('value','true');
+                        
+                       }else if (login === "true"){
+                        $("#finger").removeAttr('checked');
+                        $("#print").text('OFF');
+                        $("#print").css('padding-left', '50%');
+                        $("#login_fingerprint").attr('value','false');
+                       }
+                    });
 
-                    $("#fingerPrint_false").click(function(){
-                        //alert('clicked');
-                        $("#login_fingerprint").attr("value", 'no')
-                        $("#fingerPrint_true").removeClass('btn-success active')
-                        $("#fingerPrint_false").addClass('btn-danger active');
-                    })
 	// button register click below
 
 	$("#loginSettings_btn").click(function(event)

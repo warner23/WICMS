@@ -1,13 +1,16 @@
  <form class="form-horizontal" id="forgot-pass-form">
                         <fieldset>
                           <div id="legend">
-                      <h3>Login Configuration</h3>
+                      <h3 class="center">Login Configuration</h3>
                     
                     <label for="login_fingerprint">Fingerprint</label>
                     <div class="btn-group" data-toggle="buttons-radio">
                         <input id="login_fingerprint" type="hidden" name="login_fingerprint" class="btn-group-value" value="<?php echo $site->Website_Info('login_fingerprint')?>"/>
-                        <button id="fingerPrint_true" type="button" name="login_fingerprint" value="true"  class="btn btn-success active">Yes</button>
-                        <button id="fingerPrint_false" type="button" name="login_fingerprint" value="false" class="btn" >No</button>
+                         <label class="switch">
+                        <input type="checkbox" id="finger" checked>
+                        <span class="slider round" id="print">ON</span>
+                        
+                      </label>
                     </div>
                     <span class="help-block">
                         If you select <strong>Yes</strong>, every time when user is logged in, hash function will generate string
@@ -38,7 +41,7 @@
                 </div>
                    <div class="form-group">
                         <!-- Button -->
-                        <div class="controls col-lg-offset-4 col-lg-8">
+                        <div class="controls col-lg-offset-10 col-lg-2">
                            <button id="loginSettings_btn" class="btn btn-success">Save</button> 
                         </div>
 
@@ -50,11 +53,9 @@
                       <script type="text/javascript">
                           var fingerprint = $("#login_fingerprint").attr('value');
                        if (fingerprint === "no"){
-                        $("#fingerPrint_true").removeClass('btn-success active')
-                        $("#fingerPrint_false").addClass('btn-danger active');
+                        $("#finger").prop("checked", true);
                        }else if (fingerprint === "yes"){
-                       $("#fingerPrint_false").removeClass('btn-danger active')
-                        $("#fingerPrint_true").addClass('btn-success active');
+                       $("#finger").prop("checked", false);
                        }
                       </script>
 

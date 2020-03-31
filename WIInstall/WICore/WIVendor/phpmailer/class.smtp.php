@@ -1,187 +1,153 @@
-<?php
-/**
- * PHPMailer RFC821 SMTP email transport class.
- * PHP Version 5
- * @package PHPMailer
- * @link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
- * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
- * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
- * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
- * @author Brent R. Matzelle (original founder)
- * @copyright 2014 Marcus Bointon
- * @copyright 2010 - 2012 Jim Jagielski
- * @copyright 2004 - 2009 Andy Prevost
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @note This program is distributed in the hope that it will be useful - WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.
- */
-
-/**
- * PHPMailer RFC821 SMTP email transport class.
- * Implements RFC 821 SMTP commands and provides some utility methods for sending mail to an SMTP server.
- * @package PHPMailer
- * @author Chris Ryan <unknown@example.com>
- * @author Marcus Bointon <phpmailer@synchromedia.co.uk>
- */
-class SMTP
-{
-    /**
-     * The PHPMailer SMTP version number.
-     * @type string
+ void
      */
-    const VERSION = '5.2.7';
-
-    /**
-     * SMTP line break constant.
-     * @type string
-     */
-    const CRLF = "\r\n";
-
-    /**
-     * The SMTP port to use if one is not specified.
-     * @type int
-     */
-    const DEFAULT_SMTP_PORT = 25;
-
-    /**
-     * The maximum line length allowed by RFC 2822 section 2.1.1
-     * @type int
-     */
-    const MAX_LINE_LENGTH = 998;
-
-    /**
-     * The PHPMailer SMTP Version number.
-     * @type string
-     * @deprecated Use the constant instead
-     * @see SMTP::VERSION
-     */
-    public $Version = '5.2.7';
-
-    /**
-     * SMTP server port number.
-     * @type int
-     * @deprecated This is only ever used as a default value, so use the constant instead
-     * @see SMTP::DEFAULT_SMTP_PORT
-     */
-    public $SMTP_PORT = 25;
-
-    /**
-     * SMTP reply line ending.
-     * @type string
-     * @deprecated Use the constant instead
-     * @see SMTP::CRLF
-     */
-    public $CRLF = "\r\n";
-
-    /**
-     * Debug output level.
-     * Options:
-     * * `0` No output
-     * * `1` Commands
-     * * `2` Data and commands
-     * * `3` As 2 plus connection status
-     * * `4` Low-level data output
-     * @type int
-     */
-    public $do_debug = 0;
-
-    /**
-     * How to handle debug output.
-     * Options:
-     * * `echo` Output plain-text as-is, appropriate for CLI
-     * * `html` Output escaped, line breaks converted to <br>, appropriate for browser output
-     * * `error_log` Output to error log as configured in php.ini
-     * @type string
-     */
-    public $Debugoutput = 'echo';
-
-    /**
-     * Whether to use VERP.
-     * @link http://en.wikipedia.org/wiki/Variable_envelope_return_path
-     * @link http://www.postfix.org/VERP_README.html Info on VERP
-     * @type bool
-     */
-    public $do_verp = false;
-
-    /**
-     * The timeout value for connection, in seconds.
-     * Default of 5 minutes (300sec) is from RFC2821 section 4.5.3.2
-     * This needs to be quite high to function correctly with hosts using greetdelay as an anti-spam measure.
-     * @link http://tools.ietf.org/html/rfc2821#section-4.5.3.2
-     * @type int
-     */
-    public $Timeout = 300;
-
-    /**
-     * The SMTP timelimit value for reads, in seconds.
-     * @type int
-     */
-    public $Timelimit = 30;
-
-    /**
-     * The socket for the server connection.
-     * @type resource
-     */
-    protected $smtp_conn;
-
-    /**
-     * Error message, if any, for the last call.
-     * @type string
-     */
-    protected $error = '';
-
-    /**
-     * The reply the server sent to us for HELO.
-     * @type string
-     */
-    protected $helo_rply = '';
-
-    /**
-     * The most recent reply received from the server.
-     * @type string
-     */
-    protected $last_reply = '';
-
-    /**
-     * Constructor.
-     * @access public
-     */
-    public function __construct()
+    public function isMail()
     {
-        $this->smtp_conn = 0;
-        $this->error = null;
-        $this->helo_rply = null;
-        $this->do_debug = 0;
+        $this->Mailer = 'mail';
     }
 
     /**
-     * Output debugging info via a user-selected method.
-     * @param string $str Debug string to output
+     * Send messages using $Sendmail.
      * @return void
      */
-    protected function edebug($str)
+    public function isSendmail()
     {
-        switch ($this->Debugoutput) {
-            case 'error_log':
-                //Don't output, just log
-                error_log($str);
-                break;
-            case 'html':
-                //Cleans up output a bit for a better looking, HTML-safe output
-                echo htmlentities(
-                    preg_replace('/[\r\n]+/', '', $str),
-                    ENT_QUOTES,
-                    'UTF-8'
-                )
-                . "<br>\n";
-                break;
-            case 'echo':
-            default:
-                echo gmdate('Y-m-d H:i:s')."\t".trim($str)."\n";
+        if (!stristr(ini_get('sendmail_path'), 'sendmail')) {
+            $this->Sendmail = '/usr/sbin/sendmail';
         }
+        $this->Mailer = 'sendmail';
     }
 
+    /**
+     * Send messages using qmail.
+     * @return void
+     */
+    public function isQmail()
+    {
+        if (!stristr(ini_get('sendmail_path'), 'qmail')) {
+            $this->Sendmail = '/var/qmail/bin/qmail-inject';
+        }
+        $this->Mailer = 'qmail';
+    }
+
+    /**
+     * Add a "To" address.
+     * @param string $address
+     * @param string $name
+     * @return bool true on success, false if address already used
+     */
+    public function addAddress($address, $name = '')
+    {
+        return $this->addAnAddress('to', $address, $name);
+    }
+
+    /**
+     * Add a "CC" address.
+     * @note: This function works with the SMTP mailer on win32, not with the "mail" mailer.
+     * @param string $address
+     * @param string $name
+     * @return bool true on success, false if address already used
+     */
+    public function addCC($address, $name = '')
+    {
+        return $this->addAnAddress('cc', $address, $name);
+    }
+
+    /**
+     * Add a "BCC" address.
+     * @note: This function works with the SMTP mailer on win32, not with the "mail" mailer.
+     * @param string $address
+     * @param string $name
+     * @return bool true on success, false if address already used
+     */
+    public function addBCC($address, $name = '')
+    {
+        return $this->addAnAddress('bcc', $address, $name);
+    }
+
+    /**
+     * Add a "Reply-to" address.
+     * @param string $address
+     * @param string $name
+     * @return bool
+     */
+    public function addReplyTo($address, $name = '')
+    {
+        return $this->addAnAddress('Reply-To', $address, $name);
+    }
+
+    /**
+     * Add an address to one of the recipient arrays.
+     * Addresses that have been added already return false, but do not throw exceptions
+     * @param string $kind One of 'to', 'cc', 'bcc', 'ReplyTo'
+     * @param string $address The email address to send to
+     * @param string $name
+     * @throws phpmailerException
+     * @return bool true on success, false if address already used or invalid in some way
+     * @access protected
+     */
+    protected function addAnAddress($kind, $address, $name = '')
+    {
+        if (!preg_match('/^(to|cc|bcc|Reply-To)$/', $kind)) {
+            $this->setError($this->lang('Invalid recipient array') . ': ' . $kind);
+            $this->edebug($this->lang('Invalid recipient array') . ': ' . $kind);
+            if ($this->exceptions) {
+                throw new phpmailerException('Invalid recipient array: ' . $kind);
+            }
+            return false;
+        }
+        $address = trim($address);
+        $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
+        if (!$this->validateAddress($address)) {
+            $this->setError($this->lang('invalid_address') . ': ' . $address);
+            $this->edebug($this->lang('invalid_address') . ': ' . $address);
+            if ($this->exceptions) {
+                throw new phpmailerException($this->lang('invalid_address') . ': ' . $address);
+            }
+            return false;
+        }
+        if ($kind != 'Reply-To') {
+            if (!isset($this->all_recipients[strtolower($address)])) {
+                array_push($this->$kind, array($address, $name));
+                $this->all_recipients[strtolower($address)] = true;
+                return true;
+            }
+        } else {
+            if (!array_key_exists(strtolower($address), $this->ReplyTo)) {
+                $this->ReplyTo[strtolower($address)] = array($address, $name);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Set the From and FromName properties.
+     * @param string $address
+     * @param string $name
+     * @param bool $auto Whether to also set the Sender address, defaults to true
+     * @throws phpmailerException
+     * @return bool
+     */
+    public function setFrom($address, $name = '', $auto = true)
+    {
+        $address = trim($address);
+        $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
+        if (!$this->validateAddress($address)) {
+            $this->setError($this->lang('invalid_address') . ': ' . $address);
+            $this->edebug($this->lang('invalid_address') . ': ' . $address);
+            if ($this->exceptions) {
+                throw new phpmailerException($this->lang('invalid_address') . ': ' . $address);
+            }
+            return false;
+        }
+        $this->From = $address;
+        $this->FromName = $name;
+        if ($auto) {
+            if (empty($this->Sender)) {
+                $this->Sender = $address;
+            }
+        }
+        return true;
     /**
      * Connect to an SMTP server.
      * @param string $host SMTP server IP or host name

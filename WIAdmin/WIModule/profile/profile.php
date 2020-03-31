@@ -332,10 +332,10 @@ $this->mod->getMod("profile_tabs");
                 </div>
                 <div align="center" class="ajax-loading loading"><img src="../WIAdmin//WIMedia/Img/ajax_loader.gif" /></div>
                 <div class="modal-footer">
-                    <a href="javascript:void(0);" class="btn btn-default" onclick="profile.cancel()" data-dismiss="modal" aria-hidden="true">
+                    <a href="javascript:void(0);" class="btn btn-default" onclick="WIProfile.cancel()" data-dismiss="modal" aria-hidden="true">
                       cancel
                     </a>
-                    <a href="javascript:void(0);" id="btn-change-photo" onclick="profile.upload(' .  WISession::get('user_id') . ')" class="btn btn-primary">
+                    <a href="javascript:void(0);" id="btn-change-photo" onclick="WIProfile.upload(' .  WISession::get('user_id') . ')" class="btn btn-primary">
                       add
                     </a>
                 </div>

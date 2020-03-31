@@ -1,0 +1,30 @@
+ == 0)
+            return array(
+                "first_name" => "",
+                "last_name"  => "",
+                "address"    => "",
+                "phone"      => "",
+                "empty"      => true
+            );
+
+        return $result[0];
+    }
+
+    
+    /**
+     * Updates user details.
+     * @param array $details Associative array where keys are database fields that need
+     * to be updated and values are new values for provided database fields.
+     */
+    public function updateDetails($details) {
+        $currDetails = $this->getDetails();
+        if(isset($currDetails['empty'])) {
+            $details["user_id"] = $this->userId;
+            $this->WIdb->insert("wi_user_details", $details);
+        }
+        else
+            $this->WIdb->update (
+                "WI_user_details",
+                $details,
+                "`user_id` = :id",
+                array( "id" 

@@ -45,10 +45,10 @@ class WIUserInfo
 	    	//echo "ave" . $result[0]['avatar'];
 	    	//if($result["avatar"] === " ")
 	    	if(!empty($result[0]["avatar"])){
-			 echo '<img class="profile online" src="../../../WIAdmin/WIMedia/Img/avator/' . $result[0]["avatar"] . '" width="218px" />';
+			 echo '<img class="profile online" src="../WIAdmin/WIMedia/Img/avator/' . $result[0]["avatar"] . '" width="218px" />';
 			
 		} else {
-		  echo '<img class="profile online" src="../../../WIAdmin/WIMedia/Img/avator/image01.jpg" width="218px" />';
+		  echo '<img class="profile online" src="../WIAdmin/WIMedia/Img/avator/image01.jpg" width="218px" />';
 		}
 
 	    	

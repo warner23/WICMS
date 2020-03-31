@@ -1,131 +1,119 @@
-<?php
-/**
- * PHPMailer POP-Before-SMTP Authentication Class.
- * PHP Version 5
- * @package PHPMailer
- * @link https://github.com/PHPMailer/PHPMailer/
- * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
- * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
- * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
- * @author Brent R. Matzelle (original founder)
- * @copyright 2012 - 2014 Marcus Bointon
- * @copyright 2010 - 2012 Jim Jagielski
- * @copyright 2004 - 2009 Andy Prevost
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @note This program is distributed in the hope that it will be useful - WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.
- */
-
-/**
- * PHPMailer POP-Before-SMTP Authentication Class.
- * Specifically for PHPMailer to use for RFC1939 POP-before-SMTP authentication.
- * Does not support APOP.
- * @package PHPMailer
- * @author Richard Davey (original author) <rich@corephp.co.uk>
- * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
- * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
- * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
- */
-class POP3
-{
-    /**
-     * The POP3 PHPMailer Version number.
+ /**
+     * The PHPMailer SMTP version number.
      * @type string
-     * @access public
+     */
+    const VERSION = '5.2.7';
+
+    /**
+     * SMTP line break constant.
+     * @type string
+     */
+    const CRLF = "\r\n";
+
+    /**
+     * The SMTP port to use if one is not specified.
+     * @type int
+     */
+    const DEFAULT_SMTP_PORT = 25;
+
+    /**
+     * The maximum line length allowed by RFC 2822 section 2.1.1
+     * @type int
+     */
+    const MAX_LINE_LENGTH = 998;
+
+    /**
+     * The PHPMailer SMTP Version number.
+     * @type string
+     * @deprecated Use the constant instead
+     * @see SMTP::VERSION
      */
     public $Version = '5.2.7';
 
     /**
-     * Default POP3 port number.
+     * SMTP server port number.
      * @type int
-     * @access public
+     * @deprecated This is only ever used as a default value, so use the constant instead
+     * @see SMTP::DEFAULT_SMTP_PORT
      */
-    public $POP3_PORT = 110;
+    public $SMTP_PORT = 25;
 
     /**
-     * Default timeout in seconds.
-     * @type int
-     * @access public
-     */
-    public $POP3_TIMEOUT = 30;
-
-    /**
-     * POP3 Carriage Return + Line Feed.
+     * SMTP reply line ending.
      * @type string
-     * @access public
      * @deprecated Use the constant instead
+     * @see SMTP::CRLF
      */
     public $CRLF = "\r\n";
 
     /**
-     * Debug display level.
-     * Options: 0 = no, 1+ = yes
+     * Debug output level.
+     * Options:
+     * * `0` No output
+     * * `1` Commands
+     * * `2` Data and commands
+     * * `3` As 2 plus connection status
+     * * `4` Low-level data output
      * @type int
-     * @access public
      */
     public $do_debug = 0;
 
     /**
-     * POP3 mail server hostname.
+     * How to handle debug output.
+     * Options:
+     * * `echo` Output plain-text as-is, appropriate for CLI
+     * * `html` Output escaped, line breaks converted to <br>, appropriate for browser output
+     * * `error_log` Output to error log as configured in php.ini
      * @type string
-     * @access public
      */
-    public $host;
+    public $Debugoutput = 'echo';
 
     /**
-     * POP3 port number.
-     * @type int
-     * @access public
-     */
-    public $port;
-
-    /**
-     * POP3 Timeout Value in seconds.
-     * @type int
-     * @access public
-     */
-    public $tval;
-
-    /**
-     * POP3 username
-     * @type string
-     * @access public
-     */
-    public $username;
-
-    /**
-     * POP3 password.
-     * @type string
-     * @access public
-     */
-    public $password;
-
-    /**
-     * Resource handle for the POP3 connection socket.
-     * @type resource
-     * @access private
-     */
-    private $pop_conn;
-
-    /**
-     * Are we connected?
+     * Whether to use VERP.
+     * @link http://en.wikipedia.org/wiki/Variable_envelope_return_path
+     * @link http://www.postfix.org/VERP_README.html Info on VERP
      * @type bool
-     * @access private
      */
-    private $connected;
+    public $do_verp = false;
 
     /**
-     * Error container.
-     * @type array
-     * @access private
+     * The timeout value for connection, in seconds.
+     * Default of 5 minutes (300sec) is from RFC2821 section 4.5.3.2
+     * This needs to be quite high to function correctly with hosts using greetdelay as an anti-spam measure.
+     * @link http://tools.ietf.org/html/rfc2821#section-4.5.3.2
+     * @type int
      */
-    private $error;
+    public $Timeout = 300;
 
     /**
-     * Line break constant
+     * The SMTP timelimit value for reads, in seconds.
+     * @type int
      */
-    const CRLF = "\r\n";
+    public $Timelimit = 30;
+
+    /**
+     * The socket for the server connection.
+     * @type resource
+     */
+    protected $smtp_conn;
+
+    /**
+     * Error message, if any, for the last call.
+     * @type string
+     */
+    protected $error = '';
+
+    /**
+     * The reply the server sent to us for HELO.
+     * @type string
+     */
+    protected $helo_rply = '';
+
+    /**
+     * The most recent reply received from the server.
+     * @type string
+     */
+    protected $last_reply = '';
 
     /**
      * Constructor.
@@ -133,285 +121,332 @@ class POP3
      */
     public function __construct()
     {
-        $this->pop_conn = 0;
-        $this->connected = false;
+        $this->smtp_conn = 0;
         $this->error = null;
+        $this->helo_rply = null;
+        $this->do_debug = 0;
     }
 
     /**
-     * Simple static wrapper for all-in-one POP before SMTP
-     * @param $host
-     * @param bool $port
-     * @param bool $tval
-     * @param string $username
-     * @param string $password
-     * @param int $debug_level
+     * Output debugging info via a user-selected method.
+     * @param string $str Debug string to output
+     * @return void
+     */
+    protected function edebug($str)
+    {
+        switch ($this->Debugoutput) {
+            case 'error_log':
+                //Don't output, just log
+                error_log($str);
+                break;
+            case 'html':
+                //Cleans up output a bit for a better looking, HTML-safe output
+                echo htmlentities(
+                    preg_replace('/[\r\n]+/', '', $str),
+                    ENT_QUOTES,
+                    'UTF-8'
+                )
+                . "<br>\n";
+                break;
+            case 'echo':
+            default:
+                echo gmdate('Y-m-d H:i:s')."\t".trim($str)."\n";
+        }
+    }
+
+       * @type bool
+     */
+    public $do_verp = false;
+
+    /**
+     * Whether to allow sending messages with an empty body.
+     * @type bool
+     */
+    public $AllowEmpty = false;
+
+    /**
+     * The default line ending.
+     * @note The default remains "\n". We force CRLF where we know
+     *        it must be used via self::CRLF.
+     * @type string
+     */
+    public $LE = "\n";
+
+    /**
+     * DKIM selector.
+     * @type string
+     */
+    public $DKIM_selector = '';
+
+    /**
+     * DKIM Identity.
+     * Usually the email address used as the source of the email
+     * @type string
+     */
+    public $DKIM_identity = '';
+
+    /**
+     * DKIM passphrase.
+     * Used if your key is encrypted.
+     * @type string
+     */
+    public $DKIM_passphrase = '';
+
+    /**
+     * DKIM signing domain name.
+     * @example 'example.com'
+     * @type string
+     */
+    public $DKIM_domain = '';
+
+    /**
+     * DKIM private key file path.
+     * @type string
+     */
+    public $DKIM_private = '';
+
+    /**
+     * Callback Action function name.
+     *
+     * The function that handles the result of the send email action.
+     * It is called out by send() for each email sent.
+     *
+     * Value can be any php callable: http://www.php.net/is_callable
+     *
+     * Parameters:
+     *   bool    $result        result of the send action
+     *   string  $to            email address of the recipient
+     *   string  $cc            cc email addresses
+     *   string  $bcc           bcc email addresses
+     *   string  $subject       the subject
+     *   string  $body          the email body
+     *   string  $from          email address of sender
+     * @type string
+     */
+    public $action_function = '';
+
+    /**
+     * What to use in the X-Mailer header.
+     * Options: null for default, whitespace for none, or a string to use
+     * @type string
+     */
+    public $XMailer = '';
+
+    /**
+     * An instance of the SMTP sender class.
+     * @type SMTP
+     * @access protected
+     */
+    protected $smtp = null;
+
+    /**
+     * The array of 'to' addresses.
+     * @type array
+     * @access protected
+     */
+    protected $to = array();
+
+    /**
+     * The array of 'cc' addresses.
+     * @type array
+     * @access protected
+     */
+    protected $cc = array();
+
+    /**
+     * The array of 'bcc' addresses.
+     * @type array
+     * @access protected
+     */
+    protected $bcc = array();
+
+    /**
+     * The array of reply-to names and addresses.
+     * @type array
+     * @access protected
+     */
+    protected $ReplyTo = array();
+
+    /**
+     * An array of all kinds of addresses.
+     * Includes all of $to, $cc, $bcc, $replyto
+     * @type array
+     * @access protected
+     */
+    protected $all_recipients = array();
+
+    /**
+     * The array of attachments.
+     * @type array
+     * @access protected
+     */
+    protected $attachment = array();
+
+    /**
+     * The array of custom headers.
+     * @type array
+     * @access protected
+     */
+    protected $CustomHeader = array();
+
+    /**
+     * The most recent Message-ID (including angular brackets).
+     * @type string
+     * @access protected
+     */
+    protected $lastMessageID = '';
+
+    /**
+     * The message's MIME type.
+     * @type string
+     * @access protected
+     */
+    protected $message_type = '';
+
+    /**
+     * The array of MIME boundary strings.
+     * @type array
+     * @access protected
+     */
+    protected $boundary = array();
+
+    /**
+     * The array of available languages.
+     * @type array
+     * @access protected
+     */
+    protected $language = array();
+
+    /**
+     * The number of errors encountered.
+     * @type integer
+     * @access protected
+     */
+    protected $error_count = 0;
+
+    /**
+     * The S/MIME certificate file path.
+     * @type string
+     * @access protected
+     */
+    protected $sign_cert_file = '';
+
+    /**
+     * The S/MIME key file path.
+     * @type string
+     * @access protected
+     */
+    protected $sign_key_file = '';
+
+    /**
+     * The S/MIME password for the key.
+     * Used only if the key is encrypted.
+     * @type string
+     * @access protected
+     */
+    protected $sign_key_pass = '';
+
+    /**
+     * Whether to throw exceptions for errors.
+     * @type bool
+     * @access protected
+     */
+    protected $exceptions = false;
+
+    /**
+     * Error severity: message only, continue processing
+     */
+    const STOP_MESSAGE = 0;
+
+    /**
+     * Error severity: message, likely ok to continue processing
+     */
+    const STOP_CONTINUE = 1;
+
+    /**
+     * Error severity: message, plus full stop, critical error reached
+     */
+    const STOP_CRITICAL = 2;
+
+    /**
+     * SMTP RFC standard line ending
+     */
+    const CRLF = "\r\n";
+
+    /**
+     * Constructor
+     * @param bool $exceptions Should we throw external exceptions?
+     */
+    public function __construct($exceptions = false)
+    {
+        if (version_compare(PHP_VERSION, '5.0.0', '<')) {
+            exit("Sorry, PHPMailer will only run on PHP version 5 or greater!\n");
+        }
+        $this->exceptions = ($exceptions == true);
+        //Make sure our autoloader is loaded
+        if (version_compare(PHP_VERSION, '5.1.2', '>=')) {
+            $autoload = spl_autoload_functions();
+            if ($autoload === false or !in_array('PHPMailerAutoload', $autoload)) {
+                require 'PHPMailerAutoload.php';
+            }
+        }
+    }
+
+    /**
+     * Destructor.
+     */
+    public function __destruct()
+    {
+        if ($this->Mailer == 'smtp') { //close any open SMTP connection nicely
+            $this->smtpClose();
+        }
+    }
+
+    /**
+     * Call mail() in a safe_mode-aware fashion.
+     * Also, unless sendmail_path points to sendmail (or something that
+     * claims to be sendmail), don't pass params (not a perfect fix,
+     * but it will do)
+     * @param string $to To
+     * @param string $subject Subject
+     * @param string $body Message Body
+     * @param string $header Additional Header(s)
+     * @param string $params Params
+     * @access private
      * @return bool
      */
-    public static function popBeforeSmtp(
-        $host,
-        $port = false,
-        $tval = false,
-        $username = '',
-        $password = '',
-        $debug_level = 0
-    ) {
-        $pop = new POP3;
-        return $pop->authorise($host, $port, $tval, $username, $password, $debug_level);
-    }
-
-    /**
-     * Authenticate with a POP3 server.
-     * A connect, login, disconnect sequence
-     * appropriate for POP-before SMTP authorisation.
-     * @access public
-     * @param string $host
-     * @param bool|int $port
-     * @param bool|int $tval
-     * @param string $username
-     * @param string $password
-     * @param int $debug_level
-     * @return bool
-     */
-    public function authorise($host, $port = false, $tval = false, $username = '', $password = '', $debug_level = 0)
+    private function mailPassthru($to, $subject, $body, $header, $params)
     {
-        $this->host = $host;
-        // If no port value provided, use default
-        if ($port === false) {
-            $this->port = $this->POP3_PORT;
+        //Check overloading of mail function to avoid double-encoding
+        if (ini_get('mbstring.func_overload') & 1) {
+            $subject = $this->secureHeader($subject);
         } else {
-            $this->port = $port;
+            $subject = $this->encodeHeader($this->secureHeader($subject));
         }
-        // If no timeout value provided, use default
-        if ($tval === false) {
-            $this->tval = $this->POP3_TIMEOUT;
+        if (ini_get('safe_mode') || !($this->UseSendmailOptions)) {
+            $result = @mail($to, $subject, $body, $header);
         } else {
-            $this->tval = $tval;
+            $result = @mail($to, $subject, $body, $header, $params);
         }
-        $this->do_debug = $debug_level;
-        $this->username = $username;
-        $this->password = $password;
-        //  Refresh the error log
-        $this->error = null;
-        //  connect
-        $result = $this->connect($this->host, $this->port, $this->tval);
-        if ($result) {
-            $login_result = $this->login($this->username, $this->password);
-            if ($login_result) {
-                $this->disconnect();
-                return true;
-            }
-        }
-        // We need to disconnect regardless of whether the login succeeded
-        $this->disconnect();
-        return false;
+        return $result;
     }
 
     /**
-     * Connect to a POP3 server.
-     * @access public
-     * @param string $host
-     * @param bool|int $port
-     * @param integer $tval
-     * @return boolean
+     * Output debugging info via user-defined method.
+     * Only if debug output is enabled.
+     * @see PHPMailer::$Debugoutput
+     * @see PHPMailer::$SMTPDebug
+     * @param string $str
      */
-    public function connect($host, $port = false, $tval = 30)
+    protected function edebug($str)
     {
-        //  Are we already connected?
-        if ($this->connected) {
-            return true;
+        if (!$this->SMTPDebug) {
+            return;
         }
-
-        //On Windows this will raise a PHP Warning error if the hostname doesn't exist.
-        //Rather than suppress it with @fsockopen, capture it cleanly instead
-        set_error_handler(array($this, 'catchWarning'));
-
-        //  connect to the POP3 server
-        $this->pop_conn = fsockopen(
-            $host, //  POP3 Host
-            $port, //  Port #
-            $errno, //  Error Number
-            $errstr, //  Error Message
-            $tval
-        ); //  Timeout (seconds)
-        //  Restore the error handler
-        restore_error_handler();
-        //  Does the Error Log now contain anything?
-        if ($this->error && $this->do_debug >= 1) {
-            $this->displayErrors();
-        }
-        //  Did we connect?
-        if ($this->pop_conn == false) {
-            //  It would appear not...
-            $this->error = array(
-                'error' => "Failed to connect to server $host on port $port",
-                'errno' => $errno,
-                'errstr' => $errstr
-            );
-            if ($this->do_debug >= 1) {
-                $this->displayErrors();
-            }
-            return false;
-        }
-
-        //  Increase the stream time-out
-        //  Check for PHP 4.3.0 or later
-        if (version_compare(phpversion(), '5.0.0', 'ge')) {
-            stream_set_timeout($this->pop_conn, $tval, 0);
-        } else {
-            //  Does not work on Windows
-            if (substr(PHP_OS, 0, 3) !== 'WIN') {
-                socket_set_timeout($this->pop_conn, $tval, 0);
-            }
-        }
-
-        //  Get the POP3 server response
-        $pop3_response = $this->getResponse();
-        //  Check for the +OK
-        if ($this->checkResponse($pop3_response)) {
-            //  The connection is established and the POP3 server is talking
-            $this->connected = true;
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Log in to the POP3 server.
-     * Does not support APOP (RFC 2828, 4949).
-     * @access public
-     * @param string $username
-     * @param string $password
-     * @return boolean
-     */
-    public function login($username = '', $password = '')
-    {
-        if ($this->connected == false) {
-            $this->error = 'Not connected to POP3 server';
-
-            if ($this->do_debug >= 1) {
-                $this->displayErrors();
-            }
-        }
-        if (empty($username)) {
-            $username = $this->username;
-        }
-        if (empty($password)) {
-            $password = $this->password;
-        }
-
-        // Send the Username
-        $this->sendString("USER $username" . self::CRLF);
-        $pop3_response = $this->getResponse();
-        if ($this->checkResponse($pop3_response)) {
-            // Send the Password
-            $this->sendString("PASS $password" . self::CRLF);
-            $pop3_response = $this->getResponse();
-            if ($this->checkResponse($pop3_response)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Disconnect from the POP3 server.
-     * @access public
-     */
-    public function disconnect()
-    {
-        $this->sendString('QUIT');
-        //The QUIT command may cause the daemon to exit, which will kill our connection
-        //So ignore errors here
-        @fclose($this->pop_conn);
-    }
-
-    /**
-     * Get a response from the POP3 server.
-     * $size is the maximum number of bytes to retrieve
-     * @param integer $size
-     * @return string
-     * @access private
-     */
-    private function getResponse($size = 128)
-    {
-        $response = fgets($this->pop_conn, $size);
-        if ($this->do_debug >= 1) {
-            echo "Server -> Client: $response";
-        }
-        return $response;
-    }
-
-    /**
-     * Send raw data to the POP3 server.
-     * @param string $string
-     * @return integer
-     * @access private
-     */
-    private function sendString($string)
-    {
-        if ($this->pop_conn) {
-            if ($this->do_debug >= 2) { //Show client messages when debug >= 2
-                echo "Client -> Server: $string";
-            }
-            return fwrite($this->pop_conn, $string, strlen($string));
-        }
-        return 0;
-    }
-
-    /**
-     * Checks the POP3 server response.
-     * Looks for for +OK or -ERR.
-     * @param string $string
-     * @return boolean
-     * @access private
-     */
-    private function checkResponse($string)
-    {
-        if (substr($string, 0, 3) !== '+OK') {
-            $this->error = array(
-                'error' => "Server reported an error: $string",
-                'errno' => 0,
-                'errstr' => ''
-            );
-            if ($this->do_debug >= 1) {
-                $this->displayErrors();
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Display errors if debug is enabled.
-     * @access private
-     */
-    private function displayErrors()
-    {
-        echo '<pre>';
-        foreach ($this->error as $single_error) {
-            print_r($single_error);
-        }
-        echo '</pre>';
-    }
-
-    /**
-     * POP3 connection error handler.
-     * @param integer $errno
-     * @param string $errstr
-     * @param string $errfile
-     * @param integer $errline
-     * @access private
-     */
-    private function catchWarning($errno, $errstr, $errfile, $errline)
-    {
-        $this->error[] = array(
-            'error' => "Connecting to the POP3 server raised a PHP warning: ",
-            'errno' => $errno,
-            'errstr' => $errstr,
-            'errfile' => $errfile,
-            'errline' => $errline
-        );
-    }
-}
+        switch ($this->Debugoutput) {
+            case 'error_log':
+                error_log($str);
+                break;
+            case 'html':
+                //Cleans up output a bit for a better looking display that's HTML-safe
+                echo htmlentities(preg_replace('/[\r\n]+/', '', $str), ENT_QUOTES, $this->Char

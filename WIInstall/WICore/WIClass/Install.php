@@ -4,6 +4,7 @@
 class Install
 {
 
+
 	private $WIdb;
 
 	public function Installer($name, $dom, $script, $session_secure, $http, $session_regenerate, $cookieonly, $login_fingerprint, $max_login_attempts, $redirect_after_login, $encryption, $cost, $mailer,  $db_host, $db_name,  $db_pass, $db_username, $bootstrap_version, $salt, $admin_password, $admin_username, $email_address)
@@ -157,6 +158,18 @@ CREATE TABLE IF NOT EXISTS `wi_contact_message` (
 
 
 --
+-- Table structure for table `wi_contracts`
+--
+
+CREATE TABLE IF NOT EXISTS `wi_contracts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `start_point` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `task_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8  ;
+--
 -- Table structure for table `wi_css`
 --
 
@@ -205,12 +218,293 @@ INSERT INTO `wi_css` (`id`, `href`, `rel`, `page`) VALUES
 (30, 'site/css/vendor/bootstrap.min.css', 'stylesheet', 'profile'),
 (31, 'user/css/profile.css', 'stylesheet', 'profile');
 
-
 -- --------------------------------------------------------
 
+
+--
+-- Table structure for table `wi_countries`
+--
+
+CREATE TABLE IF NOT EXISTS `wi_countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `country_code` varchar(2) NOT NULL DEFAULT '',
+  `country_name` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=246 ;
+
+--
+-- Dumping data for table `wi_countries`
+--
+
+INSERT INTO `wi_countries` (`id`, `country_code`, `country_name`) VALUES
+(1, 'AF', 'Afghanistan'),
+(2, 'AL', 'Albania'),
+(3, 'DZ', 'Algeria'),
+(4, 'DS', 'American Samoa'),
+(5, 'AD', 'Andorra'),
+(6, 'AO', 'Angola'),
+(7, 'AI', 'Anguilla'),
+(8, 'AQ', 'Antarctica'),
+(9, 'AG', 'Antigua and Barbuda'),
+(10, 'AR', 'Argentina'),
+(11, 'AM', 'Armenia'),
+(12, 'AW', 'Aruba'),
+(13, 'AU', 'Australia'),
+(14, 'AT', 'Austria'),
+(15, 'AZ', 'Azerbaijan'),
+(16, 'BS', 'Bahamas'),
+(17, 'BH', 'Bahrain'),
+(18, 'BD', 'Bangladesh'),
+(19, 'BB', 'Barbados'),
+(20, 'BY', 'Belarus'),
+(21, 'BE', 'Belgium'),
+(22, 'BZ', 'Belize'),
+(23, 'BJ', 'Benin'),
+(24, 'BM', 'Bermuda'),
+(25, 'BT', 'Bhutan'),
+(26, 'BO', 'Bolivia'),
+(27, 'BA', 'Bosnia and Herzegovina'),
+(28, 'BW', 'Botswana'),
+(29, 'BV', 'Bouvet Island'),
+(30, 'BR', 'Brazil'),
+(31, 'IO', 'British Indian Ocean Territory'),
+(32, 'BN', 'Brunei Darussalam'),
+(33, 'BG', 'Bulgaria'),
+(34, 'BF', 'Burkina Faso'),
+(35, 'BI', 'Burundi'),
+(36, 'KH', 'Cambodia'),
+(37, 'CM', 'Cameroon'),
+(38, 'CA', 'Canada'),
+(39, 'CV', 'Cape Verde'),
+(40, 'KY', 'Cayman Islands'),
+(41, 'CF', 'Central African Republic'),
+(42, 'TD', 'Chad'),
+(43, 'CL', 'Chile'),
+(44, 'CN', 'China'),
+(45, 'CX', 'Christmas Island'),
+(46, 'CC', 'Cocos (Keeling) Islands'),
+(47, 'CO', 'Colombia'),
+(48, 'KM', 'Comoros'),
+(49, 'CG', 'Congo'),
+(50, 'CK', 'Cook Islands'),
+(51, 'CR', 'Costa Rica'),
+(52, 'HR', 'Croatia (Hrvatska)'),
+(53, 'CU', 'Cuba'),
+(54, 'CY', 'Cyprus'),
+(55, 'CZ', 'Czech Republic'),
+(56, 'DK', 'Denmark'),
+(57, 'DJ', 'Djibouti'),
+(58, 'DM', 'Dominica'),
+(59, 'DO', 'Dominican Republic'),
+(60, 'TP', 'East Timor'),
+(61, 'EC', 'Ecuador'),
+(62, 'EG', 'Egypt'),
+(63, 'SV', 'El Salvador'),
+(64, 'GQ', 'Equatorial Guinea'),
+(65, 'ER', 'Eritrea'),
+(66, 'EE', 'Estonia'),
+(67, 'ET', 'Ethiopia'),
+(68, 'FK', 'Falkland Islands (Malvinas)'),
+(69, 'FO', 'Faroe Islands'),
+(70, 'FJ', 'Fiji'),
+(71, 'FI', 'Finland'),
+(72, 'FR', 'France'),
+(73, 'FX', 'France, Metropolitan'),
+(74, 'GF', 'French Guiana'),
+(75, 'PF', 'French Polynesia'),
+(76, 'TF', 'French Southern Territories'),
+(77, 'GA', 'Gabon'),
+(78, 'GM', 'Gambia'),
+(79, 'GE', 'Georgia'),
+(80, 'DE', 'Germany'),
+(81, 'GH', 'Ghana'),
+(82, 'GI', 'Gibraltar'),
+(83, 'GK', 'Guernsey'),
+(84, 'GR', 'Greece'),
+(85, 'GL', 'Greenland'),
+(86, 'GD', 'Grenada'),
+(87, 'GP', 'Guadeloupe'),
+(88, 'GU', 'Guam'),
+(89, 'GT', 'Guatemala'),
+(90, 'GN', 'Guinea'),
+(91, 'GW', 'Guinea-Bissau'),
+(92, 'GY', 'Guyana'),
+(93, 'HT', 'Haiti'),
+(94, 'HM', 'Heard and Mc Donald Islands'),
+(95, 'HN', 'Honduras'),
+(96, 'HK', 'Hong Kong'),
+(97, 'HU', 'Hungary'),
+(98, 'IS', 'Iceland'),
+(99, 'IN', 'India'),
+(100, 'IM', 'Isle of Man'),
+(101, 'ID', 'Indonesia'),
+(102, 'IR', 'Iran (Islamic Republic of)'),
+(103, 'IQ', 'Iraq'),
+(104, 'IE', 'Ireland'),
+(105, 'IL', 'Israel'),
+(106, 'IT', 'Italy'),
+(107, 'CI', 'Ivory Coast'),
+(108, 'JE', 'Jersey'),
+(109, 'JM', 'Jamaica'),
+(110, 'JP', 'Japan'),
+(111, 'JO', 'Jordan'),
+(112, 'KZ', 'Kazakhstan'),
+(113, 'KE', 'Kenya'),
+(114, 'KI', 'Kiribati'),
+(115, 'KP', 'Korea, Democratic People''s Republic of'),
+(116, 'KR', 'Korea, Republic of'),
+(117, 'XK', 'Kosovo'),
+(118, 'KW', 'Kuwait'),
+(119, 'KG', 'Kyrgyzstan'),
+(120, 'LA', 'Lao People''s Democratic Republic'),
+(121, 'LV', 'Latvia'),
+(122, 'LB', 'Lebanon'),
+(123, 'LS', 'Lesotho'),
+(124, 'LR', 'Liberia'),
+(125, 'LY', 'Libyan Arab Jamahiriya'),
+(126, 'LI', 'Liechtenstein'),
+(127, 'LT', 'Lithuania'),
+(128, 'LU', 'Luxembourg'),
+(129, 'MO', 'Macau'),
+(130, 'MK', 'Macedonia'),
+(131, 'MG', 'Madagascar'),
+(132, 'MW', 'Malawi'),
+(133, 'MY', 'Malaysia'),
+(134, 'MV', 'Maldives'),
+(135, 'ML', 'Mali'),
+(136, 'MT', 'Malta'),
+(137, 'MH', 'Marshall Islands'),
+(138, 'MQ', 'Martinique'),
+(139, 'MR', 'Mauritania'),
+(140, 'MU', 'Mauritius'),
+(141, 'TY', 'Mayotte'),
+(142, 'MX', 'Mexico'),
+(143, 'FM', 'Micronesia, Federated States of'),
+(144, 'MD', 'Moldova, Republic of'),
+(145, 'MC', 'Monaco'),
+(146, 'MN', 'Mongolia'),
+(147, 'ME', 'Montenegro'),
+(148, 'MS', 'Montserrat'),
+(149, 'MA', 'Morocco'),
+(150, 'MZ', 'Mozambique'),
+(151, 'MM', 'Myanmar'),
+(152, 'NA', 'Namibia'),
+(153, 'NR', 'Nauru'),
+(154, 'NP', 'Nepal'),
+(155, 'NL', 'Netherlands'),
+(156, 'AN', 'Netherlands Antilles'),
+(157, 'NC', 'New Caledonia'),
+(158, 'NZ', 'New Zealand'),
+(159, 'NI', 'Nicaragua'),
+(160, 'NE', 'Niger'),
+(161, 'NG', 'Nigeria'),
+(162, 'NU', 'Niue'),
+(163, 'NF', 'Norfolk Island'),
+(164, 'MP', 'Northern Mariana Islands'),
+(165, 'NO', 'Norway'),
+(166, 'OM', 'Oman'),
+(167, 'PK', 'Pakistan'),
+(168, 'PW', 'Palau'),
+(169, 'PS', 'Palestine'),
+(170, 'PA', 'Panama'),
+(171, 'PG', 'Papua New Guinea'),
+(172, 'PY', 'Paraguay'),
+(173, 'PE', 'Peru'),
+(174, 'PH', 'Philippines'),
+(175, 'PN', 'Pitcairn'),
+(176, 'PL', 'Poland'),
+(177, 'PT', 'Portugal'),
+(178, 'PR', 'Puerto Rico'),
+(179, 'QA', 'Qatar'),
+(180, 'RE', 'Reunion'),
+(181, 'RO', 'Romania'),
+(182, 'RU', 'Russian Federation'),
+(183, 'RW', 'Rwanda'),
+(184, 'KN', 'Saint Kitts and Nevis'),
+(185, 'LC', 'Saint Lucia'),
+(186, 'VC', 'Saint Vincent and the Grenadines'),
+(187, 'WS', 'Samoa'),
+(188, 'SM', 'San Marino'),
+(189, 'ST', 'Sao Tome and Principe'),
+(190, 'SA', 'Saudi Arabia'),
+(191, 'SN', 'Senegal'),
+(192, 'RS', 'Serbia'),
+(193, 'SC', 'Seychelles'),
+(194, 'SL', 'Sierra Leone'),
+(195, 'SG', 'Singapore'),
+(196, 'SK', 'Slovakia'),
+(197, 'SI', 'Slovenia'),
+(198, 'SB', 'Solomon Islands'),
+(199, 'SO', 'Somalia'),
+(200, 'ZA', 'South Africa'),
+(201, 'GS', 'South Georgia South Sandwich Islands'),
+(202, 'ES', 'Spain'),
+(203, 'LK', 'Sri Lanka'),
+(204, 'SH', 'St. Helena'),
+(205, 'PM', 'St. Pierre and Miquelon'),
+(206, 'SD', 'Sudan'),
+(207, 'SR', 'Suriname'),
+(208, 'SJ', 'Svalbard and Jan Mayen Islands'),
+(209, 'SZ', 'Swaziland'),
+(210, 'SE', 'Sweden'),
+(211, 'CH', 'Switzerland'),
+(212, 'SY', 'Syrian Arab Republic'),
+(213, 'TW', 'Taiwan'),
+(214, 'TJ', 'Tajikistan'),
+(215, 'TZ', 'Tanzania, United Republic of'),
+(216, 'TH', 'Thailand'),
+(217, 'TG', 'Togo'),
+(218, 'TK', 'Tokelau'),
+(219, 'TO', 'Tonga'),
+(220, 'TT', 'Trinidad and Tobago'),
+(221, 'TN', 'Tunisia'),
+(222, 'TR', 'Turkey'),
+(223, 'TM', 'Turkmenistan'),
+(224, 'TC', 'Turks and Caicos Islands'),
+(225, 'TV', 'Tuvalu'),
+(226, 'UG', 'Uganda'),
+(227, 'UA', 'Ukraine'),
+(228, 'AE', 'United Arab Emirates'),
+(229, 'GB', 'United Kingdom'),
+(230, 'US', 'United States'),
+(231, 'UM', 'United States minor outlying islands'),
+(232, 'UY', 'Uruguay'),
+(233, 'UZ', 'Uzbekistan'),
+(234, 'VU', 'Vanuatu'),
+(235, 'VA', 'Vatican City State'),
+(236, 'VE', 'Venezuela'),
+(237, 'VN', 'Vietnam'),
+(238, 'VG', 'Virgin Islands (British)'),
+(239, 'VI', 'Virgin Islands (U.S.)'),
+(240, 'WF', 'Wallis and Futuna Islands'),
+(241, 'EH', 'Western Sahara'),
+(242, 'YE', 'Yemen'),
+(243, 'ZR', 'Zaire'),
+(244, 'ZM', 'Zambia'),
+(245, 'ZW', 'Zimbabwe');
 --
 -- Table structure for table `wi_footer`
 --
+
+
+--
+-- Table structure for table `wi_elements`
+--
+
+CREATE TABLE IF NOT EXISTS `wi_elements` (
+  `element_id` int(11) NOT NULL AUTO_INCREMENT,
+  `element_status` enum('enabled','disabled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'disabled',
+  `element_powered` enum('power_on','power_off') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'power_off',
+  `element_type` enum('Common Fields','HTML Elements','Layout','Grid','Base','Components','Javascript','Forms') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Common Fields',
+  `element` text COLLATE utf8_unicode_ci,
+  `element_author` varchar(55) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `element_name` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `element_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `element_font` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`element_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
 
 CREATE TABLE IF NOT EXISTS `wi_footer` (
   `footer_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -333,10 +627,10 @@ CREATE TABLE IF NOT EXISTS `wi_members` (
   `confirmed` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `password_reset_key` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `password_reset_confirmed` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
-  `password_reset_timestamp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `password_reset_timestamp` datetime NOT NULL,
   `register_date` date NOT NULL,
   `user_role` int(4) NOT NULL DEFAULT '1',
-  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `last_login` datetime NOT NULL,
   `ip_addr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `banned` enum('Y','N') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   PRIMARY KEY (`user_id`),
@@ -528,8 +822,7 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
   `name` varchar(255) NOT NULL,
   `panel` enum('0','1') DEFAULT '0',
   `top_head` enum('0','1') DEFAULT '0',
-  `header` enum('0','1') DEFAULT '1',
-  `menu` enum('0','1') DEFAULT '0',
+  `header` enum('0','1') DEFAULT '0',
   `left_sidebar` enum('0','1') NOT NULL DEFAULT '0',
   `right_sidebar` enum('0','1') NOT NULL DEFAULT '0',
   `contents` text,
@@ -541,15 +834,35 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
 -- Dumping data for table `wi_page`
 --
 
-INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`,`menu`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
-( 'alogin', '1', '1', '0', '1', '0', '0', 'alogin', '1'),
-( 'confirm', '1', '1', '0', '1', '0', '0', 'confirm', '1'),
-( 'index', '1', '1', '1', '0', '0', '0', 'welcome_box', '1'),
-( 'passwordreset', '1', '1', '1', '0', '0', '0', 'passwordreset', '1'),
-( 'profile', '1', '1', '1', '0', '0', '0', 'profile', '1');
+INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
+( 'alogin', '1', '1', '0', '0', '0', 'alogin', '1'),
+( 'confirm', '1', '1', '0', '0', '0', 'confirm', '1'),
+( 'index', '1', '1', '0', '0', '0', 'welcome_box', '1'),
+( 'passwordreset', '1', '1', '0', '0', '0', 'passwordreset', '1'),
+( 'profile', '1', '1', '0', '0', '0', 'profile', '1');
 
 -- --------------------------------------------------------
 
+
+--
+-- Table structure for table `wi_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `wi_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission_name` varchar(255) NOT NULL,
+  `mod_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `active` enum('0','1') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `wi_permissions`
+--
+
+INSERT INTO `wi_permissions` (`id`, `permission_name`, `mod_id`, `group_id`, `active`) VALUES
+(1, 'Site', 1, 1, '0');
 --
 -- Table structure for table `wi_plugin`
 --
@@ -663,58 +976,62 @@ INSERT INTO `wi_sidebar` ( `label`, `link`, `parent`, `sort`, `lang`, `img`) VAL
 
 CREATE TABLE IF NOT EXISTS `wi_site` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
-  `site_name` varchar(50) DEFAULT NULL,
-  `site_domain` varchar(255) NOT NULL,
-  `site_url` varchar(50) DEFAULT NULL,
-  `favicon` text NOT NULL,
-  `db_host` varchar(50) DEFAULT NULL,
-  `db_username` varchar(50) DEFAULT NULL,
-  `db_pass` varchar(50) DEFAULT NULL,
-  `db_name` varchar(50) DEFAULT NULL,
+  `site_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `site_domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `site_url` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `favicon` text COLLATE utf8_unicode_ci NOT NULL,
+  `db_host` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `db_username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `db_pass` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `db_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `db_port` int(11) NOT NULL DEFAULT '25',
-  `db_type` varchar(255) NOT NULL DEFAULT 'mysql',
-  `secure_session` enum('false','true') NOT NULL DEFAULT 'false',
-  `http_only` enum('false','true') NOT NULL DEFAULT 'true',
-  `regenerate_id` enum('false','true') NOT NULL DEFAULT 'true',
-  `use_only_cookie` enum('1','0') NOT NULL DEFAULT '1',
-  `login_fingerprint` enum('true','false') NOT NULL,
+  `db_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'mysql',
+  `secure_session` enum('false','true') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
+  `http_only` enum('false','true') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'true',
+  `regenerate_id` enum('false','true') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'true',
+  `use_only_cookie` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
+  `login_fingerprint` enum('true','false') COLLATE utf8_unicode_ci NOT NULL,
   `max_login_attempts` int(11) NOT NULL DEFAULT '5',
-  `redirect_after_login` varchar(255) NOT NULL,
-  `password_encryption` varchar(255) NOT NULL,
+  `redirect_after_login` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_encryption` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `encryption_cost` int(11) NOT NULL,
   `sha512_iterations` int(11) NOT NULL,
-  `password_salt` varchar(255) NOT NULL,
+  `password_salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `reset_key_life` int(11) NOT NULL,
-  `mail_confirm_required` enum('true','false') NOT NULL,
-  `register_confirm` varchar(255) NOT NULL,
-  `reg_pass_reset` varchar(255) NOT NULL,
-  `mailer` varchar(255) NOT NULL,
-  `smpt_host` varchar(255) NOT NULL,
-  `smpt_port` varchar(255) NOT NULL,
-  `smpt_username` varchar(255) NOT NULL,
-  `smpt_password` varchar(255) NOT NULL,
-  `smpt_encryption` varchar(255) NOT NULL,
-  `social_callback_url` varchar(255) NOT NULL,
-  `google_enabled` enum('true','false') NOT NULL DEFAULT 'false',
-  `google_id` varchar(255) NOT NULL,
-  `google_secret` varchar(255) NOT NULL,
-  `facebook_enabled` enum('true','false') NOT NULL DEFAULT 'false',
-  `facebook_id` varchar(255) NOT NULL,
-  `facebook_secret` varchar(255) NOT NULL,
-  `twitter_enabled` enum('true','false') NOT NULL DEFAULT 'false',
-  `twitter_key` varchar(255) NOT NULL,
-  `twitter_secret` varchar(255) NOT NULL,
-  `default_lang` varchar(255) NOT NULL,
-  `multi_lang` enum('on','off') NOT NULL DEFAULT 'off',
-  `bootstrap_version` varchar(50) NOT NULL,
-  `wicms_version` varchar(50) NOT NULL,
+  `mail_confirm_required` enum('true','false') COLLATE utf8_unicode_ci NOT NULL,
+  `register_confirm` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `reg_pass_reset` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mailer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `smpt_host` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `smpt_port` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `smpt_username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `smpt_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `smpt_encryption` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `social_callback_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `google_enabled` enum('true','false') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
+  `google_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `google_secret` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `google_map_api` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `facebook_enabled` enum('true','false') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
+  `facebook_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `facebook_secret` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `twitter_enabled` enum('true','false') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
+  `twitter_key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `twitter_secret` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `default_lang` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `multi_lang` enum('on','off') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'off',
+  `lang_choice` enum('google','wilang') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'google',
+  `bootstrap_version` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `wicms_version` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `left_sidebar` enum('0','1') COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `right_sidebar` enum('0','1') COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-INSERT INTO `wi_site` (`id`,`site_name`, `site_domain`, `site_url`, `favicon`, `db_host`, `db_username`, `db_pass`, `db_name`, `db_port`, `db_type`, `secure_session`, `http_only`, `regenerate_id`, `use_only_cookie`, `login_fingerprint`, `max_login_attempts`, `redirect_after_login`, `password_encryption`, `encryption_cost`, `sha512_iterations`, `password_salt`, `reset_key_life`, `mail_confirm_required`, `register_confirm`, `reg_pass_reset`, `mailer`, `smpt_host`, `smpt_port`, `smpt_username`, `smpt_password`, `smpt_encryption`, `social_callback_url`, `google_enabled`, `google_id`, `google_secret`, `facebook_enabled`, `facebook_id`, `facebook_secret`, `twitter_enabled`, `twitter_key`, `twitter_secret`, `default_lang`, `multi_lang`, `bootstrap_version`, `wicms_version`) 
+INSERT INTO `wi_site` (`id`,`site_name`, `site_domain`, `site_url`, `favicon`, `db_host`, `db_username`, `db_pass`, `db_name`, `db_port`, `db_type`, `secure_session`, `http_only`, `regenerate_id`, `use_only_cookie`, `login_fingerprint`, `max_login_attempts`, `redirect_after_login`, `password_encryption`, `encryption_cost`, `sha512_iterations`, `password_salt`, `reset_key_life`, `mail_confirm_required`, `register_confirm`, `reg_pass_reset`, `mailer`, `smpt_host`, `smpt_port`, `smpt_username`, `smpt_password`, `smpt_encryption`, `social_callback_url`, `google_enabled`, `google_id`, `google_secret`, `google_map_api`, `facebook_enabled`, `facebook_id`, `facebook_secret`, `twitter_enabled`, `twitter_key`, `twitter_secret`, `default_lang`, `multi_lang`, `bootstrap_version`, `wicms_version`) 
 VALUES
-( 1,'$name', '$dom', '$script', 'wi_cms_logo.PNG', '$db_host', '$db_username', '$db_pass', '$db_name', '25', 'mysql', '$session_secure', '$http', '$session_regenerate' , '$cookieonly', '$login_fingerprint', '$max_login_attempts', '$redirect_after_login', '$encryption', '$cost', '35000', '$salt', '$reset_key_life', '$mail_confirm_required', '$register_confirm','$reg_pass_reset', '$mailer', '', '', '', '', '', '$social_callback_url',  '$google_enabled' , '', '',  '$facebook_enabled', '', '',  '$twitter_enabled', '', '', '$default_lang', '$multi_lang', '$bootstrap_version', '$Version');
+( 1,'$name', '$dom', '$script', 'wi_cms_logo.PNG', '$db_host', '$db_username', '$db_pass', '$db_name', '25', 'mysql', '$session_secure', '$http', '$session_regenerate' , '$cookieonly', '$login_fingerprint', '$max_login_attempts', '$redirect_after_login', '$encryption', '$cost', '35000', '$salt', '$reset_key_life', '$mail_confirm_required', '$register_confirm','$reg_pass_reset', '$mailer', '', '', '', '', '', '$social_callback_url',  '$google_enabled' , '', '', '', '$facebook_enabled', '', '',  '$twitter_enabled', '', '', '$default_lang', '$multi_lang', '$bootstrap_version', '$Version');
 
 -- --------------------------------------------------------
 
@@ -727,7 +1044,7 @@ CREATE TABLE IF NOT EXISTS `wi_social_logins` (
   `user_id` int(11) NOT NULL,
   `provider` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'email',
   `provider_id` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` datetime NOT NULL ,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1192,12 +1509,12 @@ INSERT INTO `wi_trans` (`id`, `lang`, `keyword`, `translation`) VALUES
 CREATE TABLE IF NOT EXISTS `wi_track` 
 (
   `id` int(6) NOT NULL AUTO_INCREMENT,
-  `ref` varchar(250) NOT NULL DEFAULT '',
+  `ref` varchar(250) NOT NULL ,
 
-  `agent` varchar(250) DEFAULT '',
-  `ip` varchar(20) NOT NULL DEFAULT '',
-  `tracking_page_code` varchar(100) DEFAULT '',
-  `tracking_page_name` varchar(100) DEFAULT '',
+  `agent` varchar(250) ,
+  `ip` varchar(20) NOT NULL ,
+  `tracking_page_code` varchar(100) ,
+  `tracking_page_name` varchar(100),
  
  `country` varchar(100) DEFAULT NULL,
   `page_count` int(11) NOT NULL,
@@ -1215,10 +1532,10 @@ CREATE TABLE IF NOT EXISTS `wi_track`
 CREATE TABLE IF NOT EXISTS `wi_user_details` (
   `id_user_details` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `first_name` varchar(35) COLLATE utf8_unicode_ci DEFAULT '',
-  `last_name` varchar(35) COLLATE utf8_unicode_ci DEFAULT '',
-  `phone` varchar(30) COLLATE utf8_unicode_ci DEFAULT '',
-  `address` varchar(30) COLLATE utf8_unicode_ci DEFAULT '',
+  `first_name` varchar(35) COLLATE utf8_unicode_ci ,
+  `last_name` varchar(35) COLLATE utf8_unicode_ci ,
+  `phone` varchar(30) COLLATE utf8_unicode_ci ,
+  `address` varchar(30) COLLATE utf8_unicode_ci ,
   `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `region` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1400,6 +1717,9 @@ define("GOOGLE_ID", $google_id);
 
 define("GOOGLE_SECRET", $google_secret); 
 
+define("GOOGLE_MAP_API ", $google_map_api ); 
+
+
 // FACEBOOK
 
 define("FACEBOOK_ENABLED", $fb); 
@@ -1489,6 +1809,7 @@ $social                = $config->Website_Info("social_callback_url");
 $google                = $config->Website_Info("google_enabled");
 $google_id             = $config->Website_Info("google_id");
 $google_secret         = $config->Website_Info("google_secret");
+$google_map_api        = $config->Website_Info("google_map_api");
 $fb                    = $config->Website_Info("facebook_enabled");
 $fb_id                 = $config->Website_Info("facebook_id");
 $fb_secret             = $config->Website_Info("facebook_secret");

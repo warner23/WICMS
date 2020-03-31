@@ -9,6 +9,33 @@ $(document).ready(function(event)
     $("#page_selection_js").val('index').prop("selected", true);
     var page = $("#page_selection_js").val();
  WIJS.viewjs(page);
+WIJS.href();
+
+            $("#js_btn").click(function()
+    {
+
+            var js               = $("#codejs").html(),
+
+
+
+             //create data that will be sent over server
+
+              script = {
+                UserData:{
+                    js           : js
+
+                },
+                FieldId:{
+                    js           : "codejs"
+
+                }
+             };
+             // send data to server
+             WIJS.sendData(script);
+        
+    });
+
+
 });
 
 
@@ -58,6 +85,44 @@ WIJS.showJsModal = function (id) {
     });
  
 };
+
+WIJS.editCode = function(href){
+
+      var date = new Date();
+                     var minutes = 30;
+               date.setTime(date.getTime() + (minutes * 60 * 1000));
+            $.cookie("src", href, {expires: date});
+            window.location = "WIJs.php";
+};
+
+
+
+
+WIJS.href = function(){
+    var href = $.cookie("src"); 
+    console.log(href);
+
+
+         $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "href",
+            href   : href
+        },
+        success: function(result)
+        {
+
+         $("#codejs").html(result);
+
+        }
+       
+        
+    });
+
+
+}
+
 
 WIJS.edditJsModal = function (id) {
     //jQuery.noConflict();
@@ -147,4 +212,55 @@ WIJS.DeleteJsModal = function (id) {
 WIJS.Close = function(){
         $("#modal-js-edit").removeClass("on")
     $("#modal-js-edit").addClass("off")
+}
+
+
+
+WIJS.sendData = function(script){
+
+var btn = $("#js_btn");
+    event.preventDefault();
+
+     href = $.cookie("src"); 
+    // put button into the loading state
+    WICore.loadingButton(btn, $_lang.creating_Account);
+
+     $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "new_js",
+            script   : script,
+            href     : href
+        },
+        success: function(result)
+        {
+            
+            console.log(result);
+            // return the button to normasl state
+            WICore.removeLoadingButton(btn);
+            
+            //window.alert(result);
+            //parse the data to json
+            //var res = JSON.stringify(result);
+            var res = JSON.parse(result);
+            //var res = $.parseJSON(result);
+            console.log(res);
+            if(res.status === "error")
+            {
+                /// display all errors
+                 for(var i=0; i<res.errors.length; i++) 
+                 {
+                    var error = res.errors[i];
+                    WICore.displayadminerrorsMessage($("#"+error.id), error.msg);
+                }
+            }
+            else if(res.status === "success")
+            {
+                // dispaly success message
+                WICore.displaySuccessfulMessage($("#dresults"), res.msg);
+                WICore.Refresh();
+            }
+        }
+    });
 }

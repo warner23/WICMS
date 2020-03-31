@@ -17,10 +17,12 @@ $(document).ready(function(event)
             var res = JSON.parse(result);
             if (res.completed === "saved") {
                 var page_id = res.page_id;
-                alert(page_id);
+                var page = res.page;
+                alert(page);
                     var date = new Date();
                      var minutes = 30;
                date.setTime(date.getTime() + (minutes * 60 * 1000));
+            $.cookie("page", page, {expires: date});
             $.cookie("page_id", page_id, {expires: date});
             
                 window.location = "WIEditpage.php";
@@ -59,14 +61,15 @@ WIPages.Page = function(){
 
 }
 
-WIPages.Delete = function(id){
+WIPages.Delete = function(id, name){
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "page_delete",
-            page_id   : id
+            page_id   : id,
+            name      : name
         },
         success: function(result)
         {
@@ -74,6 +77,8 @@ WIPages.Delete = function(id){
             if (res.status === "complete"){
                 $("#div").remove();
             }
+     $("#modal-delete-details").removeClass("show");
+    $("#modal-delete-details").addClass("hide");
             
         }
     });
@@ -81,12 +86,14 @@ WIPages.Delete = function(id){
 
 WIPages.Open = function(id, name){
 
-    $("#modal-delete").removeClass("off");
-    $("#modal-delete").addClass("on");
+    $("#modal-delete-details").removeClass("hide");
+    $("#modal-delete-details").addClass("show");
 
     var Element = $("#details-body");
 
-    var Div = '<div id="div"><span>Are you sure you want to delete '+name+' page </span> <button class="btn btn-danger" onclick="WIPages.Delete('+id+');">Delete</button> <button class="btn" onclick="WIPages.Close();">Cancel</button></div>';
+    //var Div = '<div id="div">Are you sure you want to delete '+name+' page </div>';
+    var Div = '<div id="div"><span>Are you sure you want to delete '+name+' page </span> <button class="btn btn-danger" onclick="WIPages.Delete(`'+id+'`, `'+name+'`);">Delete</button> <button class="btn" onclick="WIPages.Close();">Cancel</button></div>';
+
 
     Element.append(Div);
 
@@ -96,8 +103,8 @@ WIPages.Open = function(id, name){
 
 WIPages.Close = function(){
 
-    $("#modal-delete").removeClass("on");
-    $("#modal-delete").addClass("off");
+    $("#modal-delete").removeClass("show");
+    $("#modal-delete").addClass("hide");
     $("#div").remove();
 
 }

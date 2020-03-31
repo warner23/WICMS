@@ -1,0 +1,135 @@
+[27-Jan-2020 21:01:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[25-Mar-2020 07:23:41 UTC] PHP Notice:  Undefined index: id in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1690
+[25-Mar-2020 07:23:41 UTC] PHP Warning:  ksort() expects parameter 1 to be array, string given in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 156
+[25-Mar-2020 07:23:41 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 160
+[25-Mar-2020 07:23:41 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 167
+[25-Mar-2020 07:23:41 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = NULL' at line 1 in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 181
+[25-Mar-2020 07:37:02 UTC] PHP Notice:  Undefined index: id in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1690
+[25-Mar-2020 07:37:02 UTC] PHP Warning:  ksort() expects parameter 1 to be array, string given in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 156
+[25-Mar-2020 07:37:02 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 160
+[25-Mar-2020 07:37:02 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 167
+[25-Mar-2020 07:37:02 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = NULL' at line 1 in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIdb.php on line 181
+[28-Mar-2020 18:04:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[28-Mar-2020 18:04:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[28-Mar-2020 19:51:57 UTC] PHP Notice:  Undefined index: page in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 369
+[28-Mar-2020 19:51:57 UTC] PHP Notice:  Undefined offset: 0 in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 102
+[28-Mar-2020 19:51:57 UTC] PHP Notice:  Undefined offset: 0 in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 126
+[28-Mar-2020 19:51:57 UTC] PHP Notice:  Undefined index: page in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 375
+[28-Mar-2020 19:52:04 UTC] PHP Notice:  Undefined index: page in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 375
+[28-Mar-2020 19:52:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[28-Mar-2020 19:52:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[28-Mar-2020 19:59:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[28-Mar-2020 20:04:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:114
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 114
+[28-Mar-2020 20:09:42 UTC] PHP Notice:  Undefined index: content in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 112
+[28-Mar-2020 20:09:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:115
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 115
+[28-Mar-2020 20:12:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:116
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 116
+[28-Mar-2020 20:18:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:116
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 116
+[28-Mar-2020 20:21:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:116
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 116
+[28-Mar-2020 20:27:23 UTC] PHP Notice:  Undefined index: page in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 375
+[28-Mar-2020 20:27:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:120
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 120
+[28-Mar-2020 20:30:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:116
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 116
+[28-Mar-2020 20:31:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::pageModPower() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:116
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 116
+[28-Mar-2020 20:37:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::PageMod() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:117
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 117
+[28-Mar-2020 20:38:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIWebsite::PageMod() in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:117
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 117
+[28-Mar-2020 20:40:08 UTC] PHP Notice:  Undefined property: WIPage::$mod in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 123
+[28-Mar-2020 20:40:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getMod() on null in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php:123
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#1 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 123
+[28-Mar-2020 20:45:21 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function left_sidebar::mod_name(), 0 passed in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1583 and exactly 2 expected in /home/warner23/public_html/IVO/WIAdmin/WIModule/left_sidebar/left_sidebar.php:29
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php(1583): left_sidebar->mod_name()
+#1 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php(122): WIModules->getMod(Object(left_sidebar))
+#2 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#3 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WIModule/left_sidebar/left_sidebar.php on line 29
+[28-Mar-2020 20:45:39 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function left_sidebar::mod_name(), 0 passed in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1583 and exactly 2 expected in /home/warner23/public_html/IVO/WIAdmin/WIModule/left_sidebar/left_sidebar.php:29
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php(1583): left_sidebar->mod_name()
+#1 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php(122): WIModules->getMod(Object(left_sidebar))
+#2 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#3 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WIModule/left_sidebar/left_sidebar.php on line 29
+[28-Mar-2020 20:53:34 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function WIModules::getMod(), 1 passed in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 139 and exactly 3 expected in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php:1573
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php(139): WIModules->getMod('right_sidebar')
+#1 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#2 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1573
+[28-Mar-2020 20:53:46 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function WIModules::getMod(), 1 passed in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 139 and exactly 3 expected in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php:1573
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php(139): WIModules->getMod('right_sidebar')
+#1 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#2 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1573
+[28-Mar-2020 20:53:53 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function WIModules::getMod(), 1 passed in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php on line 139 and exactly 3 expected in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php:1573
+Stack trace:
+#0 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIPage.php(139): WIModules->getMod('right_sidebar')
+#1 /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage('index')
+#2 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1573

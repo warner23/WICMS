@@ -7,71 +7,88 @@
 $(document).ready(function(event)
 {
     
-    $("#session_secure_true").click(function(){
-                        //alert('clicked');
-                        $("#secure_session").attr("value", 'true')
-                        $("#session_secure_false").removeClass('btn-danger active')
-                        $("#session_secure_true").addClass('btn-success active');
-                    })
-
-                    $("#session_secure_false").click(function(){
-                        //alert('clicked');
-                        $("#secure_session").attr("value", 'false')
-                        $("#session_secure_true").removeClass('btn-success active')
-                        $("#session_secure_false").addClass('btn-danger active');
-                    })
-
-                    $("#http_only_true").click(function(){
-                        //alert('clicked');
-                        $("#session_http_only").attr("value", 'true')
-                        $("#http_only_false").removeClass('btn-danger active')
-                        $("#http_only_true").addClass('btn-success active');
-                    })
-
-                    $("#http_only_false").click(function(){
-                        //alert('clicked');
-                        $("#session_http_only").attr("value", 'false')
-                        $("#http_only_true").removeClass('btn-success active')
-                        $("#http_only_false").addClass('btn-danger active');
-                    })
 
 
-                     $("#session_regenerate_true").click(function(){
+                    $("#ss").click(function(){
                         //alert('clicked');
-                        $("#session_regenerate").attr("value", 'true')
-                        $("#session_regenerate_false").removeClass('btn-danger active')
-                        $("#session_regenerate_true").addClass('btn-success active');
-                    })
+                        var secure = $("#secure_session").attr('value');
+                        console.log(secure);
+                        if (secure === "false"){
+                        $("#session").prop("checked", true);
+                        $("#ss").text('ON');
+                        $("#secure_session").attr('value','true');
+                       }else if (secure === "true"){
+                        $("#session").removeAttr('checked');
+                        $("#secure_session").attr('value','false');
+                        $("#ss").text('OFF');
+                        $("#ss").css('padding-left', '50%');
+                       }
+                    });
 
-                    $("#session_regenerate_false").click(function(){
-                        //alert('clicked');
-                        $("#session_regenerate").attr("value", 'false')
-                        $("#session_regenerate_true").removeClass('btn-success active')
-                        $("#session_regenerate_false").addClass('btn-danger active');
-                    })
 
-                    $("#cookieonly_true").click(function(){
+                    $("#http").click(function(){
                         //alert('clicked');
-                        $("#cookieonly").attr("value", '1')
-                        $("#cookieonly_false").removeClass('btn-danger active')
-                        $("#cookieonly_true").addClass('btn-success active');
-                    })
+                        var http = $("#session_http_only").attr('value');
+                        console.log(http);
+                        if (http === "true"){
+                        $("#ht").prop("checked", true);
+                        $("#ht").attr('checked');
+                        $("#http").text('ON');
+                        $("#session_http_only").attr('value','false');
+                        
+                       }else if (http === "false"){
+                        $("#ht").removeAttr('checked');
+                        $("#http").text('OFF');
+                        $("#http").css('padding-left', '50%');
+                        $("#session_http_only").attr('value','true');
+                       }
+                    });
 
-                    $("#cookieonly_false").click(function(){
+                    $("#reg").click(function(){
                         //alert('clicked');
-                        $("#cookieonly").attr("value", '0')
-                        $("#cookieonly_true").removeClass('btn-success active')
-                        $("#cookieonly_false").addClass('btn-danger active');
-                    })
+                        var reg = $("#session_regenerate").attr('value');
+                        console.log(reg);
+                        if (reg === "true"){
+                        $("#reg_id").prop("checked", true);
+                        $("#reg").text('ON');
+                        $("#session_regenerate").attr('value','false');
+                        
+                       }else if (reg === "false"){
+                        $("#reg_id").removeAttr('checked');
+                        $("#reg").text('OFF');
+                        $("#reg").css('padding-left', '50%');
+                        $("#session_regenerate").attr('value','true');
+                       }
+                    });
+
+                    $("#ck").click(function(){
+                        //alert('clicked');
+                        var cookie = $("#cookieonly").attr('value');
+                        console.log(cookie);
+                        if (cookie === "0"){
+                        $("#cookie").prop("checked", true);
+                        $("#ck").text('ON');
+                        $("#cookieonly").attr('value','1');
+                        
+                       }else if (cookie === "1"){
+                        $("#cookie").removeAttr('checked');
+                        $("#ck").text('OFF');
+                        $("#ck").css('padding-left', '50%');
+                        $("#cookieonly").attr('value','0');
+                       }
+                    });
+
+
+
 
 	// button register click below
 	$("#session_btn").click(function()
 	{
 
 			var secure_session               = $("#secure_session").attr('value'),
-			 session_http_only           = $("#session_http_only").attr('value'),
-			 session_regenerate               = $("#session_regenerate").attr('value'),
-             cookieonly               = $("#cookieonly").attr('value')
+			 http_only           = $("#session_http_only").attr('value'),
+			 regenerate_id               = $("#session_regenerate").attr('value'),
+             use_only_cookie               = $("#cookieonly").attr('value')
 
 
 			 //create data that will be sent over server
@@ -79,16 +96,16 @@ $(document).ready(function(event)
 			 var session = {
 			 	UserData:{
 			 	    secure_session           : secure_session,
-                    session_http_only    : session_http_only,
-                    session_regenerate        : session_regenerate,
-                    cookieonly        : cookieonly
+                    http_only                : http_only,
+                    regenerate_id            : regenerate_id,
+                    use_only_cookie          : use_only_cookie
 
 			 	},
 			 	FieldId:{
-			 		secure_session           : "secure_session",
-			 		session_http_only         : "session_http_only",
-                    session_regenerate            : "session_regenerate",
-                    cookieonly            : "cookieonly"
+			 		secure_session            : "secure_session",
+                    http_only                 : "session_http_only",
+                    regenerate_id             : "session_regenerate",
+                    use_only_cookie           : "use_only_cookie"
 
 			 	}
 			 };
@@ -140,6 +157,7 @@ WISession.sendData = function(session){
     		{
     			// dispaly success message
     			WICore.displaySuccessfulMessage($("#sesresults"), res.msg);
+                WICore.Refresh();
     		}
     	}
     });

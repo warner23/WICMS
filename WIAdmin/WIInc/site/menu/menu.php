@@ -1,4 +1,4 @@
-                 <form  class="form-horizontal" id="menu_settings">
+                 <form  class="form-horizontal settings">
                     <fieldset>
                       <div id="legend">
                         <legend class="">Menu</legend>
@@ -9,8 +9,8 @@
                      
                       <div class="form-group">
                         <!-- Button -->
-                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                           <button id="update_Menu" class="btn btn-success">Save</button> 
+                        <div class="controls col-lg-offset-4 col-lg-8">
+                           <button id="site_settings" class="btn btn-success">Save</button> 
                         </div>
                       </div>
 

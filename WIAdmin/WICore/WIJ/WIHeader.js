@@ -11,7 +11,7 @@ $(document).ready(function(event)
 	{
 			var header_content            = $("#header_content").val(),
 			 header_slogan               = $("#header_slogan").val(),
-			 upload_pic               = $(".wiupload").text();
+			 upload_pic               = $("#headerPic").val();
              
              
 
@@ -29,7 +29,7 @@ $(document).ready(function(event)
 			 	FieldId:{
 			 		header_content           : "header_content",
 			 		header_slogan         : "header_slogan",
-                    upload_pic            : "wiupload"
+                    upload_pic            : "headerPic"
 
 			 	}
 			 };
@@ -75,7 +75,7 @@ WIHeader.sendData = function(header){
     			 for(var i=0; i<res.errors.length; i++) 
     			 {
                     var error = res.errors[i];
-                    WICore.displayErrorMessage($("#"+error.id), error.msg);
+                    WICore.displayaerrorMessage($("#"+error.id), error.msg);
                 }
     		}
     		else if(res.status === "completed")

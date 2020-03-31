@@ -2,7 +2,7 @@
 
                         <fieldset>
                           <div id="legend">
-                      <h3>Password Encryption</h3>
+                      <h3 class="center">Password Encryption</h3>
                     <div class="alert alert-success" id="choice-wrapper-bcrypt">
                     <input type="hidden" name="encryption" id="encryption-method" value="<?php echo $site->Website_Info('password_encryption') ?>">
                            
@@ -78,7 +78,7 @@
                 </div>
                    <div class="form-group">
                         <!-- Button -->
-                        <div class="controls col-lg-offset-4 col-lg-8">
+                        <div class="controls col-lg-offset-10 col-lg-2">
                            <button id="security_btn" class="btn btn-success" onclick="WISecurity.encryption()" >Save</button> 
                         </div>
                         <div id="secresults"></div>

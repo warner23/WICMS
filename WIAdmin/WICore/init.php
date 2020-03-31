@@ -19,15 +19,20 @@ spl_autoload_register(function($class)
 $admin         = new WIAdmin(WISession::get("user_id"));
 $adminInfo     = $admin->getInfo();
 $adminDetails  = $admin->getDetails();
-$mod          = new WIModules();
-$page         = new WIPage();
-$plug          = new WIPlugin();
-$site         = new WISite();
-$img          = new WIImage();
-$vid          = new WIVideos();
-$dashboard   = new WIDashboard();
-$adminChat   = new WIAdminChat();
-$Info       = new WIUserInfo();
-$pagination   = new WIPagination();
+$mod            = new WIModules();
+$page           = new WIPage();
+$plug           = new WIPlugin();
+$site           = new WISite();
+$img            = new WIImage();
+$vid            = new WIVideos();
+$topic          = new WITopic();
+$dashboard      = new WIDashboard();
+$adminChat      = new WIAdminChat();
+$Info           = new WIUserInfo();
+$pagination     = new WIPagination();
+$perm           = new WIPermissions();
+$editor         = new WIEditor();
+$modal          = new WIModal();
+
 
 ?>

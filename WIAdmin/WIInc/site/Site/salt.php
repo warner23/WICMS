@@ -2,7 +2,7 @@
 
                         <fieldset>
                           <div id="legend">
-                      <h3>Password Salt</h3>
+                      <h3 class="center">Password Salt</h3>
                    
                     
                    <div class="form-group">
@@ -21,7 +21,7 @@
 
                   <div class="form-group">
                         <!-- Button -->
-                        <div class="controls col-lg-offset-4 col-lg-8">
+                        <div class="controls col-lg-offset-10 col-lg-2">
                            <button id="salt_settings" class="btn btn-success">Save</button> 
                         </div>
                       </div>                    

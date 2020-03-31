@@ -4,8 +4,9 @@
 $(document).ready(function(event)
 {
                 
+    var page = $.cookie("page");
     var page_id = $.cookie("page_id");
-   WIEditpage.getInfo(page_id);
+   WIEditpage.getInfo(page);
 
   WIEditpage.NextMod();
  //executes code below when user click on pagination links
@@ -35,8 +36,8 @@ $(document).ready(function(event)
 
          });
 
-    WIEditpage.loadPage(page_id);
-    WIEditpage.loadOptions(page_id);
+    WIEditpage.loadPage(page);
+    WIEditpage.loadOptions(page);
 
 
 
@@ -45,10 +46,11 @@ $(document).ready(function(event)
 
 var WIEditpage = {}
 
-WIEditpage.getInfo = function(page_id){
- $("#page-title").attr("placeholder", page_id)
- $("#page-title").attr("value", page_id)
-$("#page_selection").val(page_id).prop("selected", "selected");
+WIEditpage.getInfo = function(page){
+
+          $("#page-title").attr("placeholder", page)
+ $("#page-title").attr("value", page)
+$("#page_selection").val(page).prop("selected", "selected");
 
 }
 
@@ -74,17 +76,18 @@ WIEditpage.NextMod = function(){
 }
 
 
-WIEditpage.loadPage = function(page_id){
+WIEditpage.loadPage = function(page){
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "loadPage",
-            page   : page_id
+            page   : page
         },
         success: function(result)
         {
+            console.log(result);
             $("#pages").html(result);
 
         }
@@ -93,14 +96,14 @@ WIEditpage.loadPage = function(page_id){
     });
 }
 
-WIEditpage.loadOptions = function(page_id){
+WIEditpage.loadOptions = function(page){
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "loadOptions",
-            page   : page_id
+            page   : page
         },
         success: function(result)
         {
@@ -129,14 +132,14 @@ WIEditpage.loadOptions = function(page_id){
     });
 }
 
-WIEditpage.changePage = function(page_id){
+WIEditpage.changePage = function(page){
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "changePage",
-            page   : page_id
+            page   : page
         },
         success: function(result)
         {
@@ -148,14 +151,14 @@ WIEditpage.changePage = function(page_id){
     });
 }
 
-WIEditpage.togglelsc = function(page_id){
+WIEditpage.togglelsc = function(page){
 
          $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "togglelsc_change",
-            page   : page_id,
+            page   : page,
             col    : "left_sidebar"
         },
         success: function(result)
@@ -176,14 +179,14 @@ WIEditpage.togglelsc = function(page_id){
 } );
 }
 
-WIEditpage.lsc = function(page_id){
+WIEditpage.lsc = function(page){
 
          $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "lsc_change",
-            page   : page_id,
+            page   : page,
             col    : "left"
         },
         success: function(result)
@@ -202,14 +205,14 @@ WIEditpage.lsc = function(page_id){
 } );
 }
 
-WIEditpage.rsc = function(page_id){
+WIEditpage.rsc = function(page){
 
          $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "rsc_change",
-            page   : page_id,
+            page   : page,
             col    : "right"
         },
         success: function(result)
@@ -230,13 +233,13 @@ WIEditpage.rsc = function(page_id){
 
 WIEditpage.changeLHC = function(){
 
-var page_id = $("#page-title").val();
+var page = $("#page-title").val();
          $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "lsc_changed",
-            page   : page_id,
+            page   : page,
             col    : "left"
         },
         success: function(result)
@@ -282,13 +285,13 @@ var page_id = $("#page-title").val();
 
 WIEditpage.changeRHC = function(){
 
-var page_id = $("#page-title").val();
+var page = $("#page-title").val();
          $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "rsc_changed",
-            page   : page_id,
+            page   : page,
             col    : "right"
         },
         success: function(result)

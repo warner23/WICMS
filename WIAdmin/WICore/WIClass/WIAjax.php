@@ -1,6 +1,7 @@
 <?php
 include_once 'WI.php';
 require_once 'WIA.php';
+
 //csrf protection
 if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
     die("Sorry bro!");
@@ -139,12 +140,6 @@ switch ($action) {
         $site->Email_settings($_POST['settings']);
         break;
 
-    case "email_send":
-        onlyAdmin();
-        $dash = new WIDashboard();
-        $dash->Send_Mail($_POST['settings']);
-        break;
-
      case "mailer_settings":
      onlyAdmin();
         $site = new WISite();
@@ -206,12 +201,6 @@ switch ($action) {
         $web->CheckMultiLang();
         break;
 
-     case "update_Menu":
-        onlyAdmin();
-        $web = new WIWebsite();
-        $web->updateMenu($_POST['settings']);
-        break;
-
         case "EditModLang":
     onlyAdmin();
         $web = new WIWebsite(); 
@@ -242,16 +231,34 @@ switch ($action) {
         $mod->install_mod($_POST['mod_name'], $_POST['author'] );
         break;
 
+        case "element_install":
+    onlyAdmin();
+        $mod = new WIModules();
+        $mod->installElement($_POST['element_name'] );
+        break;
+
     case "mod_uninstall":
     onlyAdmin();
         $mod = new WIModules();
         $mod->uninstall_mod($_POST['mod_name']);
         break;
 
+    case "ele_uninstall":
+    onlyAdmin();
+        $mod = new WIModules();
+        $mod->unistall_Element($_POST['mod_name']);
+        break;
+
     case "mod_enable":
     onlyAdmin();
         $mod = new WIModules();
         $mod->active_available_mod($_POST['mod_name'], $_POST['enable'] );
+        break;
+    
+    case "Element_enable":
+    onlyAdmin();
+        $mod = new WIModules();
+        $mod->activateAvailableElements($_POST['element_name'], $_POST['enable'] );
         break;
 
     case "mod_disable":
@@ -261,7 +268,7 @@ switch ($action) {
         break;
 
          case "drop_call":
-    onlyAdmin();
+        onlyAdmin();
         $mod = new WIModules();
         $mod->dropElement($_POST['mod_name']);
         break;
@@ -300,12 +307,24 @@ switch ($action) {
     case "Next":
     onlyAdmin();
         $mod = new WIModules();
-        $mod->getModules();
+        $mod->getActiveMods();
         break;
      case "NextPage":
     onlyAdmin();
         $mod = new WIModules();
-        $mod->getModules($_POST['page']);
+        $mod->getActiveMods($_POST['page']);
+        break;
+
+     case "NextModPage":
+    onlyAdmin();
+        $mod = new WIModules();
+        $mod->getPageModules();
+        break;
+
+    case "NextElementsPage":
+    onlyAdmin();
+        $mod = new WIModules();
+        $mod->getElements($_POST['page']);
         break;
 
     case "NextMod":
@@ -356,6 +375,12 @@ switch ($action) {
         $page->loadPageOptions($_POST['page']);
         break;
 
+         case "loadPageOptions":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->loadPageOptions($_POST['page']);
+        break;
+
             case "changePage":
     onlyAdmin();
         $page = new WIPage();
@@ -387,6 +412,24 @@ switch ($action) {
         $page->changeLSC($_POST['page'], $_POST['col']);
         break;
 
+    case "changePageElement":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->changePageElement($_POST['page'], $_POST['element']);
+        break;
+
+    case "changePanel":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->changePanel($_POST['page']);
+        break;
+
+        case "changeTopHead":
+    onlyAdmin();
+        $page = new WIPage();
+        $page->changeTopHead($_POST['page']);
+        break;
+
     case "rsc_changed":
     onlyAdmin();
         $page = new WIPage();
@@ -399,21 +442,16 @@ switch ($action) {
         $page->newPage($_POST['page']);
         break;
 
-     case "findPage":
-        $page  = new WIPage();
-        $page->findPage();
-        break;
-
     case "page_delete":
     onlyAdmin();
         $page = new WIPage();
-        $page->deletePage($_POST['page_id']);
+        $page->deletePage($_POST['page_id'],$_POST['name']);
         break;
 
     case "changePic":
     onlyAdmin();
         $site = new WISite();
-        $site->headerPic($_POST['img'], $_POST['header_content'], $_POST['button']);
+        $site->headerPic($_POST['img']);
         break;
 
     case "changefaviconPic":
@@ -455,7 +493,8 @@ switch ($action) {
     case "createMod":
     onlyAdmin();
         $mod = new WIModules();
-        $mod->createMod($_POST['contents'], $_POST['mod_name']);
+        $mod->createMod($_POST['contents'], $_POST['mod_name'], $_POST['layout'],$_POST['elements'],$_POST['columnPreset']);
+            
         break;
 
     case "EditMod":
@@ -494,6 +533,18 @@ switch ($action) {
         $web->activateThemes($_POST['id']);
         break;
 
+        case "theme":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->Theme($_POST['name']);
+        break;
+
+         case "setTheme":
+        onlyAdmin();
+        $web = new WIWebsite();
+        $web->setTheme($_POST['id'], $_POST['val']);
+        break;
+
          case "themeDeactivate":
         $web = new WIWebsite();
         $web->deactivateThemes($_POST['id']);
@@ -527,6 +578,12 @@ switch ($action) {
     onlyAdmin();
         $web = new WIWebsite();
         $web->ViewCSS($_POST['page']);
+        break;
+
+        case "href":
+    onlyAdmin();
+        $web = new WIWebsite();
+        $web->Href($_POST['href']);
         break;
 
     case "editCss":
@@ -572,6 +629,30 @@ switch ($action) {
         $web->DeleteJs($_POST['id']);
         break;
 
+    case "addNew":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->addNew();
+        break;
+
+    case "newTopic":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->newTopic($_POST['topic']);
+        break;
+
+    case "Topics":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->topic_Info();
+        break;
+
+    case "editTopics":
+    onlyAdmin();
+        $topic = new WITopic();
+        $topic->editTopics($_POST['topic'], $_POST['id']);
+        break;
+
     case "version_control":
     onlyAdmin();
         $site = new WISite();
@@ -593,21 +674,38 @@ switch ($action) {
         case "enable_plugin":
     onlyAdmin();
         $plug = new WIPlugin();
-        $plug->Activate($_POST['Form'], $_POST['dir']);
-        break; 
+        $plug->Activate($_POST['plug']);
+        break;
+        
+        case "getInfo":
+        $page = new WIPage();
+        $page->getInfo($_POST['page_id']);
+        break;
 
-        case "userRole":
+        case "site_perm":
+        $perm = new WIPermissions();
+        $perm->site_perm($_POST['ed'],$_POST['id'],$_POST['edit']);
+        break;
+
+        case "new_css":
         onlyAdmin();
-
-        $admin = new WIAdmin(WISession::get('user_id'));
-        echo json_encode($admin->getRole());
+        $web = new WIWebsite();
+        $web->newCss($_POST['styling'], $_POST['href']);
         break;
 
 
-        case "mediaPictures":
-        $image  = new WIImage();
-        $image->UploadedPics($_POST['selector'], $_POST['ele_id']);
+        case "new_js":
+        onlyAdmin();
+        $web = new WIWebsite();
+        $web->newJs($_POST['script'], $_POST['href']);
         break;
+
+        case "save_mod":
+        onlyAdmin();
+        $mod = new WIModules();
+        $mod->save_mod( $_POST['mod_name'], $_POST['contents'], $_POST['content']);
+        break;
+        
 
 
         default:
@@ -650,16 +748,22 @@ switch($action){
        $site->RegisteredUsers() ;
        break;
 
+       case "UniqueVisit":
+        onlyAdmin();
+       $dashboard = new WIDashboard();
+       $dashboard->UniqueVisit() ;
+       break;
+
+       case "boucerate":
+        onlyAdmin();
+       $dashboard = new WIDashboard();
+       $dashboard->BounceRate() ;
+       break;
+
         case "NotificationsCount":
         onlyAdmin();
         $site = new WISite();
         $site->notifications_badge();
-        break;
-
-         case "UniqueVisitors":
-        onlyAdmin();
-        $dash = new WIDashboard();
-        $dash->UniqueVisitors();
         break;
 
         case "MessagesCount":
@@ -686,6 +790,11 @@ switch($action){
         $dash->Info_Boxes();
         break;
 
+        case "calendar":
+        $cal = new WICalendar();
+        $cal->getCalendar();
+        break;
+
         case "getMessages":
         $contact = new WIContact();
         $contact->Messages();
@@ -701,6 +810,11 @@ switch($action){
         onlyAdmin();
         $mod = new WIModules();
         $mod->tasks();
+        break;
+
+        case "mapData":
+        $dash = new WIDashboard();
+        $dash->Map_visitors();
         break;
         
         default:

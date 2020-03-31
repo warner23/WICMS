@@ -1,0 +1,154 @@
+.rowActions{
+	    width: 24px;
+    height: 24px;
+    left: -23px;
+    text-align: right;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    transition: height .15s ease-in-out;
+    white-space: normal;
+    border: 1px solid #ccc;
+    border-right: 1px solid #fff;
+}
+
+.rowActions button {
+    border-radius: 0;
+}
+
+.groupActions{
+	    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    line-height: 0;
+    z-index: 1;
+}
+
+.groupActions button {
+    width: 24px;
+    height: 24px;
+    padding: 6px;
+    border: 0 none;
+    line-height: 0;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.actionBtnWrapper{
+
+}
+
+.item_handle{
+
+}
+
+.item_editToggle{
+
+}
+
+.item_clone{
+
+}
+
+.item_remove{
+
+}
+
+
+.rowEdit{
+    padding-top: 2rem;
+} 
+
+.groupConfig{
+	    display: none;
+    padding: .5rem;
+}
+
+.fCheck{
+	    margin-bottom: 5px;
+}
+
+.checkable{
+	    padding-left: 1.5em;
+    cursor: pointer;
+    position: relative;
+}
+
+.FFieldGroup{
+	    margin-bottom: 0;
+	    flex-wrap: wrap;
+}
+
+.stageColumn{
+	    transition: background-color 125ms ease-in-out,box-shadow 125ms,width .25s;
+    position: relative;
+    background-color: #fff;
+    max-width: none;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex: auto;
+    flex: auto;
+    will-change: width;
+}
+
+.stageColumn:before {
+    transition-property: height;
+    transition-duration: .15s;
+    padding: 0 10px;
+    left: 50%;
+    top: 1px;
+    transform: translate(-50%,-100%);
+    width: auto;
+    height: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.columnsActions{
+	    width: 24px;
+    height: 24px;
+    padding: 0;
+    right: 50%;
+    transform: translateX(12px);
+    z-index: 1;
+    transition: width .15s;
+}
+
+.resizeXHandle{
+	    display: none;
+    position: absolute;
+    right: -8px;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    z-index: 2;
+    cursor: ew-resize;
+}
+
+.stageFields{
+	    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+        min-height: 26px;
+    position: relative;
+    padding: 5px;
+    transition: background-color 125ms ease-in-out;
+
+}
+
+.fieldActions{
+	    right: 0;
+    text-align: right;
+    transition: width .15s;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 0;
+    will-change: width;
+        border-top-right-radius: 3px;
+}
+
+.fieldEdit{
+	    margin-top: 23px;
+    display: none;
+    overflow: hidden;
+}

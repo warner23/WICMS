@@ -1,0 +1,159 @@
+.sb-search.sb-search-open .sb-icon-search, .sb-icon-search:hover, .no-js .sb-search .sb-icon-search,
+.owl-theme .owl-controlls .owl-page.active span, 
+.owl-theme .owl-controlls.clickable .owl-page:hover span, 
+.img_blog.owl-carousel.owl-theme .owl-controlls .owl-page.active span, 
+.img_blog.owl-carousel.owl-theme .owl-controlls .owl-page span:hover,
+.project_container:hover .project_info,
+.title_wmm > h3:after,
+.flickr_menu li .hover,
+.tp-leftarrow:hover, .tp-rightarrow:hover,
+.tp-caption.modern_big_mainbg,
+.tp-caption.medium_bg_main,
+.accordion-toggle i.fa.fa-minus,
+.hover_link:hover, 
+.hover_view:hover,
+.project-container:hover:after,
+.promo_box,
+.overlay,
+.flickr-feed li .hover,
+a.read-more,
+.post-info .post-category,
+.title_content > h3:after,
+.icon_lists .fa-hover a:hover,
+.dropcap1,
+.highlight2,
+.btn-primary,
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus,
+.label-primary,
+.progress_skill .bar,
+.panel-primary > .panel-heading,
+.pricingTable.business .heading,
+.arrows_list li a:hover span,
+#site-searchform #searchsubmit,
+.title_widget > h3:after,
+#breadcrumbs ul,
+.btntoTop.active:hover,
+#filter li.selected,
+#filter li:hover,
+.btn-primary
+{
+	background-color: #1abc9c !important;
+}
+.btn-primary.dark:hover,
+.btn-primary.dark:focus{color:#fff;background-color:#1abc9c !important;border-color:#1abc9c !important;}
+
+
+
+/*COLORING*/
+.recent_posts_list li a:hover, 
+.popular_posts_list li a:hover, 
+.wrap .title_post:hover,
+.default > li:hover > a, .default > li.active > a,
+.tp-caption span.defcol,
+.intro_box h1 span,
+.services:hover .serv_detail h3,
+.services:hover .icon i,
+.project-info h4 a:hover,
+.tesimonial-autor h4 a,
+.contact-details-alt p a:hover,
+.rp_title:hover,
+.tweet_list li:hover i,
+.tweet_list li p a:hover,
+.services_2:hover .serv_detail h3,
+.services_2:hover .icon i,
+.list_style.circle li a i,
+.list_style li i,
+.list_style li a:hover,
+.post-content h4:hover,
+.blog-meta li a:hover,
+.coruscate_acc_list:hover .acc_head, .coruscate_list_toggle:hover .coruscate_toggle_head,
+.tabs-nav li.active a,
+.swipe-navi .swipe-left:hover,
+.swipe-navi .swipe-right:hover,
+.widget_content ul.arrows_list li a:hover, .widget_content ul.arrows_list1 li a:hover i, .widget_content ul.arrows_list li a:hover i,
+.tags li a:hover,
+.highlight1,
+.highlight,
+a:hover,
+.author_bio h5 a,
+#comment-list li .comment-container:hover a,
+#comment-list li .comment-container:hover .comment-date ,
+#comment-list li .comment-container:hover h4,
+.owl-theme .owl-controlls.clickable .owl-buttons div:hover,
+.tabs-nav li.active a i,
+.services_3:hover .icon h3,
+.services_3:hover .icon i,
+.widget_content ul.archives_list li a:hover, .widget_content ul.archives_list li a:hover i,
+a.list-group-item.active > .badge, .nav-pills > .active > a > .badge,
+.active .acc_head, .active .coruscate_toggle_head,
+.clav_acc_list:hover .acc_head, .clav_list_toggle:hover .clav_toggle_head
+{
+	color: #1abc9c;
+}
+
+
+/*Color Bordering*/
+ul.drop-down,
+.services:hover .icon,
+.project-container:hover,
+.owl-theme .owl-controlls.clickable .owl-buttons div:hover,
+#box-img_testimonial a:hover img,
+#box-img_testimonial a.active img,
+.tweet_list li:hover i,
+.services_2:hover .icon,
+.list_style.circle li a i,
+.list_style li i,
+.highlight1,
+blockquote.default,
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
+.coruscate_acc_list.active, .coruscate_list_toggle.active,
+.acc_head_icon i, .coruscate_toggle_head_sign i,
+.coruscate_acc_list:hover, .coruscate_list_toggle:hover,
+.panel-primary > .panel-heading,
+.panel-primary,
+a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active,
+.swipe-navi .swipe-left:hover,
+.swipe-navi .swipe-right:hover,
+.tags li a:hover,
+.comment-container:hover,
+.avatar:hover img,
+input[type="text"]:focus, input[type="email"]:focus,input[type="textarea"]:focus,.row-fluid textarea:focus, .row-fluid input:focus, textarea:focus,
+.btn-primary.dark:hover,.btn-primary.dark:focus,.btn-primary.dark:active,
+.progress_skill,
+.accordion.black .accordion-heading .accordion-toggle.active i,
+.services_3:hover .icon i,
+#filter li.selected,
+#filter li:hover,
+.clav_acc_list:hover, 
+.clav_list_toggle:hover
+{
+	border-color: #1abc9c !important;  
+}
+
+
+.tabs-nav li.active a{
+	border-top-color: #1abc9c;
+}
+
+
+
+
+/*Darkness*/
+.highlight3,
+.pricingTable.business .pricingTable-header .price-value,
+.progress_skill:hover .bar {
+	background-color: #16a085 !important;
+}
+.owl-theme .owl-controlls .owl-buttons .owl-prev.disabled:hover,
+.owl-theme .owl-controlls .owl-buttons .owl-next.disabled:hover{
+	border-color: #C8CFD7 !important;  
+}
+
+
+.btn:hover,
+.btn-primary:hover,
+.btn-primary.dark{
+	background-color: #222 !important;
+	border-color: #222 !important
+}

@@ -154,26 +154,26 @@ class WIdb extends PDO
         $this->WIdb = self::getInstance();
 
         ksort($data);
-        
+        //var_dump($data);
         $fieldDetails = NULL;
         
         foreach($data as $key => &$value) {
             $fieldDetails .= "`$key`=:$key,";
         }
         $fieldDetails = rtrim($fieldDetails, ',');
-        
+        //var_dump($fieldDetails);
         $smt = $this->WIdb->prepare("UPDATE $table SET $fieldDetails WHERE $where");
         //var_dump($smt);
         foreach ($data as $key => &$value) {
-            //echo ":$key", &$value;
+           // echo ":$key", $value;
             $smt->bindParam(":$key", $value, PDO::PARAM_STR);
             //var_dump($value);
         }
         
         foreach ($whereBindArray as $key => &$value) {
-           //echo ":$key", &$value;
+           //echo ":$key", $value;
             $smt->bindParam(":$key", $value, PDO::PARAM_STR);
-            //ar_dump($value);
+            //var_dump($value);
         }
         
         //var_dump($smt);

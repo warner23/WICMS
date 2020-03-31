@@ -102,6 +102,9 @@ define('GOOGLE_ID', $google_id);
 
 define('GOOGLE_SECRET', $google_secret); 
 
+define('GOOGLE_MAP_API', $google_map_api); 
+
+define('google_charts_api_key', $google_charts_api_key); 
 
 // FACEBOOK
 

@@ -7,46 +7,50 @@
 $(document).ready(function(event)
 {
 
-     $("#tw-enabled").click(function(){
+     $("#twit").click(function(){
                         //alert('clicked');
-                        $("#tw-login").attr("value", 'yes')
-                        $("#tw-disabled").removeClass('btn-danger active')
-                        $("#tw-enabled").addClass('btn-success active');
+                        var twit = $("#tw-login").attr("value", 'yes')
+                        
+                        if (twit === "false"){
+                        $("#twit").prop("checked", true);
+                        $("#ter").text('ON');
+                        
+                       }else if (twit === "true"){
+                        $("#twit").removeAttr('checked');
+                        $("#ter").text('OFF');
+                        $("#ter").css('padding-left', '50%');
+                       }
                     })
 
-    $("#tw-disabled").click(function(){
-                        //alert('clicked');
-                        $("#tw-login").attr("value", 'no')
-                        $("#tw-enabled").removeClass('btn-success active')
-                        $("#tw-disabled").addClass('btn-danger active');
-                    })
-
-    $("#fb-enabled").click(function(){
-                        //alert('clicked');
-                        $("#fb-login").attr("value", 'yes')
-                        $("#fb-disabled").removeClass('btn-danger active')
-                        $("#fb-enabled").addClass('btn-success active');
-                    })
-
-    $("#fb-disabled").click(function(){
+    $("#fb").click(function(){
                         //alert('clicked');
                         $("#fb-login").attr("value", 'no')
-                        $("#fb-enabled").removeClass('btn-success active')
-                        $("#fb-disabled").addClass('btn-danger active');
+                        
+                        if (twit === "false"){
+                        $("#fb").prop("checked", true);
+                        $("#log").text('ON');
+                        
+                       }else if (twit === "true"){
+                        $("#fb").removeAttr('checked');
+                        $("#log").text('OFF');
+                        $("#log").css('padding-left', '50%');
+                       }
                     })
 
-    $("#gp-enabled").click(function(){
-                        //alert('clicked');
-                        $("#gp-login").attr("value", 'yes')
-                        $("#gp-disabled").removeClass('btn-danger active')
-                        $("#gp-enabled").addClass('btn-success active');
-                    })
 
     $("#gp-disabled").click(function(){
                         //alert('clicked');
-                        $("#gp-login").attr("value", 'no')
-                        $("#gp-enabled").removeClass('btn-success active')
-                        $("#gp-disabled").addClass('btn-danger active');
+                        var google = $("#gp-login").attr("value", 'no')
+                        
+                        if (google === "false"){
+                        $("#google").prop("checked", true);
+                        $("#login").text('ON');
+                        
+                       }else if (google === "true"){
+                        $("#google").removeAttr('checked');
+                        $("#login").text('OFF');
+                        $("#login").css('padding-left', '50%');
+                       }
                     })
     
 	// button register click below

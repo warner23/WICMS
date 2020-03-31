@@ -1,0 +1,163 @@
+.
+     * @type bool
+     */
+    public $AllowEmpty = false;
+
+    /**
+     * The default line ending.
+     * @note The default remains "\n". We force CRLF where we know
+     *        it must be used via self::CRLF.
+     * @type string
+     */
+    public $LE = "\n";
+
+    /**
+     * DKIM selector.
+     * @type string
+     */
+    public $DKIM_selector = '';
+
+    /**
+     * DKIM Identity.
+     * Usually the email address used as the source of the email
+     * @type string
+     */
+    public $DKIM_identity = '';
+
+    /**
+     * DKIM passphrase.
+     * Used if your key is encrypted.
+     * @type string
+     */
+    public $DKIM_passphrase = '';
+
+    /**
+     * DKIM signing domain name.
+     * @example 'example.com'
+     * @type string
+     */
+    public $DKIM_domain = '';
+
+    /**
+     * DKIM private key file path.
+     * @type string
+     */
+    public $DKIM_private = '';
+
+    /**
+     * Callback Action function name.
+     *
+     * The function that handles the result of the send email action.
+     * It is called out by send() for each email sent.
+     *
+     * Value can be any php callable: http://www.php.net/is_callable
+     *
+     * Parameters:
+     *   bool    $result        result of the send action
+     *   string  $to            email address of the recipient
+     *   string  $cc            cc email addresses
+     *   string  $bcc           bcc email addresses
+     *   string  $subject       the subject
+     *   string  $body          the email body
+     *   string  $from          email address of sender
+     * @type string
+     */
+    public $action_function = '';
+
+    /**
+     * What to use in the X-Mailer header.
+     * Options: null for default, whitespace for none, or a string to use
+     * @type string
+     */
+    public $XMailer = '';
+
+    /**
+     * An instance of the SMTP sender class.
+     * @type SMTP
+     * @access protected
+     */
+    protected $smtp = null;
+
+    /**
+     * The array of 'to' addresses.
+     * @type array
+     * @access protected
+     */
+    protected $to = array();
+
+    /**
+     * The array of 'cc' addresses.
+     * @type array
+     * @access protected
+     */
+    protected $cc = array();
+
+    /**
+     * The array of 'bcc' addresses.
+     * @type array
+     * @access protected
+     */
+    protected $bcc = array();
+
+    /**
+     * The array of reply-to names and addresses.
+     * @type array
+     * @access protected
+     */
+    protected $ReplyTo = array();
+
+    /**
+     * An array of all kinds of addresses.
+     * Includes all of $to, $cc, $bcc, $replyto
+     * @type array
+     * @access protected
+     */
+    protected $all_recipients = array();
+
+    /**
+     * The array of attachments.
+     * @type array
+     * @access protected
+     */
+    protected $attachment = array();
+
+    /**
+     * The array of custom headers.
+     * @type array
+     * @access protected
+     */
+    protected $CustomHeader = array();
+
+    /**
+     * The most recent Message-ID (including angular brackets).
+     * @type string
+     * @access protected
+     */
+    protected $lastMessageID = '';
+
+    /**
+     * The message's MIME type.
+     * @type string
+     * @access protected
+     */
+    protected $message_type = '';
+
+    /**
+     * The array of MIME boundary strings.
+     * @type array
+     * @access protected
+     */
+    protected $boundary = array();
+
+    /**
+     * The array of available languages.
+     * @type array
+     * @access protected
+     */
+    protected $language = array();
+
+    /**
+     * The number of errors encountered.
+     * @type integer
+     * @access protected
+     */

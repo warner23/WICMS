@@ -6,10 +6,25 @@
 class csstabs 
 {
     
-    function __construct()
-    {
-        
-    }
+  function __construct()
+  {
+    $this->WIdb = WIdb::getInstance();
+  }
+
+  public function Install($element_name)
+  {
+    $author = "Jules Warner";
+    $type = "Common Fields";
+    $font = "wi_" . $element_name;
+    $power = "power_on";
+    $this->WIdb->insert('wi_elements', array(
+            "element_name" => $element_name,
+            "element_author" => $author,
+            "element_type" => $type,
+            "element_font" => $font,
+            "element_powered" => $power
+        )); 
+  }
 
           public function editMod()
   {

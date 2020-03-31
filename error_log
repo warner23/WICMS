@@ -1,0 +1,22 @@
+[20-Mar-2019 10:32:15 UTC] PHP Notice:  Undefined property: top_head::$Site in /home/warner23/public_html/IVO/WIAdmin/WIModule/top_head/top_head.php on line 48
+[20-Mar-2019 10:32:15 UTC] PHP Fatal error:  Uncaught Error: Call to a member function Website_Info() on null in /home/warner23/public_html/IVO/WIAdmin/WIModule/top_head/top_head.php:48
+Stack trace:
+#0 /home/warner23/public_html/IVO/WICore/WIClass/WIModules.php(44): top_head->mod_name()
+#1 /home/warner23/public_html/IVO/index.php(46): WIModules->getMod(Object(top_head))
+#2 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WIModule/top_head/top_head.php on line 48
+[01-May-2019 01:00:11 UTC] PHP Notice:  Array to string conversion in /home/warner23/public_html/IVO/WIAdmin/WIModule/panel/panel.php on line 49
+[01-May-2019 01:03:02 UTC] PHP Notice:  Array to string conversion in /home/warner23/public_html/IVO/WIAdmin/WIModule/panel/panel.php on line 31
+[01-May-2019 01:03:02 UTC] PHP Notice:  Array to string conversion in /home/warner23/public_html/IVO/WIAdmin/WIModule/panel/panel.php on line 31
+[01-May-2019 01:03:02 UTC] PHP Notice:  Array to string conversion in /home/warner23/public_html/IVO/WIAdmin/WIModule/panel/panel.php on line 31
+[01-May-2019 01:03:02 UTC] PHP Notice:  Array to string conversion in /home/warner23/public_html/IVO/WIAdmin/WIModule/panel/panel.php on line 31
+[09-Jul-2019 22:26:27 UTC] PHP Fatal error:  Uncaught Error: Class 'WISettings' not found in /home/warner23/public_html/IVO/WIAdmin/WICore/WILib.php:10
+Stack trace:
+#0 /home/warner23/public_html/IVO/WICore/WIClass/WIConfig.php(2): include_once()
+#1 /home/warner23/public_html/IVO/WICore/WIClass/WI.php(9): include_once('/home/warner23/...')
+#2 /home/warner23/public_html/IVO/WICore/init.php(6): require('/home/warner23/...')
+#3 /home/warner23/public_html/IVO/WIInc/WI_StartUp.php(3): include_once('/home/warner23/...')
+#4 /home/warner23/public_html/IVO/index.php(4): include_once('/home/warner23/...')
+#5 {main}
+  thrown in /home/warner23/public_html/IVO/WIAdmin/WICore/WILib.php on line 10
+[22-Aug-2019 07:06:30 UTC] PHP Notice:  Use of undefined constant SITE_NAME - assumed 'SITE_NAME' in /home/warner23/public_html/IVO/WIAdmin/WIModule/panel/panel.php on line 76

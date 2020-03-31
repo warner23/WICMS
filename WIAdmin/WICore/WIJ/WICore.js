@@ -105,3 +105,7 @@ WICore.SettingBtn = function(value, true_element, false_element, value_element, 
    $(false_element).removeClass(remove_class)
    $(true_element).addClass(add_class);
 }
+
+WICore.Refresh = function(){
+  window.location.reload();
+}

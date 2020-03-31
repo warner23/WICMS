@@ -4,17 +4,18 @@
 * Created by Warner Infinity
 * Author Jules Warner
 */
-class WIPagination {		
-		public $itemsPerPage; //public $itemsPerPage This tells Paginator class how many items per page.
-		public $range; // public $range: This variable set the range between current page and two ending page numbers. For example, if current page is 5, and range is 2, pagination numbers will be showed as 3,4,5,6,7. Current page will be the middle page number.
-		public $currentPage; //public $currentPage:This variable stores current page number.
-		public $total; //public $total:This variable stores total number of pages.
-		public $textNav; //public $textNav:This variable decides if to show text navigation(Pre,Next) links. This approach makes it flexiable to hide/show the text navigation.
-		private $_navigation; //private $_navigation:This variable stores all the text strings include 'Pre','Next' as well as 'Item per pages'. This approach makes it easy to change the text.
-		public $itemSelect;	//public $itemSelect:This variable is an array of numbers, which is used to form the items per page select box.
-		private $_link; //private $_link:This variable stores the link value, which is the sanitized $_SERVER['PHP_SELF'] value.
-		private $_pageNumHtml; //private $_pageNumHtml:This variable stores the html content for paginations. We store it here to avoid repeated formatting process.
-		private $_itemHtml;  //private $_itemHtml:This variable stores the html content for items per page select box. We store it here to avoid repeated formatting process.
+class WIPagination {        
+        public $itemsPerPage; //public $itemsPerPage This tells Paginator class how many items per page.
+        public $range; // public $range: This variable set the range between current page and two ending page numbers. For example, if current page is 5, and range is 2, pagination numbers will be showed as 3,4,5,6,7. Current page will be the middle page number.
+        public $currentPage; //public $currentPage:This variable stores current page number.
+        public $total; //public $total:This variable stores total number of pages.
+        public $textNav; //public $textNav:This variable decides if to show text navigation(Pre,Next) links. This approach makes it flexiable to hide/show the text navigation.
+        public $onclick;
+        private $_navigation; //private $_navigation:This variable stores all the text strings include 'Pre','Next' as well as 'Item per pages'. This approach makes it easy to change the text.
+        public $itemSelect; //public $itemSelect:This variable is an array of numbers, which is used to form the items per page select box.
+        private $_link; //private $_link:This variable stores the link value, which is the sanitized $_SERVER['PHP_SELF'] value.
+        private $_pageNumHtml; //private $_pageNumHtml:This variable stores the html content for paginations. We store it here to avoid repeated formatting process.
+        private $_itemHtml;  //private $_itemHtml:This variable stores the html content for items per page select box. We store it here to avoid repeated formatting process.
 
 
 
@@ -24,25 +25,25 @@ class WIPagination {
          */
         public function __construct()
         {
-        	//set default values
-        	$this->itemsPerPage = 5;
-			$this->range        = 5;
-			$this->currentPage  = 1;		
-			$this->total		= 0;
-			$this->textNav 		= false;
-			$this->itemSelect   = array(5,25,50,100,'All');			
-			//private values
-			$this->_navigation  = array(
-					'next'=>'Next',
-					'pre' =>'Pre',
-					'ipp' =>'Item per page'
-			);			
-        	$this->_link 		 = filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);
-        	$this->_pageNumHtml  = '';
-        	$this->_itemHtml 	 = '';
+            //set default values
+            $this->itemsPerPage = 5;
+            $this->range        = 5;
+            $this->currentPage  = 1;        
+            $this->total        = 0;
+            $this->textNav      = false;
+            $this->itemSelect   = array(5,25,50,100,'All');         
+            //private values
+            $this->_navigation  = array(
+                    'next'=>'Next',
+                    'pre' =>'Pre',
+                    'ipp' =>'Item per page'
+            );          
+            $this->_link         = filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);
+            $this->_pageNumHtml  = '';
+            $this->_itemHtml     = '';
         }
         
-         public function Pagination($item_per_page, $current_page, $total_records, $total_pages)
+         public function Pagination($item_per_page, $current_page, $total_records, $total_pages, $onclick)
     {
          $pagination = '';
     if($total_pages > 0 && $total_pages != 1 && $current_page <= $total_pages){ //verify total pages and current page number
@@ -59,11 +60,11 @@ class WIPagination {
         
         if($current_page > 1){
             $previous_link = ($previous==0)? 1: $previous;
-            $pagination .= '<li class="first"><a href="#" data-page="1" title="First">&laquo;</a></li>'; //first link
-            $pagination .= '<li><a href="#" data-page="'.$previous_link.'" title="Previous">&lt;</a></li>'; //previous link
+            $pagination .= '<li class="first"><a href="javascript:void(0);" onclick="WIMod.' . $onclick . '(1);" class="pagination" data-page="1" title="First">&laquo;</a></li>'; //first link
+            $pagination .= '<li><a href="javascript:void(0);" onclick="WIMod.' . $onclick . '();" class="pagination" data-page="'.$previous_link.'" title="Previous">&lt;</a></li>'; //previous link
                 for($i = ($current_page-2); $i < $current_page; $i++){ //Create left-hand side links
                     if($i > 0){
-                        $pagination .= '<li><a href="#" data-page="'.$i.'" title="Page'.$i.'">'.$i.'</a></li>';
+                        $pagination .= '<li><a href="javascript:void(0);" onclick="WIMod.' . $onclick . '('.$i.');" class="pagination" data-page="'.$i.'" title="Page'.$i.'">'.$i.'</a></li>';
                     }
                 }   
             $first_link = false; //set first link to false
@@ -79,13 +80,13 @@ class WIPagination {
                 
         for($i = $current_page+1; $i < $right_links ; $i++){ //create right-hand side links
             if($i<=$total_pages){
-                $pagination .= '<li><a href="#" data-page="'.$i.'" title="Page '.$i.'">'.$i.'</a></li>';
+                $pagination .= '<li><a href="javascript:void(0);" class="pagination" onclick="WIMod.' . $onclick . '('.$i.');" data-page="'.$i.'" title="Page '.$i.'">'.$i.'</a></li>';
             }
         }
         if($current_page < $total_pages){ 
                 $next_link = ($i > $total_pages) ? $total_pages : $i;
-                $pagination .= '<li><a href="#" data-page="'.$next_link.'" title="Next">&gt;</a></li>'; //next link
-                $pagination .= '<li class="last"><a href="#" data-page="'.$total_pages.'" title="Last">&raquo;</a></li>'; //last link
+                $pagination .= '<li><a href="javascript:void(0);" onclick="WIMod.' . $onclick . '('.$next_link.');" class="pagination" data-page="'.$next_link.'" title="Next">&gt;</a></li>'; //next link
+                $pagination .= '<li class="last"><a href="javascript:void(0);" onclick="WIMod.' . $onclick . '('.$total_pages.');" data-page="'.$total_pages.'" title="Last">&raquo;</a></li>'; //last link
         }
         
         $pagination .= '</ul>'; 

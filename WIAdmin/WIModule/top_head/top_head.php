@@ -10,6 +10,7 @@ class top_head
 	{
 		$this->WIdb = WIdb::getInstance();
 		$this->Web  = new WIWebsite();
+		$this->Site = new WISite();
 	}
 
 	public function editMod()
@@ -45,7 +46,13 @@ echo '<div class="top_head">';
 	{
 		//$basename = dirname(dirname(dirname(__FILE__)));
 		echo '<div class="top_head">';
+		$lang_choice = $this->Site->Website_Info('lang_choice');
+		if ($lang_choice == "google") {
 		$this->Web->google_lang();
+		}
+		else if ($lang_choice == "wilang") {
+			$this->Web->viewLang();
+		}
 
 				
 				echo '</div>';
