@@ -112,6 +112,8 @@ class javascript
                         </div>
                       </div>
                     </div>';
+
+                   
         break;
 
         case "4 tabs":

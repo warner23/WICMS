@@ -32,46 +32,46 @@ class WIEditor
                         </button>
                     </div>
                     <div class="btn-group-edit">
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Bold">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Bold" onclick="document.execCommand("bold", false, "");">
                             <i class="fa fa-bold"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Italic">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Italic" onclick="document.execCommand("italic", false, "");">
                             <i class="fa fa-italic"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Underline">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Underline" onclick="document.execCommand("underline", false, "");">
                             <i class="fa fa-underline"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Strikethrough">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Strikethrough" onclick="document.execCommand("strikethrough", false, "");">
                             <i class="fa fa-strikethrough"></i>
                         </button>
                     </div>
                     <div class="btn-group-edit">
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Cut">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Cut" onclick="document.execCommand("cut", false, "");">
                             <i class="fa fa-scissors"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Copy">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Copy" onclick="document.execCommand("copy", false, "");">
                             <i class="fa fa-copy"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Past">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Paste" onclick="document.execCommand("paste", false, "");">
                             <i class="fa fa-paste"></i>
                         </button>
                     </div>
                     <div class="btn-group-edit">
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Undo">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Undo" onclick="document.execCommand("undo", false, "");">
                             <i class="fa fa-reply"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Redo">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Redo" onclick="document.execCommand("redo", false, "");">
                             <i class="fa fa-share"></i>
                         </button>
                     </div>
                     <div class="btn-group-edit">
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align left">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align left" onclick="document.execCommand("justifyLeft", false, "");">
                             <i class="fa fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align center">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align center" onclick="document.execCommand("justifyCenter", false, "");">
                             <i class="fa fa-align-center"></i>
                         </button>
-                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align right">
+                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align right" onclick="document.execCommand("justifyRight", false, "");">
                             <i class="fa fa-align-right"></i>
                         </button>
                         <button type="button" class="btn btn-default" data-toggle="tooltip" title="Align justify">

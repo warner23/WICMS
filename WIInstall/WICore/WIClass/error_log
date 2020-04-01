@@ -1,0 +1,7 @@
+[31-Dec-2019 11:57:36 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner23/public_html/testing_IVO/WIInstall/WICore/WIClass/Install.php on line 1824
+[31-Dec-2019 11:57:36 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner23/public_html/testing_IVO/WIInstall/WICore/WIClass/Install.php on line 1900
+[31-Dec-2019 11:57:37 UTC] PHP Notice:  Constant DEFAULT_LANGUAGE already defined in /home/warner23/public_html/testing_IVO/WICore/WIClass/WIConfig.php on line 121
+[01-Apr-2020 22:02:54 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner23/public_html/testing_IVO/WIInstall/WICore/WIClass/Install.php on line 1751
+[01-Apr-2020 22:02:54 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner23/public_html/testing_IVO/WIInstall/WICore/WIClass/Install.php on line 1819
+[01-Apr-2020 22:02:54 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, integer given in /home/warner23/public_html/testing_IVO/WIInstall/WICore/WIClass/Install.php on line 1839
+[01-Apr-2020 22:02:55 UTC] PHP Notice:  Constant DEFAULT_LANGUAGE already defined in /home/warner23/public_html/testing_IVO/WICore/WIClass/WIConfig.php on line 121

@@ -823,6 +823,7 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
   `panel` enum('0','1') DEFAULT '0',
   `top_head` enum('0','1') DEFAULT '0',
   `header` enum('0','1') DEFAULT '0',
+  `menu` enum('0','1') DEFAULT '1',
   `left_sidebar` enum('0','1') NOT NULL DEFAULT '0',
   `right_sidebar` enum('0','1') NOT NULL DEFAULT '0',
   `contents` text,
@@ -834,12 +835,12 @@ CREATE TABLE IF NOT EXISTS `wi_page` (
 -- Dumping data for table `wi_page`
 --
 
-INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
-( 'alogin', '1', '1', '0', '0', '0', 'alogin', '1'),
-( 'confirm', '1', '1', '0', '0', '0', 'confirm', '1'),
-( 'index', '1', '1', '0', '0', '0', 'welcome_box', '1'),
-( 'passwordreset', '1', '1', '0', '0', '0', 'passwordreset', '1'),
-( 'profile', '1', '1', '0', '0', '0', 'profile', '1');
+INSERT INTO `wi_page` ( `name`, `panel`, `top_head`, `header`, `menu`, `left_sidebar`, `right_sidebar`, `contents`, `footer`) VALUES
+( 'alogin', '1', '1', '0', '1', '0', '0', 'alogin', '1'),
+( 'confirm', '1', '1', '0', '1','0', '0', 'confirm', '1'),
+( 'index', '1', '1', '0', '1','0', '0', 'welcome_box', '1'),
+( 'passwordreset', '1', '1', '0', '1', '0','0', 'passwordreset', '1'),
+( 'profile', '1', '1', '0', '1','0', '0', 'profile', '1');
 
 -- --------------------------------------------------------
 
@@ -1551,6 +1552,69 @@ CREATE TABLE IF NOT EXISTS `wi_user_details` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+
+CREATE TABLE IF NOT EXISTS `wi_user_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `wi_user_group`
+--
+
+INSERT INTO `wi_user_group` (`id`, `group`) VALUES
+(1, 'Site');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wi_user_page_group`
+--
+
+CREATE TABLE IF NOT EXISTS `wi_user_page_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mod_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `wi_user_page_group`
+--
+
+INSERT INTO `wi_user_page_group` (`id`, `mod_type`) VALUES
+(1, 'Site');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wi_user_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `wi_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `group` int(11) NOT NULL,
+  `perm_name` varchar(255) NOT NULL,
+  `edit` enum('0','1') NOT NULL DEFAULT '0',
+  `create` enum('0','1') NOT NULL DEFAULT '0',
+  `delete` enum('0','1') NOT NULL DEFAULT '0',
+  `view` enum('0','1') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+--
+-- Dumping data for table `wi_user_permissions`
+--
+
+INSERT INTO `wi_user_permissions` (`id`, `role_id`, `group`, `perm_name`, `edit`, `create`, `delete`, `view`) VALUES
+(1, 7, 1, 'Site', '1', '1', '1', '1'),
+(2, 1, 1, 'Site', '0', '0', '0', '0'),
+(10, 3, 1, 'Site', '1', '1', '1', '1'),
+(9, 4, 1, 'Site', '1', '1', '1', '1'),
+(8, 5, 1, 'Site', '1', '1', '1', '1'),
+(7, 6, 1, 'Site', '1', '1', '1', '1'),
+(11, 2, 1, 'Site', '1', '1', '1', '1');
 --
 -- Table structure for table `wi_user_roles`
 --
@@ -1719,6 +1783,7 @@ define("GOOGLE_SECRET", $google_secret);
 
 define("GOOGLE_MAP_API ", $google_map_api ); 
 
+define("google_charts_api_key", $google_charts_api_key); 
 
 // FACEBOOK
 

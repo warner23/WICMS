@@ -197,6 +197,27 @@ class WIModal
           </form>';
   }
 
+  public function editsaveHtml()
+  {
+    echo '<form class="form-horizontal" id="savehtml">
+    <div class="form-group">
+    <p>Choose how to save your layout</p>
+          <div class="btn-group">
+            <button type="button" id="editfluidPage" class="active btn btn-info"><i class="icon-fullscreen icon-white"></i> Fluid Page</button>
+            <button type="button" class="btn btn-info" id="editfixedPage"><i class="icon-screenshot icon-white"></i> Fixed page</button>
+          </div>
+          <br>
+          <br>
+          <p>
+            <textarea></textarea>
+          </p>
+          <br>
+          <br>
+          
+          </div>
+          </form>';
+  }
+
   public function SaveContent()
   {
     return $this->Edit->WIEdit();
