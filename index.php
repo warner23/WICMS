@@ -54,13 +54,9 @@ if ($headerPower === "0") {
 $web->MainHeader();
 }
 
-$menuPower = $web->pageModPower($page, "menu");
 
-if ($menuPower === "0") {
-	
-}else{
 $web->MainMenu();
-}
+
 
 
 $contents = $web->pageModPower($page, "contents");

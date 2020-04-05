@@ -102,13 +102,7 @@ span.fa-2{
 }
 
 .remove{
-    width: 12%;
-    /* margin-left: 223px; */
-    /* margin-top: -79px; */
-    position: absolute;
-    left: 541px;
-    top: -11px;
-    /* height: 6px; */
+
 }
 
 
@@ -234,6 +228,10 @@ position: fixed;
     float: left;
 }
 
+.services{
+  margin: 0px 0px 60px 0;
+}
+
 
 
      </style>
@@ -346,64 +344,119 @@ position: fixed;
         <div class="row-fluid">
           <div class="">
             <span></span>
-           
-            
-</div>
-
+           </div>
 
  <div class="WI ui-sortable" style="min-height: 304px; ">
             <div class="wicreate">
-              <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>remove</a>
-              <span class="drag label"><i class="icon-move"></i>drag</span>
-              <div class="preview">9 3</div>
+
+              
+              <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>
+                remove
+              </a>
+              <span class="drag label">
+                <i class="icon-move"></i>
+              drag
+            </span>
+            <span class="configuration">
+                      <button type="button" class="btn btn-mini" role="button" id="editorModal" onclick="WIScript.Editor();">Editor</button>
+                      <a class="btn btn-mini" href="javascript:void(0);" rel="well">Well</a> 
+                    </span>
+              <div class="preview">12</div>
               <div class="view">
-                <div class="row-fluid clearfix">
-                  <div class="span12 column ui-sortable">
-                    <div class="box box-element ui-draggable" style="display: block; ">
-                      <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">Editor</button> <a class="btn btn-mini" href="#" rel="well">Well</a> </span>
-                      <div class="preview">Jumbotron</div>
+            <div class="col-lg-12 col-md-12 col-sm-12 column ui-sortable" >
+              <div class="box box-element ui-draggable" style="display: block; ">
+              <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>
+                remove
+              </a>
+              <span class="drag label">
+                <i class="icon-move"></i>
+              drag
+            </span>
+            <span class="configuration">
+                      <button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">Editor</button> 
+                      <a class="btn btn-mini" href="#" rel="well">Well</a> 
+                    </span>
+
+                    <div class="preview">Jumbotron</div>
                       <div class="view">
-                        <div class="hero-unit" contenteditable="true">
-                          <h1>Hello, world!</h1>
-                          <p>This is a template for a simple marketing or informational website.</p>
-                          <p> It includes a large callout called the hero unit and three supporting pieces of content.</p>
+              <div class="intro_box hero-unit" contenteditable="true">
+              <h1><span>Hello, world!</span></h1>
+              <p>This is a template for a simple marketing or informational website.
+                          It includes a large callout called the hero unit and three supporting pieces of content.
                           Use it as a starting point to create something more unique.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        
+        <div class="grid box-element ui-draggable" style="display: block; ">
+        <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>
+                remove
+              </a>
+              <span class="drag label">
+                <i class="icon-move"></i>
+              drag
+            </span>
+            <span class="configuration">
+                      <button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">Editor</button> 
+                      <a class="btn btn-mini" href="#" rel="well">Well</a> 
+                    </span>
+        <div class="preview">444</div>
+                      <div class="view">
+          <div class="col-lg-4 col-md-4 col-sm-4 column" >
+            <div class="services" contenteditable="true">
+              <div class="icon">
+                <i class="fa fa-laptop"></i>
+              </div>
+              <div class="serv_detail" contenteditable="true">
+                <h3 contenteditable="true"></h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-4 col-sm-4 column">
+            <div class="services" contenteditable="true">
+              <div class="icon">
+                <i class="fa fa-trophy"></i>
+              </div>
+              <div class="serv_detail" contenteditable="true">
+                <h3 contenteditable="true"></h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-4 col-sm-4 column" >
+            <div class="services" contenteditable="true">
+              <div class="icon">
+                <i class="fa fa-cogs"></i>
+              </div>
+              <div class="serv_detail" contenteditable="true">
+                <h3 contenteditable="true"></h3>
+                <p></p>
               </div>
             </div>
           </div>
 
+        </div>
+      </div>
+            </div>
+          </div>
 
 
-  
-          <!-- end  --> 
-          <!--/span-
          <div id="download-layout">
-            <div class="container-fluid"></div>
+            <div class="container-fluid">
+            </div>
           </div>
         </div>
        
       </div>
       
-      <div class="modal hide fade" role="dialog" id="modal-editorModal-details">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal" onclick="WIScript.closed('editorModal');">×</a>
-          <h3>Save your Layout</h3>
-        </div>
-        <div class="modal-body">
-          
-          <?php    
-            //$editor->WIEdit();
-          ?>
-        </div>
-        <div class="modal-footer"> 
-          <a id="savecontent" onclick="WIScript.SaveContent();" class="btn btn-primary" data-dismiss="modal">Save</a> 
-          <a class="btn" data-dismiss="modal">Cancel</a> </div>
-      </div> -->
 
 
          <?php  

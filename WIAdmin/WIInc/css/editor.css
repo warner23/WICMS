@@ -200,9 +200,9 @@ display: block;
 }
 
 .edit .WI .wicreate .drag {
-  top: 1%;
-  right: 6%;
-  z-index: 10; 
+    right: 13%;
+    z-index: 10;
+    float: right;
 }
 
 
@@ -213,16 +213,21 @@ display: block;
 .edit .WI .column .box .configuration {
   position: absolute;
   top: 3px;
-  right: 140px;
+  right: 88px;
   white-space: nowrap; 
 }
 
+.optset{
+margin: -17px 3px 14px -1px;
+    height: 0px;
+    width: 70%;
+    float: right; 
+}
+
 .edit .WI .remove {
-  position: absolute;
-  top: 1%;
-  right: 5%;
-  z-index: 10;
-  color: #fff; 
+    z-index: 10;
+    color: #fff;
+    float: right;
 }
 
 .WI .configuration {

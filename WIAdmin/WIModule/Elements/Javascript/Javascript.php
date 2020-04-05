@@ -19,7 +19,7 @@ class javascript
     $font = "wi_" . $element_name;
     $power = "power_on";
 
-    if($element_name != "javascript"){
+    if($element_name != "Javascript"){
 
        switch ($element_name) {
 
@@ -112,8 +112,6 @@ class javascript
                         </div>
                       </div>
                     </div>';
-
-                   
         break;
 
         case "4 tabs":

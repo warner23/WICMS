@@ -762,26 +762,30 @@ INSERT INTO `wi_mod` (`mod_id`, `mod_status`, `mod_powered`, `mod_type`, `mod_au
 
 CREATE TABLE IF NOT EXISTS `wi_modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `mod_id` int(11) DEFAULT NULL,
-  `trans` varchar(255) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
-  `trans1` varchar(255) DEFAULT NULL,
-  `text1` varchar(255) DEFAULT NULL,
-  `trans2` varchar(255) DEFAULT NULL,
-  `text2` varchar(255) DEFAULT NULL,
-  `text3` varchar(255) DEFAULT NULL,
-  `trans3` varchar(255) DEFAULT NULL,
-  `img` varchar(255) DEFAULT NULL,
-  `img1` varchar(255) DEFAULT NULL,
-  `img3` varchar(255) DEFAULT NULL,
-  `text4` varchar(255) DEFAULT NULL,
-  `trans4` varchar(255) DEFAULT NULL,
-  `img2` varchar(255) DEFAULT NULL,
-  `text5` varchar(255) DEFAULT NULL,
-  `trans5` varchar(255) DEFAULT NULL,
-  `text6` varchar(255) DEFAULT NULL,
-  `trans6` varchar(255) DEFAULT NULL,
+  `modulecode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mod_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `element` text COLLATE utf8_unicode_ci NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `trans` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trans1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trans2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trans3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trans4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text5` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trans5` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text6` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `trans6` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -967,7 +971,9 @@ INSERT INTO `wi_sidebar` ( `label`, `link`, `parent`, `sort`, `lang`, `img`) VAL
 ('Styling', 'WIStyling.php', 1, 3, 'Styling', 'styling'),
 ('Media', '', 0, 5, 'media', 'media'),
 ( 'Media', 'WIMedia.php', 15, 0, 'media', 'media'),
-('Multi Lang', 'WIMlang.php', 1, 4, 'Multi Lang', 'multi_lang');
+('Multi Lang', 'WIMlang.php', 1, 4, 'Multi Lang', 'multi_lang'),
+('Permissions', 'WIPermissions.php', 3, 3, 'Permissions', 'permissions'),
+( 'PageOptions', 'WIPageOptions.php', 10, 0, 'PageOptions', 'pages');
 
 -- --------------------------------------------------------
 
@@ -1013,6 +1019,7 @@ CREATE TABLE IF NOT EXISTS `wi_site` (
   `google_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `google_secret` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `google_map_api` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `google_charts_api_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `facebook_enabled` enum('true','false') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
   `facebook_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `facebook_secret` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1783,7 +1790,7 @@ define("GOOGLE_SECRET", $google_secret);
 
 define("GOOGLE_MAP_API ", $google_map_api ); 
 
-define("google_charts_api_key", $google_charts_api_key); 
+define("GOOGLE_CHARTS_API_KEY", $google_charts_api_key); 
 
 // FACEBOOK
 

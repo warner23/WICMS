@@ -81,16 +81,19 @@ class WIdb extends PDO
         public function selectColumn($sql, $array = array(), $column, $fetchMode = PDO::FETCH_ASSOC)
     {
         $WIdb = self::getInstance();
+        //var_dump($column);
         $sth = $WIdb->prepare($sql);
         foreach ($array as $key => &$value) {
             $sth->bindParam(":$key", $value);
         }
 
-        
         $sth->execute();
 
         $result = $sth->fetch($fetchMode);
+        //echo $result[$column];
+        //$result->closeCursor();
 
+        //echo "chat_id" . $result[$column];
         return $result[$column];
     }
 

@@ -1,129 +1,136 @@
-  </div><!-- end col-ms-->
-                        </div>
-                         <!--end opf header-->
+<?php
 
-                         <!-- start of menu -->
-                    </div>
-                </div> 
-        </header>';
+class WIValidator
+{
+	   private $WIdb;
+
+    /**
+     * Class constructor
+     */
+    public function __construct() {
+        $this->WIdb = WIdb::getInstance();
     }
 
+    /**
+     * Check if provided input is empty. If input is string then it checks if it is empty string.
+     * @param $in Input to be checked.
+     * @return bool TRUE if input is empty, FALSE otherwise.
+     */
+    public function isEmpty($in) {
+        if ( is_array($in) )
+            return empty($in);
+        elseif ( $in == '' )
+            return true;
+        else
+            return false;
     }
 
-
-        public function MainMenu()
-    {
-        $sql = "SELECT * FROM `wi_menu`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-        $result = $query->fetch();
-        $menu_order = $result['sort'];
-
-        $sql1 = "SELECT * FROM `wi_menu` ORDER BY :order";
-        $query1 = $this->WIdb->prepare($sql1);
-        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
-        $query1->execute();
-        echo '<div class="menu"><div class="col-lg-12 col-md-12 col-sm-12 menusT">
-              <div id="nav">
-               <ul id="mainMenu" class="mainMenu default">';
-
-        while($res = $query1->fetch(PDO::FETCH_ASSOC))
-        {    
-         echo '<li><a href="../' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
-         if($res['parent'] > 0)
-         {
-            echo '<li><a href="../' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
-         }
-        }
-        echo '</ul>
-            </div><!-- nav -->   
-            <!-- end of menu -->
-            </div></div>';
-    }
-
-      public function DebateMenu()
-    {
-        $sql = "SELECT * FROM `wi_menu`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-        $result = $query->fetch();
-        $menu_order = $result['sort'];
-
-        $sql1 = "SELECT * FROM `wi_menu` ORDER BY :order";
-        $query1 = $this->WIdb->prepare($sql1);
-        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
-        $query1->execute();
-        echo '<div class="menu"><div class="col-lg-12 col-md-12 col-sm-12 menusT">
-              <div id="nav">
-               <ul id="mainMenu" class="mainMenu default">';
-
-        while($res = $query1->fetch(PDO::FETCH_ASSOC))
-        {    
-         echo '<li><a href="#" onclick="WIChat.close">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
-         if($res['parent'] > 0)
-         {
-            echo '<li><a href="../' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
-         }
-        }
-        echo '</ul>
-            </div><!-- nav -->   
-            <!-- end of menu -->
-            </div></div>';
+    /**
+     * Check if provided string is longer than provided number of characters.
+     * @param $string String to be checked.
+     * @param $numOfCharacters Number of characters for comparation.
+     * @return bool TRUE if string is longer than provided number of characters, FALSE otherwise.
+     */
+    public function longerThan($string, $numOfCharacters) {
+        if ( strlen($string) > $numOfCharacters )
+            return TRUE;
+        return FALSE;
     }
 
 
-    public function footer()
-    {
-        $id = 1;
-
-        $date = date("Y");
-        $http = str_replace("www.", "", $_SERVER['HTTP_HOST']);
-        $query = $this->WIdb->prepare('SELECT * FROM `wi_footer` WHERE footer_id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
-
-        while($res = $query->fetch(PDO::PARAM_STR))
-        {
-            echo '<footer class="footer">
-            <section class="footer_bottom container-fluid text-center">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-4 col-md-ol col-sm-4 col-lg-4 col-xs-4">
-               
-                </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <p class="copyright"><?php echo WILang::get("copyright");?> &copy; ' . $date . ' ' . $res['website_name'] . '-  All rights reserved.</p>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    </div>
-                </div>
-            </div>
-        </section>
-        </footer>
-        <!--End Footer-->';
-        }
+    /**
+     * Check if email has valid format.
+     * @param string $email Email to be checked.
+     * @return boolean TRUE if email has valid format, FALSE otherwise.
+     */
+    public function emailValid($email) {
+        return preg_match("/^[_a-z0-9-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $email);
     }
 
-    public function langClassSelector($lang)
-    {
-      //echo $lang;
-
-      if( WILang::getLanguage() === $lang){
-        return WILang::getLanguage();
-      }else{
-        return "fade";
-      }
-
+    /**
+     * Check if provided username exists.
+     * @param $username Username to be checked.
+     * @return bool TRUE if username exist, FALSE otherwise.
+     */
+    public function usernameExist($username) {
+        $table  = 'wi_members';
+        $column = 'username';
+        return $this->exist($table, $column, $username);
     }
 
-      public function viewLang()
-    {
-    
 
-         
-        $sql = "SELECT * FROM `wi_lang`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-         echo '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
-                         <div clas
+    /**
+     * Check if provided email exists.
+     * @param $email Email to be checked.
+     * @return bool TRUE if email exist, FALSE otherwise.
+     */
+    public function emailExist($email) {
+        $table  = 'wi_members';
+        $column = 'email';
+        return $this->exist($table, $column, $email);
+    }
+
+    /**
+     * Check if provided role exists.
+     * @param $role Role to be checked.
+     * @return bool TRUE if role exist, FALSE otherwise.
+     */
+    public function roleExist($role) {
+        $table  = 'wi_user_roles';
+        $column = 'role';
+        return $this->exist($table, $column, $role);
+    }
+
+    /**
+     * Check if password reset key is valid.
+     * @param $key Key to be validated.
+     * @return  boolean TRUE if key is valid, FALSE otherwise
+     */
+    public function prKeyValid($key) {
+        // since it is md5 hash, it has to be 32 characters long
+        if ( strlen($key) != 32 )
+            return FALSE;
+
+        $result = $this->WIdb->select('SELECT * FROM `wi_members` WHERE `password_reset_key` = :k', array(
+            'k' => $key
+        ));
+
+        // if key doesn't exist in WIdb or it somehow exists more than once, it is not valid key
+        if ( count ( $result ) !== 1 )
+            return FALSE;
+
+        $result = $result[0];
+
+        // check if key is already used
+        if ( $result['password_reset_confirmed'] == 'Y' )
+            return FALSE;
+
+        // check if key is expired
+        $now = date('Y-m-d H:i:s');
+        $requestedAt = $result['password_reset_timestamp'];
+
+        if ( strtotime($now . ' -'.PASSWORD_RESET_KEY_LIFE.' minutes') > strtotime($requestedAt) )
+            return FALSE;
+
+        return TRUE;
+    }
+
+    /**
+     * Check if provided value exist in provided database table and provided WIdb column.
+     * @param $table Database table
+     * @param $column Database column
+     * @param $value Column value
+     * @return bool TRUE if value exist in given table and column, FALSE otherwise.
+     */
+    private function exist($table, $column, $value) {
+
+        $result = $this->WIdb->select("SELECT * FROM `$table` WHERE `$column` = :val", array( 'val' => $value ));
+
+        if ( count ( $result ) > 0 )
+            return TRUE;
+        else
+            return FALSE;
+    }
+}
+
+?>

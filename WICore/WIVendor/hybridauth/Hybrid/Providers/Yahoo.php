@@ -276,4 +276,4 @@ class PHPMailer
      *   4: low level data output
      * @type int
      * @see SMTP::$do_debug
-     */
+     */

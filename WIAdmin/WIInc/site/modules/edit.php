@@ -356,7 +356,7 @@ width: 100%;
 
          <?php  
 
- $modal->moduleModal('editdownloadingModal', 'Save', 'WIScript', 'editsaveHtml','Save'); 
+ $modal->moduleModal('editdownloadingModal', 'Save', 'WIScript', 'saveHtml','Save'); 
 
    ?>
 

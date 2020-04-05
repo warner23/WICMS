@@ -61,10 +61,10 @@ class WIProfile
 	    	//echo "ave" . $result[0]['avatar'];
 	    	//if($result["avatar"] === " ")
 	    	if(!empty($result[0]["avatar"])){
-			 echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/' . $result[0]["avatar"] . '" width="218px" /><a href="#" onclick="WIProfile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
+			 echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/' . $result[0]["avatar"] . '" width="218px" /><a href="#" onclick="profile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
 			
 		} else {
-		  echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/image01.jpg" width="218px" /><a href="#"" onclick="WIProfile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
+		  echo '<img class="profile" src="../WIAdmin/WIMedia/Img/avator/image01.jpg" width="218px" /><a href="#"" onclick="profile.photo()" class="btn pic">' . WILang::get("change_pic") . '</a>';
 		}
 
 	    	

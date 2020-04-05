@@ -19,7 +19,7 @@ class grid
     $font = "wi_" . $element_name;
     $power = "power_on";
 
-    if($element_name != "grid"){
+    if($element_name != "Grid"){
 
       switch ($element_name) {
 
@@ -28,9 +28,7 @@ class grid
                       <input value="12" type="text">
                     </div>
                     <div class="view">
-                      <div class="row-fluid clearfix">
-                        <div class="col-xs-12 column"></div>
-                      </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 column"></div>
                     </div>';
         break;
 
@@ -39,11 +37,9 @@ class grid
                       <input value="4 4 4" type="text">
                     </div>
                     <div class="view">
-                      <div class="row-fluid clearfix">
-                        <div class="col-xs-4 column"></div>
-                        <div class="col-xs-4 column"></div>
-                        <div class="col-xs-4 column"></div>
-                      </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 column"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 column"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 column"></div>
                     </div>';
         break;
 
@@ -52,10 +48,8 @@ class grid
                       <input value="2 10" type="text">
                     </div>
                     <div class="view">
-                      <div class="row-fluid clearfix">
-                        <div class="col-xs-2 column"></div>
-                        <div class="col-xs-10 column" ></div>
-                      </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 column"></div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 column" ></div>
                     </div>';
         break;
 
@@ -65,8 +59,8 @@ class grid
                     </div>
                     <div class="view">
                       <div class="row-fluid clearfix">
-                        <div class="col-xs-3 column"></div>
-                        <div class="col-xs-9 column" ></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 column" ></div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 column" ></div>
                       </div>
                     </div>';
         break;
@@ -77,8 +71,8 @@ class grid
                     </div>
                     <div class="view">
                       <div class="row-fluid clearfix">
-                        <div class="col-xs-4 column"></div>
-                        <div class="col-xs-8 column" ></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 column"></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 column" ></div>
                       </div>
                     </div>';
         break;
@@ -89,8 +83,8 @@ class grid
                    </div>
                    <div class="view">
                      <div class="row-fluid clearfix">
-                       <div class="col-xs-6 column"></div>
-                       <div class="col-xs-6 column"></div>
+                       <div class="col-lg-6 col-md-6 col-sm-6 column"></div>
+                       <div class="col-lg-6 col-md-6 col-sm-6 column"></div>
                      </div>
                    </div>';
         break;
@@ -101,8 +95,8 @@ class grid
                     </div>
                     <div class="view">
                       <div class="row-fluid clearfix">
-                        <div class="col-xs-8 column" ></div>
-                        <div class="col-xs-4 column"></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 column" ></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 column"></div>
                       </div>
                     </div>';
         break;
@@ -113,8 +107,8 @@ class grid
                     </div>
                     <div class="view">
                       <div class="row-fluid clearfix">
-                        <div class="col-xs-9 column" ></div>
-                        <div class="col-xs-3 column"></div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 column" ></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 column"></div>
                       </div>
                     </div>';
         break;
@@ -125,8 +119,8 @@ class grid
                     </div>
                     <div class="view">
                       <div class="row-fluid clearfix">
-                        <div class="col-xs-10 column" ></div>
-                        <div class="col-xs-2 column"></div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 column" ></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 column"></div>
                       </div>
                     </div>';
         break;

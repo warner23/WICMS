@@ -302,7 +302,6 @@ WIScript.handleJsIds = function(){
     WIScript.handleCarouselIds();
     WIScript.handleTabsIds();
     WIScript.handleGridsIds();
-    WIScript.handleBasesIds();
 
 }
 
@@ -313,18 +312,6 @@ WIScript.handleGridsIds = function(){
     var t = WIScript.randomNumber();
     var n = "attrsPanels-" + t;
     var i = "edit-" + t;
-    e.attr("id", n);
-    c.attr("id", t);
-    c.attr("class", i )
-}
-
-WIScript.handleBasesIds = function(){
-    console.log("grid id");
-        var e = $(".WI #WIFieldId");
-        var c = $(".WI .fieldEdit");
-    var t = WIScript.randomNumber();
-    var n = "FieldId-" + t;
-    var i = "fieldEdit-" + t;
     e.attr("id", n);
     c.attr("id", t);
     c.attr("class", i )
@@ -346,13 +333,6 @@ WIScript.handleAccordionIds = function(){
             $(t).attr("id", r);
         });
     });
-
-/*    var script = '<script>'+
-  '$( function() {'+
-    '$( "'+n+'" ).accordion();'+
-  '} );'+
-  '</script>';
-  e.prepend(script);*/
 
 }
 
@@ -385,15 +365,11 @@ WIScript.handleTabsIds = function(){
     var n = "tabs-" + t;
     e.attr("id", n);
     e.find(".tab-pane").each(function(e, t) {
-        console.log(t);
         var n = $(t).attr("id");
-        //console.log(n);
         var r = "panel-" + WIScript.randomNumber();
-        //$(t).attr("id", r);
-        console.log($(t).parent().parent().children().find("a href"));
+        $(t).attr("id", r);
         $(t).parent().parent().find("a href=#" + n).attr("href", "#" + r);
     });
-
 }
 
 WIScript.randomNumber = function(){
@@ -477,29 +453,6 @@ WIScript.gridEdit = function(name){
     }
 }
 
-WIScript.BaseEdit = function(name){
-
-    var c = event.target.id
-    console.log(c);
-    var clas = $(".fieldEdit-"+c);
-    var panel = $(this).closest(".Fpanel");
-
-    if(clas.hasClass("fieldEdit-"+c)){
-        $("#FieldId-"+c).css("display","block");
-        $("#FieldId-"+c).addClass("row-fluid");
-        $("#FieldId-"+c).closest("view").css("display","none");
-        $(".fieldEdit-"+c).addClass("fieldEdit");
-        $(".fieldEdit-"+c).removeClass("fieldEdit-"+c);
-
-    }else{
-        $("#FieldId-"+c).css("display","none");
-        $(".fieldEdit").addClass("fieldEdit-"+c);
-        $("#FieldId-"+c).removeClass("row-fluid");
-        $("#FieldId-"+c).closest("view").css("display","display");
-
-    }
-}
-
 WIScript.Editor = function(){
 
         $("#modal-editorModal-details").removeClass('hide').removeClass('fade');
@@ -526,7 +479,10 @@ WIScript.SaveContent = function(){
 
         var c = $('#contenteditor').html();
         var id = $('#editorId');
-        id.children('.view').empty().html(c);
+        console.log(c);
+        console.log(id.find('view') );
+        console.log(id.children() );
+        id.children().empty().html(c);
         $("#modal-editorModal-details").removeClass('show');
         $("#modal-editorModal-details").addClass('hide fade');
 
@@ -535,13 +491,15 @@ WIScript.SaveContent = function(){
 WIScript.downloadLayoutSrc = function(){
     var e = "";
     // gets child of selecta
-    var d = $("#download-layout").children().html($(".WI").html() );
+    var c = $("#download-layout").children().html($(".WI").html() );
+
+   // console.log($("#download-layout").html() );
 
     var t = $("#download-layout").children();
+   // console.log(t.html() );
     t.find(".preview, .configuration, .drag, .remove").remove();
-    t.find(".wicreate").addClass("row-fluid clearfix");
+    t.find(".wicreate").addClass("row");
     t.find(".wicreate").removeClass("ui-draggable wicreate");
-
 
     t.find(".view").addClass("col-lg-12 col-md-12 col-sm-12");
     t.find(".view").removeClass("view");
@@ -552,6 +510,8 @@ WIScript.downloadLayoutSrc = function(){
     t.find(".box-element").removeClass("box-element");*/
 
     t.find(".WIattrsPanels").remove();
+
+    console.log(t.html() );
 
     $("#download-layout .column").removeClass("ui-sortable");
     $("#download-layout .row-fluid").removeClass("clearfix").children().removeClass("column");
@@ -648,15 +608,14 @@ WIScript.savingHtml = function(){
 
 
 WIScript.saveHtml = function(){
-    //var btn = $(".navbar-btn");
+    var btn = $(".navbar-btn");
     mod_name = $("#mod_name").val();
-   $(".WI").children().find(".WIattrsPanels").remove();
     contents = $(".WI").html();
-    console.log(contents);
+    contents.find(".WIattrsPanels").remove();
     content  = $("#modal-downloadingModal-details textarea").val();
 
     // put button into the loading state
-   // WICore.loadingButton(btn, $_lang.creating_Account);
+    WICore.loadingButton(btn, $_lang.creating_Account);
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
@@ -670,7 +629,7 @@ WIScript.saveHtml = function(){
         success: function(result)
         {
             // return the button to normasl state
-            //WICore.removeLoadingButton(btn);
+            WICore.removeLoadingButton(btn);
             console.log(result);
             //window.alert(result);
             //parse the data to json
@@ -707,26 +666,38 @@ WIScript.closed = function(id){
 
 WIScript.changeIcon = function(e){
 
-           var rel = $(e).attr('rel')
+
+           // e.preventDefault();
+           var rel = event.target;
            var rl = event.target.className;
-            var t = $(event.target).parent().parent();
-            console.log(t);
 
-            var n = t.parent().parent().parent().parent().next().next().children();
-            console.log(n);
-            n.removeClass();
-            n.addClass(rel);
+           console.log(rel);
+           console.log(rl);
+           var e = event.path;
 
+           var oldClass = $('#font_awesome').parent().parent().parent().parent().children().prev().next().next().children().find('span');
+           console.log(oldClass);
+           // add new class 
+           $('#font_awesome').parent().parent().parent().parent().children().prev().next().next().children().removeClass();
+           $('#font_awesome').parent().parent().parent().parent().children().prev().next().next().children().addClass(rl);
+
+
+           console.log(e);
+        var t = $(this).parent().parent();
+        console.log(t);
+        var n = t.parent().parent().next().next().children();
+        console.log(n);
         t.find("li").removeClass("active");
-        $(event.target).parent().addClass("active");
+        $(this).parent().addClass("active");
         var r = "";
         t.find("a").each(function() {
-            r += $(event.target).attr("rel") + " ";
+            r += $(this).attr("rel") + " ";
         });
         t.parent().removeClass("open");
         n.removeClass(r);
-        n.addClass( $(event.target).attr("rel") );
-        n.addClass( rel );
+        n.addClass($(this).attr("rel"));
+
+
 }
 
 WIScript.font_awesome = function(){

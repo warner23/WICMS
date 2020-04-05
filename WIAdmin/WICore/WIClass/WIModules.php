@@ -879,7 +879,15 @@ class WIModules
             //var_dump($res);
             echo '<div class="grid box-element wicreate ui-draggable">
             <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.gridEdit(`' .$res['element_name'] . '`)" class="edit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>Edit</a>
-            
+                
+                <div class="rowActions groupActions">
+                    <div class="actionBtnWrapper">
+                <button class="btn item_handle" type="button"></button>
+                <button class="btn item_editToggle" type="button"></button>
+                <button class="btn item_clone" type="button"></button>
+                <button class="btn item_remove" type="button"></button>
+                </div>
+                </div>
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a>
                      <span class="drag label"><i class="icon-move"></i>Drag</span>';
                      self::attrsPanels(); 
@@ -943,7 +951,8 @@ class WIModules
 
             if($res["element_name"] === "Font Awesome")
             {
-                           echo '<div class="box box-element ui-draggable">
+                 echo '<div class="box box-element ui-draggable">
+                 <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -960,11 +969,14 @@ class WIModules
                       </span>
                     </span>
                     </div>
-                    ' . $res['element'] . '
+                    ';
+                    self::fieldEdit();
+                   echo $res['element'] . '
                   </div>';
             }else if($res["element_name"] === "Image")
             {
-                           echo '<div class="box box-element ui-draggable">
+                echo '<div class="box box-element ui-draggable">
+                           <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -990,12 +1002,14 @@ class WIModules
                         </ul>
                       </span>
                     </span>
-                    </div>
-                    ' . $res['element'] . '
+                    </div>';
+                    self::fieldEdit();
+                   echo $res['element'] . '
                   </div>';
             }else if($res["element_name"] === "Color")
             {
-                                           echo '<div class="box box-element ui-draggable">
+            echo '<div class="box box-element ui-draggable">
+            <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -1021,11 +1035,13 @@ class WIModules
                         </ul>
                       </span>
                     </span>
-                    </div>
-                    ' . $res['element'] . '
+                    </div>';
+                    self::fieldEdit();
+                   echo $res['element'] . '
                   </div>';
             }else{
                            echo '<div class="box box-element ui-draggable">
+                           <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -1051,8 +1067,10 @@ class WIModules
                         </ul>
                       </span>
                     </span>
-                    </div>
-                    ' . $res['element'] . '
+                    </div>';
+
+                    self::fieldEdit();
+                   echo $res['element'] . '
                   </div>';
             }
  
@@ -2695,6 +2713,21 @@ echo '</div>`
                              <li class=""><a href="#" rel="fa fa-medkit fa-3"><i class="fa fa-medkit"></i></a></li>
                              <li class=""><a href="#" rel="fa fa-stethoscope fa-3"><i class="fa fa-stethoscope"></i></a></li>
                              <li class=""><a href="#" rel="fa fa-user-md fa-3"><i class="fa fa-user-md"></i></a></li>';
+  }
+
+
+    public function fieldEdit()
+  {
+    echo '<nav class="panel-nav" id="WIFieldId" style="display:none;">
+      <button class="prev-group" title="previous group"  type="button" data-toggle="tooltip"data-placement="top"></button>
+      <div class="panel-labels">
+      <div class="options">
+      <h5 class="active-tab">Attrs</h5>
+      <h5>Options</h5>
+      </div>
+      </div>
+      <button class="next-group" title="Next group"  type="button" data-toggle="tooltip"data-placement="top"></button>
+      </nav>';
   }
 
 

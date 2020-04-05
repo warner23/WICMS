@@ -8,9 +8,9 @@
 
 class WILogin
 {
-    private $WIdb = null;
+	private $WIdb = null;
 
-        function __construct() {
+	    function __construct() {
        $this->WIdb = WIdb::getInstance();
        $this->maint = new WIMaintenace();
     }
@@ -119,6 +119,7 @@ class WILogin
             //user exist, log him in if he is confirmed
             $this->_updateLoginDate($result[0]['user_id']);
             WISession::set("user_id", $result[0]['user_id']);
+            session_regenerate_id(true);
             if(LOGIN_FINGERPRINT == true)
                 WISession::set("login_fingerprint", $this->_generateLoginString ());
             

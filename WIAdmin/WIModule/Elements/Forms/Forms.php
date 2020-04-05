@@ -23,7 +23,7 @@ class forms
 
        switch ($element_name) {
 
-        case "Horizontal form":
+        case "Horizontal Form":
         $element = '<div class="preview">Horizontal form</div>
                           <div class="view">
 
@@ -67,13 +67,13 @@ class forms
         break;
 
         case "Password Input":
-        $element = '<div class="view">
+        $element = '<div class="preview">Password Input</div><div class="view">
                       <input type="password" class=`form-control` placeholder="insert your password here"/>
                     </div>';
         break;
 
         case "Email Input":
-        $element = '<div class="view">
+        $element = '<div class="preview">Email Input</div><div class="view">
                       <input type="email" class="form-control" placeholder="type your email here"/>
                     </div>';
         break;
@@ -196,7 +196,7 @@ class forms
                     </div>';
         break;
 
-        case "Button Dropdowns":
+        case "Button Dropdown":
         $element = '<div class="preview">Button Dropdowns</div>
                     <div class="view">
                       <div class="btn-group">

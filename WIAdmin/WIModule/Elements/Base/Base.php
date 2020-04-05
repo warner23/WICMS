@@ -17,7 +17,7 @@ class base
     $type = "Base";
     $font = "wi_" . $element_name;
     $power = "power_on";
-    if($element_name != "base"){
+    if($element_name != "Base"){
 
 
       switch ($element_name) {
@@ -312,6 +312,14 @@ class base
        </div>';
         break;
 
+        case "Div":
+        $element = '<div class="preview">Div</div>
+                    <div class="view"> 
+                    <div contenteditable="true" class="">
+                    </div>                           
+       </div>';
+        break;
+
       }
 
       $this->WIdb->insert('wi_elements', array(
@@ -557,7 +565,7 @@ class base
 
     public function baseSystem()
   {
-    $element_name = array("Title", "Paragraph","Address", "Blockquotes", "Unordered List", "Ordered List", "Description", "Image", "Dashboard", "Color", "Font Awesome");
+    $element_name = array("Title", "Paragraph","Address", "Blockquotes", "Unordered List", "Ordered List", "Description", "Image", "Dashboard", "Color", "Font Awesome", "Div");
 
     foreach ($element_name as $ele ) {
       $this->Install($ele);

@@ -7,7 +7,7 @@ $(document).ready(function () {
     url: "WICore/WIClass/WIAjax.php",
     type: "POST",
     data: {
-      action   : "friendWIProfile",
+      action   : "friendProfile",
       friend    : friendId
     },
     success: function (result) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
     url: "WICore/WIClass/WIAjax.php",
     type: "POST",
     data: {
-      action   : "friendWIProfile0"
+      action   : "friendProfile0"
           },
     success: function (result) {
 
@@ -38,11 +38,11 @@ $(window).on("unload", function(e) {
       return false;
     });
      $("#change_password").click(function () { 
-        if(WIProfile.validatePasswordUpdate())
-            WIProfile.updatePassword(); 
+        if(profile.validatePasswordUpdate())
+            profile.updatePassword(); 
     });
     $("#update_details").click(function () {
-        WIProfile.updateDetails();
+        profile.updateDetails();
     });
 
       
@@ -53,16 +53,16 @@ $(window).on("unload", function(e) {
 
 
 
-/** WIProfile NAMESPACE
+/** PROFILE NAMESPACE
  ======================================== */
 
-var WIProfile = {};
+var profile = {};
 
 
 /**
  * Updates user password.
  */
-WIProfile.updatePassword = function() {
+profile.updatePassword = function() {
         //turn on button loading state
         WICore.loadingButton($("#change_password"), $_lang.updating);
     
@@ -98,7 +98,7 @@ WIProfile.updatePassword = function() {
   });
 };
 
-WIProfile.displayBio = function($userId){
+profile.displayBio = function($userId){
 
 
   $.ajax({
@@ -120,7 +120,7 @@ WIProfile.displayBio = function($userId){
  * Validate password update form.
  * @returns {Boolean} TRUE if form is valid, FALSE otherwise.
  */
-WIProfile.validatePasswordUpdate = function () {
+profile.validatePasswordUpdate = function () {
     
         //remove all error messages if there are some
   WICore.removeErrorMessages();
@@ -164,7 +164,7 @@ WIProfile.validatePasswordUpdate = function () {
 /**
  * Updates user details.
  */
-WIProfile.updateDetails = function () {
+profile.updateDetails = function () {
         //remove error messages if there are any
   WICore.removeErrorMessages();
         
@@ -207,7 +207,7 @@ WIProfile.updateDetails = function () {
   });
 };
 
-WIProfile.showpic = function(userId){
+profile.showpic = function(userId){
 
     $.ajax({
     url: "WICore/WIClass/WIAjax.php",
@@ -217,13 +217,13 @@ WIProfile.showpic = function(userId){
       userId   : userId
     },
     success: function (result) {
-      $(".WIProfile_picture").html(result)
+      $(".profile_picture").html(result)
     }
   });
 
 }
 
-WIProfile.bio = function()
+profile.bio = function()
 {
   if( $("#updateBio").hasClass('closed') ){
     $("#updateBio").removeClass('closed');
@@ -237,7 +237,7 @@ WIProfile.bio = function()
 }
 
 
-WIProfile.UpdateBio = function(userId)
+profile.UpdateBio = function(userId)
 {
   var bio = $("textarea#bio").val();
 
@@ -257,7 +257,7 @@ WIProfile.UpdateBio = function(userId)
         {
           WICore.displaySuccessMessage($(".control-group"), res.msg);
           $("#updateBio").css("display", "none");
-          WIProfile.displayBio(userId);
+          profile.displayBio(userId);
         }
         else
         {
@@ -269,7 +269,7 @@ WIProfile.UpdateBio = function(userId)
   });
 }
 
-WIProfile.details = function(userId){
+profile.details = function(userId){
 
   if( $("#updateInfo").hasClass('closed') ){
     alert('closed');
@@ -284,7 +284,7 @@ WIProfile.details = function(userId){
 
 }
 
-WIProfile.updateDetails = function(userId)
+profile.updateDetails = function(userId)
 {
   var fname = $("#f_name").val();
    lname = $("#l_name").val();
@@ -293,7 +293,7 @@ WIProfile.updateDetails = function(userId)
     url: "WICore/WIClass/WIAjax.php",
     type: "POST",
     data: {
-      action   : "updateWIProfileDetails",
+      action   : "updateProfileDetails",
       userId  : userId,
       fname  : fname,
       lname  : lname
@@ -318,7 +318,7 @@ WIProfile.updateDetails = function(userId)
 
 }
 
-WIProfile.location = function(userId)
+profile.location = function(userId)
 {
     if( $("#updateLocation").hasClass('closed') ){
     $("#updateLocation").removeClass('closed');
@@ -330,7 +330,7 @@ WIProfile.location = function(userId)
   }
 }
 
-WIProfile.displayLocation = function(userId){
+profile.displayLocation = function(userId){
 
   $.ajax({
     url: "WICore/WIClass/WIAjax.php",
@@ -344,7 +344,7 @@ WIProfile.displayLocation = function(userId){
     }
   });
 }
-WIProfile.updateLocation = function(userId)
+profile.updateLocation = function(userId)
 {
   var country = $("#country").val();
    region = $("#region").val();
@@ -369,7 +369,7 @@ WIProfile.updateLocation = function(userId)
         {
           
           $("#updateLocation").addClass('closed');
-          WIProfile.displayLocation(userId);
+          profile.displayLocation(userId);
         }
         else
         {
@@ -381,7 +381,7 @@ WIProfile.updateLocation = function(userId)
   });
 }
 
-WIProfile.social = function(userId)
+profile.social = function(userId)
 {
       if( $("#updateSocial").hasClass('closed') ){
     $("#updateSocial").removeClass('closed');
@@ -394,7 +394,7 @@ WIProfile.social = function(userId)
 }
 
 
-WIProfile.updatesocial = function(userId)
+profile.updatesocial = function(userId)
 {
   var youtube = $("#youtube").val();
    facebook = $("#facebook").val();
@@ -419,7 +419,7 @@ WIProfile.updatesocial = function(userId)
     if(res.status === "successful")
         {
           $("#updateSocial").addClass('closed');
-          WIProfile.displaySocial(userId);
+          profile.displaySocial(userId);
           
         }
         else
@@ -433,7 +433,7 @@ WIProfile.updatesocial = function(userId)
 }
 
 
-WIProfile.displaySocial = function(userId){
+profile.displaySocial = function(userId){
 
   $.ajax({
     url: "WICore/WIClass/WIAjax.php",
@@ -448,20 +448,20 @@ WIProfile.displaySocial = function(userId){
   });
 }
 
-WIProfile.photo = function(userId)
+profile.photo = function(userId)
 {
   $("#modal-change-photo").css("display", "block"); 
 }
 
-WIProfile.close = function(){
+profile.close = function(){
   $("#modal-change-photo").css("display", "none"); 
 }
 
-WIProfile.cancel = function(){
+profile.cancel = function(){
   $("#modal-change-photo").css("display", "none"); 
 }
 
-WIProfile.upload = function(userId)
+profile.upload = function(userId)
 {
 event.preventDefault();
 
@@ -487,9 +487,8 @@ success: function(result)   // A function to be called if request succeeds
           //$("#upload-preview").append(res.msg);
           //$("#modal-change-photo").css("display", "none");
           $('.ajax-loading').hide();
-          WIProfile.showpic(userId);
+          profile.showpic(userId);
           $("#modal-change-photo").css("display", "none");
-          window.location.reload();
         }
         else if(result === "error")
         {
@@ -505,7 +504,7 @@ success: function(result)   // A function to be called if request succeeds
 }
 
 
-WIProfile.toggleInteractContainers = function(x) {
+profile.toggleInteractContainers = function(x) {
     if ($('#'+x).is(":hidden")) {
       $('#'+x).slideDown(200);
     } else {
@@ -514,7 +513,7 @@ WIProfile.toggleInteractContainers = function(x) {
     $('.interactContainers').hide();
 }
 
-WIProfile.toggleViewAllFriends = function(x) {
+profile.toggleViewAllFriends = function(x) {
     if ($('#'+x).is(":hidden")) {
       $('#'+x).fadeIn(200);
     } else {
@@ -522,7 +521,7 @@ WIProfile.toggleViewAllFriends = function(x) {
     }
 }
 
-WIProfile.toggleViewMap = function(x) {
+profile.toggleViewMap = function(x) {
     if ($('#'+x).is(":hidden")) {
       $('#'+x).fadeIn(200);
     } else {
@@ -530,7 +529,7 @@ WIProfile.toggleViewMap = function(x) {
     }
 }
 
-WIProfile.addAsFriend = function(userId, friendId) {
+profile.addAsFriend = function(userId, friendId) {
   $("#add_friend_loader").show();
 
      $.ajax({
@@ -538,7 +537,7 @@ WIProfile.addAsFriend = function(userId, friendId) {
         type: "POST",             // Type of request to be send, called as method
         data: {
                    action: "AddFriend",
-                   WIProfile : 1,
+                   profile : 1,
                    userId  : userId,
                    friendId : friendId
                },
@@ -551,7 +550,7 @@ WIProfile.addAsFriend = function(userId, friendId) {
     });
 }
 
-WIProfile.acceptFriendRequest = function(req_id) {
+profile.acceptFriendRequest = function(req_id) {
 
    $.ajax({
     url: "WICore/WIClass/WIAjax.php",
@@ -570,7 +569,7 @@ $("#req"+req_id).html(data).show();
   
 }
 
-WIProfile.denyFriendRequest = function(req_id) {
+profile.denyFriendRequest = function(req_id) {
 
      $.ajax({
     url: "WICore/WIClass/WIAjax.php",
@@ -587,14 +586,14 @@ $("#req"+req_id).html(data).show();
     });
 }
 
-WIProfile.removeAsFriend = function(a,b) {
+profile.removeAsFriend = function(a,b) {
   $("#remove_friend_loader").show();
   $.post(friendRequestURL,{ request: "removeFriendship", mem1: a, mem2: b, thisWipit: thisRandNum } ,function(data) {
       $("#remove_friend").html(data).show().fadeOut(12000);
     }); 
 }
 
-WIProfile.privateMessage = function(event){
+profile.privateMessage = function(event){
   event.preventDefault();
 
    var pmSubject = $("#pmSubject").val();
@@ -617,7 +616,7 @@ WIProfile.privateMessage = function(event){
         type: "POST",             // Type of request to be send, called as method
         data: {
                    action: "privateMessage",
-                   WIProfile : 1,
+                   profile : 1,
                    pmSub  : pmSubject,
                    pmText : pmTextArea,
                    senderid : senderid,
@@ -639,7 +638,7 @@ WIProfile.privateMessage = function(event){
     }
 }
 
-WIProfile.markAsRead = function(msgID, ownerid) {
+profile.markAsRead = function(msgID, ownerid) {
 
 
    $.ajax({
@@ -647,7 +646,7 @@ WIProfile.markAsRead = function(msgID, ownerid) {
         type: "POST",             // Type of request to be send, called as method
         data: {
                    action: "markAsRead",
-                   WIProfile : 1,
+                   profile : 1,
                    msgID  : msgID,
                    user  : ownerid
                },
@@ -675,7 +674,7 @@ WIProfile.markAsRead = function(msgID, ownerid) {
 
 }
 
-WIProfile.toggleReplyBox = function(subject,sendername,senderid,recName,recID,replyWipit) {
+profile.toggleReplyBox = function(subject,sendername,senderid,recName,recID,replyWipit) {
   $("#subjectShow").text(subject);
   $("#recipientShow").text(recName);
   document.replyForm.pmSubject.value = subject;
@@ -693,7 +692,7 @@ WIProfile.toggleReplyBox = function(subject,sendername,senderid,recName,recID,re
 }
 
 
-WIProfile.processReply = function(){
+profile.processReply = function(){
 
       var pmSubject = $("#pmSubject");
     var pmTextArea = $("#pmTextArea");
@@ -712,7 +711,7 @@ WIProfile.processReply = function(){
         type: "POST",             // Type of request to be send, called as method
         data: {
                    action: "processReply",
-                   WIProfile : 1,
+                   profile : 1,
                    sub  : pmSubject,
                    text  : pmTextArea,
                    sender : sendername,

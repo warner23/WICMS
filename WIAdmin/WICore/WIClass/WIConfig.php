@@ -93,7 +93,6 @@ define('SMTP_ENCRYPTION', $smpt_encryption);
 
 define('SOCIAL_CALLBACK_URI', $social); 
 
-
 // GOOGLE
 
 define('GOOGLE_ENABLED', $google); 
@@ -104,8 +103,7 @@ define('GOOGLE_SECRET', $google_secret);
 
 define('GOOGLE_MAP_API', $google_map_api); 
 
-define('google_charts_api_key', $google_charts_api_key); 
-
+define('GOOGLE_CHARTS_API_KEY', $google_charts_api_key); 
 // FACEBOOK
 
 define('FACEBOOK_ENABLED', $fb); 

@@ -1,0 +1,2 @@
+[17-Mar-2018 06:34:31 America/New_York] PHP Warning:  Use of undefined constant DEFAULT_LANGUAGE - assumed 'DEFAULT_LANGUAGE' (this will throw an Error in a future version of PHP) in /home/warner/public_html/WIInstall/WICore/WIClass/WILang.php on line 73
+[17-Mar-2018 06:43:46 America/New_York] PHP Warning:  Use of undefined constant DEFAULT_LANGUAGE - assumed 'DEFAULT_LANGUAGE' (this will throw an Error in a future version of PHP) in /home/warner/public_html/WIInstall/WICore/WIClass/WILang.php on line 73
