@@ -102,6 +102,8 @@ class WIPage
       //var_dump($result);
       $content = $result[0]["contents"];
       //echo $content;
+
+      // getting the info via db ( option 2)
       $res = $this->WIdb->select(
                     "SELECT * FROM `wi_modules`
                      WHERE `name` = :c",
@@ -114,8 +116,7 @@ class WIPage
       if(isset($page)){
     $left_sidePower = $this->Web->pageModPower($page, "left_sidebar");
     $leftSideBar = $this->Web->PageMod($page, "left_sidebar");
-    //echo $Panel;
-    if ($left_sidePower === 0) {
+    if ($left_sidePower === "0") {
       
     }else{
 
@@ -124,23 +125,26 @@ class WIPage
 
     }
          
+      //continuation of option 2
+
       $contentMod = $res[0]['content'];
-      echo $contentMod;
-
-    
-    if(isset($page)){     
-    $right_sidePower = $this->Web->pageModPower($page, "right_sidebar");
-    $rightSideBar = $this->Web->PageMod($page, "right_sidebar");
-    //echo $Panel;
-    if ($right_sidePower === 0) {
-      
-    }else{
-
-      echo $this->mod->getMod($rightSideBar, $page, $content);
+//echo $contentMod;
+      if (strlen($contentMod) > 0) {
+        echo $contentMod;
+      }
+    else{
+      // assign page mod here
+      echo "no contents avilable";
     }
 
-    } 
-       
+
+/*    $directory = dirname(dirname(dirname(__FILE__)));
+//include_once  $directory . '/WIInc/edit/' . $page_id . '.php' ;
+      //echo  $directory . '/WIModule/' .$content.'/'.$content.'.php';
+      require_once  $directory . '/WIModule/' .$content.'/'.$content.'.php';
+        $content = new $content;
+
+        $content->mod_name();   */
     }
 
 
@@ -368,214 +372,7 @@ $web->footer();
       fwrite($NewPage, $txt);
       fclose($NewPage);
 
-      // create the empty module
-
-            $directory = dirname(dirname(dirname(__FILE__))) .'/WIModule/' .$pageName .'/' . $pageName .  '.php' ;
-           // echo $directory.$pageName;
-            $dir = dirname(dirname(dirname(__FILE__))) .'/WIModule/' .$pageName ;
-             if (!file_exists($dir)) {
-                  mkdir($dir, 0777, true);
-              }
-            $NewPage = fopen($directory, "w") or die("Unable to open file!");
-            $txt = '<?php
-
-/**
-* 
-*/
-class ' . $pageName . ' 
-{
-  
-
-  function __construct()
-  {
-    $this->WIdb = WIdb::getInstance();
-    $this->Web  = new WIWebsite();
-    $this->site = new WISite();
-    $this->mod  = new WIModules();
-    $this->page = new WIPage();
-    //$this->lang = new WILang();
-  }
-
-  public function editPageContent($page_id)
-  {
-
-    $mod_name = $this->mod->ModName($page_id);
-    //echo $mod_name;
-    echo `<style type="text/css">
-  
-    .content {
-        padding: 32px 0;
-        position: relative;
-        margin-top: 58px;
-    }
-
-    .text-left{
-      text-align: center;
-    }
-
-    </style>
-
-    <div class="container-fluid text-center" id="col">`;  
-
-      $lsc = $this->page->GetColums($page_id, "left_sidebar");
-      $rsc = $this->page->GetColums($page_id, "right_sidebar");
-    if ($lsc > 0) {
-
-        echo `<div class="col-sm-1 col-lg-2 col-md-2 col-xl-2 col-xs-2 sidenav" id="sidenavL">`;
-     $this->mod->getMod("left_sidebar");  
-
-        echo `</div>
-        <div class=" col-lg-10 col-md-8 col-sm-8 block" id="block">
-        <div class="col-lg-10 col-md-8 col-sm-8" id="Mid">`;
-    }
-
-    if ($lsc && $rsc > 0) {
-     echo ` <div class="col-lg-10 col-md-8 col-sm-8 block" id="block"><div class="col-lg-12 col-md-8 col-sm-8" id="Mid">`;
-    }else if($rsc > 0){
-     echo `<div class="col-lg-10 col-md-8 col-sm-8 block" id="block"><div class="col-lg-12 col-md-8 col-sm-8" id="Mid">`;
-
-     }else{
-    echo `<div class="col-lg-12 col-md-12 col-sm-12 block" id="block"><div class="col-lg-12 col-md-12 col-sm-12" id="Mid">`;
-    }
-
-      echo `<div class="col-lg-12 col-md-12 col-sm-12 mod" id="" >
-
-<div class="col-lg-12 col-md-12 col-sm-12">
-<div class="title_content">         
-<h3><input type="text" name="title" id="title" placeholder="`;$this->mod->module($mod_name, `text1`); echo ` onclick="WIMod.multiLang()"></h3>           
-</div>  
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12">           
-<textarea type="text" name="history" id="history" placeholder="`;$this->mod->module($mod_name, `text2`); echo `onclick="WIMod.multiLangtext()"></textarea>
-          
-  </div>    
-
-<div class="col-lg-12 col-md-12 col-sm-12"> 
-<div class="title_content">             
-<h3><input type="text" name="title" id="title" placeholder="`;$this->mod->module($mod_name, `text3`); echo `onclick="WIMod.multiLang()"></h3> 
-    </div>      
-  </div>
-  <div class="col-lg-12 col-md-12 col-sm-12">           
-<textarea type="text" name="history" id="history" placeholder="`;$this->mod->module($mod_name, `text4`); echo `onclick="WIMod.multiLangtext()"></textarea>
-          
-  </div>
-
-  <div class="col-lg-12 col-md-12 col-sm-12"> 
-<div class="title_content">             
-<h3><input type="text" name="title" id="title" placeholder="`;$this->mod->module($mod_name, `text5`); echo `onclick="WIMod.multiLang()"></h3> 
-    </div>      
-  </div>
-  <div class="col-lg-12 col-md-12 col-sm-12">           
-<textarea type="text" name="history" id="history" placeholder="`;$this->mod->module($mod_name, `text6`); echo `onclick="WIMod.multiLangtext()"></textarea>
-          
-  </div>
-      </div>`;
-              
-
-      
-    if ($rsc > 0) {
-
-        echo `</div><div class="col-sm-1 col-lg-2 cool-md-2 col-xl-2 col-xs-2 sidenav" id="sidenavR">`;
-      $this->mod->getMod("right_sidebar");  
-
-        echo `</div></div>`;
-    }
-
-    echo `</div>
-      </div>`;
-
-$modal->moduleModal(`edit`, `edit Page`, `WIMod`, `edit`,`edit`); 
-$modal->moduleModal(`editting`, `edit Page`, `WIMod`, `editting`,`editting`); 
-
-
-
-
-  }
-
-  public function mod_name($module, $page)
-  {
-  
-    echo `<div class="container-fluid text-center">    
-  <div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12 about">`;
-
-    if(isset($page)){
-    $left_sidePower = $this->Web->pageModPower($page, "left_sidebar");
-    $leftSideBar = $this->Web->PageMod($page, "left_sidebar");
-    //echo $Panel;
-    if ($left_sidePower > 0) {
-      $this->mod->getMod($leftSideBar);
-      echo `<div class="col-lg-8 col-md-8 col-sm-8">`;
-    }else{
-      echo `<div class="col-lg-8 col-md-8 col-sm-8 center">`;
-    }
-
-    }
-
-echo `<div class="col-lg-12 col-md-12 col-sm-12">           
-          
-<div class="col-lg-12 col-md-12 col-sm-12">
-<div class="title_content">               
-<p> <strong>`
-;$this->mod->moduleText($module, `text1`); echo `
-</p></strong>
-</div>  
-</div>
-<div class="col-lg-12 col-md-12 col-sm-12 text_font18">             
-<p>  `
-;$this->mod->moduleText($module, `text2`); echo `
-</p>      
-  </div>  
-
-  <div class="col-lg-12 col-md-12 col-sm-12">
-<div class="title_content"> 
-  <p>  <strong>`
-;$this->mod->moduleText($module, `text3`); echo `
-</p></strong>
-</div></div>
-
-  <div class="col-lg-12 col-md-12 col-sm-12 text_font18"><p>  `
-;$this->mod->moduleText($module, `text4`); echo `
-</p></div>  
-
-  <div class="col-lg-12 col-md-12 col-sm-12">
-<div class="title_content"> 
-  <p>  <strong>`
-;$this->mod->moduleText($module, `text5`); echo `
-</p></strong>
-</div></div>
-
-  <div class="col-lg-12 col-md-12 col-sm-12 text_font18"><p>  `
-;$this->mod->module($module, `text6`); echo `
-</p></div>  
-          
-  </div>          
-  </div>
-  </div>`;
-
-    if(isset($page)){     
-    $right_sidePower = $this->Web->pageModPower($page, "right_sidebar");
-    $rightSideBar = $this->Web->PageMod($page, "right_sidebar");
-    //echo $Panel;
-    if ($right_sidePower > 0) {
-      $this->mod->getMod($rightSideBar);
-    }else{
-
-      
-    }
-
-    }     
-          
-
-  echo `</div>
-      </div>
-      </div>`;
-    }';
-
-            fwrite($NewPage, $txt);
-            fclose($NewPage);
-
+     
        $cssCheck = self::CssCheck($pageName);
       $JsCheck = self::JsCheck($pageName);
       $MetaCheck = self::MetaCheck($pageName);
@@ -709,7 +506,8 @@ echo `<div class="col-lg-12 col-md-12 col-sm-12">
         "header" => $r['header'],
         "lsc" => $r['left_sidebar'],
         "rsc" => $r['right_sidebar'],
-        "footer" => $r['footer']
+        "footer" => $r['footer'],
+        "content" => $r['contents']
         );
       echo json_encode($results);
       }

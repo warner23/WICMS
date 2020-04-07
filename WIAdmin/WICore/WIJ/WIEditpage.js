@@ -96,6 +96,7 @@ WIEditpage.loadPage = function(page){
     });
 }
 
+
 WIEditpage.loadOptions = function(page){
 
      $.ajax({
@@ -122,6 +123,12 @@ WIEditpage.loadOptions = function(page){
                      $("#rsc").prop("checked", true);                   
                 }else{
                     $("#rsc").prop("unchecked");
+                }
+
+                if(res.content.length > 0){
+                    $("#mod-assigned").val(res.content);
+                }else{
+                    $("#mod-assigned").val("No Module Assigned");
                 }
                 
             }

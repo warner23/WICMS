@@ -651,6 +651,7 @@ WIScript.saveHtml = function(){
     //var btn = $(".navbar-btn");
     mod_name = $("#mod_name").val();
    $(".WI").children().find(".WIattrsPanels").remove();
+   $(".WI").children().find("#gridbase").remove();
     contents = $(".WI").html();
     console.log(contents);
     content  = $("#modal-downloadingModal-details textarea").val();

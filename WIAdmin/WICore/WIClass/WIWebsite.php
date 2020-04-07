@@ -127,6 +127,110 @@ class WIWebsite
         }
     }
 
+     public function AddChildren($id)
+    {
+        
+      $sql = "SELECT * FROM `wi_sidebar` WHERE `parent` = :id";
+      $query = $this->WIdb->prepare($sql);
+      $query->bindParam(':id', $id, PDO::PARAM_INT);
+      $query->execute();
+      while ($res = $query->fetch()) {
+
+        echo '<li><a href="' . $res['link'] . '"><i class="fa fa-angle-double-right"></i>
+            <img class="img-responsive mobileShow" src="WIMedia/Img/icons/admin_sidebar/' . $res['img'] . '.png">
+            <span class="mobileHide">' . $res['lang'] . '</span></a></li>';
+      }
+
+    }
+
+        public function EditAddChildren($id)
+    {
+        $sql = "SELECT * FROM `wi_sidebar` WHERE `parent` = :id";
+        $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        while ($res = $query->fetch()) {
+            echo '<li><input type="text" id="sidebar_href"  maxlength="88" name="sidebar_href" placeholder="Sidebar href" class="input-xlarge form-control" value="' . $res['link'] . '"> <br />
+            <i class="fa fa-angle-double-right"></i>
+            <input type="text" id="sidebar_menu"  maxlength="88" name="sidebar_menu" placeholder="Sidebar menu" class="input-xlarge form-control" value="' . $res['lang'] . '"> <br />
+            </li>';
+        }
+
+    }
+
+
+
+    public function EditAdminSideBar()
+    {
+        $sql = "SELECT * FROM `wi_sidebar`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+        $result = $query->fetch();
+        $menu_order = $result['sort'];
+
+        $sql1 = "SELECT * FROM  `wi_sidebar` a LEFT OUTER JOIN (SELECT parent, COUNT( * ) AS Count
+        FROM  `wi_sidebar` GROUP BY parent)Deriv1 ON a.id = Deriv1.parent";
+        
+        $query1 = $this->WIdb->prepare($sql1);
+        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
+        $query1->execute();
+        echo '<ul class="sidebar-menu">
+                       
+                        </ul>
+                <div id="editaccordion">';
+
+        while($res = $query1->fetch(PDO::FETCH_ASSOC))
+        { 
+        if($res['parent'] > 0) 
+        {
+                echo '<h3> <input type="text" id="sidebar_label"  maxlength="88" name="sidebar_label" placeholder="Sidebar Label" class="input-xlarge form-control" value="' . $res['label'] . '"> <br />
+                </h3><div>';
+                WIWebsite::EditAddChildren($res['id']);
+                echo '</div>';
+                }
+        }
+        echo ' </div>';
+    }
+
+
+    public function AdminSideBar()
+    {
+        $sql = "SELECT * FROM `wi_sidebar`";
+        $query = $this->WIdb->prepare($sql);
+        $query->execute();
+        $result = $query->fetch();
+        $menu_order = $result['sort'];
+
+        $sql1 = "SELECT * FROM  `wi_sidebar` a LEFT OUTER JOIN (SELECT parent, COUNT( * ) AS Count
+    FROM  `wi_sidebar` GROUP BY parent)Deriv1 ON a.id = Deriv1.parent";
+        
+        $query1 = $this->WIdb->prepare($sql1);
+        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
+        $query1->execute();
+        echo '<ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="dashboard.php">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                        </ul>
+        <div id="accordion">';
+
+        while($res = $query1->fetch(PDO::FETCH_ASSOC))
+        { 
+        if($res['parent'] > 0) 
+        {
+              echo '<h3>' . $res['label'] . '</h3><div>';
+            WIWebsite::AddChildren($res['id']);
+            echo '</div>';
+        }
+
+
+        }
+        echo ' </div>';
+    }
+
+
     public function MainHeader()
     {
         $sql = "SELECT * FROM `wi_header`";
@@ -159,9 +263,28 @@ class WIWebsite
                     </div>
                 </div> 
         </header>';
+        }
+      }
+
+        public function AdminMenu()
+    {
+        $sql = "SELECT * FROM `wi_admin_menu`";
+         $query = $this->WIdb->prepare($sql);
+        $query->execute();
+        echo '<ul class="nav navbar-nav">';
+
+        while($res = $query->fetch(PDO::FETCH_ASSOC))
+        {    
+         echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+         if($res['parent'] > 0)
+         {
+            echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
+         }
+        }
+        echo '</ul>';
     }
 
-    }
+    
 
 
         public function MainMenu()
@@ -194,34 +317,29 @@ class WIWebsite
             </div></div>';
     }
 
-      public function DebateMenu()
+     public function Pictgetter($mod_name)
     {
-        $sql = "SELECT * FROM `wi_menu`";
+        $sql = "SELECT * FROM `wi_modules` WHERE `name`=:mod";
+
         $query = $this->WIdb->prepare($sql);
+        $query->bindParam(':mod', $mod_name, PDO::PARAM_STR);
         $query->execute();
-        $result = $query->fetch();
-        $menu_order = $result['sort'];
 
-        $sql1 = "SELECT * FROM `wi_menu` ORDER BY :order";
-        $query1 = $this->WIdb->prepare($sql1);
-        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
-        $query1->execute();
-        echo '<div class="menu"><div class="col-lg-12 col-md-12 col-sm-12 menusT">
-              <div id="nav">
-               <ul id="mainMenu" class="mainMenu default">';
+        while($res = $query->fetch(PDO::PARAM_STR))
+        {
+         echo '<div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-3 col-sm-2">
+                 <img class="img-responsive cp" id="Pic" src="WIMedia/Img/'. $res['img'] . '" style="width:120px; height:120px;">
+                    <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
+                                
+                            </div>
+                        </div>
 
-        while($res = $query1->fetch(PDO::FETCH_ASSOC))
-        {    
-         echo '<li><a href="#" onclick="WIChat.close">' .$res['label'] .'</a></li>';
-         if($res['parent'] > 0)
-         {
-            echo '<li><a href="' . $res['link'] . '">' .$res['label'] .'</a></li>';
-         }
+                      
+                </div>';
         }
-        echo '</ul>
-            </div><!-- nav -->   
-            <!-- end of menu -->
-            </div></div>';
+
     }
 
 

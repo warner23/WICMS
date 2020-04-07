@@ -349,6 +349,11 @@ width: 100%;
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                           <input type="text" id="page-title" name="title" placeholder="pagetitle" class="input-xlarge form-control" value=""> <br />
                         </div>
+
+                        <label class="control-label col-lg-2 col-xs-2 col-md-2 col-sm-2"  for="page-title" id="assigned"> Module Assigned </label>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                          <input type="text" id="mod-assigned" name="mod-assigned" placeholder="mod-assigned" class="input-xlarge form-control" value=""> <br /><button>Assign Mod</button>
+                        </div>
                       </div>
                     </div>
 
@@ -410,7 +415,6 @@ width: 100%;
                        <div class="col-lg-8 col-md-8 col-sm-8">  
                           <div class="page" id="pages">
 
-                           
                           </div>
                           
                       </div>
@@ -426,21 +430,7 @@ width: 100%;
 
                      <script type="text/javascript" src="WICore/WIJ/WIEditpage.js"></script>
 
-                                         <script>
-  $( function() {
-    $( "#draggable0 li" ).draggable({
-  helper: 'clone'
-});
-    $( "#droppable" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-            var mod_name = ui.draggable.attr('id')
-            //WIMod.drop(mod_name);
-      }
-    });
-  } );
-  </script>
-
+                     
                      <script type="text/javascript">
                        $(document).ready(function(){
 
@@ -452,6 +442,8 @@ width: 100%;
                           })
                        });
                      </script>
+<?php
+$modal->moduleModal('assign', 'Assign Module', 'WIEditpage', 'assign','Save');  
 
-
+?>
 

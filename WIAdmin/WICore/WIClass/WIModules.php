@@ -215,10 +215,6 @@ class WIModules
 
             $element_name = $res['element_name'];
             
-            if (strpos($element_name," ") != false){
-                $element_name = preg_replace('/\s+/', '_', $element_name);
-            }
-
               
              echo '<div class="col-md-4">
         <div class="panel panel-info">
@@ -397,20 +393,9 @@ class WIModules
           echo '<ul class="nav nav-list accordion-group">';
         while ($res = $query->fetch(PDO::FETCH_ASSOC)) {
             //var_dump($res);
-            echo '<div class="wicreate ui-draggable">
-            <a href="javascript:void(0);" id="editting-' .$res['id'] . '" class="editting editting-' .$res['id'] . ' label label-important"><i class="far fa-edit"></i>Edit</a>
-            <script>
-                  $(".editting-' .$res['id'] . '").click(function() {
-                    $(".attrsPanels").css("display","block")
-                 });
-                  </script>
-                    <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a>
-                     <span class="drag label"><i class="icon-move"></i>Drag</span>';
-                     self::attrsPanels(); 
-                     echo $res['element'] . '
+            echo '<div class="wicreate ui-draggable">';
+                     echo $res['name'] . '
                   </div>';
-
-
         }
          $Pagin = $this->Page->Pagination($item_per_page, $page_number, $rows, $total_pages, $onclick);
     //print_r($Pagination);
@@ -952,7 +937,7 @@ class WIModules
             if($res["element_name"] === "Font Awesome")
             {
                  echo '<div class="box box-element ui-draggable">
-                 <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
+                 <div id="gridbase"><a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a></div>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -976,7 +961,7 @@ class WIModules
             }else if($res["element_name"] === "Image")
             {
                 echo '<div class="box box-element ui-draggable">
-                           <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
+                           <div id="gridbase"><a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a></div>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -1009,7 +994,7 @@ class WIModules
             }else if($res["element_name"] === "Color")
             {
             echo '<div class="box box-element ui-draggable">
-            <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
+            <div id="gridbase"><a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a></div>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -1041,7 +1026,7 @@ class WIModules
                   </div>';
             }else{
                            echo '<div class="box box-element ui-draggable">
-                           <a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a>
+                           <div id="gridbase"><a href="javascript:void(0);" id="' .$res['element_id'] . '" onclick="WIScript.BaseEdit(`' .$res['element_name'] . '`)" class="fieldEdit editting-' .$res['element_id'] . ' label label-important remove"><i class="far fa-edit"></i>edit div</a></div>
                     <div class="optset">
                     <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>Remove</a> <span class="drag label"><i class="icon-move"></i>Drag</span>
                     <span class="configuration">
@@ -1721,7 +1706,18 @@ class WIModules
         )); 
         }
 
+        $file_saved = self::saving_mod($mod_name, $contents, $content);
+        if($file_saved == "1")
+        {
+            $msg = "Successfully created Module and saved as file";
 
+    $result = array(
+                "status" => "success",
+                "msg"    => $msg
+            );
+            
+            echo json_encode($result);
+        }else{
 
 
         $msg = "Successfully created Module";
@@ -1732,9 +1728,10 @@ class WIModules
             );
             
             echo json_encode($result);
+        }
     }
 
-    public function saving_mod($webpage, $mod_name, $contents)
+    public function saving_mod($mod_name, $contents, $content)
     {
          $directory = dirname(dirname(dirname(__FILE__))) . '/WIModule';
 
@@ -1743,7 +1740,10 @@ class WIModules
                   mkdir($dir, 0777, true);
               }
 
-        
+       if (strpos($contents,'') != false){
+                $contents = preg_replace('/\s+/', '', $contents);
+            }
+        //$contents = str_replace("`", "'", $contents);
 
       $NewPage = fopen($directory. '/' .$mod_name .'/' .$mod_name . '.php', "w") or die("Unable to open file!");
 
@@ -1761,63 +1761,63 @@ class ' . $mod_name. '
         $this->mod  = new WIModules();
     }
 
+    public function editMod()
+    {
+          
+     echo `<div id="remove">
+      <a href="javavscript:void(0);">
+      <button id="delete" onclick="WIMod.delete(event);">Delete</button>
+      </a>
+       <div id="dialog-confirm" title="Remove Module?" class="hide">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;">
+  </span>Are you sure?</p>
+  <p> This will remove the module and any unsaved data.</p>
+  <span><button class="btn btn-danger" onclick="WIMod.remove(event);">Remove</button> <button class="btn" onclick="WIMod.close(event);">Close</button></span>
+</div>' . $contents .'</div>`;
+ 
+    }
+
     public function editPageContent($page)
     {
-        echo "<div class=`container-fluid text-center` id=`col`>"; 
+        echo `<div class="container-fluid text-center" id="col">`; 
 
           $lsc = $this->page->GetColums($page, "left_sidebar");
           $rsc = $this->page->GetColums($page, "right_sidebar");
         if ($lsc > 0) {
 
-              echo "<div class=`col-sm-1 col-lg-2 col-md-2 col-xl-2 col-xs-2 sidenav` id=`sidenavL`>";
+              echo `<div class="col-sm-1 col-lg-2 col-md-2 col-xl-2 col-xs-2 sidenav" id="sidenavL">`;
          $this->mod->getMod("left_sidebar");  
 
-            echo "</div>
-            <div class=`col-lg-10 col-md-8 col-sm-8 block` id=`block`>
-            <div class=`col-lg-10 col-md-8 col-sm-8` id=`Mid`>";
+            echo `</div>
+            <div class="col-lg-10 col-md-8 col-sm-8 block" id="block">
+            <div class="col-lg-10 col-md-8 col-sm-8" id="Mid">`;
         }
 
         if ($lsc && $rsc > 0) {
-            echo "<div class=`col-lg-10 col-md-8 col-sm-8 block` id=`block`><div class=`col-lg-12 col-md-8 col-sm-8` id=`Mid`>";
+            echo `<div class="col-lg-10 col-md-8 col-sm-8 block" id="block"><div class="col-lg-12 col-md-8 col-sm-8" id="Mid">`;
         }else if($rsc > 0){
-            echo "<div class=`col-lg-10 col-md-8 col-sm-8 block` id=`block`><div class=`col-lg-12 col-md-8 col-sm-8` id=`Mid`>";
+            echo `<div class="col-lg-10 col-md-8 col-sm-8 block" id="block"><div class="col-lg-12 col-md-8 col-sm-8" id="Mid">`;
 
          }else{
-        echo "<div class=`col-lg-12 col-md-12 col-sm-12 block` id=`block`><div class=`col-lg-12 col-md-12 col-sm-12` id=`Mid`>";
+        echo `<div class="col-lg-12 col-md-12 col-sm-12 block" id="block"><div class="col-lg-12 col-md-12 col-sm-12" id="Mid">`;
         }
-          echo "' .$webpage . '";
+          echo `' .$contents . '`;
 
          if ($rsc > 0) {
 
-              echo "</div><div class=`col-sm-1 col-lg-2 cool-md-2 col-xl-2 col-xs-2 sidenav` id=`sidenavR`>";
+              echo `</div><div class="col-sm-1 col-lg-2 cool-md-2 col-xl-2 col-xs-2 sidenav" id="sidenavR">`;
           $this->mod->getMod("right_sidebar");  
 
-            echo "</div></div>";
+            echo `</div></div>`;
         }
 
-        echo "</div>
-            </div>";
+        echo `</div>
+            </div>`;
     }
-
-    public function editMod()
-    {
-              echo "<div id=`remove`>
-      <a href=`javavscript:void(0);`>
-      <button id=`delete` onclick=`WIMod.delete(event);`>Delete</button>
-      </a>
-       <div id=`dialog-confirm` title=`Remove Module?` class=`hide`>
-  <p><span class=`ui-icon ui-icon-alert` style=`float:left; margin:12px 12px 20px 0;`>
-  </span>Are you sure?</p>
-  <p> This will remove the module and any unsaved data.</p>
-  <span><button class=`btn btn-danger` onclick=`WIMod.remove(event);`>Remove</button> <button class=`btn` onclick=`WIMod.close(event);`>Close</button></span>
-</div>' .$webpage. '</div>";
- 
-    }
-    
 
     public function mod_name()
     {
-      echo "' . $webpage.'";
+      echo `' . $content.'`;
     }
      
     
@@ -1829,98 +1829,7 @@ class ' . $mod_name. '
       fclose($NewPage);
     
 
-    $msg = "Successfully created Module";
-
-    $result = array(
-                "status" => "success",
-                "msg"    => $msg
-            );
-            
-            echo json_encode($result);
-    }
-
-
-    public function createMod($contents, $mod_name, $layout, $elements = array(), $columnPreset)
-    {
-
-        $directory = dirname(dirname(dirname(__FILE__))) . '/WIModule';
-
-          $dir = dirname(dirname(dirname(__FILE__))) .'/WIModule/' .$mod_name ;
-             if (!file_exists($dir)) {
-                  mkdir($dir, 0777, true);
-              }
-
-
-        foreach ($elements as $element) {
-            //var_dump($element);
-        require_once dirname(dirname(dirname(__FILE__))) . '/WIModule/elements/' . $element['element'] . '/' . $element['element'] . '.php';
-
-        $elementName = $element['element'];
-        $WIElement = new $elementName();
-        
-        //$NewMod = $WIElement->main_element();
-        }
-        
-
-      $NewPage = fopen($directory. '/'  .$mod_name .'/ '  .$mod_name . '.php', "w") or die("Unable to open file!");
-
-      $File = '<?php
-
-/**
-* 
-*/
-class ' . $mod_name. ' 
-{
-    //test2
-    function __construct()
-    {
-        $this->WIdb = WIdb::getInstance();
-    }
-
-    public function editMod()
-    {
-              echo `<div id="remove">
-      <a href="#">
-      <button id="delete" onclick="WIMod.delete(event);">Delete</button>
-      </a>
-       <div id="dialog-confirm" title="Remove Module?" class="hide">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;">
-  </span>Are you sure?</p>
-  <p> This will remove the module and any unsaved data.</p>
-  <span><button class="btn btn-danger" onclick="WIMod.remove(event);">Remove</button> <button class="btn" onclick="WIMod.close(event);">Close</button></span>
-</div><div class="col-' .$columnPreset . '">';
-foreach ($elements as $element ) {
- echo $WIElement->main_element();
-}
-echo '</div>`
- 
-    }
-    
-
-    public function mod_name()
-    {
-      echo `<div class="col-' .$columnPreset . '">';  $WIElement->main_element($elements); ' echo `</div>;
-    }
-     
-    
-}`';
-
-
-     
-      fwrite($NewPage, $contents);
-      fclose($NewPage);
-    
-
-    $msg = "Successfully created Module";
-
-    $result = array(
-                "status" => "success",
-                "msg"    => $msg
-            );
-            
-            echo json_encode($result);
-
-        
+      return "1";
     }
 
 

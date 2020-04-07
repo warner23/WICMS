@@ -1,0 +1,17 @@
+[07-Apr-2020 07:12:26 UTC] PHP Notice:  Undefined index: page in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 369
+[07-Apr-2020 07:12:26 UTC] PHP Notice:  Undefined offset: 0 in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIPage.php on line 103
+[07-Apr-2020 07:12:26 UTC] PHP Fatal error:  Uncaught Error: Class name must be a valid object or a string in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIPage.php:146
+Stack trace:
+#0 /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIAjax.php(369): WIPage->LoadPage(NULL)
+#1 {main}
+  thrown in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIPage.php on line 146
+[07-Apr-2020 07:12:26 UTC] PHP Notice:  Undefined index: page in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 375
+[07-Apr-2020 07:13:12 UTC] PHP Parse error:  syntax error, unexpected 'Paragraph' (T_STRING), expecting ',' or ';' in /home/warner23/public_html/testing_IVO/WIAdmin/WIModule/testing/testing.php on line 109
+[07-Apr-2020 07:27:09 UTC] PHP Notice:  Undefined index: id in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1704
+[07-Apr-2020 07:27:09 UTC] PHP Warning:  ksort() expects parameter 1 to be array, string given in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIdb.php on line 156
+[07-Apr-2020 07:27:09 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIdb.php on line 160
+[07-Apr-2020 07:27:09 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIdb.php on line 167
+[07-Apr-2020 07:27:09 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE `id` = NULL' at line 1 in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIdb.php on line 181
+[07-Apr-2020 21:49:19 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1849
+[07-Apr-2020 22:06:59 UTC] PHP Warning:  strpos(): Empty needle in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1756
+[07-Apr-2020 22:09:38 UTC] PHP Warning:  strpos(): Empty needle in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIModules.php on line 1756
