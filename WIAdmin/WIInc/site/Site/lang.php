@@ -24,10 +24,18 @@
                    <div id="lang-wrapper">
                       <fieldset>
                     <legend>Select Site Translator </legend>
+                    <div class="col-lg-8 col-xs-8 col-sm-9 col-md-8">
                     <label for="google-trans">Google translate</label>
+                  </div>
+                  <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
                     <input type="radio" name="trans" id="google">
+                  </div>
+                  <div class="col-lg-8 col-xs-8 col-sm-9 col-md-8">
                     <label for="wi-trans">WI translate</label>
+                  </div>
+                  <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
                     <input type="radio" name="trans" id="wilang">
+                  </div>
                   </fieldset>
                    <span class="help-block">Select <strong>google trans, if you do not want to set up your own lang translations</strong></span>
                     </div>
@@ -51,29 +59,16 @@
                         $("#verify").prop("checked", true);
                        }
 
-                        var mailer  = "<?php echo $site->Website_Info('multi_lang'); ?>";
+                        var multiL  = "<?php echo $site->Website_Info('multi_lang'); ?>";
                           //alert(mailer);
 
-                        if( mailer === "on"){
+                        if( multiL === "on"){
                           $("#lang-wrapper").css("display", "block");
                         }else{
                            $("#lang-wrapper").css("display", "none");
                            
                         }
                        
-                      $('#multilanguage_true').on('click', function() {
-                          //alert( this.value );
-
-                          $("#lang-wrapper").css("display", "block");
-                       
-                        })
-
-                      $('#multilanguage_false').on('click', function() {
-                          //alert( this.value );
-
-                          $("#lang-wrapper").css("display", "none");
-                       
-                        })
 
                         var trans  = "<?php echo $site->Website_Info('lang_choice');?>";
 

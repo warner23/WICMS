@@ -9,77 +9,74 @@ $(document).ready(function(event)
     
 
 
-                    $("#ss").click(function(){
-                        //alert('clicked');
-                        var secure = $("#secure_session").attr('value');
-                        console.log(secure);
-                        if (secure === "false"){
-                        $("#session").prop("checked", true);
-                        $("#ss").text('ON');
-                        $("#secure_session").attr('value','true');
-                       }else if (secure === "true"){
-                        $("#session").removeAttr('checked');
-                        $("#secure_session").attr('value','false');
-                        $("#ss").text('OFF');
-                        $("#ss").css('padding-left', '50%');
-                       }
-                    });
+    $("#ss").click(function(){
+        //alert('clicked');
+        var secure = $("#secure_session").attr('value');
+        console.log(secure);
+        if (secure === "false"){
+        $("#session").prop("checked", true);
+        $("#ss").text('ON');
+        $("#secure_session").attr('value','true');
+       }else if (secure === "true"){
+        $("#session").removeAttr('checked');
+        $("#secure_session").attr('value','false');
+        $("#ss").text('OFF');
+        $("#ss").css('padding-left', '50%');
+       }
+    });
 
 
-                    $("#http").click(function(){
-                        //alert('clicked');
-                        var http = $("#session_http_only").attr('value');
-                        console.log(http);
-                        if (http === "true"){
-                        $("#ht").prop("checked", true);
-                        $("#ht").attr('checked');
-                        $("#http").text('ON');
-                        $("#session_http_only").attr('value','false');
-                        
-                       }else if (http === "false"){
-                        $("#ht").removeAttr('checked');
-                        $("#http").text('OFF');
-                        $("#http").css('padding-left', '50%');
-                        $("#session_http_only").attr('value','true');
-                       }
-                    });
+    $("#http").click(function(){
+        //alert('clicked');
+        var http = $("#session_http_only").attr('value');
+        console.log(http);
+        if (http === "true"){
+        $("#ht").prop("checked", true);
+        $("#ht").attr('checked');
+        $("#http").text('ON');
+        $("#session_http_only").attr('value','false');
+        
+       }else if (http === "false"){
+        $("#ht").removeAttr('checked');
+        $("#http").text('OFF');
+        $("#http").css('padding-left', '50%');
+        $("#session_http_only").attr('value','true');
+       }
+    });
 
-                    $("#reg").click(function(){
-                        //alert('clicked');
-                        var reg = $("#session_regenerate").attr('value');
-                        console.log(reg);
-                        if (reg === "true"){
-                        $("#reg_id").prop("checked", true);
-                        $("#reg").text('ON');
-                        $("#session_regenerate").attr('value','false');
-                        
-                       }else if (reg === "false"){
-                        $("#reg_id").removeAttr('checked');
-                        $("#reg").text('OFF');
-                        $("#reg").css('padding-left', '50%');
-                        $("#session_regenerate").attr('value','true');
-                       }
-                    });
+    $("#reg").click(function(){
+        //alert('clicked');
+        var reg = $("#session_regenerate").attr('value');
+        console.log(reg);
+        if (reg === "true"){
+        $("#reg_id").prop("checked", true);
+        $("#reg").text('ON');
+        $("#session_regenerate").attr('value','false');
+        
+       }else if (reg === "false"){
+        $("#reg_id").removeAttr('checked');
+        $("#reg").text('OFF');
+        $("#reg").css('padding-left', '50%');
+        $("#session_regenerate").attr('value','true');
+       }
+    });
 
-                    $("#ck").click(function(){
-                        //alert('clicked');
-                        var cookie = $("#cookieonly").attr('value');
-                        console.log(cookie);
-                        if (cookie === "0"){
-                        $("#cookie").prop("checked", true);
-                        $("#ck").text('ON');
-                        $("#cookieonly").attr('value','1');
-                        
-                       }else if (cookie === "1"){
-                        $("#cookie").removeAttr('checked');
-                        $("#ck").text('OFF');
-                        $("#ck").css('padding-left', '50%');
-                        $("#cookieonly").attr('value','0');
-                       }
-                    });
-
-
-
+    $("#ck").click(function(){
+        //alert('clicked');
+        var cookie = $("#cookieonly").attr('value');
+        console.log(cookie);
+        if (cookie === "0"){
+        $("#cookie").prop("checked", true);
+        $("#ck").text('ON');
+        $("#cookieonly").attr('value','1');
+        
+       }else if (cookie === "1"){
+        $("#cookie").removeAttr('checked');
+        $("#ck").text('OFF');
+        $("#ck").css('padding-left', '50%');
+        $("#cookieonly").attr('value','0');
+       }
+    });
 
 	// button register click below
 	$("#session_btn").click(function()
@@ -111,7 +108,6 @@ $(document).ready(function(event)
 			 };
 			 // send data to server
 			 WISession.sendData(session);
-		
 	});
 });
 

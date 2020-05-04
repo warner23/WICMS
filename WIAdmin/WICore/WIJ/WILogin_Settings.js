@@ -9,20 +9,20 @@ $(document).ready(function(event)
     
     $("#print").click(function(){
                         //alert('clicked');
-                        var login = $("#login_fingerprint").attr('value');
-                        console.log(login);
-                        if (login === "false"){
-                        $("#finger").prop("checked", true);
-                        $("#print").text('ON');
-                        $("#login_fingerprint").attr('value','true');
-                        
-                       }else if (login === "true"){
-                        $("#finger").removeAttr('checked');
-                        $("#print").text('OFF');
-                        $("#print").css('padding-left', '50%');
-                        $("#login_fingerprint").attr('value','false');
-                       }
-                    });
+        var login = $("#login_fingerprint").attr('value');
+        console.log(login);
+        if (login === "false"){
+        $("#finger").prop("checked", true);
+        $("#print").text('ON');
+        $("#login_fingerprint").attr('value','true');
+        
+       }else if (login === "true"){
+        $("#finger").removeAttr('checked');
+        $("#print").text('OFF');
+        $("#print").css('padding-left', '50%');
+        $("#login_fingerprint").attr('value','false');
+       }
+    });
 
 	// button register click below
 

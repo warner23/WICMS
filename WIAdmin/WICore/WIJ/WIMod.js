@@ -1,7 +1,6 @@
 $(document).ready(function(event)
 {
 
-
     WIMod.Next();
  //executes code below when user click on pagination links
     $("#modList").on( "click", ".pagination a", function (e){
@@ -22,13 +21,9 @@ $(document).ready(function(event)
             $("#modList").html(result);
               $(".loading-div").removeClass('open'); //remove closed element
         $(".loading-div").addClass('closed'); //show loading element
-        }
-       
-        
+        } 
     });
-
  });
-
 
         $("a.pagination").on( "click", "a.pagination", function (e){
         e.preventDefault();
@@ -48,14 +43,9 @@ $(document).ready(function(event)
             $("#elementsContents").html(result);
               $(".loading-div").removeClass('open'); //remove closed element
         $(".loading-div").addClass('closed'); //show loading element
-        }
-       
-        
+        }  
     });
-
  });
-
-
 
 });
 
@@ -101,9 +91,6 @@ WIMod.uninstall = function(mod_name){
 
 WIMod.enable = function(mod_name, enable){
 
-//alert(mod_name);
-//alert(enable);
-
  $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
@@ -140,8 +127,6 @@ WICore.Refresh();
 }
 
 WIMod.installElement = function(element_name, author){
-
-//alert(mod_name);
 
  $.ajax({
         url: "WICore/WIClass/WIAjax.php",
@@ -242,8 +227,7 @@ WICore.Refresh();
 
 
 WIMod.dropping = function(mod_name, id){
-    //alert("droppped");
-    //alert(id);
+
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
@@ -392,10 +376,6 @@ WIMod.editdrop = function(mod_name,  page_id){
     var para  = $("#history").val();
     var mod_name  = $(".mod").attr('id');
 
-    //alert(title);
-    //alert(para);
-    //alert(mod_name);
-
     $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
@@ -408,12 +388,7 @@ WIMod.editdrop = function(mod_name,  page_id){
         success: function(result)
         {
            WICore.removeLoadingButton(btn);
-           // console.log(result);
-            //window.alert(result);
-            //parse the data to json
-            //var res = JSON.stringify(result);
             var res = JSON.parse(result);
-            //var res = $.parseJSON(result);
             console.log(res);
             if(res.status === "success"){
             WICore.displaySuccessMessage($("#result"), res.msg);
@@ -457,27 +432,22 @@ WIMod.multiLangtext = function(){
 }
 
  WIMod.modEdittext = function(multiLang){
-
-    
-    //alert(multiLang);
     if(multiLang === "on"){
          $("#modal-edit-para").removeClass("off")
     $("#modal-edit-para").addClass("on")
 }else{
-   //alert("multi off");
 }
    
 }
 
  WIMod.modEdit = function(multiLang){
 
-    
-    //alert(multiLang);
+
     if(multiLang === "on"){
          $("#modal-edit-title").removeClass("off")
     $("#modal-edit-title").addClass("on")
 }else{
-   //alert("multi off");
+
 }
    
 }
@@ -503,10 +473,6 @@ WICore.loadingButton(btn, $_lang.logging_in);
         success: function(result)
         {
            WICore.removeLoadingButton(btn);
-           // console.log(result);
-            //window.alert(result);
-            //parse the data to json
-            //var res = JSON.stringify(result);
             var res = JSON.parse(result);
             //var res = $.parseJSON(result);
             console.log(res);
@@ -515,9 +481,7 @@ WICore.loadingButton(btn, $_lang.logging_in);
     $("#modal-edit-title").addClass("of")
     var input = $( "#title" );
 input.val( input.val() + res.trans );
-            //$("#title").text(res.trans);
             WICore.displaySuccessMessage($("#result"), res.msg);
-                //WICore.displaySuccessMessage($(".msg"), res.msg);
           }
 
         }
@@ -545,22 +509,14 @@ WICore.loadingButton(btn, $_lang.logging_in);
         success: function(result)
         {
            WICore.removeLoadingButton(btn);
-           // console.log(result);
-            //window.alert(result);
-            //parse the data to json
-            //var res = JSON.stringify(result);
             var res = JSON.parse(result);
-            //var res = $.parseJSON(result);
             console.log(res);
             if(res.status === "success"){
         $("#modal-edit-para").removeClass("on")
     $("#modal-edit-para").addClass("of")
     var input = $( "#history" );
 input.val( input.val() + res.trans );
-            //$("#title").text(res.trans);
-            WICore.displaySuccessMessage($("#result"), res.msg);
-                //WICore.displaySuccessMessage($(".msg"), res.msg);
-          }
+            WICore.displaySuccessMessage($("#result"), res.msg);          }
 
         }
     });

@@ -109,8 +109,9 @@ class base
 
         case "Image":
         $element = '<div class="preview">Image</div>
-                    <div class="view"> <img class="img-responsive cp" alt="140x140" src="WIMedia/Img/placeholder.jpg" style="width:140px;">
-                    <button class="btn mediaPic" onclick="WIMedia.changePic("page-edit")">Change Picture</button> </div>';
+                    <div class="view"> 
+                    <img class="img-responsive cp" alt="140x140" src="WIMedia/Img/placeholder.jpg" style="width:140px;" id="mediaPic">
+                    <button class="btn mediaPic" onclick="WIMedia.changePic(`media-edit`)">Change Picture</button> </div>';
         break;
 
         case "Dashboard":
@@ -284,30 +285,14 @@ class base
         $element = '<div class="preview">Color</div>
                               <div class="view"> 
     
-        <div class="bs-example">
-    <div class="color-swatches">
-      <div class="color-swatch brand-primary"></div>
-      <div class="color-swatch brand-success"></div>
-      <div class="color-swatch brand-info"></div>
-      <div class="color-swatch brand-warning"></div>
-      <div class="color-swatch brand-danger"></div>
-    </div>
-  <br />
-  <div class="color-swatches">
-    <div class="color-swatch gray-darker"></div>
-      <div class="color-swatch gray-dark"></div>
-      <div class="color-swatch gray"></div>
-      <div class="color-swatch gray-light"></div>
-      <div class="color-swatch gray-lighter"></div>
-  </div>
-  </div>
+      <input name="Color Picker" type="color"/>
   </div>';
         break;
 
         case "Font Awesome":
         $element = '<div class="preview">Font Awesome</div>
                     <div class="view"> 
-                    <span contenteditable="true" class="fa fa-address-book fa-3" aria-hidden="true">
+                    <span contenteditable="true" class="fa fa-address-book fa-3" aria-hidden="true" id="changeFont">
                     </span>                           
        </div>';
         break;

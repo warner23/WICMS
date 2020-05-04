@@ -15,7 +15,6 @@ $(document).ready(function(event)
 			 domain               = $("#website_domain").val(),
 			 url               = $("#website_url").val()
 
-
 			 //create data that will be sent over server
 
 			 var site = {
@@ -34,7 +33,6 @@ $(document).ready(function(event)
 			 };
 			 // send data to server
 			 WIKitchen.sendData(site);
-		
 	});
 });
 
@@ -47,7 +45,6 @@ WIKitchen.sendData = function(site){
     //alert('clicked');
 	var btn = $("#site_settings");
     
-
 	// put button into the loading state
 	WICore.loadingButton(btn, $_lang.creating_Account);
 
@@ -63,9 +60,6 @@ WIKitchen.sendData = function(site){
     		// return the button to normasl state
     		WICore.removeLoadingButton(btn);
     		console.log(result);
-            //window.alert(result);
-    		//parse the data to json
-            //var res = JSON.stringify(result);
     		var res = JSON.parse(result);
             //var res = $.parseJSON(result);
             console.log(res);

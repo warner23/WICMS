@@ -73,8 +73,6 @@ jQuery.noConflict();
        }
    });
    
-
-
 };
 
 
@@ -138,12 +136,7 @@ users.changeRole = function (element, role, userId) {
 
 users.roleChanger = function (element, userId) {
     jQuery.noConflict();
-   /* $("#modal-change-role").modal({
-        keyboard: false,
-        backdrop: "static",
-        show: true
-    });
-    */
+
        $("#modal-change-role").removeClass('hide');
  $("#modal-change-role").addClass('show');
 
@@ -161,7 +154,6 @@ users.showAddUserModal = function () {
     jQuery.noConflict();
     $("#modal-add-edit-user").removeClass('hide');
         $("#modal-add-edit-user").addClass('show');
-
 
     $("#modal-username").text($_lang.add_user);
     WICore.removeErrorMessages();
@@ -228,7 +220,6 @@ users.addUser = function (editMode) {
 
                 if(res.status === "error") {
                     //error
-                    
                     //display all errors
                     for(var i=0; i<res.errors.length; i++) {
                         var error = res.errors[i];

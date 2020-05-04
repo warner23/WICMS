@@ -1,7 +1,6 @@
 $(document).ready(function(event)
 {
 
-
    $(".ed").click(function(){
     //alert('clicked');
     var id = $(".site").attr('id');
@@ -248,11 +247,7 @@ WIPermissions.Open = function(id, name){
     //var Div = '<div id="div">Are you sure you want to delete '+name+' page </div>';
     var Div = '<div id="div"><span>Are you sure you want to delete '+name+' page </span> <button class="btn btn-danger" onclick="WIPages.Delete(`'+id+'`, `'+name+'`);">Delete</button> <button class="btn" onclick="WIPages.Close();">Cancel</button></div>';
 
-
     Element.append(Div);
-
-
-
 }
 
 WIPermissions.Close = function(){
@@ -260,6 +255,5 @@ WIPermissions.Close = function(){
     $("#modal-delete").removeClass("show");
     $("#modal-delete").addClass("hide");
     $("#div").remove();
-
 }
 

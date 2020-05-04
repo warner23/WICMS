@@ -12,15 +12,22 @@ class WIModules
      {
         $mod_name = "columns";
         $mod_status = "enabled";
-        $sql = "SELECT * FROM `wi_mod` WHERE module_name = :mod_name AND mod_status = :mod_status";
+/*        $sql = "SELECT * FROM `wi_mod` WHERE module_name = :mod_name AND mod_status = :mod_status";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
         $query->bindParam(':mod_status', $mod_status, PDO::PARAM_STR);
         $query->execute();
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);
+        $res = $query->fetch(PDO::FETCH_ASSOC);*/
 
-        if ($res > 0)
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_mod` WHERE module_name = :mod_name AND mod_status = :mod_status",
+          array(
+            "module_name" => $module_name,
+            "mod_status" => $mod_status
+          )
+        );
+        if ($result[9] > 0)
             return true;
         else
             return false;
@@ -59,13 +66,20 @@ class WIModules
 
             public function moduleImg($page_id, $column)
     {
-        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
+/*        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':name', $page_id, PDO::PARAM_STR);
         $query1->execute();
 
-        $res = $query1->fetch(PDO::FETCH_ASSOC);
-            echo '<img src="WIAdmin/WIMedia/Img/'. $res[$column] . '.PNG" class="img">';
+
+        $res = $query1->fetch(PDO::FETCH_ASSOC);*/
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_modules` WHERE `name`=:name",
+          array(
+            "name" => $page_id
+          )
+        );
+            echo '<img src="WIAdmin/WIMedia/Img/'. $result[0][$column] . '.PNG" class="img">';
 
 
     }
@@ -75,26 +89,38 @@ class WIModules
         $id = "1";
         $name = $page_id;
         //echo $name;
-        $sql = "SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id";
+/*        $sql = "SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':id', $, PDO::PARAM_INT);
         $query->execute();
 
-        $result = $query->fetch();
+        $result = $query->fetch();*/
+
+        $result = $this->WIdb->select("SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id",
+          array(
+            "id" => $id
+          )
+        );
         //echo $result['multi_lang'];
-        $mlang = $result['multi_lang'];
+        $mlang = $result[0]['multi_lang'];
         
    // echo $mlang;
 
-        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
+/*        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':name', $name, PDO::PARAM_STR);
         $query1->execute();
 
-        $res = $query1->fetch(PDO::FETCH_ASSOC);
+
+        $res = $query1->fetch(PDO::FETCH_ASSOC);*/
         //print_r($res);
 
+        $res = $this->WIdb->select("SELECT * FROM `wi_modules` WHERE `name`=:name",
+          array(
+            "name" => $name
+          )
+        );
         if ($column === "text") {
             $trans = "trans";
         }elseif ($column === "text1") {
@@ -111,8 +137,8 @@ class WIModules
             $trans = "trans6";
         }
         //echo $trans;
-        $lange = $res[$trans];
-        $text  = $res[$column];
+        $lange = $res[0][$trans];
+        $text  = $res[0][$column];
 
        // echo $lange;
         if ($mlang === "off"){
@@ -129,7 +155,7 @@ class WIModules
         $id = "1";
         $name = $page_id;
         //echo $name;
-        $sql = "SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id";
+/*        $sql = "SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
@@ -137,18 +163,34 @@ class WIModules
 
         $result = $query->fetch();
         //echo $result['multi_lang'];
-        $mlang = $result['multi_lang'];
+        $mlang = $result['multi_lang'];*/
         
    // echo $mlang;
 
-        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
+     $result = $this->WIdb->select("SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id",
+          array(
+            "id" => $id
+          )
+        );
+        //echo $result['multi_lang'];
+        $mlang = $result[0]['multi_lang'];
+        
+   // echo $mlang;
+
+/*        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':name', $name, PDO::PARAM_STR);
         $query1->execute();
 
-        $res = $query1->fetch(PDO::FETCH_ASSOC);
+
+        $res = $query1->fetch(PDO::FETCH_ASSOC);*/
         //print_r($res);
 
+        $res = $this->WIdb->select("SELECT * FROM `wi_modules` WHERE `name`=:name",
+          array(
+            "name" => $name
+          )
+        );
         if ($column === "text") {
             $trans = "trans";
         }elseif ($column === "text1") {
@@ -165,8 +207,8 @@ class WIModules
             $trans = "trans6";
         }
         //echo $trans;
-        $lange = $res[$trans];
-        $text  = $res[$column];
+        $lange = $res[0][$trans];
+        $text  = $res[0][$column];
 
        // echo $lange;
         if ($mlang === "off"){
@@ -180,15 +222,20 @@ class WIModules
     public function ModName($page_id)
     {
         echo $page_id;
-        $sql = "SELECT * FROM `wi_page` WHERE `name`=:page";
+/*        $sql = "SELECT * FROM `wi_page` WHERE `name`=:page";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':page', $page_id, PDO::PARAM_STR);
         $query->execute();
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);
+        $res = $query->fetch(PDO::FETCH_ASSOC);*/
 
-        $mod_name = $res['contents'];
+        $res = $this->WIdb->select("SELECT * FROM `wi_page` WHERE `name`=:page",
+          array(
+            "page" => $page_id
+          )
+        );
+        $mod_name = $res[0]['contents'];
 
         return $mod_name;
     }

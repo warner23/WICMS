@@ -82,5 +82,6 @@
     <script type="text/javascript" src="WICore/WIJ/WISite.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WIDatabase.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WIEmail.js"></script>
+    <script type="text/javascript" src="WICore/WIJ/WIMenu.js"></script>
 
    

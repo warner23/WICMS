@@ -19,7 +19,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Styling CSS</li>
+                        <li class="active">Styling JS</li>
                     </ol>
                 </section>
 
@@ -34,8 +34,7 @@
 
             <div class="well">
               <pre>
-              <code>
-                <div id="codejs" class="editable" contenteditable="true"></div>
+              <code id="codejs" class="editable" contenteditable="true">
                    </code>
                  </pre>
                      </div>
@@ -43,6 +42,10 @@
                         <!-- Button -->
                         <div class="controls col-lg-offset-10 col-lg-2">
                            <button id="js_btn" class="btn btn-success" >Save</button> 
+                        </div>
+
+                        <div class="col-md-4 col-lg-8 col-xs-4">
+                           <button id="go_back" class="btn btn-success" onclick="WIJS.go_back();" >Go Back</button> 
                         </div>
                       </div>
                       <div class="results" id="dresults"></div>
@@ -52,7 +55,6 @@
 
                      </section>
 <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
-    <script type="text/javascript" src="WICore/WIJ/WICSS.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WIJS.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WITheme.js"></script>
 

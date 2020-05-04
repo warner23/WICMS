@@ -1,9 +1,6 @@
 /***********
 ** WIPlugin NAMESPACE
 **************/
-
-
-
 var WIPlugin = {};
 
 WIPlugin.enable = function(plugin){

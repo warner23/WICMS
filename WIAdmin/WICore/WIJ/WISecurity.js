@@ -20,21 +20,19 @@ $(document).ready(function(event)
         $("#choice-wrapper-sha").addClass('alert-success');
     })
 
-                        $('#cost').on('change', function() {
-                           // alert( this.value );
-                           $("#cost").val(this.value).prop("selected", "selected");
-                            
-                          })
+        $('#cost').on('change', function() {
+           // alert( this.value );
+           $("#cost").val(this.value).prop("selected", "selected");
+            
+          })
 
-                           $('#costing').on('change', function() {
-                           // alert( this.value );
+           $('#costing').on('change', function() {
+           // alert( this.value );
 
-                            $("#costing").val(this.value).prop("selected", "selected");
+            $("#costing").val(this.value).prop("selected", "selected");
 
-                          })
-
+          })
 });
-
 
 var WISecurity = {}
 
@@ -48,9 +46,7 @@ event.preventDefault();
         cost = $( "#costing option:selected" ).val();
 
      }
-    // alert(cost);
 
-   //preventDefault()
     var btn = $("#security_btn");
     WICore.loadingButton(btn, $_lang.updating);
 
@@ -86,6 +82,5 @@ event.preventDefault();
           
         }
     });
-
 
 }

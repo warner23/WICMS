@@ -352,7 +352,8 @@ width: 100%;
 
                         <label class="control-label col-lg-2 col-xs-2 col-md-2 col-sm-2"  for="page-title" id="assigned"> Module Assigned </label>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                          <input type="text" id="mod-assigned" name="mod-assigned" placeholder="mod-assigned" class="input-xlarge form-control" value=""> <br /><button>Assign Mod</button>
+                          <input type="text" id="mod-assigned" name="mod-assigned" placeholder="mod-assigned" class="input-xlarge form-control" value=""> <br />
+                          <button onclick="WIEditpage.assignMod()">Assign Mod</button>
                         </div>
                       </div>
                     </div>
@@ -430,7 +431,7 @@ width: 100%;
 
                      <script type="text/javascript" src="WICore/WIJ/WIEditpage.js"></script>
 
-                     
+
                      <script type="text/javascript">
                        $(document).ready(function(){
 

@@ -415,6 +415,11 @@ a:hover {color: #181919;text-decoration: underline;}
     width: 20%;
     top: 0;
 }
+
+.ings{
+      width: 16%;
+    float: left;
+}
 /* Header */
 body > .header {
   position: absolute;
@@ -440,6 +445,15 @@ body > .header {
     position: absolute;
     width: 20%;
     top: 142px;
+}
+
+.form-group{
+  width: 95%;
+    margin-left: 5%;
+}
+
+#legend{
+  background-color: aliceblue;
 }
 
 .users-wrapper
@@ -480,6 +494,18 @@ padding:10px 10px 10 10px;
 margin-bottom:10px;
 font-size:200%;
 }
+
+#mediadragandrophandler
+{
+border:2px dotted #0B85A1;
+width:400px;
+color:#92AAB0;
+text-align:left;vertical-align:middle;
+padding:10px 10px 10 10px;
+margin-bottom:10px;
+font-size:200%;
+}
+
 .progressBar {
     width: 200px;
     height: 22px;
@@ -1767,6 +1793,10 @@ body > .header .logo .icon {
 .checkbox,
 .radio {
   padding-left: 0;
+}
+
+.controls{
+  margin-top: 50px;
 }
 /* 
     Compenent: Progress bars

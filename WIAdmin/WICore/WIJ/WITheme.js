@@ -1,21 +1,14 @@
 /***********
 ** WITheme NAMESPACE
 **************/
-
 $(document).ready(function(event)
 {
-
-    WITheme.viewThemes();
-
-    
+    WITheme.viewThemes(); 
 });
 
 var WITheme = {}
 
-
-
 WITheme.viewThemes = function () {
-
  //var page = $("#page_selection").attr("value");
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
@@ -28,8 +21,6 @@ WITheme.viewThemes = function () {
          $("#ViewTheme").html(result);
 
         }
-       
-        
     });
 };
 
@@ -48,19 +39,30 @@ WITheme.activate = function (id) {
          WITheme.viewThemes();
 
         }
-       
-        
     });
 };
 
 WITheme.newTheme = function (){
-
-    $("#modal-theme-details").removeClass("hide");
-     $("#modal-theme-details").addClass("show");
+    event.preventDefault();
+    $("#modal-theme-add-details").removeClass("hide").addClass("show");
 }
 
-WITheme.theme = function(){
-    var name = $("#lang_namep").val();
+
+
+WITheme.DeleteThemeModal = function (id){
+    $("#modal-theme-delete-details").removeClass("hide").addClass("show");
+    $(".delete_id").attr("id", id);
+}
+
+WITheme.closed = function (ele){
+    $("#modal-"+ele+"-details").removeClass("show").addClass("hide");
+}
+
+
+
+WITheme.addtheme = function(){
+    var name = $("#addtheme").val();
+    $(".ajax-loading").removeClass("hide").addClass("show");
          $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
@@ -70,14 +72,12 @@ WITheme.theme = function(){
                     },
         success: function(result)
         {
-            $("#modal-theme-details").removeClass("show");
-     $("#modal-theme-details").addClass("hide");
-     $("#lang_namep").val('');
+            $(".ajax-loading").removeClass("show").addClass("hide");
+         $("#modal-theme-add-details").removeClass("show").addClass("hide");
+        $("#addtheme").val('');
          WITheme.viewThemes();
 
         }
-       
-        
     });
 }
 
@@ -98,26 +98,25 @@ WITheme.setTheme = function(id){
         WITheme.viewThemes();
 
         }
-       
-        
     });
 }
 
-// WITheme.deactive = function (id) {
+WITheme.Deletetheme = function(){
+    var id = $(".delete_id").attr('id');
+    $(".ajax-loading").removeClass("hide").addClass("show");
+         $.ajax({
+        url: "WICore/WIClass/WIAjax.php",
+        type: "POST",
+        data: {
+            action : "deletetheme",
+            id : id
+                    },
+        success: function(result)
+        {
+            $(".ajax-loading").removeClass("show").addClass("hide");
+         $("#modal-theme-delete-details").removeClass("show").addClass("hide");
+         WITheme.viewThemes();
 
-//      $.ajax({
-//         url: "WICore/WIClass/WIAjax.php",
-//         type: "POST",
-//         data: {
-//             action : "themeDeactivate"        },
-//         success: function(result)
-//         {
-
-//          WITheme.ViewTheme();
-
-//         }
-       
-        
-//     });
-// };
-
+        }
+    });
+}

@@ -55,8 +55,8 @@
                     <div class="btn-group" data-toggle="buttons-radio">
                         <input type="hidden" name="google_login" class="btn-group-value"  id="gp-login" value="<?php echo $site->Website_Info('google_enabled')?>" />
                         <label class="switch">
-                        <input type="checkbox" id="google" checked>
-                        <span class="slider round" id="login">ON</span>
+                        <input type="checkbox" id="googleplus" checked>
+                        <span class="slider round" id="glogin">ON</span>
                         
                       </label>
                     </div>
@@ -88,28 +88,38 @@
                           var twiiter = $("#tw-login").attr('value');
                        if (twiiter === "false"){
                         $("#twit").prop("checked", false);
+                        $("#ter").text('OFF');
+                        $("#ter").css('padding-left', '50%');
                         $("#twittee").addClass("hide");
                        }else if (twiiter === "true"){
                         $("#twit").prop("checked", true);
+                        $("#ter").text('ON');
                         $("#twittee").removeClass("hide");
                        }
 
                        var facebook = $("#fb-login").attr('value');
                        if (facebook === "false"){
                        $("#fb").prop("checked", false);
+                       $("#log").text('OFF');
+                        $("#log").css('padding-left', '50%');
                        $("#faceb").addClass("hide");
                        }else if (facebook === "true"){
                         $("#fb").prop("checked", true);
+                        $("#log").text('ON');
                         $("#faceb").removeClass("hide");
                        }
 
                        var google = $("#gp-login").attr('value');
                        console.log(google);
                        if (google === "false"){
-                        $("#google").prop("checked", false);
+                        //console.log("passed");
+                        $("#googleplus").prop("checked",false);
+                        $("#googleplus").text('OFF');
+                        $("#glogin").css('padding-left', '50%');
                         $("#googlep").addClass("hide");
                        }else if (google === "true"){
-                        $("#google").prop("checked", true);
+                        $("#googleplus").prop("checked", true);
+                        $("#glogin").text('ON');
                         $("#googlep").removeClass("hide");
                        }
                       </script>

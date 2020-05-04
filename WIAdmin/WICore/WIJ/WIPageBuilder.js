@@ -5,7 +5,6 @@ $(document).ready(function(event)
                
 });
 
-
 var WIPageBuilder = {};
 
 WIPageBuilder.Rotate = function(){
@@ -34,10 +33,7 @@ WIPageBuilder.Rotate = function(){
 	$(".elementsJ").removeClass('off').addClass('on');
 	$( "#forms" ).removeClass('on').addClass('off');
 	$( "#javascript" ).removeClass('off').addClass('on');
-    }
-
-
-	
+    }	
 }
 
 WIPageBuilder.RotateX = function(){
@@ -63,7 +59,6 @@ WIPageBuilder.RotateX = function(){
 	$( "#base" ).removeClass('on').addClass('off');
 	$( "#grid" ).removeClass('off').addClass('on');
     }
-
 }
 
 
@@ -78,7 +73,6 @@ WIPageBuilder.edit = function(){
 	$(".groupConfig").addClass('edit');
 	$(".stageColumn").css("display", "none");	
 	}
-	
 }
 
 WIPageBuilder.clone = function(){

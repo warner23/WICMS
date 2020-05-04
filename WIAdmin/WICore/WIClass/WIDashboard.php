@@ -16,12 +16,14 @@ class WIDashboard
 
     public function Info_Boxes()
     {
-        $sql = "SELECT * FROM `wi_admin_info_box`";
+/*        $sql = "SELECT * FROM `wi_admin_info_box`";
 
         $query = $this->WIdb->prepare($sql);
         $query->execute();
 
-        $result = $query->fetchAll();
+        $result = $query->fetchAll();*/
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_admin_info_box`");
 
         //print_r($result);
         //echo $result;
@@ -160,11 +162,22 @@ class WIDashboard
 
     public function completetodo($id)
     {
-    	$sql = "UPDATE  `wi_admin_todo_list` SET  `completed` =  'y' WHERE  `wi_admin_todo_list`.`id` =id";
+/*    	$sql = "UPDATE  `wi_admin_todo_list` SET  `completed` =  'y' WHERE  `wi_admin_todo_list`.`id` =id";
 
     	$query = $this->WIdb->prepare($sql);
     	$query->bindParam(':id', $id, PDO::PARAM_INT);
-    	$query->execute();
+    	$query->execute();*/
+
+        $completed = "y";
+
+        $this->WIdb->update(
+                    'wi_admin_todo_list',
+                     array(
+                         "completed" => $completed
+                     ),
+                     "`id` = :id",
+                     array("id" => $id)
+                );
     }
 
     public function addToDoListItem($todoItem)
@@ -180,25 +193,32 @@ class WIDashboard
      {
 
         //echo "user" . $userId;
-                $query = $this->WIdb->prepare('SELECT * FROM `wi_members` WHERE `user_id` =:value ');
+/*                $query = $this->WIdb->prepare('SELECT * FROM `wi_members` WHERE `user_id` =:value');
         $query->bindParam(':value', $userId, PDO::PARAM_INT);
-        $query->execute();
-        while ($result = $query->fetchAll(PDO::FETCH_ASSOC) ) {
+        $query->execute();*/
+
+            $result = $this->WIdb->select("SELECT * FROM `wi_members` WHERE `user_id` =:user_id", 
+            array(
+            "user_id" => $user_id
+            )
+        );
             //print_r($result);
             return $result[0]['username'];
-       }
+       
     }
 
 
     public function Notifications()
     {
-        $sql = "SELECT * FROM wi_notifications ORDER BY id DESC LIMIT 10";
+/*        $sql = "SELECT * FROM wi_notifications ORDER BY id DESC LIMIT 10";
 
         $query = $this->WIdb->prepare($sql);
-        $query->execute();
+        $query->execute();*/
+
+        $result = $this->WIdb->select("SELECT * FROM wi_notifications ORDER BY id DESC LIMIT 10");
+
         echo '<ul id="nots">';
-        while ($res = $query->fetchAll(PDO::FETCH_ASSOC)) {
-            foreach ($res as $key => $value) {
+            foreach ($result as $key => $value) {
                $username = WIDashboard::NotificationUsername($value['user']);
                 echo '<li> <a href="#">
                       <i class="fa fa-users text-aqua"></i> ' . $value['opperation'] . '
@@ -206,7 +226,7 @@ class WIDashboard
                   </li>';
 
 
-            }
+            
             
         }
 
@@ -288,12 +308,18 @@ class WIDashboard
     public function VisitorCount($country)
     {
         //echo $country;
-     $sql = "SELECT * FROM `wi_visitors_log` WHERE `country`=:country";
+/*     $sql = "SELECT * FROM `wi_visitors_log` WHERE `country`=:country";
      $query = $this->WIdb->prepare($sql);
      $query->bindParam(':country', $country, PDO::PARAM_STR);
      $query->execute();
 
-     $result = $query->fetchAll(PDO::FETCH_ASSOC);
+     $result = $query->fetchAll(PDO::FETCH_ASSOC);*/
+
+     $result = $this->WIdb->select("SELECT * FROM `wi_visitors_log` WHERE `country`=:country", 
+            array(
+            "country" => $country
+            )
+        );
 
      if( count($result) >0)
         {
@@ -323,13 +349,14 @@ class WIDashboard
 
     public function Visitors_ip()
     {
-         $sql = "SELECT * FROM `wi_visitors_log` ORDER BY ip";
+/*         $sql = "SELECT * FROM `wi_visitors_log` ORDER BY ip";
         $query = $this->WIdb->prepare($sql);
         $query->execute();
         
-        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);*/
 
-          foreach ($res as $key) {
+        $result = $this->WIdb->select("SELECT * FROM `wi_visitors_log` ORDER BY ip");
+          foreach ($result as $key) {
             //print_r($key);
 
             $Ip = $key['ip'];
@@ -345,17 +372,16 @@ class WIDashboard
     public function Visitors()
     {
         //$ip = $this->Visitors_ip();
-        $sql = "SELECT * FROM `wi_track` group by country";
+/*        $sql = "SELECT * FROM `wi_track` group by country";
         
         $query = $this->WIdb->prepare($sql);
         //$query->bindParam(':ip', $ip, PDO::PARAM_STR);
-        $query->execute();
+        $query->execute();*/
 
-
-        while($res = $query->fetchAll(PDO::FETCH_ASSOC)){
+        $result = $this->WIdb->select("SELECT * FROM `wi_track` group by country");
             //print_r($res);
            // $country = $res['country'];
-            foreach ($res as $key) {
+            foreach ($result as $key) {
             //print_r($key);
             //$Ip = $key['ip'];
                 echo ' <tr>
@@ -364,7 +390,7 @@ class WIDashboard
             <td>0</td>
             <td></td>
             </tr>';        
-        }  
+         
         }
 
     }

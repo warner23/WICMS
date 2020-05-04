@@ -68,19 +68,19 @@ class WISystem
     // function used to copy full directory structure from source to target
 public function full_copy( $source, $target )
 {
-   // echo "sou ". $source;
+    //echo "sou ". $source;
     //echo "tar ". $target;
     if ( is_dir( $source ) )
     {
-        //echo "dir";
+       // echo "dir";
         if(!file_exists($target)){
-            //echo "mk";
+           // echo "mk";
             mkdir( $target, 0777 );
         $d = dir( $source );
 
         while ( FALSE !== ( $entry = $d->read() ) )
         {
-            //echo "entry";
+           // echo "entry";
             if ( $entry == '.' || $entry == '..' )
             {
                 continue;

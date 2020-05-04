@@ -15,11 +15,13 @@ class WIPermissions
     public function permissionTabs()
     {
 
-        $sql = "SELECT * FROM `wi_user_roles`";
+/*        $sql = "SELECT * FROM `wi_user_roles`";
         $query = $this->WIdb->prepare($sql);
         $query->execute();
 
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);*/
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_user_roles`");
 
         echo ' <script>
                 $( function() {

@@ -63,12 +63,8 @@ WIHeader.sendData = function(header){
     		// return the button to normasl state
     		WICore.removeLoadingButton(btn);
     		console.log(result);
-            //window.alert(result);
-    		//parse the data to json
-            //var res = JSON.stringify(result);
     		var res = JSON.parse(result);
             //var res = $.parseJSON(result);
-            console.log(res);
     		if(res.status === "error")
     		{
     			/// display all errors

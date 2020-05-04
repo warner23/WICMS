@@ -17,41 +17,33 @@ class WIWebsite
 
         public function webSite_essentials($column)
     {
-        $sql = "SELECT * FROM `wi_header`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-
-        $res = $query->fetch(PDO::PARAM_STR);
-        //echo $res[$column];
-        return $res[$column];
+        $result = $this->WIdb->select("SELECT * FROM `wi_header`");
+        return $result[$column];
     }
 
     public function webSite_icons()
     {
-        $sql = "SELECT * FROM `wi_site`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
+      $result = $this->WIdb->select("SELECT * FROM `wi_site`");
 
-        $res = $query->fetch(PDO::PARAM_STR);
-        //echo $res;
-        echo '<link rel="icon" type="image/png" href="WIAdmin/WIMedia/Img/favicon/' . $res['favicon'] . '"/>';
+        foreach ($result as $res ) {
+          echo '<link rel="icon" type="image/png" href="WIAdmin/WIMedia/Img/favicon/' . $res['favicon'] . '"/>';
+        }
+        
     }
 
     
-
     public function Meta($page)
     {
       
-         $sql = "SELECT * FROM `wi_meta` WHERE `page`=:page";
-          $query = $this->WIdb->prepare($sql);
-          $query->bindParam(':page', $page, PDO::PARAM_STR);
-          $query->execute();
+        $result = $this->WIdb->select("SELECT * FROM `wi_meta` WHERE `page`=:page",
+          array(
+            "page" => $page
+          )
+        );
 
-         while($result = $query->fetch(PDO::FETCH_ASSOC))
+         foreach($result as $res)
         {
-          //print_r($result);
-
-            echo '<meta name="' . $result['name'] . '" content="' . $result['content'] . '" author="' . $result['author'] . '" >';
+            echo '<meta name="' . $res['name'] . '" content="' . $res['content'] . '" author="' . $res['author'] . '" >';
             
         }
 
@@ -60,13 +52,14 @@ class WIWebsite
     public function Theme()
     {
       $in_use = 1;
-      $sql ="SELECT * FROM `wi_theme` WHERE `in_use`=:in_use";
-      $query = $this->WIdb->prepare($sql);
-      $query->bindParam(':in_use', $in_use, PDO::PARAM_INT);
-      $query->execute();
 
-      $result = $query->fetch();
-      $theme = $result['destination'];
+      $result = $this->WIdb->select("SELECT * FROM `wi_theme` WHERE `in_use`=:in_use",
+          array(
+            "in_use" => $in_use
+          )
+        );
+
+      $theme = $result[0]['destination'];
 
       return $theme;
 
@@ -75,12 +68,13 @@ class WIWebsite
 
     public function Styling($page)
     {
-          $sql = "SELECT * FROM `wi_css` WHERE `page`=:page";
-         $query = $this->WIdb->prepare($sql);
-         $query->bindParam(':page', $page, PDO::PARAM_STR);
-        $query->execute();
+      $result = $this->WIdb->select("SELECT * FROM `wi_css` WHERE `page`=:page",
+          array(
+            "page" => $page
+          )
+        );
 
-        while($res = $query->fetch(PDO::FETCH_ASSOC))
+        foreach($result as $res)
         {
         echo '<link href="' . self::theme() . $res['href'] . '" rel="' . $res['rel'] . '">';
         }
@@ -88,12 +82,13 @@ class WIWebsite
 
     public function Scripts($page)
     {
-      $sql = "SELECT * FROM `wi_scripts` WHERE `page`=:page";
-                 $query = $this->WIdb->prepare($sql);
-                 $query->bindParam(':page', $page, PDO::PARAM_STR);
-        $query->execute();
+            $result = $this->WIdb->select("SELECT * FROM `wi_scripts` WHERE `page`=:page",
+          array(
+            "page" => $page
+          )
+        );
 
-        while($res = $query->fetch(PDO::FETCH_ASSOC))
+        foreach($result as $res)
         {
         echo ' <script src="' . self::theme() . $res['src'] . '" type="text/javascript"></script>';
         }
@@ -114,10 +109,9 @@ class WIWebsite
     public function Social()
     {
 
-        $query = $this->WIdb->prepare('SELECT * FROM `wi_Social`');
-        $query->execute();
+      $result = $this->WIdb->select("SELECT * FROM `wi_Social`");
 
-        while($res = $query->fetch(PDO::FETCH_ASSOC))
+        foreach($result as $res)
         {
             echo ' <ul class="social_media"> 
                             <li><a href="' . $res['facebook'] .'" data-placement="bottom" data-toggle="tooltip" class="fa fa-facebook" title="Facebook">Facebook</a></li>
@@ -132,11 +126,8 @@ class WIWebsite
 
     public function MainHeader()
     {
-        $sql = "SELECT * FROM `wi_header`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-
-        while($res = $query->fetch(PDO::PARAM_STR))
+        $result = $this->WIdb->select("SELECT * FROM `wi_header`");
+        foreach($result as $res)
         {
          echo ' <header class="header">
                 <div class="container">
@@ -169,21 +160,20 @@ class WIWebsite
 
         public function MainMenu()
     {
-        $sql = "SELECT * FROM `wi_menu`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-        $result = $query->fetch();
-        $menu_order = $result['sort'];
+        $result = $this->WIdb->select("SELECT * FROM `wi_menu`");
+        $menu_order = $result[0]['sort'];
 
-        $sql1 = "SELECT * FROM `wi_menu` ORDER BY :order";
-        $query1 = $this->WIdb->prepare($sql1);
-        $query1->bindParam(':order', $menu_order, PDO::PARAM_INT);
-        $query1->execute();
+        $result0 = $this->WIdb->select("SELECT * FROM `wi_menu` ORDER BY :order",
+          array(
+            "order" => $menu_order
+          )
+        );
+
         echo '<div class="menu"><div class="col-lg-12 col-md-12 col-sm-12 menusT">
               <div id="nav">
                <ul id="mainMenu" class="mainMenu default">';
 
-        while($res = $query1->fetch(PDO::FETCH_ASSOC))
+        foreach($result0 as $res)
         {    
          echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a></li>';
          if($res['parent'] > 0)
@@ -204,11 +194,15 @@ class WIWebsite
 
         $date = date("Y");
         $http = str_replace("www.", "", $_SERVER['HTTP_HOST']);
-        $query = $this->WIdb->prepare('SELECT * FROM `wi_footer` WHERE footer_id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
 
-        while($res = $query->fetch(PDO::PARAM_STR))
+        $result = $this->WIdb->select("SELECT * FROM `wi_footer` WHERE footer_id=:id",
+          array(
+            "id" => $id
+          )
+        );
+
+
+        foreach($result as $res)
         {
             echo '<footer class="footer">
             <section class="footer_bottom container-fluid text-center">
@@ -244,24 +238,19 @@ class WIWebsite
     {
     
 
-         
-        $sql = "SELECT * FROM `wi_lang`";
-        $query = $this->WIdb->prepare($sql);
-        $query->execute();
-         echo '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
+        $result = $this->WIdb->select("SELECT * FROM `wi_lang`");
+
+        echo '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
                          <div class="flags-wrapper">';
-        while($res = $query->fetchAll(PDO::FETCH_ASSOC) ){
+        foreach ($result as $lang ) {
 
-          
-        foreach ($res as $lang ) {
-
-            echo '<a href="' . $lang['href'] . '">
-                 <img src="WIAdmin/WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
+       echo '<a href="' . $lang['href'] . '">
+             <img src="WIAdmin/WIMedia/Img/lang/' . $lang['lang_flag'] . '" alt="' . $lang['name'] .'" title="' . $lang['name'] .'"
                       class="'. WIWebsite::langClassSelector($lang['lang']) .'" /></a>';
             }
-        }
+        
 
-         echo '</div>
+       echo '</div>
                     </div><!-- end col-lg-6 col-md-6 col-sm-6-->';
     }
 
@@ -309,14 +298,16 @@ class WIWebsite
 
         public function showFavicon()
     {
-        $sql = "SELECT * FROM `wi_site`";
+      $result = $this->WIdb->select("SELECT * FROM `wi_site`");
+
+/*        $sql = "SELECT * FROM `wi_site`";
 
         $query = $this->WIdb->prepare($sql);
         $query->execute();
 
-        $res = $query->fetch();
+        $res = $query->fetch();*/
 
-        $favicon = $res['favicon'];
+        $favicon = $res[0]['favicon'];
         return $favicon;
 
     }

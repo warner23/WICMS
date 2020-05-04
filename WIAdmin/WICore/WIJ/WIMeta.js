@@ -8,11 +8,27 @@ $(document).ready(function(event)
     var page = $("#page_selection").val();
     //alert(page);
     WIMeta.viewMeta(page);
+
+
+      $('#edit_page_selection_meta').on('change', function() {
+      console.log( this.value );
+      $('#editpageMeta').attr("value",this.value).attr("type", "text");
+      $('#edit_page_selection_meta').css("display","none");
+      var preview = '<a href="javascript:void(0);" id="sp" onclick="WIMeta.editswitchPage(`'+this.value+'`);">Change Page</a>';
+      $('#editaddychangePageMeta').html(preview);
+  });
+
 });
 
 var WIMeta = {}
 
 
+WIMeta.editswitchPage = function(value){
+      $('#edit_page_selection_meta').css("display","block");
+      $('#editpageMeta').attr("value",value).attr("type", "hidden");
+      var preview = '<a href="javascript:void(0);" id="sp" onclick="WICSS.switchPage();">Change Page</a>';
+      $('#editaddychangePage').remove('#sp');
+}
 
 WIMeta.viewMeta = function (page) {
 
@@ -30,18 +46,14 @@ WIMeta.viewMeta = function (page) {
          $("#ViewMeta").html(result);
 
         }
-       
-        
     });
 
-   // WIMeta.addEditData.button.attr('onclick', 'WIMeta.addUser();');
 };
 
 
 WIMeta.showMetaModal = function (id) {
-    //jQuery.noConflict();
-    
-
+    $("#modal-meta-edit-details").removeClass("hide").addClass("show");
+    $(".ajax-loading").removeClass('hide').addClass('show');
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
@@ -51,47 +63,66 @@ WIMeta.showMetaModal = function (id) {
         },
         success: function(result)
         {
-$("#modal-meta-edit").removeClass("off")
-    $("#modal-meta-edit").addClass("on")
-            $("#modal-meta-edit").html(result);
+            var res = JSON.parse(result);
+            $("#meta_id").attr('value',res.id);
+            $("#meta_name").attr('value',res.name);
+            $("#meta_content").attr('value',res.content);
+
+            $("#editpageMeta").attr("value", res.page).attr("type","text");
+        $("#edit_page_selection_meta").val(res.page).prop("selected", "selected").css("display", "none");
+        var preview = '<a href="javascript:void(0);" id="sp" onclick="WIMeta.editswitchPage(`'+this.value+'`);">Change Page</a>';
+      $('#editaddychangePage').html(preview);
+
+            $(".ajax-loading").removeClass('show').addClass('hide');
+//            $("#modal-meta-edit-details").removeClass("show").addClass("hide");
 
         }
        
         
     });
 
-   // WIMeta.addEditData.button.attr('onclick', 'WIMeta.addUser();');
 };
 
-WIMeta.edditMetaModal = function () {
+
+
+WIMeta.editMeta = function () {
     //jQuery.noConflict();
 
-    var btn = $("#btn-edit-meta");
-    WICore.loadingButton(btn, $_lang.logging_in);
 
     var name = $("#meta_name").val(),
      content = $("#meta_content").val(),
-     id = $(".meta_id").attr('id'),
-     auth = $("#auth").val();
+     meta_id = $("#meta_id").attr('value'),
+     page = $("#editpageMeta").val();
 
+    meta = {
+                MetaData:{
+                    name           : name,
+                    content           : content,
+                    page           : page,
+                    meta_id           : meta_id
 
+                },
+                FieldId:{
+                    name           : "name",
+                    content           : "content",
+                    page           : "page",
+                    meta_id           : "meta_id"
+
+                }
+             };
+
+$(".ajax-loading").removeClass('hide').addClass('show');
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "editMetaDetails",
-            id   : id,
-            name : name,
-            content : content,
-            auth  : auth
+            meta   : meta
         },
         success: function(result)
         {
-            WICore.removeLoadingButton(btn);
-            $("#modal-meta-edit").removeClass("on")
-            $("#modal-meta-edit").addClass("off")
-            $("#meta-results").html(result);
-            var page = $("#page_selection").val();
+            $(".ajax-loading").removeClass('show').addClass('hide');
+            $("#modal-meta-edit-details").removeClass("show").addClass("hide");
             WIMeta.viewMeta(page);
 
 
@@ -100,7 +131,6 @@ WIMeta.edditMetaModal = function () {
         
     });
 
-   // WIMeta.addEditData.button.attr('onclick', 'WIMeta.addUser();');
 };
 
 WIMeta.changePage = function(page_id){
@@ -150,7 +180,6 @@ WIMeta.deleteMetaModal = function (id) {
         
     });
 
-   // WIMeta.addEditData.button.attr('onclick', 'WIMeta.addUser();');
 };
 
 WIMeta.AddMetaModal = function(){
@@ -163,12 +192,4 @@ WIMeta.Close = function(){
     $("#modal-meta-edit").addClass("off")
 }
 
-
-$("body").delegate("#btn-edit-meta", "click", function(event){
-        event.preventDefault();
-
-        WIMeta.edditMetaModal();
-        
-
-    });
 

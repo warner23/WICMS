@@ -18,7 +18,7 @@
                         <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Styling CSS</li>
                     </ol>
                 </section>
@@ -34,15 +34,17 @@
 
             <div class="well">
               <pre>
-              <code>
-                <div id="codecss" class="editable" contenteditable="true"></div>
+              <code id="codecss" class="editable" contenteditable="true">
                    </code>
                  </pre>
                      </div>
                       <div class="form-group">
                         <!-- Button -->
-                        <div class="controls col-lg-offset-10 col-lg-2">
+                        <div class="col-md-4 col-lg-8 col-xs-4">
                            <button id="css_btn" class="btn btn-success" >Save</button> 
+                        </div>
+                        <div class="col-md-4 col-lg-8 col-xs-4">
+                           <button id="go_back" class="btn btn-success" onclick="WICSS.go_back();" >Go Back</button> 
                         </div>
                       </div>
                       <div class="results" id="dresults"></div>
@@ -53,7 +55,6 @@
                      </section>
 <script type="text/javascript" src="WICore/WIJ/WICore.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WICSS.js"></script>
-    <script type="text/javascript" src="WICore/WIJ/WIJS.js"></script>
     <script type="text/javascript" src="WICore/WIJ/WITheme.js"></script>
 
 

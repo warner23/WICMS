@@ -13,7 +13,6 @@ $(document).ready(function(event)
         },
         success: function(result)
         {
-  
             var res = JSON.parse(result);
             if (res.completed === "saved") {
                 var page_id = res.page_id;
@@ -26,9 +25,7 @@ $(document).ready(function(event)
             $.cookie("page_id", page_id, {expires: date});
             
                 window.location = "WIEditpage.php";
-            }
-
-            
+            }  
         }
     });
     })    
@@ -94,11 +91,7 @@ WIPages.Open = function(id, name){
     //var Div = '<div id="div">Are you sure you want to delete '+name+' page </div>';
     var Div = '<div id="div"><span>Are you sure you want to delete '+name+' page </span> <button class="btn btn-danger" onclick="WIPages.Delete(`'+id+'`, `'+name+'`);">Delete</button> <button class="btn" onclick="WIPages.Close();">Cancel</button></div>';
 
-
     Element.append(Div);
-
-
-
 }
 
 WIPages.Close = function(){

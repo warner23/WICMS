@@ -1,4 +1,4 @@
- <form  class="form-horizontal" id="salt-form">
+ <form  class="form-horizontal" id="admin-form">
 
                         <fieldset>
                           <div id="legend">

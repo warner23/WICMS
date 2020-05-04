@@ -18,7 +18,6 @@ $("#page_selection").val(page).prop("selected", "selected");
 
 }
 
-
 WIPageoptions.loadPageOptions = function(page){
 
      $.ajax({
@@ -111,8 +110,6 @@ WIPageoptions.changePage = function(page){
             $("#pages").html(result);
 
         }
-       
-        
     });
 }
 
@@ -138,8 +135,6 @@ WIPageoptions.togglelsc = function(page){
                     $("#lsc").attr("checked");
                 }
         }
-       
-        
     }
 } );
 }
@@ -163,9 +158,7 @@ WIPageoptions.lsc = function(page){
                 }else{
                     $("#lsc").attr("checked");
                 }
-        }
-       
-        
+        } 
     }
 } );
 }
@@ -188,8 +181,6 @@ WIPageoptions.rsc = function(page){
                     $("#rsc").attr("checked");
                 }
         }
-       
-        
     });
 }
 
@@ -223,8 +214,6 @@ var page = $("#page-title").val();
 
                 }
         }
-       
-        
     }
 } );
 }
@@ -270,14 +259,8 @@ var page = $("#page-title").val();
                     '</div>';
                     $("#block").before(Div);
                     $("#sidenavL").load("WIInc/edit/WIInc/left_sidebar.php");
-
-
-
-
                 }
         }
-       
-        
     }
 } );
 }
@@ -320,18 +303,8 @@ var page = $("#page-title").val();
                     '</div>';
                     $("#col").append(Div);
                     $("#sidenavR").load("WIInc/edit/WIInc/right_sidebar.php");
-
-
-
-
                 }
         }
-       
-        
     }
 } );
-}
-
-WIPageoptions.edit = function(){
-    
 }

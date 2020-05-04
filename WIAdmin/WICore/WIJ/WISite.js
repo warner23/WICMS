@@ -1,9 +1,6 @@
 /***********
 ** WISITE NAMESPACE
 **************/
-
-
-
 $(document).ready(function(event)
 {
     
@@ -14,10 +11,7 @@ $(document).ready(function(event)
 			var site_name           = $("#website_name").val(),
 			 site_domain            = $("#website_domain").val(),
 			 site_url               = $("#website_url").val()
-
-
 			 //create data that will be sent over server
-
 			 var site = {
 			 	UserData:{
 			 	    site_name           : site_name,
@@ -33,8 +27,7 @@ $(document).ready(function(event)
 			 	}
 			 };
 			 // send data to server
-			 WISite.sendData(site);
-		
+			 WISite.sendData(site);	
 	});
 });
 
@@ -47,7 +40,6 @@ WISite.sendData = function(site){
     //alert('clicked');
 	var btn = $("#site_settings");
     
-
 	// put button into the loading state
 	WICore.loadingButton(btn, $_lang.creating_Account);
 
@@ -88,7 +80,6 @@ WISite.sendData = function(site){
     	}
     });
 }
-
 
 WISite.Version = function(currentVersion){
 

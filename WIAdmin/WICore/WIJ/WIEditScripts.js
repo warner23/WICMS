@@ -203,15 +203,7 @@ WIScript.saveLayout = function(){
         localStorage.setItem("layoutdata",JSON.stringify(data));
     }
     layouthistory = data;
-    //console.log(data);
-    /*$.ajax({
-        type: "POST",
-        url: "/build/saveLayout",
-        data: { layout: $('.demo').html() },
-        success: function(data) {
-            //updateButtonsVisibility();
-        }
-    });*/
+
 }
 
 WIScript.downloadLayout = function(){
@@ -246,14 +238,7 @@ WIScript.undoLayout = function(){
         return true;
     }
     return false;
-    /*$.ajax({
-        type: "POST",
-        url: "/build/getPreviousLayout",
-        data: { },
-        success: function(data) {
-            undoOperation(data);
-        }
-    });*/
+
 }
 
 
@@ -272,15 +257,7 @@ WIScript.redoLayout = function(){
         }
     }
     return false;
-    /*
-    $.ajax({
-        type: "POST",
-        url: "/build/getPreviousLayout",
-        data: { },
-        success: function(data) {
-            redoOperation(data);
-        }
-    });*/
+
 }
 
 WIScript.handleJsIds = function(){

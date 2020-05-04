@@ -48,15 +48,23 @@ class WIMaintenace
 
 	public function WILogs()
 	{
-		$sql = "SELECT * FROM `wi_logs`";
+/*		$sql = "SELECT * FROM `wi_logs`";
 		$query = $this->WIdb->prepare($sql);
-		$query->execute();
+		$query->execute();*/
+
+		$result = $this->WIdb->select("SELECT * FROM `wi_logs`", 
+            array(
+            "lang" => $code,
+            "keyword" => $keyword,
+            "trans"  => $trans
+            )
+        );
 
 		echo '<div class="divTable">
 				<div class="divTableBody">
 				<div class="divTableRow">';
-		while ($result = $query->fetchAll() ) {
-			if ($result < 1) {
+		//while ($result = $query->fetchAll() ) {
+			if ($result[0] < 1) {
 				echo 'No Results to show';
 			}
 			foreach ($result as $log) {
@@ -64,10 +72,9 @@ class WIMaintenace
 				<div class="divTableCell">' . $log['user'] . '</div>
 				<div class="divTableCell">' . $log['opperation'] . '</div>';
 			}
-		}
-echo '</div>
-</div>
-</div>';
+			echo '</div>
+			</div>
+			</div>';
 
 
 	}

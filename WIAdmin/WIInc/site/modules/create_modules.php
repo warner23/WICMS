@@ -273,7 +273,7 @@ position: fixed;
             </div>
           </li>
           <li>
-            <div class="controls col-lg-9">
+            <div class="col-md-4 col-lg-8 col-xs-4">
           <input type="text" name="mod_name" id="mod_name" placeholder="Module Name" class="input-xlarge form-control"  autofocus>
           </div>
           </li>
@@ -445,6 +445,12 @@ position: fixed;
 
         </div>
       </div>
+
+
+
+
+
+              
             </div>
           </div>
 
@@ -457,16 +463,17 @@ position: fixed;
        
       </div>
       
-
-
          <?php  
  $modal->moduleModal('editorModal', 'WIEditor', 'WIScript', 'SaveContent','Save'); 
  $modal->moduleModal('downloadingModal', 'Save', 'WIScript', 'saveHtml','Save'); 
 
-  $modal->moduleModal('page-edit', 'Choose where to upload from', 'WIMedia', 'pagemedia','Save'); 
+/*  $modal->moduleModal('page-edit', 'Choose where to upload from', 'WIMedia', 'pagemedia','Save'); 
  $modal->moduleModal('page-media', 'Change Media', 'WIMedia', 'PagePics','Save'); 
- $modal->moduleModal('page-upload', 'Upload Media', 'WIMedia', 'PageUploadPics','Save');  
+ $modal->moduleModal('page-upload', 'Upload Media', 'WIMedia', 'PageUploadPics','Save'); */ 
 
+ $modal->moduleModal('media-edit', 'Change media', 'WIMedia', 'pagemedia','Save'); 
+ $modal->moduleModal('media-media', 'Change Media', 'WIMedia', 'PageMediaPics','Save'); 
+ $modal->moduleModal('media-upload', 'Upload Media', 'WIMedia', 'PageMediaUploadPics','Save');
    ?>
 
     <script>

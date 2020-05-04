@@ -47,14 +47,11 @@ $(document).ready(function () {
 
         if(valid)
             passres.resetPassword(np.val());
-        });
-                    
+        });              
 });
-
 
 /** PASSWORD RESET NAMESPACE
  ======================================== */
-
 var passres = {};
 
 /**

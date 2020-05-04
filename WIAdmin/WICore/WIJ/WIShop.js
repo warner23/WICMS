@@ -2,10 +2,7 @@
 ** WISITE NAMESPACE
 **************/
 
-
-
 var WIShop = {};
-
 
 WIShop.ChangeProduct = function(pid) {
     event.preventDefault();
@@ -71,7 +68,7 @@ WIShop.ChangeProduct = function(pid) {
 
 WIShop.hide = function ()
 {
-    modal       = $("#modal-product-details");
+    modal = $("#modal-product-details");
 
    //display modal
    modal.css("display", "none");

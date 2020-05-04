@@ -15,8 +15,8 @@ class WILang
 
     }
 
+
     public static function all($jsonEncode = true) {
-        // determine lanuage
 		$language = self::getLanguage();
 		//echo $language;
 

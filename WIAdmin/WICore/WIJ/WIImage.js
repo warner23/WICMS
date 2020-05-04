@@ -10,13 +10,8 @@ $(document).ready(function()
   // button register click below
   $("#modUpload").on( "click", function()
   {
-   // event.stopPropagation();
-   // event.preventDefault();
-    alert("pressed1");
     element = $(".file").attr('id');
     mod_name = $(".logo").attr('id');
-    alert(element);
-    alert(mod_name);
     WIImage.Image(element, mod_name);
   });
 
@@ -26,10 +21,7 @@ $(document).ready(function()
 var WIImage = {};
 
 WIImage.Image = function(element, mod_name){
-//event.preventDefault();
-//e.stopPropagation();
-   // e.preventDefault();
-alert("pressed");
+
 $.ajax({
             type: 'POST',
             url: 'WICore/WIClass/WIAjax.php',
@@ -46,7 +38,6 @@ $.ajax({
               .text("Uploading")
               .insertAfter($(this));
 
-
             $(this).remove();
 
             interval = window.setInterval(function() {
@@ -59,21 +50,7 @@ $.ajax({
             }, 200);
           },
           onSubmit: function(filename) {
-            // Return false here to cancel the upload
-            /*var $fileInput = $("<input />")
-              .attr({
-                type: "file",
-                name: $(this).attr("name"),
-                id: $(this).attr("id")
-              });
 
-            $("span." + $(this).attr("id")).replaceWith($fileInput);
-
-            applyAjaxFileUpload($fileInput);
-
-            return false;*/
-
-            // Return key-value pair to be sent along with the file
             return true;
           },
           onComplete: function(filename, response) {
@@ -86,7 +63,6 @@ $.ajax({
                   id: $(this).attr("id")
 
                 });
-               //$mod_name = $(".modal-header").attr('id')
             $("#uploadImg").attr("src", "WIMedia/Img/"+mod_name+'/'+filename);
                   $("#Pic").attr("src", "WIMedia/Img/"+mod_name+'/'+filename);
       $(".cp").attr("id", filename);
@@ -112,7 +88,6 @@ $.ajax({
 
                 applyAjaxFileUpload($fileInput);
               })
-             // .appendTo($span);
           }
 });
 }

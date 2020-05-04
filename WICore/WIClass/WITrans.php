@@ -34,16 +34,12 @@ class WILang
 		// determine language
 		$language = self::getLanguage();
 
-		$WIdb = WIdb::getInstance();
-
-		$sql = "SELECT * FROM `wi_trans` WHERE `keyword`=:key";
-		$query = $WIdb->prepare($sql);
-		$query->bindParam(':key', $key, PDO::PARAM_STR);
-		$query->execute();
-
-		$res = $query->fetch(PDO::FETCH_ASSOC);
-		if($res > 0)
-			return $res['translation'];
+		$result = $this->WIdb->select("SELECT * FROM `wi_trans` WHERE `keyword`=:key", 
+			array(
+				"key" => $key
+			));
+		if($result[0] > 0)
+			return $result[0]['translation'];
 		else
 			return '';
 	}
@@ -76,28 +72,19 @@ class WILang
 
         private static function getTrans($language) 
         {
-        	$WIdb = WIdb::getInstance();
-			//$file = WILang::getFile($language);
-			//echo $file;
-			//echo $language;
+
 		if ( ! self::isValidLanguage($language) )
 		die('Language file doesn\'t exist!');
 		else {
-			//$language = include $file;
-			//return $language;
 
-			$sql = "SELECT * FROM `wi_trans` WHERE `lang` = :file";
-			$query = $WIdb->prepare($sql);
-			$query->bindParam(':file', $language, PDO::PARAM_STR);
-			$query->execute();
-
-			$res = $query->fetchAll(PDO::FETCH_ASSOC);
-			foreach ($res as $key => $value) {
+			$result = $this->WIdb->select("SELECT * FROM `wi_trans` WHERE `lang` = :file", 
+			array(
+				"file" => $language
+			));
+			foreach ($result as $key => $value) {
 				echo '"' .$value['keyword'] .'"=>"' . $value['translation'] . '",';
 			}
-			//print_r($res);
 
-			
 		}
 	}
 
@@ -105,16 +92,14 @@ class WILang
 
 	 private static  function getFile($language) 
 	 {
-	 	$WIdb = WIdb::getInstance();
-		$sql = "SELECT * FROM `wi_lang` WHERE `lang` = :file";
-		$query = $WIdb->prepare($sql);
-		$query->bindParam(':file', $language, PDO::PARAM_STR);
-		$query->execute();
 
-		$res = $query->fetch(PDO::FETCH_ASSOC);
-		//echo $res['lang'];
-		if ($res > 0)
-			return $res['lang'];
+	  $result = $this->WIdb->select("SELECT * FROM `wi_lang` WHERE `lang` = :file", 
+			array(
+				"file" => $language
+			));
+
+		if ($result[0] > 0)
+			return $result[0]['lang'];
 		else
 			return null;
 
@@ -124,10 +109,8 @@ class WILang
 	    private static function isValidLanguage($lang) 
 	    {
 		$file = self::getFile($lang);
-		//echo $file;
 
 		if($file == "null")
-		//if ( ! file_exists( $file ) )
 			return false;
 		else
 			return true;

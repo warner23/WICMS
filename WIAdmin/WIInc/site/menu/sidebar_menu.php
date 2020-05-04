@@ -9,7 +9,7 @@
 
                       <div class="form-group">
                         <!-- Button -->
-                        <div class="controls col-lg-offset-4 col-lg-8">
+                        <div class="col-md-4 col-lg-8 col-xs-4">
                            <button id="site_settings" class="btn btn-success">Save</button> 
                         </div>
                       </div>

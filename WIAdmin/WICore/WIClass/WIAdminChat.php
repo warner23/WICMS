@@ -18,15 +18,21 @@ class WIAdminChat
 	 {
 
 	 	//echo "user" . $userId;
-	 		 	$query = $this->WIdb->prepare('SELECT * FROM `wi_user_details` WHERE `user_id` =:value');
+/*	 		 	$query = $this->WIdb->prepare('SELECT * FROM `wi_user_details` WHERE `user_id` =:value');
 	 	$query->bindParam(':value', $userId, PDO::PARAM_INT);
-	 	$query->execute();
-	    while ($result = $query->fetchAll(PDO::FETCH_ASSOC) ) {
+	 	$query->execute();*/
+
+	 	$res = $this->WIdb->select("SELECT * FROM `wi_user_details` WHERE `user_id` =:value", 
+            array(
+            "value" => $userId
+            )
+        );
+	    foreach ($res as $result) {
 	    	//print_r($result);
 	    	//echo "ave" . $result[0]['avatar'];
 	    	//if($result["avatar"] === " ")
-	    	if(!empty($result[0]["avatar"])){
-			 echo '<img alt="user image" class="online" src="../WIAdmin/WIMedia/Img/avator/' . $result[0]["avatar"] . '" width="60px" />';
+	    	if(!empty($result["avatar"])){
+			 echo '<img alt="user image" class="online" src="../WIAdmin/WIMedia/Img/avator/' . $result["avatar"] . '" width="60px" />';
 			
 		} else {
 		  echo '<img alt="user image" class="online" src="../WIAdmin/WIMedia/Img/avator/image01.jpg" width="60px" />';
@@ -40,13 +46,17 @@ class WIAdminChat
 	 {
 
 	 	//echo "user" . $userId;
-	 		 	$query = $this->WIdb->prepare('SELECT * FROM `wi_members` WHERE `user_id` =:value');
+/*	 		 	$query = $this->WIdb->prepare('SELECT * FROM `wi_members` WHERE `user_id` =:value');
 	 	$query->bindParam(':value', $userId, PDO::PARAM_INT);
-	 	$query->execute();
-	    while ($result = $query->fetchAll(PDO::FETCH_ASSOC) ) {
+	 	$query->execute();*/
+
+	 	$result = $this->WIdb->select("SELECT * FROM `wi_members` WHERE `user_id` =:value", 
+            array(
+            "value" => $userId
+            )
+        );
 	    	//print_r($result);
 	    	return $result[0]['username'];
-	   }
 	}
 
 	public function adminChat()
@@ -124,14 +134,21 @@ class WIAdminChat
 		//echo "user_id". $userId;
 		//$userId = WISession::get('user_id');
 		//echo "user_id". $userId;
-		$sql = "INSERT INTO wi_admin_msg( msg, wtime, user_id) VALUES ( :msg, :wtime, :userId)";
+/*		$sql = "INSERT INTO wi_admin_msg( msg, wtime, user_id) VALUES ( :msg, :wtime, :userId)";
 
 		$query = $this->WIdb->prepare($sql);
 		$query->bindParam(':msg', $Message, PDO::PARAM_STR);
 		$query->bindParam(':wtime', $debate_date, PDO::PARAM_INT);
 		$query->bindParam(':userId', $user_id, PDO::PARAM_INT);
-		$query->execute();
-			
+		$query->execute();*/
+
+
+		$this->WIdb->insert('wi_admin_msg', array(
+            "msg"     => $Message,
+            "wtime" => $debate_date,
+            "userId" => $user_id
+
+                )); 
 			
 				$msg = "Message Sent";
 					$result = array(

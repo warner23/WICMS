@@ -55,7 +55,7 @@ class WIModules
         </div>
     </div>  <script type="text/javascript">
      
-    var module = "' . WIModules::InstallElementToggle($value) . '";
+    var module = "' . $this->InstallElementToggle($value) . '";
 
                        if (module === "power_off"){
                         $("#' . $value . '-Install").removeClass("btn-success active");
@@ -135,7 +135,7 @@ class WIModules
         </div>
     </div>  <script type="text/javascript">
      
-    var module = "' . WIModules::InstallToggle($value) . '";
+    var module = "' . $this->InstallToggle($value) . '";
 
                        if (module === "disabled"){
                         $("#' . $value . '-Install").removeClass("btn-success active");
@@ -208,6 +208,14 @@ class WIModules
          $query->bindParam(':power' ,$power, PDO::PARAM_STR);
         $query->bindParam(':item_per_page', $item_per_page, PDO::PARAM_INT);
         $query->execute();
+/*
+        $result = $this->WIdb->select("SELECT * FROM `wi_elements` WHERE element_powered =:power ORDER BY `element_id` ASC LIMIT :page, :item_per_page", 
+            array(
+            "element_powered" => $page_position,
+            "keyword" => $keyword,
+            "trans"  => $trans
+            )
+        );*/
         echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="elementsContents">';
         
         echo '<ul class="contents">';
@@ -227,8 +235,11 @@ class WIModules
         <div class="panel-heading">
             
         </div>
-        </div>
-    </div>  <script type="text/javascript">
+        </div>';
+                if (strpos($element_name,"_") != false){
+                $element_name = str_replace("_", " ", $element_name);
+            }
+    echo '</div>  <script type="text/javascript">
      
     var element = "' . $res['element_status'] . '";
 
@@ -498,16 +509,13 @@ class WIModules
 
     public static function moduleToggle($column, $mod_name) 
     {
-        $WIdb = WIdb::getInstance();
-
-        $result = $this->WIdb->select(
-                    "SELECT * FROM `wi_mod` WHERE `module_name` = :mod_name",
-                     array(
-                       "mod_name" => $mod_name
-                     )
-                  );
+        
+        $result['$column'] = $this->WIdb->selectColumn('SELECT * FROM `wi_mod` WHERE `module_name` = :mod_name', 
+            array(
+                'mod_name' => $mod_name
+                ), 
+            $column);
         return $result[$column];
-
         //$query = $WIdb->prepare('SELECT * FROM `wi_mod` WHERE `module_name` = :mod_name');
         //$query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
        // $query->execute();
@@ -515,34 +523,54 @@ class WIModules
        //return $res[$column];
     }
 
-        public static function InstallToggle($mod_name) 
+        public function InstallToggle($mod_name) 
     {
-        $WIdb = WIdb::getInstance();
+/*        $WIdb = WIdb::getInstance();
 
         $query = $WIdb->prepare('SELECT * FROM `wi_mod` WHERE `module_name` = :mod_name');
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
         $query->execute();
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);
-        if($res['module_name'] === $mod_name)
+        $res = $query->fetch(PDO::FETCH_ASSOC);*/
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_mod` WHERE `module_name` = :mod_name", 
+            array(
+            "mod_name" => $mod_name
+            )
+        );
+
+        foreach($result as $result){
+
+        if($result['module_name'] === $mod_name)
             return "enabled";
         else
             return "disabled";
+        }
     }
 
-    public static function InstallElementToggle($mod_name) 
+
+    public  function InstallElementToggle($mod_name) 
     {
-        $WIdb = WIdb::getInstance();
+/*        $WIdb = WIdb::getInstance();
 
         $query = $WIdb->prepare('SELECT * FROM `wi_elements` WHERE `element_type` = :mod_name or `element_name` =:mod_name');
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
         $query->execute();
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);
-        if($res['element_name'] || $res['element_type']  === $mod_name)
+        $res = $query->fetch(PDO::FETCH_ASSOC);*/
+
+        $result = $this->WIdb->select("SELECT * FROM `wi_elements` WHERE `element_type` = :mod_name or `element_name` =:mod_name", 
+            array(
+            "mod_name" => $mod_name
+            )
+        );
+        foreach($result as $result){
+
+        if($result['element_name'] || $result['element_type']  === $mod_name)
             return "power_on";
         else
             return "power_off";
+        }
     }
 
      public function installElement($mod_name)
@@ -589,13 +617,13 @@ class WIModules
 
     public function uninstall_mod($mod_name)
     {
-        //
+/*        //
 
         $sql = "DELETE FROM `wi_mod` WHERE module_name= :mod_name";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
-        $query->execute();
-
+        $query->execute();*/
+        $this->WIdb->delete("wi_mod", "module_name = :mod_name", array( "mod_name" => $mod_name ));
 
     }
 
@@ -604,11 +632,20 @@ class WIModules
     {
         //INSERT INTO `wi_mod` (module_name, mod_status) VALUES (:mod_name, :mod_status)
 
-        $sql = "UPDATE `wi_mod` SET `mod_status` = :mod_status WHERE `module_name` = :mod_name";
+/*        $sql = "UPDATE `wi_mod` SET `mod_status` = :mod_status WHERE `module_name` = :mod_name";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
         $query->bindParam(':mod_status', $enable, PDO::PARAM_STR);
-        $query->execute();
+        $query->execute();*/
+
+                          $this->WIdb->update(
+                    'wi_mod',
+                     array(
+                         "mod_status" => $enable
+                     ),
+                     "`module_name` = :mod_name",
+                     array("mod_name" => $mod_name)
+                );
 
 
     }
@@ -623,12 +660,22 @@ class WIModules
         if (strpos($element_name,"_") != false){
                 $element_name = str_replace("_", " ", $element_name);
             }
-        $sql = "UPDATE `wi_elements` SET `element_status` = :element_status, `element_font`=:element_font WHERE `element_name` = :element_name";
+/*        $sql = "UPDATE `wi_elements` SET `element_status` = :element_status, `element_font`=:element_font WHERE `element_name` = :element_name";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':element_name', $element_name, PDO::PARAM_STR);
         $query->bindParam(':element_status', $enable, PDO::PARAM_STR);
         $query->bindParam(':element_font', $element_font, PDO::PARAM_STR);
-        $query->execute();
+        $query->execute();*/
+
+        $this->WIdb->update(
+                    'wi_elements',
+                     array(
+                         "element_status" => $enable,
+                         "element_font" => $element_font
+                     ),
+                     "`element_name` = :element_name",
+                     array("element_name" => $element_name)
+                );
 
 
     }
@@ -637,11 +684,20 @@ class WIModules
     {
         //INSERT INTO `wi_mod` (module_name, mod_status) VALUES (:mod_name, :mod_status)
 
-        $sql = "UPDATE `wi_elements` SET `element_status` = :element_status WHERE `element_name` = :element_name";
+/*        $sql = "UPDATE `wi_elements` SET `element_status` = :element_status WHERE `element_name` = :element_name";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':element_name', $mod_name, PDO::PARAM_STR);
         $query->bindParam(':element_status', $enable, PDO::PARAM_STR);
-        $query->execute();
+        $query->execute();*/
+
+        $this->WIdb->update(
+                    'wi_elements',
+                     array(
+                         "element_status" => $enable
+                     ),
+                     "`element_name` = :element_name",
+                     array("element_name" => $mod_name)
+                );
 
 
     }
@@ -650,12 +706,20 @@ class WIModules
     {
         //echo $disable;
         //echo $mod_name;
-        $sql = "UPDATE `wi_mod` SET `mod_status` = :mod_status WHERE `module_name` = :mod_name";
+/*        $sql = "UPDATE `wi_mod` SET `mod_status` = :mod_status WHERE `module_name` = :mod_name";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
         $query->bindParam(':mod_status', $disable, PDO::PARAM_STR);
-        $query->execute();
+        $query->execute();*/
 
+        $this->WIdb->update(
+                    'wi_mod',
+                     array(
+                         "mod_status" => $disable
+                     ),
+                     "`module_name` = :mod_name",
+                     array("mod_name" => $mod_name)
+                );
     }
 
      public function ActiveMods()
@@ -1504,15 +1568,23 @@ class WIModules
      {
         $mod_name = "columns";
         $mod_status = "enabled";
-        $sql = "SELECT * FROM `wi_mod` WHERE module_name = :mod_name AND mod_status = :mod_status";
+/*        $sql = "SELECT * FROM `wi_mod` WHERE module_name = :mod_name AND mod_status = :mod_status";
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':mod_name', $mod_name, PDO::PARAM_STR);
         $query->bindParam(':mod_status', $mod_status, PDO::PARAM_STR);
-        $query->execute();
+        $query->execute();*/
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);
+        $result = $this->WIdb->select("SELECT * FROM `wi_mod` WHERE module_name = :mod_name AND mod_status = :mod_status", 
+            array(
+            "module_name" => $mod_name,
+            "mod_status" => $mod_status,
+            "trans"  => $trans
+            )
+        );
 
-        if ($res > 0)
+        //$res = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($result[0] > 0)
             return true;
         else
             return false;
@@ -1598,11 +1670,17 @@ class WIModules
 
     public function editContents($mod_name, $title, $para)
     {
-        $sql = "SELECT  FROM `wi_site` WHERE `id` =:id";
+/*        $sql = "SELECT  FROM `wi_site` WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute();*/
+
+        $result = $this->WIdb->select("SELECT  FROM `wi_site` WHERE `id` =:id", 
+            array(
+            "id" => $id
+            )
+        );
     }
 
 
@@ -1610,27 +1688,37 @@ class WIModules
     {
         $id = "1";
         $name = $page_id;
-        echo $name;
-        echo "column" . $column;
+
         $sql = "SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id";
 
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
-
         $result = $query->fetch();
         //echo $result['multi_lang'];
-        $mlang = $result['multi_lang'];
+
+        $result = $this->WIdb->select("SELECT `multi_lang` FROM `wi_site` WHERE `id` =:id", 
+            array(
+            "id" => $id
+            )
+        );
+        $mlang = $result[0]['multi_lang'];
         
    // echo $mlang;
 
-        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
+/*        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':name', $name, PDO::PARAM_STR);
         $query1->execute();
 
         $res = $query1->fetch(PDO::FETCH_ASSOC);
-        echo $column;
+        echo $column;*/
+
+        $res = $this->WIdb->select("SELECT * FROM `wi_modules` WHERE `name`=:name", 
+            array(
+            "name" => $name
+            )
+        );
         if ($column === "text") {
             $trans = "trans";
         }elseif ($column === "text1") {
@@ -1648,9 +1736,9 @@ class WIModules
         }
         echo $res['$trans'] . "trans";
         echo $trans . "no res";
-        $lange = $res[$trans];
+        $lange = $res[0][$trans];
         
-        $text  = $res[$column];
+        $text  = $res[0][$column];
         echo $text;
 
        // echo $lange;
@@ -1664,15 +1752,20 @@ class WIModules
 
     public function ModName($page)
     {
-        $sql = "SELECT * FROM `wi_page` WHERE `name`=:page";
+/*        $sql = "SELECT * FROM `wi_page` WHERE `name`=:page";
         echo $page;
         $query = $this->WIdb->prepare($sql);
         $query->bindParam(':page', $page, PDO::PARAM_STR);
         $query->execute();
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);
+        $res = $query->fetch(PDO::FETCH_ASSOC);*/
 
-        $mod_name = $res['contents'];
+        $result = $this->WIdb->select("SELECT * FROM `wi_page` WHERE `name`=:page", 
+            array(
+            "name" => $name
+            )
+        );
+        $mod_name = $result[0]['contents'];
 
         return $mod_name;
     }
@@ -1835,14 +1928,20 @@ class ' . $mod_name. '
 
         public function moduleImg($page_id, $column)
     {
-        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
+/*        $sql1 = "SELECT * FROM `wi_modules` WHERE `name`=:name";
         $query1 = $this->WIdb->prepare($sql1);
         $query1->bindParam(':name', $page_id, PDO::PARAM_STR);
         $query1->execute();
 
-        $res = $query1->fetch(PDO::FETCH_ASSOC);
-            if ($res > 0) {
-                echo ' <img class="img-responsive cp" id="Pic" src="WIMedia/Img/'. $page_id . '/'. $res[$column] . '.PNG" style="width:120px; height:120px;">
+        $res = $query1->fetch(PDO::FETCH_ASSOC);*/
+
+        $res = $this->WIdb->select("SELECT * FROM `wi_modules` WHERE `name`=:name", 
+            array(
+            "name" => $name
+            )
+        );
+            if ($res[0] > 0) {
+                echo ' <img class="img-responsive cp" id="Pic" src="WIMedia/Img/'. $page_id . '/'. $res[0][$column] . '.PNG" style="width:120px; height:120px;">
                     <button class="btn mediaPic" onclick="WIMedia.changePic()">Change Picture</button>
                                 
                             </div>';
@@ -2627,7 +2726,8 @@ class ' . $mod_name. '
 
     public function fieldEdit()
   {
-    echo '<nav class="panel-nav" id="WIFieldId" style="display:none;">
+    echo '<div id="WIFieldId" style="display:none;">
+    <nav class="panel-nav">
       <button class="prev-group" title="previous group"  type="button" data-toggle="tooltip"data-placement="top"></button>
       <div class="panel-labels">
       <div class="options">
@@ -2636,7 +2736,63 @@ class ' . $mod_name. '
       </div>
       </div>
       <button class="next-group" title="Next group"  type="button" data-toggle="tooltip"data-placement="top"></button>
-      </nav>';
+      </nav>
+      <div class="panels" style="height:116.313px;">
+            <div class="Fpanel attrsPanels">
+            <div class="fPanelWrap">
+            <ul class="fieldEditGroup fieldEditAttrs">
+            <li class="attrsClassNameWrap propWrapper controlCount="1" id="PanelWrapers">
+            <div class="propControls">
+            <button type="button" class="propRemove propControls"></button>
+            </div>
+            <div class="propInputs">
+            <div class="fieldGroup">
+            <label for="className">Class</label>
+            <select name="className" id="className">
+                <option value="fBtnGroup">Grouped</option>
+                <option value="FieldGroup">Un-Grouped</option>
+                </select>
+            </div>
+            </div>
+            </li>
+            </ul>
+            <div class="panelActionButtons">
+            <button type="button" class="addAttrs">+ Atrribute</button>
+            </div>
+            </div>
+            <div class="Fpanel optionsPanel">
+            <div class="FpanelWrap">
+                <ul class="fieldEditGroup fieldEditOptions">
+                    <li class="OptionsXWrapper propWrapper controlCount_2" id="propCont">
+                    <div class="propControls">
+                    <button type="button" class="propOrder propControls"></button>
+                    <button type="button" class="propOrder propControls"></button>
+                    </div>
+                    <div class="propInput FinputGroup">
+                    <input name="button" type="text" value="button" placeholder="label" id="buttons">
+                    <select name="button" id="buttonz">
+                    <option value="button" selected="true">appearing_button</option>
+                    <option value="reset">Reset</option>
+                    <option value="submit">Submit</option>
+                    </select>
+                    <select name="options" id="optional">
+                    <option selected="true">default</option>
+                    <option value="primary">Primary</option>
+                    <option value="error">Error</option>
+                    <option value="success">Success</option>
+                    <option value="warning">Warning</option>
+                    </select>
+                    </div>
+                    </li>
+                </ul>
+                </div>
+                <div class="panelActionButtons">
+                <button type="button" class="addOptions">+ Options</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>';
   }
 
 
