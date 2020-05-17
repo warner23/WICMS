@@ -92,25 +92,31 @@ function googleTranslateElementInit() {
                     </li>
                     <li>
                         <a :class="active">
-                            <div class="stepNumber inactive" id="stepFour"><i class="fa fa-database"></i></div>
+                            <div class="stepNumber inactive" id="stepFour"><i class="fa fa-gears"></i></div>
+                            <span class="stepDesc text-small"><?php echo WILang::get('social') ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a :class="active">
+                            <div class="stepNumber inactive" id="stepFive"><i class="fa fa-database"></i></div>
                             <span class="stepDesc text-small"><?php echo WILang::get('database') ?></span>
                         </a>
                     </li>
                     <li>
                         <a :class="active">
-                            <div class="stepNumber inactive" id="stepFive"><i class="fa fa-terminal"></i></div>
+                            <div class="stepNumber inactive" id="stepSix"><i class="fa fa-terminal"></i></div>
                             <span class="stepDesc text-small"><?php echo WILang::get('install') ?></span>
                         </a>
                     </li>
                     <li>
                         <a :class="active">
-                            <div class="stepNumber inactive" id="stepSix"><i class="fa fa-flag-checkered"></i></div>
+                            <div class="stepNumber inactive" id="stepSeven"><i class="fa fa-flag-checkered"></i></div>
                             <span class="stepDesc text-small"><?php echo WILang::get('complete') ?></span>
                         </a>
                     </li>
                 </ul>
             </div>
-
+            <!--  Step One -->
             <div class="step-content show" id="step_one">
                 <h3><?php echo WILang::get('welcome') ?></h3>
                 <hr>
@@ -126,7 +132,7 @@ function googleTranslateElementInit() {
                 <div class="clearfix"></div>
             </div>
 
-
+            <!-- Step Two -->
             <div class="step-content hide" id="step_two">
             <div>
                 <div class="alert alert-danger hide" id="snap" >
@@ -155,6 +161,7 @@ function googleTranslateElementInit() {
                 </div>
             </div>
 
+            <!-- Step Three-->
              <div class="step-content hide" id="step_three">
                 <h3><?php echo WILang::get('options') ?></h3>
                 <hr>
@@ -403,14 +410,166 @@ function googleTranslateElementInit() {
 
                           var cost = $("#encryption-cost").attr('value');
                          // alert(cost);
-                          $("#cost").val(cost).prop("selected", "selected");
+                          $("#bcrypt_cost").val(cost).prop("selected", "selected");
 
 
                           var iteration = $("#encryption-iteration").attr('value')
-                          $("#costing").val(iteration).prop("selected", "selected");
+                          $("#costing_sha512").val(iteration).prop("selected", "selected");
 
                         
                       </script>
+
+                    <div class="form-group">
+
+                    <label>Default lang</label>
+
+                    <select placeholder="Choose a Language..." id="default_lang">
+                  <option value="AF">Afrikaans</option>
+                  <option value="SQ">Albanian</option>
+                  <option value="AR">Arabic</option>
+                  <option value="HY">Armenian</option>
+                  <option value="EU">Basque</option>
+                  <option value="BN">Bengali</option>
+                  <option value="BG">Bulgarian</option>
+                  <option value="CA">Catalan</option>
+                  <option value="KM">Cambodian</option>
+                  <option value="ZH">Chinese (Mandarin)</option>
+                  <option value="HR">Croatian</option>
+                  <option value="CS">Czech</option>
+                  <option value="DA">Danish</option>
+                  <option value="NL">Dutch</option>
+                  <option value="EN">English</option>
+                  <option value="ET">Estonian</option>
+                  <option value="FJ">Fiji</option>
+                  <option value="FI">Finnish</option>
+                  <option value="FR">French</option>
+                  <option value="KA">Georgian</option>
+                  <option value="DE">German</option>
+                  <option value="EL">Greek</option>
+                  <option value="GU">Gujarati</option>
+                  <option value="HE">Hebrew</option>
+                  <option value="HI">Hindi</option>
+                  <option value="HU">Hungarian</option>
+                  <option value="IS">Icelandic</option>
+                  <option value="ID">Indonesian</option>
+                  <option value="GA">Irish</option>
+                  <option value="IT">Italian</option>
+                  <option value="JA">Japanese</option>
+                  <option value="JW">Javanese</option>
+                  <option value="KO">Korean</option>
+                  <option value="LA">Latin</option>
+                  <option value="LV">Latvian</option>
+                  <option value="LT">Lithuanian</option>
+                  <option value="MK">Macedonian</option>
+                  <option value="MS">Malay</option>
+                  <option value="ML">Malayalam</option>
+                  <option value="MT">Maltese</option>
+                  <option value="MI">Maori</option>
+                  <option value="MR">Marathi</option>
+                  <option value="MN">Mongolian</option>
+                  <option value="NE">Nepali</option>
+                  <option value="NO">Norwegian</option>
+                  <option value="FA">Persian</option>
+                  <option value="PL">Polish</option>
+                  <option value="PT">Portuguese</option>
+                  <option value="PA">Punjabi</option>
+                  <option value="QU">Quechua</option>
+                  <option value="RO">Romanian</option>
+                  <option value="RU">Russian</option>
+                  <option value="SM">Samoan</option>
+                  <option value="SR">Serbian</option>
+                  <option value="SK">Slovak</option>
+                  <option value="SL">Slovenian</option>
+                  <option value="ES">Spanish</option>
+                  <option value="SW">Swahili</option>
+                  <option value="SV">Swedish </option>
+                  <option value="TA">Tamil</option>
+                  <option value="TT">Tatar</option>
+                  <option value="TE">Telugu</option>
+                  <option value="TH">Thai</option>
+                  <option value="BO">Tibetan</option>
+                  <option value="TO">Tonga</option>
+                  <option value="TR">Turkish</option>
+                  <option value="UK">Ukrainian</option>
+                  <option value="UR">Urdu</option>
+                  <option value="UZ">Uzbek</option>
+                  <option value="VI">Vietnamese</option>
+                  <option value="CY">Welsh</option>
+                  <option value="XH">Xhosa</option>
+                </select>
+
+                <hr>
+                    <label>multilang</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="multilang" class="btn-group-value" id="multilang" value="false" />
+                        <label class="switch">
+                        <input type="checkbox" id="mlang">
+                        <span class="slider round" id="langy" style="padding-left: 48%; padding-top: 11%;">OFF</span>
+                      </label>
+                    </div>
+
+                    <hr>
+
+                    <label>email required sign in</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="email_required" class="btn-group-value" id="email_required" value="false" />
+                        <label class="switch">
+                        <input type="checkbox" id="email_log">
+                        <span class="slider round" id="email" style="padding-left: 48%; padding-top: 11%;">OFF</span>
+                      </label>
+                    </div>
+                         <span class="help-block"><?php echo WILang::get('email_required') ?>
+                             <br />
+                        </span>
+
+                </div>
+
+
+                <script type="text/javascript">
+                    var default_lang = $("#default_lang").attr('value');
+                         // alert(cost);
+                          $("#default_lang").val(default_lang).prop("selected", "selected");
+
+
+                              $("#langy").click(function(){
+                            //alert('clicked');
+                            var multilang = $("#multilang").attr("value")
+                            
+                            if (multilang === "false"){
+                            $("#mlang").prop("checked", true);
+                            $("#langy").text('ON');
+                            $("#langy").css('padding-left', '8%');
+                            $("#langy").css('padding-top', '7%');
+                            $("#multilang").attr("value", 'true');
+                           }else if (multilang === "true"){
+                            $("#mlang").prop("checked", false);
+                            $("#multilang").attr("value", 'false');
+                            $("#langy").text('OFF');
+                            $("#langy").css('padding-left', '48%');
+                            $("#langy").css('padding-top', '11%');
+                           }
+                        })
+
+                                $("#email").click(function(){
+                            //alert('clicked');
+                            var email_required = $("#email_required").attr("value")
+                            
+                            if (email_required === "false"){
+                            $("#email_log").prop("checked", true);
+                            $("#email").text('ON');
+                            $("#email").css('padding-left', '8%');
+                            $("#email").css('padding-top', '7%');
+                            $("#multilang").attr("value", 'true');
+                           }else if (email_required === "true"){
+                            $("#email_log").prop("checked", false);
+                            $("#email_required").attr("value", 'false');
+                            $("#email").text('OFF');
+                            $("#email").css('padding-left', '48%');
+                            $("#email").css('padding-top', '11%');
+                           }
+                        })
+                </script>
+
                     
                      <label for="mailer"><?php echo WILang::get('mailer') ?></label>
                     <select name="mailer" id="mailer">
@@ -465,9 +624,6 @@ function googleTranslateElementInit() {
                         
                       </script>
 
-
-                     
-
                     <div class="form-group">
                         <label for="bootstrap_version"><?php echo WILang::get('bv') ?> </label>
                         <select name="bootstrap_version" id="bootstrap_version">
@@ -516,24 +672,223 @@ function googleTranslateElementInit() {
                 </button>
                 <div class="clearfix"></div>
             </div>
+            <!-- Step Four -->
+             <div class="step-content hide" id="step_four">
+                <h3><?php echo WILang::get('social') ?></h3>
+                <hr>
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label>Twitter Login</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="twitter_login" class="btn-group-value" id="tw-login" value="false" />
+                        <label class="switch">
+                        <input type="checkbox" id="twit">
+                        <span class="slider round" id="ter" style="padding-left: 48%; padding-top: 11%;">OFF</span>
+                      </label>
+                    </div>
+                    <div class="tw-fields hide" id="twittee">
+                      <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="tw_key">Key</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="tw_key" name="tw_key" placeholder="key">
+
+                        <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="tw_secret">Secret</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="tw_secret" name="tw_secret" placeholder="secret">
+                    </div>
+
+                  </div>
+                  
+                   <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label>Facebook Login</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="facebook_login" class="btn-group-value"  id="fb-login" value="false" />
+                        <label class="switch">
+                        <input type="checkbox" id="fb">
+                        <span class="slider round" id="log" style="padding-left: 48%; padding-top: 11%;">OFF</span>
+                        
+                      </label>
+                    </div>
+                    <div class="fb-fields hide" id="faceb">
+                      <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="fb_id">ID</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="fb_id" name="fb_id" placeholder="ID">
+
+                        <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="fb_secret">Secret</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="fb_secret" name="fb_secret" placeholder="secret">
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label>Google+ Login</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="google_login" class="btn-group-value"  id="gp-login" value="false" />
+                        <label class="switch">
+                        <input type="checkbox" id="googleplus">
+                        <span class="slider round" id="glogin" style="padding-left: 48%; padding-top: 11%;">OFF</span>
+                        
+                      </label>
+                    </div>
+                    <div class="gp-fields hide" id="googlep">
+                      <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="gp_id">ID</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="gp_id" name="gp_id" placeholder="ID">
+
+                        <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="gp_secret">Secret</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="gp_secret" name="gp_secret" placeholder="secret">
+                       <hr>
+                    </div>
+                </div>
 
 
-            <div class="step-content hide" id="step_four">
+                                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label>Google+ Services</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="hidden" name="google_service" class="btn-group-value"  id="google_service" value="false" />
+                        <label class="switch">
+                        <input type="checkbox" id="googleplusservice">
+                        <span class="slider round" id="gloginservice" style="padding-left: 48%; padding-top: 11%;">OFF</span>
+                        
+                      </label>
+                    </div>
+                    <div class="gp-fields hide" id="googlepservice">
+
+                         <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="map_api">map api</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="map_api" name="map_api" placeholder="map api">
+
+                         <div class="col-lg-4 col-xs-4 col-sm-s col-md-4">
+                        <label for="charts_api_key">charts api key</label>
+                      </div>
+                        <input type="text" class="input-xlarge" id="charts_api_key" name="charts_api_key" placeholder="charts api key">
+                    </div>
+                </div>
+             
+               
+
+               <script type="text/javascript">
+                   
+                 $(document).ready(function(event){
+
+
+
+                    $("#ter").click(function(){// twit
+                                    //alert('clicked');
+                    //console.log("passd");
+                    var twit = $("#tw-login").attr("value");
+                    
+                    if (twit === "false"){
+                    $("#twit").prop("checked", true);
+                    $("#ter").text('ON');
+                    $("#ter").css('padding-left', '8%');
+                    $("#ter").css('padding-top', '7%');
+                    $("#tw-login").attr("value", 'true');
+                    $("#twittee").removeClass("hide").addClass("show");
+                   }else if (twit === "true"){
+                    $("#twit").prop("checked", false);
+                    $("#tw-login").attr("value", 'false');
+                    $("#ter").text('OFF');
+                    $("#ter").css('padding-left', '48%');
+                    $("#ter").css('padding-top', '11%');
+                    $("#twittee").removeClass("show").addClass("hide");
+                   }
+                    })
+
+                    $("#log").click(function(){
+                    //alert('clicked');
+                    var fb = $("#fb-login").attr("value")
+                    
+                    if (fb === "false"){
+                    $("#fb").prop("checked", true);
+                    $("#log").text('ON');
+                     $("#log").css('padding-left', '8%');
+                    $("#log").css('padding-top', '7%');
+                    $("#fb-login").attr("value", 'true');
+                    $("#faceb").removeClass("hide").addClass("show");
+                   }else if (fb === "true"){
+                    $("#fb").prop("checked", false);
+                    $("#fb-login").attr("value", 'false')
+                    $("#log").text('OFF');
+                    $("#log").css('padding-left', '48%');
+                    $("#log").css('padding-top', '11%');
+                    $("#faceb").removeClass("show").addClass("hide");
+                   }
+                })
+
+                    $("#glogin").click(function(){
+                    //alert('clicked');
+                    var google = $("#gp-login").attr("value")
+                    
+                    if (google === "false"){
+                    $("#googleplus").prop("checked", true);
+                    $("#glogin").text('ON');
+                    $("#glogin").css('padding-left', '8%');
+                    $("#glogin").css('padding-top', '7%');
+                    $("#gp-login").attr("value", 'true');
+                    $("#googlep").removeClass("hide").addClass("show");
+                   }else if (google === "true"){
+                    $("#googleplus").prop("checked", false);
+                    $("#gp-login").attr("value", 'false');
+                    $("#glogin").text('OFF');
+                    $("#glogin").css('padding-left', '48%');
+                    $("#glogin").css('padding-top', '11%');
+                    $("#googlep").removeClass("show").addClass("hide");
+                   }
+                })
+
+
+                    $("#gloginservice").click(function(){
+                    //alert('clicked');
+                    var google_service = $("#google_service").attr("value")
+                    
+                    if (google_service === "false"){
+                    $("#googleplusservice").prop("checked", true);
+                    $("#gloginservice").text('ON');
+                    $("#gloginservice").css('padding-left', '8%');
+                    $("#gloginservice").css('padding-top', '7%');
+                    $("#google_service").attr("value", 'true');
+                    $("#googlepservice").removeClass("hide").addClass("show");
+                   }else if (google_service === "true"){
+                    $("#googleplusservice").prop("checked", false);
+                    $("#google_service").attr("value", 'false');
+                    $("#gloginservice").text('OFF');
+                    $("#gloginservice").css('padding-left', '48%');
+                    $("#gloginservice").css('padding-top', '11%');
+                    $("#googlepservice").removeClass("show").addClass("hide");
+                   }
+                })
+
+                });
+               </script>
+
+         <button class="btn btn-as pull-right" onclick="WIInstall.stepFour();" type="button">
+
+                    <span class="show" id="next">
+                        <?php echo WILang::get('next') ?>
+                        <i class="fa fa-arrow-right" ></i>
+                    </span>
+                </button>
+                 <span class="show" id="mess">
+                        <i class="fa"></i>
+                    </span>
+                <div class="clearfix"></div>
+            </div>
+
+            <!-- Step four -->
+            <div class="step-content hide" id="step_five">
                 <h3><?php echo WILang::get('database') ?></h3>
                 <hr>
 
-<!--                 <validator name="validation">
-                    <div class="alert alert-danger">
-                        <ul>
-                            <li >errorMessage</li>
-                            <li >Database Host is required.</li>
-                            <li >Database Username is required.</li>
-                            <li >Database Password is required.</li>
-                            <li >Database Name is required.</li>
-                        </ul>
-                         </validator>
-                    </div> -->
-                    <div class="form-group">
+                     <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
                         <label for="host"><?php echo WILang::get('host') ?></label><span class="required">*</span>
                         <input type="text" class="form-control" id="host">
                         <small><?php echo WILang::get('db_info') ?></small>
@@ -553,7 +908,8 @@ function googleTranslateElementInit() {
                         <input type="text" class="form-control" id="db_name">
                         <small><?php echo WILang::get('db_info_tab') ?></small>
                     </div>
-               
+
+                </div>
 
                 <button class="btn btn-as pull-right" onclick="WIInstall.DB();" type="button">
                     <span class="show" id="next">
@@ -571,8 +927,9 @@ function googleTranslateElementInit() {
                     </span>
                 <div class="clearfix"></div>
             </div>
-
-            <div class="step-content hide" id="step_five">
+            <!-- Step Six -->
+            <div class="step-content hide" id="step_six">
+                <div>
                 <h3><?php echo WILang::get('install') ?></h3>
                 <hr>
 
@@ -581,7 +938,8 @@ function googleTranslateElementInit() {
                        <?php echo WILang::get('privde_info') ?> <br>
                        <?php echo WILang::get('few_sec') ?>
                     </p>
-                    
+                    </div>
+                    <div align="center" class="ajax-loading hide"><img src="../WIAdmin/WIMedia/Img/ajax_loader.gif" /></div>
                     <div id="results_install"></div>
 
                     <button class="btn btn-as pull-right" onclick="WIInstall.install();">
@@ -598,16 +956,16 @@ function googleTranslateElementInit() {
             </div>
 
              </div>
-
-            <div class="step-content hide" id="step_six">
+             <!-- Step Seven -->
+            <div class="step-content hide" id="step_seven">
+                <div>
                 <h3><?php echo WILang::get('completed') ?></h3>
                 <hr>
                 <p><strong><?php echo WILang::get('welldone') ?></strong></p>
                 <p><?php echo WILang::get('login_in_butt') ?>
                     
                 </p>
-
-                <p>
+            </div>
                     <strong><?php echo WILang::get('imp') ?></strong> <?php echo WILang::get('imp_info') ?>
                 </p>
 

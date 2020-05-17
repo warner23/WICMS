@@ -664,13 +664,19 @@ switch ($action) {
     case "menuEdit":
         onlyAdmin();
         $web = new WIWebsite(); 
-        $web->menuEdit( $_POST['id'], $_POST['name'], $_POST['link']);
+        $web->menuEdit( $_POST['menu']);
         break;
 
     case "newmenuitem":
         onlyAdmin();
         $web = new WIWebsite(); 
         $web->newmenuitem( $_POST['menu']);
+        break;
+
+    case "DeleteMenu":
+        onlyAdmin();
+        $web = new WIWebsite(); 
+        $web->DeleteMenu( $_POST['id']);
         break;
 
     //seo settings  seo

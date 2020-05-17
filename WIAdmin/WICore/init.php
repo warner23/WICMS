@@ -25,7 +25,6 @@ $plug           = new WIPlugin();
 $site           = new WISite();
 $img            = new WIImage();
 $vid            = new WIVideos();
-$topic          = new WITopic();
 $dashboard      = new WIDashboard();
 $adminChat      = new WIAdminChat();
 $Info           = new WIUserInfo();

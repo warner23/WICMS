@@ -102,21 +102,16 @@ class WIPlugin
 
     public static function pluginToggle($column, $plugin) 
     {
-        //$WIdb = WIdb::getInstance();
+        $WIdb = WIdb::getInstance();
 
-/*        $query = $this->WIdb->prepare('SELECT * FROM `wi_plugin` WHERE `plugin` = :plugin');
+        $query = $WIdb->prepare('SELECT * FROM `wi_plugin` WHERE `plugin` = :plugin');
         $query->bindParam(':plugin', $plugin, PDO::PARAM_INT);
         $query->execute();
 
-        $res = $query->fetch(PDO::FETCH_ASSOC);*/
-        $result = $this->WIdb->select("SELECT * FROM `wi_plugin` WHERE `plugin` = :plugin", 
-            array(
-            "plugin" => $plugin
-            )
-        );
+        $res = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($result[0][$column] != "") {
-            return $result[0][$column];
+        if ($res[$column] != "") {
+            return $res[$column];
         }else{
             return false;
         }

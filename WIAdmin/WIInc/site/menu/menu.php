@@ -20,4 +20,5 @@
 
                    $modal->moduleModal('menu-edit', 'Edit Menu', 'WIMenu', 'menuEdit','Save'); 
                    $modal->moduleModal('menu-new', 'Add Menu item', 'WIMenu', 'menunew','add Menu'); 
+                   $modal->moduleModal('menu-delete', 'Delete Menu item', 'WIMenu', 'deleteMEnu','Delete'); 
                    ?>

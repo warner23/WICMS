@@ -832,3 +832,6 @@ Stack trace:
 #0 /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIAjax.php(673): WIWebsite->newmenuitem(Array)
 #1 {main}
   thrown in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIWebsite.php on line 1108
+[05-May-2020 20:24:20 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'kwyword' in 'field list' in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIdb.php on line 181
+[05-May-2020 20:30:20 UTC] PHP Notice:  Undefined index: menu in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIAjax.php on line 679
+[05-May-2020 20:30:20 UTC] PHP Notice:  Undefined offset: 0 in /home/warner23/public_html/testing_IVO/WIAdmin/WICore/WIClass/WIWebsite.php on line 1175

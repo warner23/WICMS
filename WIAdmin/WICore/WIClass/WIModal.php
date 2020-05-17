@@ -67,7 +67,12 @@ class WIModal
 		echo '<div class="delete_id" id=""><p>Are you sure you want to delete</p></div> ';
 	}
 
-    public function transitemdelete()
+  public function transitemdelete()
+  {
+    echo '<div class="delete_id" id=""><p>Are you sure you want to delete</p></div> ';
+  }
+
+  public function deleteMEnu()
   {
     echo '<div class="delete_id" id=""><p>Are you sure you want to delete</p></div> ';
   }

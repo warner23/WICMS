@@ -1,0 +1,239 @@
+
+.wi_accordion{
+  background-image: url(../../WIModule/accordion/accordion.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_appearing_button{
+  background-image: url(../../WIModule/appearing_button/button.jpg);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_button{
+  background-image: url(../../WIModule/button/button.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_buttons{
+  background-image: url(../../WIModule/button/buttons.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_call_to_action{
+  background-image: url(../../WIModule/call_to_action/call.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_carousel{
+  background-image: url(../../WIModule/carousel/carousel.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_content_box{
+  background-image: url(../../WIModule/contents/call.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_tabs{
+    background-image: url(../../WIModule/csstabs/tabs.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_like{
+  background-image: url(../../WIModule/like/like.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_feature{
+    background-image: url(../../WIModule/feature/feature.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_font{
+    background-image: url(../../WIModule/font/font.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_fonts{
+    background-image: url(../../WIModule/fonts/fonts.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_folded_corner{
+    background-image: url(../../WIModule/folded_corner/folded_corner.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_google_map{
+  background-image: url(../../WIModule/google_map/gp.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+
+.wi_sub{
+  background-image: url(../../WIModule/subscribe/sub.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+
+.wi_search{
+  background-image: url(../../WIModule/search_engine/search.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_rsidebar{
+  background-image: url(../../WIModule/right_sidebar/rsidebar.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_lsidebar{
+  background-image: url(../../WIModule/left_sidebar/lsidebar.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_progress{
+  background-image: url(../../WIModule/progress_bar/progress_bar.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_priceb{
+  background-image: url(../../WIModule/price_box/price.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_panel{
+  background-image: url(../../WIModule/panel/panel.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_top_head{
+  background-image: url(../../WIModule/top_head/top_head.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_index{
+  background-image: url(../../WIModule/welcome_box/welcome.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_about{
+  background-image: url(../../WIModule/about_us/about.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_contact{
+  background-image: url(../../WIModule/contact_us/contact.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_alogin{
+  background-image: url(../../WIModule/alogin/login.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_debate{
+  background-image: url(../../WIModule/debate/debate.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_header{
+  background-image: url(../../WIModule/header/header.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_info{
+  background-image: url(../../WIModule/info/info.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_listings{
+  background-image: url(../../WIModule/listings/listings.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_contact{
+  background-image: url(../../WIModule/contact_us/contact.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_privacy{
+  background-image: url(../../WIModule/privacy_policy/privacy.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+
+.wi_topics{
+  background-image: url(../../WIModule/topics/topics.png);
+      width: 50px;
+    height: 50px;
+        background-repeat: no-repeat;
+}
+#droppablecol10{
+  background-image: url(../../WIModule/columns/drop_here.png);
+      width: 100%;
+    height: 50px;
+        background-repeat: no-repeat;
+}

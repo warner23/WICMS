@@ -1,5 +1,5 @@
 /***********
-** WIMeta NAMESPACE
+** WIMenu NAMESPACE
 **************/
 
 $(document).ready(function(event)
@@ -51,15 +51,29 @@ WIMenu.menuEdit = function () {
     var name = $("#edit_menu_name").val(),
      link = $("#edit_menu_link").val(),
      id = $("#edit_menu_id").val()
+
+              menu = {
+                MenuData:{
+                    name           : name,
+                    link          : link,
+                    id             : id
+
+                },
+                FieldId:{
+                    name           : "name",
+                    link          : "link",
+                    id             : "id"
+
+                }
+             };
+
 $(".ajax-loading").removeClass('hide').addClass('show');
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
             action : "menuEdit",
-            id   : id,
-            name : name,
-            link : link
+            menu   : menu
         },
         success: function(result)
         {
@@ -111,56 +125,26 @@ WIMenu.menunew = function(){
     });
 }
 
-WIMenu.deletemenuModal = function (id) {
+
+WIMenu.deleteMEnu = function () {
     //jQuery.noConflict();
-    $("#modal-meta-edit").removeClass("off")
-    $("#modal-meta-edit").addClass("on")
+    var id = $(".delete_id").attr("id")
+    $(".ajax-loading").removeClass("hide").addClass("show");
 
      $.ajax({
         url: "WICore/WIClass/WIAjax.php",
         type: "POST",
         data: {
-            action : "DeleteMeta",
+            action : "DeleteMenu",
             id   : id
         },
         success: function(result)
         {
-            if(result === "complete"){
-                $("#modal-meta-edit").html(result);
-              $(".ajax-loading").removeClass('open'); //remove closed element
-        $(".ajax-loading").addClass('closed'); //show loading element
-        var page = $("#page_selection").val();
-            }
-            
 
-        }
-       
-        
-    });
-
-};
-
-WIMenu.deletemenu = function (id) {
-    //jQuery.noConflict();
-    $("#modal-meta-edit").removeClass("off")
-    $("#modal-meta-edit").addClass("on")
-
-     $.ajax({
-        url: "WICore/WIClass/WIAjax.php",
-        type: "POST",
-        data: {
-            action : "DeleteMeta",
-            id   : id
-        },
-        success: function(result)
-        {
-            if(result === "complete"){
-                $("#modal-meta-edit").html(result);
-              $(".ajax-loading").removeClass('open'); //remove closed element
-        $(".ajax-loading").addClass('closed'); //show loading element
-        var page = $("#page_selection").val();
-            }
-            
+         $(".ajax-loading").removeClass("hide").addClass("show");
+         $("#modal-menu-delete-details").removeClass("hide").addClass("show");
+         WICore.Refresh();
+              
         }
           
     });
@@ -168,7 +152,12 @@ WIMenu.deletemenu = function (id) {
 };
 
 
-WIMenu.Closed = function(ele){
-    $("#modal-"+ele+"-details").removeClass("show").addClass("hide")
+WIMenu.closed = function(ele){
+    $("#modal-"+ele+"-details").removeClass("show").addClass("hide");
+}
+
+WIMenu.deleteItem = function(id){
+ $("#modal-menu-delete-details").removeClass("hide").addClass("show");
+ $(".delete_id").attr("id", id);
 }
 

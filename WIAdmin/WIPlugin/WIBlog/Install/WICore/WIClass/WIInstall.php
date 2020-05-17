@@ -270,8 +270,36 @@ CREATE TABLE IF NOT EXISTS `wi_blogcategories` (
 
 INSERT INTO `wi_blogcategories` (`title`) VALUES
 ('cms systems'),
-
 ( 'code development');
+
+INSERT INTO `wi_user_permissions` ( `role_id`, `group`, `perm_name`, `edit`, `create`, `delete`, `view`
+( 1, 2, 'Post Blog', '0', '0', '0', '1'),
+( 1, 2, 'Post Comment', '0', '1', '1', '1'),
+
+( 2, 2, 'Post Blog', '0', '0', '1', '1'),
+( 2, 2, 'Post Comment', '0', '1', '1', '1'),
+
+( 3, 2, 'Post Blog', '0', '0', '1', '1'),
+( 3, 2, 'Post Comment','0', '0', '1', '1'),
+
+( 4, 2, 'Post Blog', '1', '1', '1', '1'),
+( 4, 2, 'Post Comment','1', '1', '1', '1'),
+
+( 5, 2, 'Post Blog', '1', '1', '1', '1'),
+( 5, 2, 'Post Comment','1', '1', '1', '1'),
+
+( 6, 2, 'Post Blog', '1', '1', '1', '1'),
+( 6, 2, 'Post Comment','1', '1', '1', '1'),
+
+( 7, 2, 'Post Blog',  '1', '1', '1', '1'),
+( 8, 2, 'Post Comment', '1', '1', '1', '1');
+
+
+INSERT INTO `wi_user_page_group` ( `mod_type`) VALUES
+('Blog');
+
+INSERT INTO `wi_user_group` ( `group`) VALUES
+('Blog');
 
 
 

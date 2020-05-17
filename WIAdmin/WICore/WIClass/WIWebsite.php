@@ -1051,13 +1051,15 @@ class WIWebsite
          echo '<li class="ings"> ' . WILang::get($res['lang']) .'
          <a href="javascript:void(0);" onclick="WIMenu.editMenu(`' . $res['id'] . '`);">
          <i class="fa fa-edit"></i></a>
+         <a href="javascript:void(0);" onclick="WIMenu.deleteItem(`' . $res['id'] . '`);">
+         <i class="fa fa-trash"></i></a>
             </li>';
          if($res['parent'] > 0)
          {
             echo '<li><a href="' . $res['link'] . '">' . WILang::get('' .$res['lang'] .'') . '</a><a href="javascript:void(0);" onclick="WIMenu.editMenu(`' . $res['id'] . '`);"><i class="fa fa-edit"></i></a></li>';
          }
         }
-        echo '<a href="javascript:void(0);" onclick="WIMenu.newItem();" alt="new menu item" name="new menu item">+</a>
+        echo '<a href="javascript:void(0);" onclick="WIMenu.editMenu();" alt="new menu item" name="new menu item">+</a>
         </ul>
             </div><!-- nav -->   
             <!-- end of menu -->
@@ -1085,10 +1087,36 @@ class WIWebsite
               echo json_encode($res);
     }
 
-        public function menuEdit($id, $name, $link)
+        public function menuEdit($menu)
     {
+
+      $data = $menu['MenuData'];
+      $name = $data['name'];
+      $link = $data['link'];
+      $id   = $data['id'];
+
+              $result = $this->WIdb->select(
+                    "SELECT * FROM `wi_menu`
+                     WHERE `id` = :id",
+                     array(
+                       "id" => $id
+                     )
+                  );
+        $old_trans = $result[0]['lang'];
+
+                $this->WIdb->update(
+                    'wi_trans',
+                     array(
+                         "keyword" => strtolower($name),
+                         "translation"  => $name
+                     ),
+                     "`keyword` = :id",
+                     array("id" => strtolower($old_trans))
+                );
+
+
         $this->WIdb->update(
-                    'C',
+                    'wi_menu',
                      array(
                          "label" => $name,
                          "link"  => $link,
@@ -1097,6 +1125,7 @@ class WIWebsite
                      "`id` = :id",
                      array("id" => $id)
                 );
+
 
         $res = array(
           "success" => "completed"
@@ -1132,6 +1161,30 @@ class WIWebsite
 
     }
 
+
+    public function DeleteMenu($id)
+    {
+
+    $result = $this->WIdb->select(
+                    "SELECT * FROM `wi_menu`
+                     WHERE `id` = :id",
+                     array(
+                       "id" => $id
+                     )
+                  );
+        $old_trans = $result[0]['lang'];
+
+        $this->WIdb->delete("wi_menu", "id = :id", array( "id" => $id ));
+
+        $this->WIdb->delete("wi_trans", "keyword = :id", array( "id" => strtolower($old_trans) ));
+
+        $res = array(
+          "success" => "completed"
+        );
+
+        echo json_encode($res);
+
+    }
 
 
     //image

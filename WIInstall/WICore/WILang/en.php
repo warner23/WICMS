@@ -15,6 +15,8 @@ return array(
 
 	"options" => "Site Options",
 
+	"social" => "Social Options",
+
 	"database" => "Database Info",
 
 	"complete" => "Complete",
@@ -108,6 +110,8 @@ or it can cotain path that include subfolders, if script is located in some subf
 
 	"and" => "and",
 
+	"email_required" => "Email confirmation is required on registration",
+
 	"bcrypt_info3" => "to make balance between speed and security.",
 
 	"bcrypt_info4" => "Higher cost - slower but more secure.",
@@ -191,15 +195,9 @@ or it can cotain path that include subfolders, if script is located in some subf
 
 	"install" => "Installation",
 
-	"install" => "Installation",
+	"create_Acc" => "Installing now ...",
 
-	"install" => "Installation",
 
-	"install" => "Installation",
-
-	"install" => "Installation",
-
-	"install" => "Installation",
 
 
 

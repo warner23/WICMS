@@ -1,0 +1,46 @@
+[24-Apr-2018 13:14:21 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php on line 53
+[24-Apr-2018 13:30:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:34:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:36:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:41:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:41:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:42:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:47:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
+[24-Apr-2018 13:49:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method WIForum::forum_menu() in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php:237
+Stack trace:
+#0 /home/warner/public_html/Xgox_Dev/WIForum/WICore/WIClass/WIModules.php(56): forum->mod_name('forum', 'forum')
+#1 /home/warner/public_html/Xgox_Dev/WIForum/index.php(58): WIModules->getModMain(Object(forum), 'forum', 'forum')
+#2 {main}
+  thrown in /home/warner/public_html/Xgox_Dev/WIAdmin/WIModule/forum/forum.php on line 237
